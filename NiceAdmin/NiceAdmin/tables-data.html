@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Tables / Data - NiceAdmin Bootstrap Template</title>
+  <title>의사 / 전체 상담글 조회 - Myclinic</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -509,72 +509,63 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Data Tables</h1>
+      <h1>전체 상담글 조회</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Tables</li>
-          <li class="breadcrumb-item active">Data</li>
+          <li class="breadcrumb-item"><a href="index.html">홈페이지</a></li>
+          <li class="breadcrumb-item">전체 상담글 조회</li>
+          <!-- <li class="breadcrumb-item active">Data</li> -->
         </ol>
       </nav>
     </div><!-- End Page Title -->
-
+    
     <section class="section">
       <div class="row">
         <div class="col-lg-12">
 
-          <div class="card">
+          <div class="card"> 
             <div class="card-body">
-              <h5 class="card-title">Datatables</h5>
-              <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
+              <h5 class="card-title">환자 상담내역</h5>
+              <!-- <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p> -->
 
               <!-- Table with stripped rows -->
               <table class="table datatable">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
-                  </tr>
+                    <!-- table 작업시에 <th><td> 갯수가 서로 일치하지 않으면 정렬 버튼 사라집니다 -->
+                    <th scope="col">답변</th>
+                    <th scope="col">번호</th>
+                    <th scope="col">제목</th>
+                    <th scope="col">위급정도</th>
+                    <th scope="col">진료 희망 과목</th>
+                    <th scope="col">연령대</th> 
+                    <th scope="col">작성자</th>
+                    <th scope="col">작성일</th>
+                  </tr> 
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
+                    <th scope="row">완료</th>
+                    <td>1</td>
+                    <td>감각이 없으니 어떻게 된거요?</td>
+                    <td>긴급</td>
+                    <td>비뇨기과</td>
+                    <td>40대</td>
+                    <td>심영</td>
+                    <td>2023-03-23</td>
                   </tr>
+
                   <tr>
-                    <th scope="row">2</th>
-                    <td>Bridie Kessler</td>
-                    <td>Developer</td>
-                    <td>35</td>
-                    <td>2014-12-05</td>
+                    <th scope="row">미완료</th>
+                    <td>2</td>
+                    <td>아파요</td>
+                    <td>중간</td>
+                    <td>이비인후과</td>
+                    <td>30대</td>
+                    <td>김갑환</td>
+                    <td>2023-03-25</td>
                   </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Ashleigh Langosh</td>
-                    <td>Finance</td>
-                    <td>45</td>
-                    <td>2011-08-12</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Angus Grady</td>
-                    <td>HR</td>
-                    <td>34</td>
-                    <td>2012-06-11</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>Raheem Lehner</td>
-                    <td>Dynamic Division Officer</td>
-                    <td>47</td>
-                    <td>2011-04-19</td>
-                  </tr>
+                  
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->
