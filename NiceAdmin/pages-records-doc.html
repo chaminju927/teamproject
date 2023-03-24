@@ -504,15 +504,23 @@
         <div class="col-lg-6">
 
           <div class="card">
-            <div class="card-body">
+            <div class="card-body">  
               <h5 class="card-title">소견서</h5>
-              <p>For custom Bootstrap form validation messages, you’ll need to add the <code>novalidate</code> boolean attribute to your <code>&lt;form&gt;</code>. This disables the browser default feedback tooltips, but still provides access to the form validation APIs in JavaScript. </p>
+              <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                <img src="assets/img/doctor.jfif" alt="Profile">
+
+              <br><p> 안녕하세요 리액트피부과 원장 OOO 입니다.<br>
+                환자분의 환부 사진 및 상태 정보로 보아 벌레에 물리신 것 같습니다.<br>
+                과도하게 긁거나 만지지 마시고 냉찜질을 해주시면 도움이 될 것입니다.<br>
+                혹시나 2~3일 경과 후에도 차도가 없다면, 알레르기가 있는 것으로 의심되니<br>
+                반드시 내원해 치료를 하셔야 합니다.<br>
+                감사합니다.</p>
 
               <!-- Custom Styled Validation -->
               <form class="row g-3 needs-validation" novalidate>
                
                   
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                   <label for="validationCustom03" class="form-label">City</label>
                   <input type="text" class="form-control" id="validationCustom03" required>
                   <div class="invalid-feedback">
@@ -535,8 +543,8 @@
                   <div class="invalid-feedback">
                     Please provide a valid zip.
                   </div>
-                </div>
-                <div class="col-12">
+                </div> -->
+                <!-- <div class="col-12">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
                     <label class="form-check-label" for="invalidCheck">
@@ -546,9 +554,11 @@
                       You must agree before submitting.
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="col-12">
                   <button class="btn btn-primary" type="submit">수정하기</button>
+                  <button class="btn btn-primary" > 저 장</button>
+                  <button class="btn btn-primary" > 이전 페이지</button>
                 </div>
               </form><!-- End Custom Styled Validation -->
 
