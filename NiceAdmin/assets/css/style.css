@@ -1089,10 +1089,10 @@ h6 {
   margin-bottom: 0;
 }
 
-.contact .info-box button {
+.main .hos-edit-btn button {
   position: absolute;
-  top: 10%;
-  right: 5%;
+  top: 6%;
+  right: 2%;
 }
 
 .contact .php-email-form .error-message {
