@@ -1089,6 +1089,12 @@ h6 {
   margin-bottom: 0;
 }
 
+.contact .info-box button {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+}
+
 .contact .php-email-form .error-message {
   display: none;
   color: #fff;
