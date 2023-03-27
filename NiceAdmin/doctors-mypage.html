@@ -525,7 +525,10 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
               <img src="assets/img/doctor.png" alt="Profile">
-              
+              <div class="col-md-6">
+                <label for="inputEmail5" class="form-label"></label>
+                  <input class="form-control" type="file" id="formFile">                
+              </div>
 
            </div>
             </div>
@@ -539,33 +542,37 @@
               <h5 class="card-title">나의 개인 정보</h5>
               <!-- Multi Columns Form -->
               <form class="row g-3">
-                <div class="col-md-12">
-                  <label for="inputName5" class="form-label">이름</label>
-                  <input type="text" class="form-control" id="inputName5" value="차민주" readonly>
+                <div class="col-md-6">
+                  <label for="inputEmail5" class="form-label">이름</label>
+                  <input type="text" class="form-control" id="inputName" value="차민주">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputPassword5" class="form-label">성별</label>
+                  <input type="text" class="form-control" id="inputGender" value="여" readonly>
                 </div>
                 <div class="col-md-6">
                   <label for="inputEmail5" class="form-label">ID</label>
-                  <input type="email" class="form-control" id="inputEmail5" value="chaminju">
+                  <input type="text" class="form-control" id="inputId" value="chaminju">
                 </div>
                 <div class="col-md-6">
                   <label for="inputPassword5" class="form-label">Password</label>
                   <input type="password" class="form-control" id="inputPassword5">
                 </div>
-                <div class="col-12">
-                  <label for="inputAddress5" class="form-label">생년월일</label>
-                  <input type="text" class="form-control" id="inputBirth" value="1995.04.03" readonly>
+                <div class="col-md-6">
+                  <label for="inputEmail5" class="form-label">생년월일</label>
+                  <input type="text" class="form-control" id="inputName" value="1995.05.04" readonly>
+                </div>
+                <div class="col-md-6">
+                  <label for="inputPassword5" class="form-label">전화번호</label>
+                  <input type="text" class="form-control" id="inputTel" value="010-222-3333">
                 </div>
                 <div class="col-12">
                   <label for="inputAddress2" class="form-label">이메일</label>
-                  <input type="text" class="form-control" id="inputEmail" value="doctor@test.com" readonly>
+                  <input type="email" class="form-control" id="inputEmail" value="doctor@test.com" readonly>
                 </div>
-                <div class="col-md-6">
-                  <label for="inputCity" class="form-label">전화번호</label>
-                  <input type="text" class="form-control" id="inputCity" value="010-000-0000"> 
-                </div>
-                <div class="col-md-4">
-                  <label for="inputCity" class="form-label">전공</label>
-                  <input type="text" class="form-control" id="inputCity" value="성형외과" readonly> 
+                <div class="col-12">
+                  <label for="inputAddress2" class="form-label">자택 주소</label>
+                  <input type="text" class="form-control" id="inputAddr" value="서울시 강남구 대치동" >
                 </div>
               
                 <div class="text-center">
@@ -578,29 +585,73 @@
           </div>
         </div>
 
-        
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">상세정보</h5>
+              <h5 class="card-title">경력 및 병원 정보</h5>
 
                <!-- Multi Columns Form -->
                <form class="row g-3">
-                <div class="col-md-12">
-                  <label for="inputName5" class="form-label">자택 주소</label>
-                  <input type="text" class="form-control" id="inputName5" value="서울시 서초구 양재동" >
+                <div class="col-md-4">
+                  <label for="inputEmail5" class="form-label">병원 이름</label>
+                  <input type="email" class="form-control" id="inputEmail5">
                 </div>
+                <div class="col-md-4">
+                  <label for="inputEmail5" class="form-label">병원 전화번호</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="col-md-4">
+                  <label for="inputEmail5" class="form-label">진료 과목</label>
+                  <select id="inputState" class="form-select">
+                    <option selected>내과</option>
+                    <option>외과</option>
+                    <option>정형외과</option>
+                    <option>신경과</option>
+                    <option>피부과</option>
+                    <option>정신과</option>
+                    <option>안과</option>
+                    <option>산부인과</option>
+                    <option>비뇨기과</option>
+                    <option>치과</option>
+                    <option>가정의학과</option>
+                    <option>성형외과</option>
+                  </select>
+                </div>
+                
                 <div class="col-md-6">
-                  <label for="inputEmail5" class="form-label">자격 취득일</label>
+                  <label for="inputEmail5" class="form-label">진료 시간</label>
                   <input type="email" class="form-control" id="inputEmail5">
                 </div>
                 <div class="col-md-6">
-                  <label for="inputEmail5" class="form-label">자격 취득일</label>
+                  <label for="inputEmail5" class="form-label">사업자번호</label>
                   <input type="email" class="form-control" id="inputEmail5">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputEmail5" class="form-label">병원 주소</label>
+                  <input type="email" class="form-control" id="inputEmail5">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputEmail5" class="form-label">사진 첨부</label>
+                    <input class="form-control" type="file" id="formFile">                
+                </div>
+                <div class="col-md-6">
+                  <label for="inputEmail5" class="form-label">자격/면허증</label>
+                  <select onchange="categoryChange(this)" id="license" class="form-select">
+                    <option value="1">자격증</option>
+                    <option value="2">면허증</option>
+                   
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="inputEmail5" class="form-label">상세</label>
+                  <select id="license-detail" class="form-select">
+                    <option value="1"></option>
+                               
+                  </select>
                 </div>
                 
                 <div class="col-12">
-                  <label for="inputAddress5" class="form-label">경력 사항</label>
-                  <input type="text" class="form-control" id="inputBirth" value="2002.3.연세대 의대 졸업" readonly>
+                  <label for="inputAddress5" class="form-label">학력/경력</label>
+                  <input type="text" class="form-control" id="inputBirth" value="2002.3.연세대 의대 졸업" readonly><br>
                   <input type="text" class="form-control" id="inputBirth" value="연세 세브란스 병원" readonly>
                 </div>
                
@@ -635,6 +686,33 @@
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+
+<!--면허종류 참고 사이트 https://lic.mohw.go.kr/guide/guide03.do?MENU_ID=C-03-01-->
+<script>  
+  function categoryChange(e) {
+    var certification = ['전문의', '치과의사전문의', '한의사전문의'];
+    var license= ['의사', '치과의사', '임상병리사'];
+    var target = document.getElementById('license-detail');
+
+        if (e.value == '1') {
+          var d = certification;
+        } else {
+        var d = license;
+        }
+
+    target.options.length = 0;
+
+    for (x in d) {
+      var opt = document.createElement('option');
+      opt.value = d[x];
+      opt.innerHTML = d[x];
+      target.appendChild(opt);
+    }
+  }
+  
+</script>
+
+
   <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -647,6 +725,8 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+
 
 </body>
 
