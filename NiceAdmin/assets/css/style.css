@@ -618,6 +618,32 @@ h6 {
   background-color: #f6f9ff;
 }
 
+.top-menu {
+  display: flex;
+}
+
+.top-menu .nav-link {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: #4154f1;
+  transition: 0.3;
+  background: #f6f9ff;
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+
+.top-menu .nav-link.collapsed {
+  color: #012970;
+  background: #fff;
+}
+
+.top-menu .nav-link:hover {
+  color: #4154f1;
+  background: #f6f9ff;
+}
+
 /*--------------------------------------------------------------
 # Sidebar
 --------------------------------------------------------------*/
