@@ -263,7 +263,7 @@ h6 {
 
 .card-body {
   padding: 0 10px 20px 20px;
-  height: 270px;
+  min-height: 300px;
 }
 
 .card-img-overlay {
