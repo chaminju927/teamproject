@@ -262,15 +262,8 @@ h6 {
 }
 
 .card-body {
-  padding: 0 20px 20px 20px;
-}
-
-.text-title {
-  font-size: 16px;
-}
-
-.text-content {
-  padding: 20px;
+  padding: 0 10px 20px 20px;
+  height: 270px;
 }
 
 .card-img-overlay {
@@ -945,6 +938,7 @@ h6 {
 
 .dashboard .recent-sales .table thead {
   background: #f6f6fe;
+  
 }
 
 .dashboard .recent-sales .table thead th {
@@ -1199,15 +1193,6 @@ h6 {
   100% {
     transform: rotate(360deg);
   }
-}
-
-/*--------------------------------------------------------------
-# 글쓰기 페이지
---------------------------------------------------------------*/
-
-.write {
-  min-height: 30vh;
-  font-size: larger;
 }
 
 /*--------------------------------------------------------------
