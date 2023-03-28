@@ -27,6 +27,10 @@ a {
   text-decoration: none;
 }
 
+#com-comment {
+  padding: 30px;
+}
+
 a:hover {
   color: #717ff5;
   text-decoration: none;
