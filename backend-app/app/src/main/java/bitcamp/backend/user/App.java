@@ -49,8 +49,6 @@ public class App {
     Board board = new Board((String) param.get("title"), (String) param.get("password"),
         (String) param.get("pain"), str);
 
-    System.out.println();
-
 
     boardService.add(board);
 
@@ -58,19 +56,35 @@ public class App {
 
   @PostMapping("/boardSearch")
   public Object bSearch(@RequestBody HashMap<String, Object> param) {
-    System.out.println(param);
     List<Board> boards = boardService.list((String) param.get("search"));
-    System.out.println(boards);
     return boards;
   }
 
   @PostMapping("/boardPassword")
   public Object bSearchPwd(@RequestBody HashMap<String, Object> param) {
+
     Map<String, Object> result = new HashMap<>();
-    System.out.println(boardService.get((String) param.get("password")));
+
 
     if (boardService.get((String) param.get("password")) != null) {
       Board board = boardService.get((String) param.get("password"));
+
+      result.put("status", "success");
+      result.put("data", board);
+    } else {
+      result.put("status", "fail");
+    }
+
+    return result;
+  }
+
+  @PostMapping("/boardNo")
+  public Object bSearchNo(@RequestBody HashMap<String, Object> param) {
+
+    Map<String, Object> result = new HashMap<>();
+
+    if (boardService.get(Integer.parseInt(((String) param.get("no")))) != null) {
+      Board board = boardService.get(Integer.parseInt(((String) param.get("no"))));
 
       result.put("status", "success");
       result.put("data", board);
