@@ -33,6 +33,21 @@
     </if> 
   </select>
   
+  <select id="findByNo" resultType="bitcamp.backend.user.vo.Board" parameterType="int">
+    select 
+      b.symp_no as no, 
+      b.symp_title as title,
+      b.symp_date as createdDate,
+      b.symp_cont1 as pain,
+      b.symp_cont2 as another
+    from 
+      app_symp_board b
+    <if test="no != 0 and no != null">
+    where 
+      b.symp_no = #{no}
+    </if> 
+  </select>
+  
   <select id="findByPassword" resultType="bitcamp.backend.user.vo.Board" parameterType="string">
     select 
       b.symp_no as no, 
