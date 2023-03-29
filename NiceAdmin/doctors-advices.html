@@ -42,7 +42,10 @@
   justify-content: center;
   margin-top: 20px;
 }
-
+  .datatable tbody tr {
+    height: 70px;
+    font-size: 20px;
+  }
   </style>
 </head>
 
@@ -482,50 +485,20 @@
                     <th scope="col">번호</th>
                     <th scope="col">제목</th>
                     <th scope="col">위급정도</th>
-                    <th scope="col">진료 희망 과목</th>
                     <th scope="col">작성자</th>
                     <th scope="col">작성일</th>
                   </tr>   
                 </thead>
-                <tbody class="table-group-divider">
-                  <tr>
-                    <th scope="row">완료</th>
-                    <td>1</td>
-                    <td>뼈가 부러진거 같아요</td>
-                    <td><span class="badge bg-danger text-dark">위험</span></td>
-                    <td>정형외과</td>
-                    <td>하나</td>
-                    <td>2023-03-23</td>
-                  </tr>
-                  
-                  <tr>
-                    <th scope="row">미완료</th>
-                    <td>2</td>
-                    <td>아파요</td>
-                    <td><span class="badge bg-warning">보통</span></td>
-                    <td>이비인후과</td>
-                    <td>김갑환</td>
-                    <td>2023-03-25</td>
-                  </tr>
+                <tbody class="table-group-divider" id="board-list">
+
 
                   <tr>
-                    <th scope="row">미완료</th>
-                    <td>2</td>
-                    <td>아파요</td>
-                    <td><span class="badge bg-success">낮음</span></td>
-                    <td>이비인후과</td>
-                    <td>김갑환</td>
-                    <td>2023-03-25</td>
-                  </tr>
-
-                  <tr>
-                    <th scope="row">미완료</th>
-                    <td>2</td>
-                    <td>아파요</td>
-                    <td><span class="badge bg-success">낮음</span></td>
-                    <td>이비인후과</td>
-                    <td>김갑환</td>
-                    <td>2023-03-25</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><span class="badge bg-danger text-dark"></span></td>
+                    <td></td>
+                    <td></td>
                   </tr>
 
                   
@@ -588,15 +561,16 @@
   <script src="assets/vendor/simple-datatables/doctor-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-
+  
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <!-- 사용자가 추가한 스크립트 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-  <script>
-
-  </script>
+  <script type='text/babel' src="doctor-boardlist.js"></script>
 </body>
 
 </html>

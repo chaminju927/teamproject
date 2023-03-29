@@ -444,35 +444,44 @@
         <div class="col-lg-6 ">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title"></h5>
+              <h3 class="card-title board-title">제목</h3>
+              <h5 class="card-title board-pain">증상 : </h5>
               <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                 <img src="assets/img/skintrouble.jfif" alt="Profile">
   
               </div>
-              <p>요 근래에 건조해서 그런가 피부가 가려워서 조금 긁었는데 점점 심해졌네요. 심각한건지 연고는 어떤걸 발라야하는건지 알려주세요ㅠㅠ</p>
+              <p class="board-another">-</p>
 
               <!-- Browser Default Validation -->
               <form class="row gx-3">
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <label for="validationDefault01" class="form-label">이름</label>
-                  <input type="text" class="form-control" id="validationDefault01" value="엄진영" readonly>
+                  <input type="text" class="form-control board-name" id="validationDefault01" value="엄진영" readonly>
                 </div>
-                <div class="col-md-4">
-                  <label for="validationDefault02" class="form-label">생년월일</label>
-                  <input type="text" class="form-control" id="validationDefault02" value="1999.01.01" readonly>
-                </div>
-                <div class="col-md-4">
+                <div class="col-md-1">
                   <label for="validationDefault02" class="form-label">성별</label>
-                  <input class="form-control" id="validationDefault02" value="여" readonly>
+                  <input class="form-control board-gender" id="validationDefault02" style="padding: 0px; line-height: 38px; text-align: center; height: 38px;" value="여" readonly>
                 </div>
-                
+                <div class="col-md-2">
+                  <label for="validationDefault01" class="form-label">나이</label>
+                  <input type="text" class="form-control board-age" id="validationDefault01" value="21" readonly>
+                </div>
+                <div class="col-md-3">
+                  <label for="validationDefault01" class="form-label">지역</label>
+                  <input type="text" class="form-control board-addr" id="validationDefault01" value="경기도" readonly>
+                </div>
+                <div class="col-md-3">
+                  <label for="validationDefault01" class="form-label">연락처</label>
+                  <input type="text" class="form-control board-tel" id="validationDefault01" value="010-010-010" readonly>
+                </div>
+
                 <div class="col-md-6">
                   <label for="validationDefault03" class="form-label">특이사항(지병)</label>
-                  <input type="text" class="form-control" id="validationDefault03" value="없음" readonly>
+                  <input type="text" class="form-control" id="validationDefault03" value="-" readonly>
                 </div>
                 <div class="col-md-6">
                   <label for="validationDefault03" class="form-label">특이사항(복용중인 약)</label>
-                  <input type="text" class="form-control" id="validationDefault03" value="없음" readonly>
+                  <input type="text" class="form-control" id="validationDefault03" value="-" readonly>
                 </div>
                 
                 <!-- <div class="col-12">
@@ -596,6 +605,13 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+   <!-- 사용자가 추가한 스크립트 -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+   <script type='text/babel' src="doctor-board.js"></script>
 
 </body>
 
