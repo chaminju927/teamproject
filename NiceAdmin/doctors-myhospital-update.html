@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>의사 마이페이지</title>
+  <title>의사 병원정보 변경</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -446,12 +446,12 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>나의 프로필</h1>
+      <h1>병원 정보 수정</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
           <li class="breadcrumb-item">Forms</li>
-          <li class="breadcrumb-item active">My profile</li>
+          <li class="breadcrumb-item active">My hospital</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -461,106 +461,94 @@
         <div class="col-lg-6">
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-              <img src="assets/img/doctor.png" alt="Profile">
               <div class="col-md-6">
                 <label for="inputEmail5" class="form-label"></label>
                   <input class="form-control" type="file" id="formFile">                
               </div>
-           </div>
-            </div>
-          </div>
-
-
-        
-        <div class="col-lg-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">나의 개인 정보</h5>
-              <!-- Multi Columns Form -->
-              <form class="row g-3">
-                <div class="col-md-6">
-                  <label for="inputEmail5" class="form-label">이름</label>
-                  <input type="text" class="form-control" id="inputName" value="차민주">
-                </div>
-                <div class="col-md-6">
-                  <label for="inputPassword5" class="form-label">성별</label>
-                  <input type="text" class="form-control" id="inputGender" value="여" readonly>
-                </div>
-                <div class="col-md-6">
-                  <label for="inputEmail5" class="form-label">ID</label>
-                  <input type="text" class="form-control" id="inputId" value="chaminju">
-                </div>
-                <div class="col-md-6">
-                  <label for="inputPassword5" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="inputPassword5">
-                </div>
-                <div class="col-md-6">
-                  <label for="inputEmail5" class="form-label">생년월일</label>
-                  <input type="text" class="form-control" id="inputName" value="1995.05.04" readonly>
-                </div>
-                <div class="col-md-6">
-                  <label for="inputPassword5" class="form-label">전화번호</label>
-                  <input type="text" class="form-control" id="inputTel" value="010-222-3333">
-                </div>
-                <div class="col-12">
-                  <label for="inputAddress2" class="form-label">이메일</label>
-                  <input type="email" class="form-control" id="inputEmail" value="doctor@test.com" readonly>
-                </div>
-                <div class="col-12">
-                  <label for="inputAddress2" class="form-label">자택 주소</label>
-                  <input type="text" class="form-control" id="inputAddr" value="서울시 강남구 대치동" >
-                </div>
-                
-                <div class="text-center">
-                  <button type="submit" class="btn btn-primary">변경</button>
-                  <button type="reset" class="btn btn-secondary">저장</button>
-                </div>
-              </form><!-- End Multi Columns Form -->
 
             </div>
           </div>
         </div>
 
           <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">경력 및 학력 정보</h5>
-
+            <div class="card-body row gx-3">
+              
+               <!-- Multi Columns Form -->
+               <form class="row g-3">
+                <div class="col-md-4">
+                  <label for="inputEmail5" class="form-label">병원 이름</label>
+                  <input type="email" class="form-control" id="inputEmail5">
+                </div>
+                <div class="col-md-4">
+                  <label for="inputEmail5" class="form-label">병원 전화번호</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="col-md-4">
+                  <label for="inputEmail5" class="form-label">진료 과목</label>
+                  <select id="inputState" class="form-select">
+                    <option selected>내과</option>
+                    <option>외과</option>
+                    <option>정형외과</option>
+                    <option>신경과</option>
+                    <option>피부과</option>
+                    <option>정신과</option>
+                    <option>안과</option>
+                    <option>산부인과</option>
+                    <option>비뇨기과</option>
+                    <option>치과</option>
+                    <option>가정의학과</option>
+                    <option>성형외과</option>
+                  </select>
+                </div>
+                
                 <div class="col-md-6">
-                  <label for="inputEmail5" class="form-label">사진 첨부</label>
+                  <label for="inputEmail5" class="form-label">진료 시간</label>
+                  <input type="email" class="form-control" id="inputEmail5">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputEmail5" class="form-label">사업자번호</label>
+                  <input type="email" class="form-control" id="inputEmail5">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputEmail5" class="form-label">병원 주소</label>
+                  <input type="email" class="form-control" id="inputEmail5">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputEmail5" class="form-label">자격/면허 사진</label>
                     <input class="form-control" type="file" id="formFile">                
                 </div>
-            
                 <div class="col-md-6">
                   <label for="inputEmail5" class="form-label">자격/면허증</label>
                   <select onchange="categoryChange(this)" id="license" class="form-select">
                     <option value="1">자격증</option>
                     <option value="2">면허증</option>
+                   
                   </select>
                 </div>
                 <div class="col-md-6">
                   <label for="inputEmail5" class="form-label">상세</label>
                   <select id="license-detail" class="form-select">
-                    <option value="1"></option>           
+                    <option value="1"></option>
+                               
                   </select>
                 </div>
-            
-                <div class="col-md-12">
+                
+                <div class="col-12">
                   <label for="inputAddress5" class="form-label">학력/경력</label>
                   <input type="text" class="form-control" id="inputBirth" value="2002.3.연세대 의대 졸업" readonly><br>
                   <input type="text" class="form-control" id="inputBirth" value="연세 세브란스 병원" readonly>
                 </div>
-               <br>
+               
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">변경</button>
                   <button type="reset" class="btn btn-secondary">저장</button>
                 </div>
-              </div>
               </form><!-- End Multi Columns Form -->
 
-            
+            </div>
           </div>
 
-        
+        </div>
       </div>
     </section>
 
