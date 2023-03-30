@@ -1,14 +1,14 @@
 package bitcamp.backend.register.service;
 
 import java.util.List;
-import bitcamp.myapp.vo.Teacher;
+import bitcamp.backend.register.vo.Doctor;
 
 public interface DoctorService {
-  void add(Teacher teacher);
-  List<Teacher> list();
-  Teacher get(int no);
-  Teacher get(String email, String password);
-  void update(Teacher teacher);
+  void add(Doctor doctor);
+  List<Doctor> list();
+  Doctor get(int no);
+  Doctor get(String id, String password);
+  void update(Doctor doctor);
   void delete(int no);
 }
 
