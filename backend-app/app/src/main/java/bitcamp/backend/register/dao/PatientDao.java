@@ -1,22 +1,23 @@
-//package bitcamp.backend.register.dao;
-//
-//import java.util.List;
-//import java.util.Map;
-//import org.apache.ibatis.annotations.Mapper;
-//
-//@Mapper
-//public interface PatientDao {
-//  void insert(Student s);
-//  List<Student> findAll(String keyword);
-//  Student findByNo(int no);
-//  Student findByEmailAndPassword(Map<String,Object> params);
-//  int update(Student s);
-//  int delete(int no);
-//}
-//
-//
-//
-//
-//
-//
-//
+package bitcamp.backend.register.dao;
+
+import java.util.List;
+import java.util.Map;
+import org.apache.ibatis.annotations.Mapper;
+import bitcamp.backend.register.vo.Patient;
+
+@Mapper
+public interface PatientDao {
+  void insert(Patient p);
+  List<Patient> findAll(String keyword);
+  Patient findByNo(int no);
+  Patient findByEmailAndPassword(Map<String,Object> params);
+  int update(Patient p);
+  int delete(int no);
+}
+
+
+
+
+
+
+
