@@ -11,26 +11,26 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import bitcamp.myapp.service.TeacherService;
-import bitcamp.myapp.vo.Teacher;
+import bitcamp.backend.register.service.DoctorService;
+import bitcamp.backend.register.vo.Doctor;
 import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
 
 @RestController
-@RequestMapping("/teachers")
+@RequestMapping("/doctors")
 public class DoctorController {
 
   Logger log = LogManager.getLogger(getClass());
 
   {
-    log.trace("TeacherController 생성됨!");
+    log.trace("DoctorController 생성됨!");
   }
 
-  @Autowired private TeacherService teacherService;
+  @Autowired private DoctorService doctorService;
 
   @PostMapping
-  public Object insert(@RequestBody Teacher teacher) {
-    teacherService.add(teacher);
+  public Object insert(@RequestBody Doctor doctor) {
+    doctorService.add(doctor);
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
   }
@@ -39,25 +39,25 @@ public class DoctorController {
   public Object list() {
     return new RestResult()
         .setStatus(RestStatus.SUCCESS)
-        .setData(teacherService.list());
+        .setData(doctorService.list());
   }
 
   @GetMapping("{no}")
   public Object view(@PathVariable int no) {
     return new RestResult()
         .setStatus(RestStatus.SUCCESS)
-        .setData(teacherService.get(no));
+        .setData(doctorService.get(no));
   }
 
   @PutMapping("{no}")
   public Object update(
       @PathVariable int no,
-      @RequestBody Teacher teacher) {
+      @RequestBody Doctor doctor) {
 
-    log.debug(teacher);
+    log.debug(doctor);
 
-    teacher.setNo(no);
-    teacherService.update(teacher);
+    doctor.setNo(no);
+    doctorService.update(doctor);
 
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
@@ -65,7 +65,7 @@ public class DoctorController {
 
   @DeleteMapping("{no}")
   public Object delete(@PathVariable int no) {
-    teacherService.delete(no);
+    doctorService.delete(no);
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
   }

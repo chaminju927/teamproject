@@ -8,15 +8,17 @@ import lombok.Data;
 @Data
 public class Member {
   private int no;
-  private String name;
-  private String email;
   private String id;
   private String password;
+  private String name;
+  private String email;
+  private String addr;
+  private String gender;
   private String tel;
+  private boolean auth;
 
-  //Jackson 라이브러리가 Date 타입 값을 JSON 문자열로 변환할 때 사용할 규칙을 설정한다.
   @JsonFormat(
       shape = Shape.STRING,
       pattern = "yyyy-MM-dd")
-  private Date createdDate;
+  private Date birth;
 }
