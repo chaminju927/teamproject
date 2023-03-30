@@ -85,7 +85,7 @@ fetch("http://192.168.0.7:8080/boardSearch", {
 })
 
 setTimeout(() => {
-  ReactDOM.createRoot($(".datatable-table tbody")[0]).render(
+  ReactDOM.createRoot($(".table tbody")[0]).render(
     lists
   )
 }, 51);
