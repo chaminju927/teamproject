@@ -1,6 +1,7 @@
 package bitcamp.backend.register.vo;
 
 import java.sql.Date;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import lombok.Data;
@@ -14,6 +15,6 @@ public class Community {
   private int no;
   private String title;
   private String Content;
-  private String Comment;
+  private List<Object> Comment;
   private String comWriter;
 }
