@@ -8,6 +8,6 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class Doctor extends Member{
-  private int hospitalNo;
+  private String hospitalNo;
   private String career;
 }
