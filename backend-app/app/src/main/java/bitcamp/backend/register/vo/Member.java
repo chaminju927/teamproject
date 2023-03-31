@@ -16,6 +16,9 @@ public class Member {
   private String gender;
   private String tel;
   private boolean auth;
+  private String pho_url;
+  private String pho_name;
+  private String pho_type;
 
   @JsonFormat(
       shape = Shape.STRING,
