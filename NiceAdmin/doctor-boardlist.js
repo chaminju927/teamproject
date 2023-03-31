@@ -29,7 +29,7 @@ class BoardLists extends React.Component {
     return (
       <tr onClick={() => {
         window.localStorage.setItem("boardNo", this.state.no)
-        location.href= "doctors-records.html?no=" + this.state.no;
+        location.href = "doctors-records.html?no=" + this.state.no;
       }}>
         <Td data={this.state.answer}></Td>
         <Td data={this.state.no}></Td>
@@ -42,50 +42,60 @@ class BoardLists extends React.Component {
   }
 }
 
-let lists;
+reflesh()
 
-fetch("http://192.168.0.7:8080/boardSearch", {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({ // 스프링에 전달할 값
-    search: "",
-    tags: $(".search-tags").val()
+$(".search-btn").click(() => {
+  console.log("검색 버튼");
+});
+
+function reflesh() {
+  let lists;
+
+  fetch("http://192.168.0.7:8080/boardSearch", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ // 스프링에 전달할 값
+      search: "",
+      tags: $(".search-tags").val()
+    })
   })
-})
-.then(response => response.json())
-.then(data => {
-  let list = [];
-  data.forEach(board => {
+    .then(response => response.json())
+    .then(data => {
+      let list = [];
+      data.forEach(board => {
 
-    let n = new Date();
-    let countday = n.getDate()-board.createdDate.split("-")[2];
-    let str = "";
-    if(countday > 8){
-      str = "badge bg-danger text-dark";
-    } else if(countday > 5) {
-      str = "badge bg-warning";
-    } else {
-      str = "badge bg-success";
-    }
+        let n = new Date();
+        let countday = n.getDate() - board.createdDate.split("-")[2];
+        let str = "";
+        if (countday > 8) {
+          str = "badge bg-danger text-dark";
+        } else if (countday > 5) {
+          str = "badge bg-warning";
+        } else {
+          str = "badge bg-success";
+        }
 
-    let obj = {
-      answer: "0",
-      no: board.no,
-      title: board.title,
-      warn: "경고",
-      warnLevel: str,
-      writer: board.another.split(",")[0].length > 0 ? board.another.split(",")[0] : "-",
-      date: board.createdDate,
-    }
-    list.push(<BoardLists props={obj}/>)
-  });
-  lists = list;
-})
+        let obj = {
+          answer: "0",
+          no: board.no,
+          title: board.title,
+          warn: "경고",
+          warnLevel: str,
+          writer: board.another.split(",")[0].length > 0 ? board.another.split(",")[0] : "-",
+          date: board.createdDate,
+        }
+        if (board.title.includes($(".search-filter").val())) {
+          list.push(<BoardLists props={obj} />)
+        }
+      });
+      lists = list;
+    })
 
-setTimeout(() => {
-  ReactDOM.createRoot($(".table tbody")[0]).render(
-    lists
-  )
-}, 51);
+  setTimeout(() => {
+    ReactDOM.createRoot($(".table tbody")[0]).render(
+      lists
+    )
+  }, 51);
+}
