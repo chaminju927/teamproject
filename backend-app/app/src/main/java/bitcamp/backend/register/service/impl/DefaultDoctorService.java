@@ -36,9 +36,9 @@ public class DefaultDoctorService implements DoctorService {
   }
 
   @Override
-  public Doctor get(String email, String password) {
+  public Doctor get(String id, String password) {
     Map<String,Object> paramMap = new HashMap<>();
-    paramMap.put("email", email);
+    paramMap.put("id", id);
     paramMap.put("password", password);
 
     return doctorDao.findByIdAndPassword(paramMap);

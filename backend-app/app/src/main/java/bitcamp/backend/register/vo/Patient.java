@@ -8,6 +8,6 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class Patient extends Member{
-  private String physical;
+  private String phy;
   private String drug;
 }

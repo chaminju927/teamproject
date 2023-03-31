@@ -36,12 +36,12 @@ public class DefaultPatientService implements PatientService {
   }
 
   @Override
-  public Patient get(String email, String password) {
+  public Patient get(String id, String password) {
     Map<String,Object> paramMap = new HashMap<>();
-    paramMap.put("email", email);
+    paramMap.put("id", id);
     paramMap.put("password", password);
 
-    return patientDao.findByEmailAndPassword(paramMap);
+    return patientDao.findByIdAndPassword(paramMap);
   }
 
   @Transactional
