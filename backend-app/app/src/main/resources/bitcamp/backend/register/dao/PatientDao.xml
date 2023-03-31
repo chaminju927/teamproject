@@ -46,12 +46,12 @@
 
   <select id="findByNo" parameterType="int" resultMap="patientMap">
     select 
-      m_id, 
-      m_name, 
-      m_email, 
-      m_tel
-      p_phy,
-      p_drug  
+      m.m_id, 
+      m.m_name, 
+      m.m_email, 
+      m.m_tel
+      p.p_phy,
+      p.p_drug  
     from 
       app_patient as p
       inner join app_member m on p.p_no = m.m_no
@@ -61,14 +61,14 @@
   
   <update id="update" parameterType="patient">
     update app_patient set
-      m_pw=sha2(#{password},256), 
-      m_name=#{name}, 
-      addr=#{addr}, 
-      m_email=#{email}, 
-      m_gender=#{gender}, 
-      m_tel=#{tel} 
-      p_phy,
-      p_drug
+      m.m_pw=sha2(#{password},256), 
+      m.m_name=#{name}, 
+      m.addr=#{addr}, 
+      m.m_email=#{email}, 
+      m.m_gender=#{gender}, 
+      m.m_tel=#{tel} 
+      p.p_phy,
+      p.p_drug
     from 
       app_patient as p
       inner join app_member m on p.p_no = m.m_no  
