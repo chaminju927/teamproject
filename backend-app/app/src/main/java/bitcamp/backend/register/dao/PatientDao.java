@@ -10,7 +10,7 @@ public interface PatientDao {
   void insert(Patient p);
   List<Patient> findAll();
   Patient findByNo(int no);
-  Patient findByEmailAndPassword(Map<String,Object> params);
+  Patient findByIdAndPassword(Map<String,Object> params);
   int update(Patient p);
   int delete(int no);
 }

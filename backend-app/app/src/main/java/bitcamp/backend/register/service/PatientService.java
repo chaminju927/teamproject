@@ -4,11 +4,11 @@ import java.util.List;
 import bitcamp.backend.register.vo.Patient;
 
 public interface PatientService {
-  void add(Patient student);
+  void add(Patient patient);
   List<Patient> list(String keyword);
   Patient get(int no);
-  Patient get(String email, String password);
-  void update(Patient student);
+  Patient get(String id, String password);
+  void update(Patient patient);
   void delete(int no);
 }
 
