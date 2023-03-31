@@ -16,8 +16,8 @@
 
   <insert id="insert" parameterType="hospital" 
           useGeneratedKeys="true" keyProperty="no" keyColumn="hos_no">
-    insert into app_hospital(hos_no, hos_name, hos_addr, hos_tel, hos_time, hos_sub, hos_busno)
-    values(#{hosNo}, #{hosName}, #{hosAddr}, #{hosTel}, #{hosTime}, #{hosSub}, #{hosBusno})
+    insert into app_hospital(hos_name, hos_addr, hos_tel, hos_time, hos_sub, hos_busno)
+    values(#{hosName}, #{hosAddr}, #{hosTel}, #{hosTime}, #{hosSub}, #{hosBusno})
   </insert>
 
   <select id="findAll" resultMap="hospitalMap">
