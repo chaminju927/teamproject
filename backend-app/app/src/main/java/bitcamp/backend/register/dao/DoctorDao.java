@@ -2,9 +2,10 @@ package bitcamp.backend.register.dao;
 
 import java.util.List;
 import java.util.Map;
+import org.apache.ibatis.annotations.Mapper;
 import bitcamp.backend.register.vo.Doctor;
 
-//@Mapper
+@Mapper
 public interface DoctorDao {
   void insert(Doctor d);
   List<Doctor> findAll();
