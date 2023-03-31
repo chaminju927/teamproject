@@ -15,9 +15,9 @@
     <result column="m_gender" property="gender"/>
     <result column="m_tel" property="tel"/>
     <result column="m_auth" property="auth"/>
-    <result column="m_photo" property="pho_url"/>
-    <result column="pho_filename" property="pho_name"/>
-    <result column="pho_type" property="pho_type"/>
+    <result column="m_photo" property="phoUrl"/>
+    <result column="pho_filename" property="phoName"/>
+    <result column="pho_type" property="phoType"/>
     <result column="p_phy" property="phy"/>
     <result column="p_drug" property="drug"/>
     
@@ -26,7 +26,7 @@
   <insert id="insert" parameterType="patient" 
           useGeneratedKeys="true" keyProperty="no" keyColumn="p_no">
     insert into app_patient(p_no, p_phy, p_drug)
-    values(#{p_no},#{p_phy}, #{p_drug})
+    values(#{no},#{phy}, #{drug})
   </insert>
 
   <select id="findAll" resultMap="patientMap">
