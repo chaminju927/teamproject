@@ -26,7 +26,7 @@
   <insert id="insert" parameterType="doctor" 
           useGeneratedKeys="true" keyProperty="no" keyColumn="d_no">
     insert into app_doctor(d_no, hos_no, career)
-    values(#{d_no},#{hos_no}, #{career})
+    values(#{no},#{hospitalNo}, #{career})
   </insert>
 
   <select id="findAll" resultMap="doctorMap">
