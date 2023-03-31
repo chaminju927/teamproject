@@ -5,7 +5,7 @@ import bitcamp.backend.register.vo.Patient;
 
 public interface PatientService {
   void add(Patient student);
-  List<Patient> list();
+  List<Patient> list(String keyword);
   Patient get(int no);
   Patient get(String email, String password);
   void update(Patient student);

@@ -26,7 +26,7 @@ public class DefaultPatientService implements PatientService {
   }
 
   @Override
-  public List<Patient> list() {
+  public List<Patient> list(String keyword) {
     return patientDao.findAll();
   }
 

@@ -36,10 +36,10 @@ public class PatientController {
   }
 
   @GetMapping
-  public Object list() {
+  public Object list(String keyword) {
     return new RestResult()
         .setStatus(RestStatus.SUCCESS)
-        .setData(patientService.list());
+        .setData(patientService.list(keyword));
   }
 
   @GetMapping("{no}")
