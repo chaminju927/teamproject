@@ -12,7 +12,7 @@ class Board extends React.Component {
 }
 
 function BoardImg(props) {
-  return (<img className="d-block w-100" src={props.url} alt="..." ></img>)
+  return (<img className="d-block w-100" src={props.url} alt="..." style={{wight:490, height:300}}></img>)
 }
 
 class BoardImgDiv extends React.Component {
@@ -20,12 +20,20 @@ class BoardImgDiv extends React.Component {
     super(props);
     props = props.props;
     this.state = {
-      img: props
+      img: props.url,
+      count: props.count
     }
   }
   render() {
+    if(this.state.count == 0){
+      return(
+        <div className="carousel-item active">
+          <BoardImg url={this.state.img} />
+        </div>
+      )
+    }
     return(
-      <div className="carousel-item active">
+      <div className="carousel-item">
         <BoardImg url={this.state.img} />
       </div>
     )
@@ -67,12 +75,14 @@ if (window.localStorage.getItem("boardNo") != null) {
     })
   }).then(response => response.json())
     .then(data => {
+      let coin = 0;
       if (data.status == "success") {
         data = data.data;
         let imgs = [];
         data.forEach(value => {
-          let url = value.url;
-          imgs.push(<BoardImgDiv props={url} />)
+          // let url = value.url;
+          value.count = coin++;
+          imgs.push(<BoardImgDiv props={value} />)
         });
         console.log(imgs)
         ReactDOM.createRoot(document.getElementById('imgs')).render(
