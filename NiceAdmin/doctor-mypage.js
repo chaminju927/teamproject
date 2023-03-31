@@ -11,3 +11,4 @@ fetch("http://192.168.0.7:8080/d_no", {
 })
 .then(response => response.json())
 .then(data => {
+  
