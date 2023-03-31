@@ -64,11 +64,6 @@ public class DefaultPatientService implements PatientService {
     }
   }
 
-  @Override
-  public List<Patient> list(String keyword) {
-    // TODO Auto-generated method stub
-    return null;
-  }
 }
 
 
