@@ -45,13 +45,14 @@
   </select>
 
   <select id="findByNo" parameterType="int" resultMap="doctorMap">
-    select 
-      m_id, 
-      m_name, 
-      m_email, 
-      m_tel
-      hos_no,
-      career  
+    select
+      d.d_no,
+      m.m_id, 
+      m.m_name, 
+      m.m_email, 
+      m.m_tel,
+      d.hos_no,
+      d.career  
     from 
       app_doctor as d
       inner join app_member m on d.d_no = m.m_no
@@ -61,17 +62,7 @@
   
   <update id="update" parameterType="doctor">
     update app_doctor set
-      m_pw=sha2(#{password},256), 
-      m_name=#{name}, 
-      addr=#{addr}, 
-      m_email=#{email}, 
-      m_gender=#{gender}, 
-      m_tel=#{tel} 
-      hos_no,
-      career
-    from 
-      app_doctor as d
-      inner join app_member m on d.d_no = m.m_no  
+       career=#{career} 
     where d_no=#{no}
   </update>
   

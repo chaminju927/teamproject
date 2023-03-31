@@ -16,13 +16,13 @@ import bitcamp.backend.register.vo.Doctor;
 public class DefaultDoctorService implements DoctorService {
 
   @Autowired private MemberDao memberDao;
-  private DoctorDao doctorDao;
+  @Autowired private DoctorDao doctorDao;
 
   @Transactional
   @Override
   public void add(Doctor doctor) {
     memberDao.insert(doctor);
-    //    doctorDao.insert(doctor);
+    doctorDao.insert(doctor);
   }
 
   @Override
@@ -50,7 +50,7 @@ public class DefaultDoctorService implements DoctorService {
     if (memberDao.update(doctor) == 1 &&
         doctorDao.update(doctor) == 1) {
     } else {
-      throw new RuntimeException("강사가 존재하지 않습니다.");
+      throw new RuntimeException("의사가 존재하지 않습니다.");
     }
   }
 
@@ -60,7 +60,7 @@ public class DefaultDoctorService implements DoctorService {
     if (doctorDao.delete(no) == 1 &&
         memberDao.delete(no) == 1) {
     } else {
-      throw new RuntimeException("강사가 존재하지 않습니다.");
+      throw new RuntimeException("의사가 존재하지 않습니다.");
     }
   }
 }
