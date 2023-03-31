@@ -31,12 +31,12 @@
 
   <select id="findAll" resultMap="doctorMap">
     select 
-      m_id, 
-      m_name, 
-      m_email, 
-      m_tel,
-      hos_no,
-      career 
+      m.m_id, 
+      m.m_name, 
+      m.m_email, 
+      m.m_tel,
+      d.hos_no,
+      d.career 
     from 
       app_doctor as d
       inner join app_member m on d.d_no = m.m_no
