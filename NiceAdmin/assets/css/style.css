@@ -22,6 +22,11 @@ body {
   color: #444444;
 }
 
+.container {
+  width:1200px; 
+  max-width:none!important;
+}
+
 a {
   color: #4154f1;
   text-decoration: none;
