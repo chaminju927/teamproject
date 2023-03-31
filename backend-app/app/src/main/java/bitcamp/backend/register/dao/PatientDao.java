@@ -8,7 +8,7 @@ import bitcamp.backend.register.vo.Patient;
 @Mapper
 public interface PatientDao {
   void insert(Patient p);
-  List<Patient> findAll();
+  List<Patient> findAll(String keyword);
   Patient findByNo(int no);
   Patient findByEmailAndPassword(Map<String,Object> params);
   int update(Patient p);
