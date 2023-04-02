@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>회원가입</h1>
+    <form action="register" id="doctors-register-form" method="post">
+      <label>아이디:</label>
+      <input type="text" name="id" /><br />
+
+      <label>비밀번호:</label>
+      <input type="password" name="password" /><br />
+
+      <label>이름:</label>
+      <input type="text" name="name" /><br />
+
+      <label>생년월일:</label>
+      <input type="date" name="birth" /><br />
+
+      <label>이메일:</label>
+      <input type="email" name="email" /><br />
+
+      <label>주소:</label>
+      <input type="text" name="addr_postcode" placeholder="우편번호" />
+      <input type="text" name="addr_basic" placeholder="기본주소" />
+      <input type="text" name="addr_detail" placeholder="상세주소" /><br />
+
+      <label>성별:</label>
+      <input type="radio" name="gender" value="male" /> 남자
+      <input type="radio" name="gender" value="female" /> 여자<br />
+
+      <label>전화번호:</label>
+      <select name="tel_carrier">
+        <option value="">통신사 선택</option>
+        <option value="SKT">SKT</option>
+        <option value="KT">KT</option>
+        <option value="LG U+">LG U+</option>
+        <option value="알뜰폰">알뜰폰</option>
+      </select>
+      <input
+        type="tel"
+        name="tel_number"
+        placeholder="휴대폰 번호"
+        onkeyup="checkTelInput()"
+      />
+      <br />
+      <label>본인인증:</label>
+      <input type="checkbox" name="auth" id="authCheckbox" disabled /><br />
+
+      <label>프로필 사진:</label>
+      <input type="file" name="profile_photo" /><br />
+
+      <label>경력:</label>
+      <label>면허:</label>
+      <select name="license">
+        <option value="">면허 선택</option>
+        <option value="의사">의사</option>
+        <option value="치과의사">치과의사</option></select
+      ><br />
+
+      <label>전문의 자격증명:</label>
+      <select name="specialty">
+        <option value="">전공 선택</option>
+        <option value="FM">가정의학과</option>
+        <option value="TB">결핵과</option>
+        <option value="IM">내과</option>
+        <option value="PED">소아청소년과</option>
+        <option value="신경과">신경과</option>
+        <option value="">정신건강의학과</option>
+        <option value="외과">재활의학과</option>
+        <option value="외과">피부과</option>
+        <option value="외과">비뇨의학과</option>
+        <option value="외과">산부인과</option>
+        <option value="외과">성형외과</option>
+        <option value="외과">신경외과</option>
+        <option value="외과">안과</option>
+        <option value="외과">외과</option>
+        <option value="외과">이비인후과</option>
+        <option value="외과">정형외과</option>
+        <option value="외과">흉부외과</option>
+        <option value="외과">마취통증의학과</option>
+        <option value="외과">방사선종양학과</option>
+        <option value="외과">영상의학과</option>
+        <option value="외과">응급의학과</option>
+        <option value="외과">직업환경의학과</option>
+        <option value="외과">진단검사의학과</option>
+        <option value="외과">핵의학과</option>
+        <option value="외과">예방의학과</option>
+        <option value="외과">병리과</option></select
+      ><br />
+
+      <input type="submit" value="가입하기" id="btn-insert" />
+    </form>
+  </body>
+  <script>
+    function checkTelInput() {
+      var telInput = document.querySelector('input[name="tel_number"]');
+      var authCheckbox = document.querySelector('#authCheckbox');
+
+      if (telInput.value.length === 11) {
+        authCheckbox.disabled = false;
+      } else {
+        authCheckbox.disabled = true;
+        authCheckbox.checked = false;
+      }
+    }
+
+    document.querySelector('#btn-insert').onclick = () => {
+      const form = document.querySelector('#doctors-register-form');
+      const formData = new FormData(form);
+      let json = JSON.stringify(Object.fromEntries(formData));
+
+      const data = {
+        id: '22sd65s6dssssdhd',
+        password: '1asda',
+        name: '1asd',
+        birth: new Date(),
+        email: 'a1ddh65',
+        addr: '1',
+        gender: '1',
+        tel: '1231111adhs3d51122',
+        auth: false,
+        phoUrl: '1',
+        phoName: '1',
+        phoType: '1',
+        career: '1',
+      };
+
+      fetch('../doctors', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: json,
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          if (result.status == 'success') {
+            location.reload();
+            console.log('성공:', data);
+          } else {
+            alert('입력실패');
+            console.log(result.data);
+          }
+        })
+        .catch((exception) => {
+          alert('입력 중 오류 발생');
+          console.log(exception);
+          console.error('실패:', error);
+        });
+    };
+  </script>
+</html>

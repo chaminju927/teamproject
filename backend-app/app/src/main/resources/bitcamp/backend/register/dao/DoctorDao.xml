@@ -18,15 +18,13 @@
     <result column="m_photo" property="phoUrl"/>
     <result column="pho_filename" property="phoName"/>
     <result column="pho_type" property="phoType"/>
-    <result column="hos_no" property="hospitalNo"/>
     <result column="career" property="career"/>
-    
   </resultMap>
 
   <insert id="insert" parameterType="doctor" 
           useGeneratedKeys="true" keyProperty="no" keyColumn="d_no">
-    insert into app_doctor(d_no, hos_no, career)
-    values(#{no},#{hospitalNo}, #{career})
+    insert into app_doctor(d_no, career)
+    values(#{no}, #{career})
   </insert>
 
   <select id="findAll" resultMap="doctorMap">
@@ -35,11 +33,12 @@
       m.m_name, 
       m.m_email, 
       m.m_tel,
-      d.hos_no,
+      h.hos_no,
       d.career 
     from 
       app_doctor as d
       inner join app_member m on d.d_no = m.m_no
+      inner join app_hospital h on d.hos_no = h.hos_no
     order by 
       d_no desc
   </select>
@@ -51,11 +50,12 @@
       m.m_name, 
       m.m_email, 
       m.m_tel,
-      d.hos_no,
+      h.hos_no,
       d.career  
     from 
       app_doctor as d
       inner join app_member m on d.d_no = m.m_no
+      inner join app_hospital h on d.hos_no = h.hos_no
     where 
       d_no=#{no}
   </select>
