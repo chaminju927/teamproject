@@ -33,12 +33,12 @@
       m.m_name, 
       m.m_email, 
       m.m_tel,
-      h.hos_no,
+      h.hos_name,
       d.career 
     from 
       app_doctor as d
       inner join app_member m on d.d_no = m.m_no
-      inner join app_hospital h on d.hos_no = h.hos_no
+      left outer join app_hospital h on d.hos_no = h.hos_no
     order by 
       d_no desc
   </select>
@@ -50,12 +50,12 @@
       m.m_name, 
       m.m_email, 
       m.m_tel,
-      h.hos_no,
+      h.hos_name,
       d.career  
     from 
       app_doctor as d
       inner join app_member m on d.d_no = m.m_no
-      inner join app_hospital h on d.hos_no = h.hos_no
+      left outer join app_hospital h on d.hos_no = h.hos_no
     where 
       d_no=#{no}
   </select>
