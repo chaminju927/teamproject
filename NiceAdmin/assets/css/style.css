@@ -22,6 +22,10 @@ body {
   color: #444444;
 }
 
+.cursor {
+  cursor: pointer;
+}
+
 .container {
   width:1200px; 
   max-width:none!important;
