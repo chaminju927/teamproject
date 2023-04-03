@@ -59,6 +59,27 @@
       p_no=#{no}
   </select>
   
+  <select id="findByIdAndPassword" parameterType="map" resultMap="patientMap">
+    select
+      p.p_no,
+      m.m_id,
+      m.m_name,
+      m.m_tel,
+      m.m_email,
+      p.p_phy,
+      p.p_drug  
+    from
+      app_patient p
+      inner join app_member m on p.p_no = m.m_no
+    where
+      m.m_id = m_id
+      and m.m_pw = m_pw  
+      <!--  
+      m.m_id = #{id}
+      and m.pw = sha2(#{password},256)  
+      -->
+  </select>
+  
   <update id="update" parameterType="patient">
     update app_patient set
       p_phy=#{phy},

@@ -3,6 +3,7 @@ package bitcamp.backend.community.service;
 import java.util.List;
 import bitcamp.backend.community.vo.Community;
 
+
 public interface CommunityService {
 
   void add(Community community);
