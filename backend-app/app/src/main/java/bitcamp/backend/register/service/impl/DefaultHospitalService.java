@@ -1,8 +1,6 @@
 package bitcamp.backend.register.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,15 +28,6 @@ public class DefaultHospitalService implements HospitalService{
   @Override
   public Hospital get(int no) {
     return hospitalDao.findByNo(no);
-  }
-
-  @Override
-  public Hospital get(String id, String password) {
-    Map<String,Object> paramMap = new HashMap<>();
-    paramMap.put("id", id);
-    paramMap.put("password", password);
-
-    return hospitalDao.findByIdAndPassword(paramMap);
   }
 
   @Transactional
