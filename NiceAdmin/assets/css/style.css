@@ -26,6 +26,11 @@ body {
   width:1200px; 
   max-width:none!important;
 }
+#patients-form {
+  left: 50%; 
+  width:550px; 
+
+  }
 
 a {
   color: #4154f1;
