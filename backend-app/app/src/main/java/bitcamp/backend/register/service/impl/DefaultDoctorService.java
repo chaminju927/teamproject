@@ -26,6 +26,11 @@ public class DefaultDoctorService implements DoctorService {
   }
 
   @Override
+  public boolean isDuplicateId(String id) {
+    return memberDao.findById(id) != null;
+  }
+
+  @Override
   public List<Doctor> list() {
     return doctorDao.findAll();
   }

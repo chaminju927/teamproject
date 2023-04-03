@@ -25,6 +25,27 @@
     insert into app_member(m_id, m_pw, m_name, m_bday, addr, m_email, m_gender, m_tel, m_auth, m_photo, pho_filename, pho_type)
     values(#{id}, sha2(#{password},256), #{name}, #{birth}, #{addr}, #{email}, #{gender}, #{tel}, #{auth}, #{phoUrl}, #{phoName}, #{phoType})
   </insert>
+  
+  <select id="findById" parameterType="String" resultMap="memberMap">
+	  select 
+	    m_no, 
+	    m_id, 
+	    m_pw, 
+	    m_name, 
+	    m_bday, 
+	    addr, 
+	    m_email, 
+	    m_gender, 
+	    m_tel, 
+	    m_auth, 
+	    m_photo, 
+	    pho_filename, 
+	    pho_type 
+	  from 
+	    app_member 
+	  where 
+	    m_id=#{id}
+  </select>
 
   <select id="findAll" resultMap="memberMap">
     select 

@@ -37,6 +37,21 @@ public class DoctorController {
         .setStatus(RestStatus.SUCCESS);
   }
 
+  @PostMapping("/check-duplicate-id")
+  public Object checkDuplicateId(@RequestBody String id) {
+    boolean isDuplicate = doctorService.isDuplicateId(id);
+
+    if (isDuplicate) {
+      return new RestResult()
+          .setStatus(RestStatus.FAILURE)
+          .setMessage("이미 사용하고 있는 ID입니다.");
+    } else {
+      return new RestResult()
+          .setStatus(RestStatus.SUCCESS)
+          .setMessage("사용 가능한 ID입니다.");
+    }
+  }
+
   @GetMapping
   public Object list() {
     return new RestResult()
