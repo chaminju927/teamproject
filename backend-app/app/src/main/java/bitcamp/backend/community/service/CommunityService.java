@@ -1,5 +1,14 @@
 package bitcamp.backend.community.service;
 
-public class CommunityService {
+import java.util.List;
+import bitcamp.backend.community.vo.Community;
 
+public interface CommunityService {
+
+  void add(Community community);
+  List<Community> list();
+  Community get(int no);
+  void update(Community community);
+  void delete(int no);
 }
+
