@@ -227,7 +227,7 @@
         <div class="container">
           <div class="row gx-3">
             <div class="col-md-6"> 
-              <div class="card"  onclick="location.href='community-news.html'">
+              <div class="card cursor"  onclick="location.href='community-news.html'">
                 <div class="row">
                   <div class="col-7">
                     <img src="assets/img/card.jpg" class="img-thumbnail" alt="...">
@@ -243,77 +243,71 @@
                 </div>
               </div>  
             </div>
-            <div class="col-4">
+            <div class="col-6">
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title"><strong>실시간 핫 이슈</strong></h5>
-                  <p class="lead">최근 상담글에서 비전문의들이 부정확한 정보...</p>
-                  <p class="card-text">최근 상담글에서 비전문의들이 부정확한 정보...</p>
-                  <p class="card-text">최근 상담글에서 비전문의들이 부정확한 정보...</p>
-                  <p class="card-text">최근 상담글에서 비전문의들이 부정확한 정보...</p>
-                  <p class="card-text">최근 상담글에서 비전문의들이 부정확한 정보...</p>
-                  <p class="card-text">최근 상담글에서 비전문의들이 부정확한 정보...</p>
+                  <p>최근 상담글에서 비전문의들이 부정확한 정보...</p>
+                  
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-10">
+        <div class="col-12">
           <div class="card"> 
             <div class="card-body">
-              <h4 class="card-title"><strong>환자 상담내역</strong></h4>
+              <h4 class="card-title"><strong>최근 게시글</strong></h4>
               <!-- <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p> -->
 
               <!-- Table with stripped rows -->
-              <table class="table datatable table-hover">
+              <table class="table datatable table-hover cursor">
                 <thead> 
                   <tr>
                     <!-- table 작업시에 <th><td> 갯수가 서로 일치하지 않으면 정렬 버튼 사라집니다 -->
-                    <th scope="col">답변</th>
                     <th scope="col">번호</th>
                     <th scope="col">제목</th>
-                    <th scope="col">위급정도</th>
-                    <th scope="col">진료 희망 과목</th>
-                    <th scope="col">연령대</th> 
+                    <th scope="col">카테고리</th>
                     <th scope="col">작성자</th>
+                    <th scope="col">조회수</th> 
+                    <th scope="col">추천</th>
                     <th scope="col">작성일</th>
                   </tr> 
                 </thead>
                 <tbody class="table-group-divider">
-                  <tr>
-                    <th scope="row">완료</th>
+                  <tr class>
+                    
                     <td>1</td>
-                    <td>뼈가 부러진거 같아요</td>
-                    <td><span class="badge bg-danger text-dark">위험</span></td>
-                    <td>정형외과</td>
-                    <td>40대</td>
-                    <td>하나</td>
+                    <td>65세 이상 전문의 46% '쉰다'…의료취약지 활용법 주목</td>
+                    <td><span class="badge bg-danger text-dark">의학</span></td>
+                    <td>doctor1</td>
+                    <td>14000</td>
+                    <td>48444</td>
                     <td>2023-03-23</td>
                   </tr>
                   
                   <tr>
-                    <th scope="row">미완료</th>
+                   
                     <td>2</td>
-                    <td>아파요</td>
-                    <td><span class="badge bg-warning">보통</span></td>
-                    <td>이비인후과</td>
-                    <td>30대</td>
-                    <td>김갑환</td>
+                    <td>흉부외과 개멋있다</td>
+                    <td><span class="badge bg-warning">썰</span></td>
+                    <td>doctor2</td>
+                    <td>336</td>
+                    <td>55</td>
                     <td>2023-03-25</td>
                   </tr>
 
                   <tr>
-                    <th scope="row">미완료</th>
+                   
                     <td>2</td>
-                    <td>아파요</td>
-                    <td><span class="badge bg-success">낮음</span></td>
-                    <td>이비인후과</td>
-                    <td>30대</td>
-                    <td>김갑환</td>
+                    <td>2023 의대 순위</td>
+                    <td><span class="badge bg-success">썰</span></td>
+                    <td>doctor3</td>
+                    <td>32</td>
+                    <td>21</td>
                     <td>2023-03-25</td>
                   </tr>
-
-                  
+           
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->
