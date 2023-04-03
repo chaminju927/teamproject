@@ -13,7 +13,7 @@ public class Board {
   private int no;
 
   private String title;
-  private String password;
+  private String serial;
   private String pain;
   private String another;
 
@@ -23,55 +23,14 @@ public class Board {
   // String tel;
   // String addr1;
   // String addr2;
-  public Board(String title, String password, String pain, String another) {
+  public Board(String title, String serial, String pain, String another) {
     super();
     this.title = title;
-    this.password = password;
+    this.serial = serial;
     this.pain = pain;
     this.another = another;
   }
 
-
-
-  public int getNo() {
-    return no;
-  }
-
-  public void setNo(int no) {
-    this.no = no;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public String getPain() {
-    return pain;
-  }
-
-  public void setPain(String pain) {
-    this.pain = pain;
-  }
-
-  public String getAnother() {
-    return another;
-  }
-
-  public void setAnother(String another) {
-    this.another = another;
-  }
 
 
 }

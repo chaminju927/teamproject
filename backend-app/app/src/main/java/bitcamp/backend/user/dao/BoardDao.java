@@ -12,7 +12,7 @@ public interface BoardDao {
 
   Board findByNo(int no);
 
-  Board findByPassword(String password);
+  Board findByPassword(String serial);
 
   void increaseViewCount(int no);
 
