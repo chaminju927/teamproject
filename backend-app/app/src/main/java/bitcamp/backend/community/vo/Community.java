@@ -1,4 +1,4 @@
-package bitcamp.backend.register.vo;
+package bitcamp.backend.community.vo;
 
 import java.sql.Date;
 import java.util.List;
@@ -17,4 +17,5 @@ public class Community {
   private String Content;
   private List<Object> Comment;
   private String comWriter;
+  private int viewCnt;
 }

@@ -6,13 +6,6 @@ public class RestResult {
   Object data;
   String message;
 
-  public String getMessage() {
-    return message;
-  }
-  public RestResult setMessage(String message) {
-    this.message = message;
-    return this;
-  }
   public String getStatus() {
     return status;
   }

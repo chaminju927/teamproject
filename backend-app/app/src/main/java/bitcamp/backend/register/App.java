@@ -45,23 +45,23 @@ public class App {
     return ("Hello World!!");
   }
 
-  @GetMapping("/patient-test")
-  public String hello2() {
-    System.out.println(10);
-    Doctor doctor = new Doctor();
+  //  @GetMapping("/patient-test")
+  //  public String hello2() {
+  //    System.out.println(10);
+  //    Doctor doctor = new Doctor();
 
-    //    pati.setId("2");
-    //    doctor.setPassword("1");
-    //    doctor.setBirth(new Date(1));
-    //    doctor.setName("1");
-    //    doctor.setEmail("1");
-    //    doctor.setAddr("1");
-    //    doctor.setTel("1");
-    //    doctor.setGender("1");
+  //    pati.setId("2");
+  //    doctor.setPassword("1");
+  //    doctor.setBirth(new Date(1));
+  //    doctor.setName("1");
+  //    doctor.setEmail("1");
+  //    doctor.setAddr("1");
+  //    doctor.setTel("1");
+  //    doctor.setGender("1");
 
-    doctorService.add(doctor);
-
-    return ("Hello World!!");
-  }
+  //    doctorService.add(doctor);
+  //
+  //    return ("Hello World!!");
+  //  }
 
 }
