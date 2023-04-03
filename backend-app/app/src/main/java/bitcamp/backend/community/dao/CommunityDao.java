@@ -1,8 +1,10 @@
 package bitcamp.backend.community.dao;
 
 import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 import bitcamp.backend.community.vo.Community;
 
+@Mapper
 public interface CommunityDao {
 
   void insert(Community community);
