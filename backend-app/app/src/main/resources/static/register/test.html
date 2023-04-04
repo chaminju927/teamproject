@@ -37,6 +37,7 @@
           type="file"
           id="file-input"
           accept="image/*"
+          name="files"
           onchange="previewImage(event);"
         />
       </div>
@@ -123,6 +124,8 @@
       <input type="button" value="가입하기" id="btn-insert" />
     </form>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script>
       // 유효성 검사 기본
       document.querySelectorAll('input').forEach((input) => {
@@ -280,7 +283,7 @@
         const fileInput = document.querySelector('#file-input');
 
         if (fileInput.files && fileInput.files[0]) {
-          formData.append('phoUrl', fileInput.files[0]);
+          formData.append('Url', fileInput.files[0]);
           formData.append('phoName', fileInput.files[0].name);
           formData.append('phoType', fileInput.files[0].type);
         }
@@ -299,40 +302,60 @@
 
         if (form.checkValidity()) {
           let json = JSON.stringify(Object.fromEntries(formData));
-
-          fetch('../profileimg', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-            body: formData,
-          }).then(
-          fetch('../doctors', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: json,
-          })
-            .then((response) => response.json())
-            .then((result) => {
-              if (result.status == 'success') {
-                location.reload();
-                console.log('성공:', data);
-              } else {
-                alert('입력실패');
-                console.log(result.data);
-              }
+          new Promise((resolve) => {
+            console.log(formData);
+            submitFiles();
+            resolve();
+          }).then(() => {
+            fetch('http://localhost:8080/doctors', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: json,
             })
-            .catch((exception) => {
-              alert('입력 중 오류 발생');
-              console.log(exception);
-              console.error('실패:', error);
-            }));
+              .then((response) => response.json())
+              .then((result) => {
+                if (result.status == 'success') {
+                  location.reload();
+                  console.log('성공:', result);
+                } else {
+                  alert('입력실패');
+                  console.log(result.data);
+                }
+              })
+              .catch((exception) => {
+                alert('입력 중 오류 발생');
+                console.log(exception);
+              });
+          });
         } else {
           form.reportValidity();
         }
       };
+
+      function submitFiles() {
+        let formData = new FormData();
+        let files = $('input[name=files]')[0].files;
+        if (files.length == 0) {
+          return;
+        }
+
+        $.ajax({
+          url: 'http://localhost:8080/doctors/profileimg',
+          data: formData,
+          cache: false,
+          contentType: false,
+          processData: false,
+          type: 'POST',
+          success: function (data) {
+            console.log('데이터 업로드 성공');
+          },
+          error: function (e) {
+            console.log('데이터 업로드 실패');
+          },
+        });
+      }
     </script>
   </body>
 </html>
