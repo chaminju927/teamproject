@@ -1,13 +1,13 @@
   document.querySelector('#btn-submit').onclick = (e) => {
 	 
+    
+    var doctorNo = 1;
     var title = document.querySelector('#title').value;
     var content = document.querySelector('#content').value;
-    var category = document.querySelector('#category').categoryName().value;
-    var createdDate = new Date();
-    // var doctorNo;
+    var category = Number(document.querySelector('#category').value);
    //var viewCnt;
-   //var filter;
-   //var area;
+    var filter = 0;
+    var area = 0;
 
    const data = {title, content, category, createdDate};
  };
