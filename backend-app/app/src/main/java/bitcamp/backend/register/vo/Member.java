@@ -13,7 +13,7 @@ public class Member {
   private String name;
   private String email;
   private String addr;
-  private String gender;
+  private boolean gender;
   private String tel;
   private boolean auth;
   private String phoUrl;

@@ -38,7 +38,7 @@ public class app {
     doctor.setEmail("1");
     doctor.setAddr("1");
     doctor.setTel("1");
-    doctor.setGender("1");
+    //    doctor.setGender("1");
 
     doctorService.add(doctor);
 

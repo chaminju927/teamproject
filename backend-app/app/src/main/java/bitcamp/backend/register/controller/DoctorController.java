@@ -1,5 +1,6 @@
 package bitcamp.backend.register.controller;
 
+import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import bitcamp.backend.register.service.DoctorService;
 import bitcamp.backend.register.vo.Doctor;
 import bitcamp.util.RestResult;
@@ -35,6 +38,18 @@ public class DoctorController {
     doctorService.add(doctor);
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
+  }
+
+  @PostMapping("/profileimg")
+  public Object insertimg(MultipartHttpServletRequest request) {
+    List<MultipartFile> files = request.getFiles("files");
+    for(int i =0;i<files.size();i++) {
+      System.out.println(files.get(i).getOriginalFilename());
+      System.out.println(files.get(i));
+      System.out.println(files.get(i).getContentType());
+    }
+
+    return null;
   }
 
   @PostMapping("/check-duplicate-id")
