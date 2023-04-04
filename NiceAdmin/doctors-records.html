@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/newlogo.png" rel="icon">
+  <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -25,6 +25,7 @@
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <link href="board-rescods.css" rel="stylesheet">
   
 
   <!-- Template Main CSS File -->
@@ -51,7 +52,7 @@
 
   <div class="d-flex align-items-center justify-content-between">
     <a href="index.html" class="logo d-flex align-items-center">
-      <img src="assets/img/newlogo.png" alt="">
+      <img src="assets/img/logo.png" alt="">
       <span class="d-none d-lg-block">MyClinic</span>
     </a>
     <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -212,69 +213,224 @@
 
 </header><!-- End Header -->
 
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
+ <!-- ======= Sidebar ======= -->
+ <aside id="sidebar" class="sidebar">
 
-    <ul class="sidebar-nav" id="sidebar-nav">
+  <ul class="sidebar-nav" id="sidebar-nav">
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="index.html">
+        <i class="bi bi-grid"></i>
+        <span>Main</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+    <!-- 
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="components-alerts.html">
+            <i class="bi bi-circle"></i><span>Alerts</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-accordion.html">
+            <i class="bi bi-circle"></i><span>Accordion</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-badges.html">
+            <i class="bi bi-circle"></i><span>Badges</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-breadcrumbs.html">
+            <i class="bi bi-circle"></i><span>Breadcrumbs</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-buttons.html">
+            <i class="bi bi-circle"></i><span>Buttons</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-cards.html">
+            <i class="bi bi-circle"></i><span>Cards</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-carousel.html">
+            <i class="bi bi-circle"></i><span>Carousel</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-list-group.html">
+            <i class="bi bi-circle"></i><span>List group</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-modal.html">
+            <i class="bi bi-circle"></i><span>Modal</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-tabs.html">
+            <i class="bi bi-circle"></i><span>Tabs</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-pagination.html">
+            <i class="bi bi-circle"></i><span>Pagination</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-progress.html">
+            <i class="bi bi-circle"></i><span>Progress</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-spinners.html">
+            <i class="bi bi-circle"></i><span>Spinners</span>
+          </a>
+        </li>
+        <li>
+          <a href="components-tooltips.html">
+            <i class="bi bi-circle"></i><span>Tooltips</span>
+          </a>
+        </li>
+      </ul>
+    </li> -->
+  
+    <!--
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="forms-elements.html">
+            <i class="bi bi-circle"></i><span>Form Elements</span>
+          </a>
+        </li>
+        <li>
+          <a href="forms-layouts.html">
+            <i class="bi bi-circle"></i><span>Form Layouts</span>
+          </a>
+        </li>
+        <li>
+          <a href="forms-editors.html">
+            <i class="bi bi-circle"></i><span>Form Editors</span>
+          </a>
+        </li>
+        <li>
+          <a href="forms-validation.html">
+            <i class="bi bi-circle"></i><span>Form Validation</span>
+          </a>
+        </li>
+      </ul>
+    </li>  -->
+  
+    <!--
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="tables-general.html">
+            <i class="bi bi-circle"></i><span>General Tables</span>
+          </a>
+        </li>
+        <li>
+          <a href="tables-data.html">
+            <i class="bi bi-circle"></i><span>Data Tables</span>
+          </a>
+        </li>
+      </ul>
+    </li>-->
+
+    <!--
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="icons-bootstrap.html">
+            <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
+          </a>
+        </li>
+        <li>
+          <a href="icons-remix.html">
+            <i class="bi bi-circle"></i><span>Remix Icons</span>
+          </a>
+        </li>
+        <li>
+          <a href="icons-boxicons.html">
+            <i class="bi bi-circle"></i><span>Boxicons</span>
+          </a>
+        </li>
+      </ul>
+    </li> -->
+
+    <li class="nav-heading">My page</li>
+
+    <li class="nav-item">
+      <a class="nav-link " href="users-profile.html">
+        <i class="bi bi-person"></i>
+        <span>내 정보</span>
+      </a>
+    </li><!-- End Profile Page Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="pages-records.html">
+        <i class="bi bi-file-earmark"></i>
+        <span>나의 진료 기록</span>
+      </a>
+    </li> 
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="pages-faq.html">
+        <i class="bi bi-question-circle"></i>
+        <span>문의하기</span>
+      </a>
+    </li><!-- End F.A.Q Page Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="pages-contact.html"> 
+        <i class="bi bi-envelope"></i>
+        <span>Contact</span>
+      </a>
+    </li><!-- End Contact Page Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="pages-register.html">
+        <i class="bi bi-card-list"></i>
+        <span>회원 가입</span>
+      </a>
+    </li><!-- End Register Page Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="pages-login.html">
+        <i class="bi bi-box-arrow-in-right"></i>
+        <span>로그인</span>
+      </a>
+    </li><!-- End Login Page Nav -->
+
     
-      <li class="nav-heading">의사 전용 페이지</li>
+    <!--
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="pages-blank.html">
+        <i class="bi bi-file-earmark"></i>
+        <span>Blank</span>
+      </a>
+    </li> End Blank Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link " href="doctors-mypage.html">
-          <i class="bi bi-person"></i>
-          <span>내 정보</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
+  </ul>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="doctors-advices.html">
-          <i class="bi bi-file-earmark"></i>
-          <span>진료하기</span>
-        </a>
-      </li> 
-
-      
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="doctors-review.html">
-          <i class="bi bi-envelope"></i>
-          <span>진료 리뷰 확인</span>
-        </a>
-      </li><!-- End Contact Page Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-faq.html">
-          <i class="bi bi-question-circle"></i>
-          <span>Q & A</span>
-        </a>
-      </li><!-- End F.A.Q Page Nav -->
-      
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="doctors-myhospital.html">
-          <i class="bi bi-card-list"></i>
-          <span>내 병원 정보</span>
-        </a>
-      </li><!-- End Register Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-login.html">
-          <i class="bi bi-box-arrow-in-right"></i>
-          <span>로그아웃</span>
-        </a>
-      </li><!-- End Login Page Nav -->
-
-      
-      <!--
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-blank.html">
-          <i class="bi bi-file-earmark"></i>
-          <span>Blank</span>
-        </a>
-      </li> End Blank Page Nav -->
-
-    </ul>
-
-  </aside><!-- End Sidebar-->
-
-
+</aside><!-- End Sidebar-->
   <main id="main" class="main">
 
     <div class="pagetitle">
@@ -376,60 +532,21 @@
             <div class="card-body">  
               <h5 class="card-title">소견서</h5>
               <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                <img src="assets/img/doctor.jfif" alt="Profile">
-
-              <br><p> 안녕하세요 리액트피부과 원장 OOO 입니다.<br>
-                환자분의 환부 사진 및 상태 정보로 보아 벌레에 물리신 것 같습니다.<br>
-                과도하게 긁거나 만지지 마시고 냉찜질을 해주시면 도움이 될 것입니다.<br>
-                혹시나 2~3일 경과 후에도 차도가 없다면, 알레르기가 있는 것으로 의심되니<br>
-                반드시 내원해 치료를 하셔야 합니다.<br>
-                감사합니다.</p>
 
               <!-- Custom Styled Validation -->
-              <form class="row g-3 needs-validation" novalidate>
-               
-                  
-                <!-- <div class="col-md-6">
-                  <label for="validationCustom03" class="form-label">City</label>
-                  <input type="text" class="form-control" id="validationCustom03" required>
-                  <div class="invalid-feedback">
-                    Please provide a valid city.
-                  </div>
+              <form class="row g-3 needs-validation sogyon-list-cover" novalidate>
+
+                <div class="sogyon-list">
+                  <ol class="list-group list-group-numbered" id="sogyon-list">
+
+                  </ol>
                 </div>
-                <div class="col-md-3">
-                  <label for="validationCustom04" class="form-label">State</label>
-                  <select class="form-select" id="validationCustom04" required>
-                    <option selected disabled value="">Choose...</option>
-                    <option>...</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    Please select a valid state.
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <label for="validationCustom05" class="form-label">Zip</label>
-                  <input type="text" class="form-control" id="validationCustom05" required>
-                  <div class="invalid-feedback">
-                    Please provide a valid zip.
-                  </div>
-                </div> -->
-                <!-- <div class="col-12">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                    <label class="form-check-label" for="invalidCheck">
-                      Agree to terms and conditions
-                    </label>
-                    <div class="invalid-feedback">
-                      You must agree before submitting.
-                    </div>
-                  </div>
-                </div> -->
+          
+
                 <div class="col-12">
-                  <button class="btn btn-primary" type="submit">수정하기</button>
-                  <button class="btn btn-primary" > 저 장</button>
-                  <button class="btn btn-primary" > 이전 페이지</button>
+                  <button class="btn btn-primary sogyon-btn" type="button">진단 작성</button>
                 </div>
-              </form><!-- End Custom Styled Validation -->
+              </form>
 
             </div>
           </div>
@@ -443,6 +560,9 @@
         </div>
       </div>
     </section>
+  </div>
+
+  <div id="react-window">
   </div>
 
   </main><!-- End #main -->

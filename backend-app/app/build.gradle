@@ -75,7 +75,7 @@ dependencies {
 
 // run 명령을 실행할 때 run 명령으로 실행시킬 java Class 이름
 application {
-    mainClass = 'bitcamp.backend.user.App'
+    mainClass = 'bitcamp.backend.App'
 }
 
 // 이클립스 프로젝트 이름 설정하기

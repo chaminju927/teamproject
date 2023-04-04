@@ -27,7 +27,7 @@ class BoardLists extends React.Component {
   }
   render() {
     return (
-      <tr onClick={() => {
+      <tr className="selects" onClick={() => {
         window.localStorage.setItem("boardNo", this.state.no)
         location.href = "doctors-records.html?no=" + this.state.no;
       }}>
@@ -92,10 +92,11 @@ function reflesh() {
       });
       lists = list;
     })
+    .then(() => {
+      ReactDOM.createRoot($(".table tbody")[0]).render(
+        lists
+      )
+    })
 
-  setTimeout(() => {
-    ReactDOM.createRoot($(".table tbody")[0]).render(
-      lists
-    )
-  }, 51);
+
 }
