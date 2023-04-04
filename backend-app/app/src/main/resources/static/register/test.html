@@ -13,7 +13,7 @@
     </style>
   </head>
   <body>
-    <form action="register" id="doctors-register-form" method="post">
+    <form id="doctors-register-form" method="post">
       <div>
         <!-- 이미지 미리보기를 위한 영역 -->
         <div
@@ -120,13 +120,10 @@
         placeholder="휴대폰 번호"
         required
       /><br />
-      <input type="submit" value="가입하기" id="btn-insert" />
+      <input type="button" value="가입하기" id="btn-insert" />
     </form>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
-      const form = document.querySelector('#doctors-register-form');
-      const formData = new FormData(form);
-
       // 유효성 검사 기본
       document.querySelectorAll('input').forEach((input) => {
         input.addEventListener('invalid', () => {
@@ -165,7 +162,6 @@
           reader.onload = function (e) {
             const previewImg = document.querySelector('#preview-img');
             previewImg.src = e.target.result;
-            formData.append('phoUrl', e.target.result);
           };
           reader.readAsDataURL(input.files[0]);
         } else {
@@ -274,6 +270,8 @@
       }
 
       document.querySelector('#btn-insert').onclick = () => {
+        const form = document.querySelector('#doctors-register-form');
+        const formData = new FormData(form);
         // if (isDuplicate) {
         //   messageDiv.textContent = 'ID를 중복 확인하세요.';
         //   return;
@@ -282,6 +280,7 @@
         const fileInput = document.querySelector('#file-input');
 
         if (fileInput.files && fileInput.files[0]) {
+          formData.append('phoUrl', fileInput.files[0]);
           formData.append('phoName', fileInput.files[0].name);
           formData.append('phoType', fileInput.files[0].type);
         }
@@ -301,6 +300,13 @@
         if (form.checkValidity()) {
           let json = JSON.stringify(Object.fromEntries(formData));
 
+          fetch('../profileimg', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+            body: formData,
+          }).then(
           fetch('../doctors', {
             method: 'POST',
             headers: {
@@ -322,7 +328,7 @@
               alert('입력 중 오류 발생');
               console.log(exception);
               console.error('실패:', error);
-            });
+            }));
         } else {
           form.reportValidity();
         }

@@ -203,22 +203,28 @@
              
               <h5 class="card-title">글 작성</h5>
               <div class="col-12 row g-3">
-                <div class="col-md-6">
-                  <input type="text" class="form-control" placeholder="글 제목 입력">
+                  <div class="col-md-5">
+                    <input type="text" class="form-control" placeholder="글 제목 입력">
+                  </div>
+                  <div class="col-md-5">
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected >글 카테고리 선택</option>
+                      <option value="1">자유 게시판</option>
+                      <option value="2">의학 지식</option>
+                      <option value="3">3</option>
+                    </select>
+                  </div>
                 </div>
 
-                <div class="col-md-6">
-                  <select class="form-select" aria-label="Default select example">
-                    <option selected >글 카테고리 선택</option>
-                    <option value="1">자유 게시판</option>
-                    <option value="2">의학 지식</option>
-                    <option value="3">3</option>
-                  </select>
+                <div class="col-12 row g-3" style="margin-top: 10px;">
+                  <div class="col-sm-12">
+                    <input class="form-control" type="file" id="formFile">
+                  </div>
                 </div>
-              </div>
 
-              <div class="form-floating col-md-12 " style="margin-top: 20px;">
+                <div class="form-floating col-md-12 " style="margin-top: 20px;">
                 <textarea class="form-control"  id="floatingTextarea" style="height: 100px;" placeholder="글 내용 입력"> </textarea>
+              </div>
               </div>
               
               <div class="text-center" style="margin-top: 20px;">
