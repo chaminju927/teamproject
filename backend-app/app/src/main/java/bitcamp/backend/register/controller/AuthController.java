@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import bitcamp.backend.register.service.DoctorService;
 import bitcamp.backend.register.service.PatientService;
@@ -15,7 +16,7 @@ import bitcamp.util.RestStatus;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping(value = "/auth", method = RequestMethod.GET)
 public class AuthController {
 
   Logger log = LogManager.getLogger(getClass());
@@ -29,20 +30,20 @@ public class AuthController {
 
   @PostMapping("login")
   public Object login(
-      String usertype,
+      //      String usertype,
       String id,
       String password,
       HttpSession session) {
 
     Member member = null;
-    switch (usertype) {
-      case "patient":
-        member = patientService.get(id, password);
-        break;
-      case "doctor":
-        member = doctorService.get(id, password);
-        break;
-    }
+    //    switch (usertype) {
+    //      case "patient":
+    member = patientService.get(id, password);
+    //        break;
+    //      case "doctor":
+    //    member = doctorService.get(id, password);
+    //        break;
+    //
 
     if (member != null) {
       session.setAttribute("loginUser", member);
