@@ -10,6 +10,7 @@ public interface PatientService {
   Patient get(String id, String password);
   void update(Patient patient);
   void delete(int no);
+  boolean isDuplicateId(String id);
 }
 
 

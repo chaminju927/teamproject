@@ -26,6 +26,11 @@ public class DefaultPatientService implements PatientService {
   }
 
   @Override
+  public boolean isDuplicateId(String id) {
+    return memberDao.findById(id) != null;
+  }
+
+  @Override
   public List<Patient> list(String keyword) {
     return patientDao.findAll(keyword);
   }
