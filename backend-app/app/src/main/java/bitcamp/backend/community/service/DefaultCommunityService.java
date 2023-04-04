@@ -11,7 +11,7 @@ import bitcamp.backend.community.vo.Community;
 public class DefaultCommunityService implements CommunityService{
 
   @Autowired private CommunityDao communityDao;
-  Community community;
+
 
   @Transactional
   @Override
@@ -26,7 +26,7 @@ public class DefaultCommunityService implements CommunityService{
 
   @Override
   public Community get(int no) {
-    community.setViewCnt(community.getViewCnt()+1);
+    communityDao.increaseViewCount(no);
     return communityDao.findByNo(no);
 
   }

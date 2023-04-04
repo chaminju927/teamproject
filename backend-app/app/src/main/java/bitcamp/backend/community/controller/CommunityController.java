@@ -24,8 +24,16 @@ public class CommunityController {
 
   Logger log = LogManager.getLogger(getClass());
 
+
+
   @Autowired
   private CommunityService communityService;
+
+  @GetMapping("/test")
+  public void test(){
+    communityService.get(7);
+    System.out.println(communityService);
+  }
 
   @PostMapping
   public Object insert(@RequestBody Community community) {

@@ -6,7 +6,7 @@
 
   <resultMap type="community" id="communityMap">
     <id column="com_no" property="category"/>
-    <result column="d_no" property="docterNo"/>
+    <result column="d_no" property="doctorNo"/>
     <result column="cat_no" property="category"/>
     <result column="com_tile" property="title"/>
     <result column="com_date" property="createdDate"/>
@@ -76,5 +76,12 @@
     delete from app_community
     where com_no=#{no}
   </delete>
+  
+  <update id="increaseViewCount" parameterType="int">
+    update app_community set
+      com_view = com_view + 1
+    where com_no=#{maumdaerohaedodoi}
+  </update>
+  
 </mapper>
 

@@ -65,6 +65,7 @@
       d.d_no,
       m.m_id,
       m.m_name,
+      m.m_pw,
       m.m_tel,
       m.m_email,
       d.career
@@ -76,7 +77,7 @@
       and m.m_pw = m_pw 
       <!--  
       m.m_id = #{id}
-      and m.pw = sha2(#{password},256)  
+      and m.m_pw = sha2(#{password},256)  
       -->
   </select>
   

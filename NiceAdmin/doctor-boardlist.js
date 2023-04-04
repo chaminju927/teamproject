@@ -1,4 +1,4 @@
-
+let boardList = [];
 
 function Span(props) {
   return (<span className={props.data[1]}>{props.data[0]}</span>)
@@ -42,13 +42,13 @@ class BoardLists extends React.Component {
   }
 }
 
-reflesh()
+reflesh("")
 
 $(".search-btn").click(() => {
-  console.log("검색 버튼");
+  reflesh($(".search-filter").val())
 });
 
-function reflesh() {
+function reflesh(string) {
   let lists;
 
   fetch("http://192.168.0.7:8080/boardSearch", {
@@ -57,46 +57,58 @@ function reflesh() {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ // 스프링에 전달할 값
-      search: "",
+      search: string,
       tags: $(".search-tags").val()
     })
   })
     .then(response => response.json())
     .then(data => {
+      boardList = data;
       let list = [];
-      data.forEach(board => {
+      new Promise(resolve => {
+        data.forEach(board => {
+          
 
-        let n = new Date();
-        let countday = n.getDate() - board.createdDate.split("-")[2];
-        let str = "";
-        if (countday > 8) {
-          str = "badge bg-danger text-dark";
-        } else if (countday > 5) {
-          str = "badge bg-warning";
-        } else {
-          str = "badge bg-success";
-        }
+          let n = new Date();
+          let countday = n.getDate() - board.createdDate.split("-")[2];
+          let countmon = n.getMonth() - board.createdDate.split("-")[1];
+          let str = "";
+          if (countmon >= 0) {
+            str = "badge bg-danger text-dark";
+          } else if (countday > 8) {
+            str = "badge bg-danger text-dark";
+          } else if (countday > 5) {
+            str = "badge bg-warning";
+          } else {
+            str = "badge bg-success";
+          }
 
-        let obj = {
-          answer: "0",
-          no: board.no,
-          title: board.title,
-          warn: "경고",
-          warnLevel: str,
-          writer: board.another.split(",")[0].length > 0 ? board.another.split(",")[0] : "-",
-          date: board.createdDate,
-        }
-        if (board.title.includes($(".search-filter").val())) {
-          list.push(<BoardLists props={obj} />)
-        }
-      });
-      lists = list;
+          let obj = {
+            answer: board.fedcount,
+            no: board.no,
+            title: board.title,
+            warn: "경고",
+            warnLevel: str,
+            writer: board.another.split(",")[0].length > 0 ? board.another.split(",")[0] : "-",
+            date: board.createdDate,
+          }
+          if (board.title.includes($(".search-filter").val())) {
+            list.push(<BoardLists props={obj} />)
+          }
+        });
+        resolve();
+      })
+      .then(() => {
+        lists = list;
+      })
     })
     .then(() => {
       ReactDOM.createRoot($(".table tbody")[0]).render(
         lists
       )
     })
+}
 
-
+function name(params) {
+  
 }
