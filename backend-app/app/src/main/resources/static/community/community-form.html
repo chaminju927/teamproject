@@ -246,36 +246,15 @@
   <script>
   document.querySelector('#btn-submit').onclick = (e) => {
 	   
+	    var doctorNo = 1;
 	    var title = document.querySelector('#title').value;
 	    var content = document.querySelector('#content').value;
-	    var category = document.querySelector('#category').value;
-	    var createdDate = new Date();
-	    // var doctorNo;
+	    var category = Number(document.querySelector('#category').value);
 	   //var viewCnt;
-	   //var filter;
-	   //var area;
+	    var filter = 0;
+	    var area = 0;
 
-	   var data = {title, content, category, createdDate};
-	 };
-
-	 function categoryName(category) {
-	  switch(category) {
-	    case 1 : return "자유게시판";
-	    case 2 : return "의학 뉴스";
-	    case 3 : return "지식 공유";
-	  }
-	 }
-	 
-	//  const data = {
-//	        doctorNo: "1",
-//	        title: "test",
-//	        content:"test contents",
-//	        category: "1",
-//	        createdDate: new Date(),
-//	        viewCnt: "311",
-//	        filter: "1", //보류
-//	        area: "2",  //일단 전체공개 0
-//	      };
+	   const data = {title, content, category};
 
 	     fetch("http://localhost:8080/community", {
 	       method: "POST",
@@ -291,9 +270,9 @@
 	       .catch((error) => {
 	         console.error("실패:", error);
 	       });
+  };
 	 
 
-  
   
   </script>
 

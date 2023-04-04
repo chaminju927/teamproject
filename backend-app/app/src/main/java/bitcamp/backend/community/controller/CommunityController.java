@@ -24,8 +24,6 @@ public class CommunityController {
 
   Logger log = LogManager.getLogger(getClass());
 
-
-
   @Autowired
   private CommunityService communityService;
 

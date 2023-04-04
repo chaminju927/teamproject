@@ -9,20 +9,8 @@
     var filter = 0;
     var area = 0;
 
-   const data = {title, content, category, createdDate};
+   const data = {doctorNo, title, content, category, filter, area};
  };
-
- 
-//  const data = {
-//        doctorNo: "1",
-//        title: "test",
-//        content:"test contents",
-//        category: "1",
-//        createdDate: new Date(),
-//        viewCnt: "311",
-//        filter: "1", //보류
-//        area: "2",  //일단 전체공개 0
-//      };
 
      fetch("http://localhost:8080/community", {
        method: "POST",
