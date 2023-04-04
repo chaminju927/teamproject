@@ -12,16 +12,13 @@ public class Community {
   private Date createdDate;
 
   private int no;
-  private int category;
+  private int doctorNo;
   private String title;
   private String content;
-  private int catetory;
-  private String comWriter;
+  private int category;
+  //private String comWriter;  // 작성자(의사) 아이디
   private int viewCnt;
-  private int like;
   private int filter;
+  private int area;  // 게시글 공개 범위
 
-  public Community(String title, String content ) {
-
-  }
 }

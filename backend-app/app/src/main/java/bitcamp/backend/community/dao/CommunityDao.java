@@ -14,5 +14,4 @@ public interface CommunityDao {
   int update(Community c);
   int delete(int no);
 
-
 }

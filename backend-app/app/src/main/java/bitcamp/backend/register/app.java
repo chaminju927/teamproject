@@ -17,13 +17,13 @@ import bitcamp.backend.register.vo.Doctor;
 @SpringBootApplication
 @ComponentScan("bitcamp.backend.register")
 @RestController
-public class App {
+public class app {
 
   @Autowired
   DoctorService doctorService;
 
   public static void main(String args[]) {
-    SpringApplication.run(App.class, args);
+    SpringApplication.run(app.class, args);
   }
 
   @GetMapping("/hello")

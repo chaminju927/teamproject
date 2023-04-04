@@ -18,7 +18,7 @@ import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
 
 @RestController
-@RequestMapping("/communities")
+@RequestMapping("/community")
 @CrossOrigin("*")
 public class CommunityController {
 

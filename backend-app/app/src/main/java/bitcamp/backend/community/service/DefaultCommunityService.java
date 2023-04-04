@@ -10,8 +10,7 @@ import bitcamp.backend.community.vo.Community;
 @Service
 public class DefaultCommunityService implements CommunityService{
 
-  @Autowired
-  private CommunityDao communityDao;
+  @Autowired private CommunityDao communityDao;
 
   @Transactional
   @Override
@@ -30,10 +29,13 @@ public class DefaultCommunityService implements CommunityService{
   }
 
   @Override
+  @Transactional
   public void update(Community c) {
     communityDao.update(c);
   }
+
   @Override
+  @Transactional
   public void delete(int no) {
     communityDao.delete(no);
   }
