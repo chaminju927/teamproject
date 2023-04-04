@@ -12,7 +12,7 @@ class Board extends React.Component {
 }
 
 function BoardImg(props) {
-  return (<img className="d-block w-100" src={props.url} alt="..." style={{ wight: 490, height: 300 }}></img>)
+  return (<img className="d-block w-100 immm" src={props.url} alt="..."></img>)
 }
 
 class BoardImgDiv extends React.Component {
@@ -27,13 +27,13 @@ class BoardImgDiv extends React.Component {
   render() {
     if (this.state.count == 0) {
       return (
-        <div className="carousel-item active">
+        <div className="carousel-item active" style={{height:'100%', backgroundColor: "rgb(230, 230, 230)"}}>
           <BoardImg url={this.state.img} />
         </div>
       )
     }
     return (
-      <div className="carousel-item">
+      <div className="carousel-item" style={{height:'100%', backgroundColor: "rgb(230, 230, 230)"}}>
         <BoardImg url={this.state.img} />
       </div>
     )
@@ -109,8 +109,8 @@ if (window.localStorage.getItem("boardNo") != null) {
         console.log(data)
         let feeds = [];
         data.forEach(feed => {
-          if (feed.content.length > 16) {
-            feed.title = feed.content.substr(0, 16) + "...";
+          if (feed.content.length > 25) {
+            feed.title = feed.content.substr(0, 25) + " . . . ";
           }
           feeds.push(<Sogyun props={feed} />)
         })
