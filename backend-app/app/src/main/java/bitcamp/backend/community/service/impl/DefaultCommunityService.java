@@ -1,10 +1,11 @@
-package bitcamp.backend.community.service;
+package bitcamp.backend.community.service.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import bitcamp.backend.community.dao.CommunityDao;
+import bitcamp.backend.community.service.CommunityService;
 import bitcamp.backend.community.vo.Community;
 
 @Service

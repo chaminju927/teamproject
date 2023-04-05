@@ -27,11 +27,11 @@ public class CommunityController {
   @Autowired
   private CommunityService communityService;
 
-  @GetMapping("/test")
-  public void test(){
-    communityService.get(7);
-    System.out.println(communityService);
-  }
+  //  @GetMapping("/test")
+  //  public void test(){
+  //    communityService.get(7);
+  //    System.out.println(communityService);
+  //  }
 
   @PostMapping
   public Object insert(@RequestBody Community community) {
@@ -39,7 +39,7 @@ public class CommunityController {
     return new RestResult().setStatus(RestStatus.SUCCESS);
   }
 
-  @GetMapping
+  @GetMapping("/list")
   public Object list() {
     return new RestResult().setStatus(RestStatus.SUCCESS).setData(communityService.list());
   }
