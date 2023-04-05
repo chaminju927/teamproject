@@ -204,31 +204,34 @@
               <h5 class="card-title">글 작성</h5>
               <div class="col-12 row g-3">
                   <div class="col-md-5">
-                    <input type="text" class="form-control" placeholder="글 제목 입력">
+                    <input type="text" class="form-control" placeholder="글 제목 입력" id="title">
                   </div>
                   <div class="col-md-5">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" id="category">
                       <option selected >글 카테고리 선택</option>
                       <option value="1">자유 게시판</option>
                       <option value="2">의학 지식</option>
                       <option value="3">3</option>
                     </select>
-                  </div>
-                </div>
-
-                <div class="col-12 row g-3" style="margin-top: 10px;">
-                  <div class="col-sm-12">
-                    <input class="form-control" type="file" id="formFile">
-                  </div>
+                  </div></div>
+                  
+                  <div class="col-12 row g-3" style="margin-top: 10px;">
+                  
+                    <form >
+                      <div class="col-sm-12">
+                        <input class="form-control community-files" type="file"  multiple id="formFile">
+                      </div>
+                    </form>
+                  
                 </div>
 
                 <div class="form-floating col-md-12 " style="margin-top: 20px;">
-                <textarea class="form-control"  id="floatingTextarea" style="height: 100px;" placeholder="글 내용 입력"> </textarea>
+                <textarea class="form-control content"  id="floatingTextarea" style="height: 100px;" placeholder="글 내용 입력"> </textarea>
               </div>
               </div>
               
               <div class="text-center" style="margin-top: 20px;">
-                <button type="submit" class="btn btn-primary">저장</button>
+                <button type="button" class="btn btn-primary btn-submit">저장</button>
                 <button type="reset" class="btn btn-secondary">이전</button>
               </div>
 
@@ -263,6 +266,10 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="community-test.js"></script>
+
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
 
 </body>
 
