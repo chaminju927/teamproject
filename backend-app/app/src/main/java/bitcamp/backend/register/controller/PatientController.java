@@ -51,8 +51,8 @@ public class PatientController {
     return null;
   }
 
-  @PostMapping("/check-duplicate/{id}")
-  public Object checkDuplicateId(@PathVariable String id) {
+  @GetMapping("/check-duplicate")
+  public Object checkDuplicateId(String id) {
     boolean isDuplicate = patientService.isDuplicateId(id);
 
     if (isDuplicate) {

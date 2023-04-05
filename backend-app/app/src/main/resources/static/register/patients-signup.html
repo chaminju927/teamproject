@@ -278,7 +278,7 @@
               </div>
               
               <div class="row mb-3">
-                <label for="inputPassword" 
+                <label for="password" 
                 class="col-sm-2 col-form-label"
                 style="padding: 0%;"
                   >비밀번호</label
@@ -289,6 +289,17 @@
                   pattern="^(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
                   required/>
                 </div>
+              </div>
+              <div class="row mb-3">
+                <label for="confirmPassword" 
+                class="col-sm-2 col-form-label"
+                style="padding: 0%;"
+                  >비밀번호확인</label
+                >
+                <div class="col-sm-6">
+                  <input type="text" name="confirmPassword" id= "confirmPassword" class="form-control"required/>
+                </div>
+                <div id="password-message"></div>
               </div>
               <div class="row mb-3">
                 <label for="inputName" class="col-sm-2 col-form-label"  style="padding: 0%;"
@@ -591,7 +602,9 @@
     checkDuplicateBtn.onclick = () => {
         const id = idInput.value;
 
-        fetch(`http://localhost:8080/petients/check-duplicate/${id}`)
+        fetch(`http://localhost:8080/patients/check-duplicate?id=${id}`, {
+          method: 'GET'
+        })
           .then((response) => response.json())
           .then((result) => {
             if (result.status === 'FAILURE') {
@@ -606,7 +619,7 @@
             console.error('ID 중복 확인 중 오류 발생:', exception);
             messageDiv.textContent = '오류가 발생했습니다. 다시 시도해주세요.';
           });
-      };
+      };      
       // 프로필 이미지
       function previewImage(event) {
         const input = event.target;
@@ -623,6 +636,21 @@
           previewImg.src = '../assets/img/default_profile.png'; // 기본 이미지 경로
         }
       }
+      //비밀번호 확인
+      const password = document.getElementById("password");
+      const confirmPassword = document.getElementById("confirmPassword");
+      const message = document.getElementById("password-message");
+
+      confirmPassword.addEventListener("input", function() {
+        if (password.value === confirmPassword.value) {
+          message.textContent = "비밀번호가 일치합니다.";
+          message.style.color = "green";
+        } else {
+          message.textContent = "비밀번호가 일치하지 않습니다.";
+          message.style.color = "red";
+        }
+      });
+
     // 이메일 유효성 검사
     const emailIdInput = document.querySelector("#email-id");
     const emailDomainSelect = document.querySelector("#email-domain");
@@ -718,6 +746,13 @@
          messageDiv.textContent = 'ID를 중복 확인하세요.';
          return;
         }
+
+        if (password.value !== confirmPassword.value) {
+         messageDiv.textContent = '비밀번호가 다릅니다';
+         return;
+        }
+        
+
         const fileInput = document.querySelector('#file-input');
 
         if (fileInput.files && fileInput.files[0]) {
