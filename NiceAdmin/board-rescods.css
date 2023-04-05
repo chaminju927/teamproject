@@ -384,3 +384,16 @@ DEMO
     color: var(--uirLinkTextColor) !important;
     text-decoration: var(--uirLinkTextDecoration) !important;
 }
+
+.patients-another{
+  height: 150px;
+}
+
+.patients-another-area {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.patients-change-btn {
+  float: right;
+}

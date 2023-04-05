@@ -11,6 +11,8 @@ class Board extends React.Component {
   }
 }
 
+let feedlist= [];
+
 function BoardImg(props) {
   return (<img className="d-block w-100 immm" src={props.url} alt="..."></img>)
 }
@@ -116,8 +118,9 @@ if (window.localStorage.getItem("boardNo") != null) {
           }
           feeds.push(<Sogyun props={feed} />)
         })
+        feedlist = feeds;
         ReactDOM.createRoot(document.getElementById('sogyon-list')).render(
-          feeds
+          feedlist
         );
       }
 
@@ -142,17 +145,9 @@ class Sogyun extends React.Component {
     if (this.state.pro) {
       return (
         <li className="list-group-item d-flex justify-content-between align-items-start" onClick={() => {
-          new Promise((resolve) => {
-            ReactDOM.createRoot(document.getElementById('react-window')).render(
-              <NewWindow />)
-            resolve();
-          })
-            .then(() => {
-              $(".check-pro").prop('checked', this.state.data.popen);
-              $(".check-visit").prop('checked', this.state.data.visit);
-              $(".sogyon-text").val(this.state.data.content);
-              $(".sogyon-money").val(this.state.data.money);
-            })
+          ReactDOM.createRoot(document.getElementById('sogyon-list')).render(
+            <FeedPage />
+          );
         }}>
           <div className="ms-2 me-auto">
             <div className="fw-bold">{this.state.title}</div>
@@ -163,17 +158,9 @@ class Sogyun extends React.Component {
     } else {
       return (
         <li className="list-group-item d-flex justify-content-between align-items-start" onClick={() => {
-          new Promise((resolve) => {
-            ReactDOM.createRoot(document.getElementById('react-window')).render(
-              <NewWindow />)
-            resolve();
-          })
-            .then(() => {
-              $(".check-pro").prop('checked', this.state.data.popen);
-              $(".check-visit").prop('checked', this.state.data.visit);
-              $(".sogyon-text").val(this.state.data.content);
-              $(".sogyon-money").val(this.state.data.money);
-            })
+          ReactDOM.createRoot(document.getElementById('sogyon-list')).render(
+            
+          );
         }}>
           <div className="ms-2 me-auto">
             <div className="fw-bold">{this.state.title}</div>
@@ -310,7 +297,7 @@ class Btns extends React.Component {
             },
             body: JSON.stringify({ // 스프링에 전달할 값
               bno: str,
-              dno: 67,
+              dno: 1,
               popen: $(".check-pro").is(':checked'),
               visit: $(".check-visit").is(':checked'),
               money: $(".sogyon-money").val(),
@@ -329,6 +316,52 @@ class Btns extends React.Component {
         }}>
           닫 기
         </button>
+      </div>
+    )
+  }
+}
+
+
+class FeedPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    }
+  }
+  render() {
+    return (
+      <div className="FeedText">
+        {/* <Btn /> */}
+        <DocInfo />
+        {/* <FedText />
+        <Review /> */}
+      </div>
+    )
+  }
+}
+
+class DocInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    }
+  }
+  render() {
+    return (
+      <div>
+        <div>
+          <span>이름</span>
+          <div>
+            <span>경력1</span>
+            <span>경력1</span>
+          </div>
+        </div>
+        <img />
+        <div>
+          <span>병원 이름</span>
+          <span>병원 정보</span>
+          <span>병원 주소</span>
+        </div>
       </div>
     )
   }
