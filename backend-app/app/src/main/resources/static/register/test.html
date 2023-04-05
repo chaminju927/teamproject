@@ -46,12 +46,20 @@
       <input type="text" id="id-input" name="id" required />
       <button type="button" id="check-duplicate-btn">중복확인</button>
       <div id="message"></div>
-      <label>비밀번호:</label>
+      <label for="password">비밀번호:</label>
       <input
         type="password"
         name="password"
+        id="password"
         placeholder="최소 8자 이상 문자, 숫자, 특수 문자를 포함하여 작성하세요."
         pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
+        required
+      /><br />
+      <label for="confirmPassword">비밀번호 확인:</label>
+      <input
+        type="password"
+        name="confirmPassword"
+        id="confirmPassword"
         required
       /><br />
       <label for="name">이름:</label>
@@ -277,6 +285,11 @@
         const formData = new FormData(form);
         if (isDuplicate) {
           messageDiv.textContent = 'ID를 중복 확인하세요.';
+          return;
+        }
+
+        if (password.value !== confirmPassword.value) {
+          messageDiv.textContent = '비밀번호가 다릅니다';
           return;
         }
 
