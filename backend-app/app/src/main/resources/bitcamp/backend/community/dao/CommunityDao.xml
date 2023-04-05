@@ -18,8 +18,8 @@
 
   <insert id="insert" parameterType="community" 
           useGeneratedKeys="true" keyProperty="no" keyColumn="com_no">
-    insert into app_community(d_no, cat_no, com_no, com_tile, com_date, com_cont, com_view, filter, com_area)
-    values(#{doctorNo},#{category}, #{no}, #{title}, now(), #{content}, #{viewCnt}, #{filter}, #{area})
+    insert into app_community(d_no, cat_no, com_no, com_tile, com_cont, com_view, filter, com_area)
+    values(#{doctorNo},#{category}, #{no}, #{title}, #{content}, #{viewCnt}, #{filter}, #{area})
   </insert>
 
   <select id="findAll" resultMap="communityMap">

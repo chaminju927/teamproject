@@ -91,6 +91,7 @@ public class App {
     return boardService.get(board.getSerial());
   }
 
+
   @PostMapping("/boardSearch")
   public Object bSearch(@RequestBody HashMap<String, Object> param) {
     List<Board> boards = boardService.list((String) param.get("search"));

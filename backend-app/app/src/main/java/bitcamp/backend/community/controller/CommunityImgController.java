@@ -73,7 +73,7 @@ public class CommunityImgController {
   public void imgCommunity(MultipartHttpServletRequest request) {
     List<MultipartFile> files = request.getFiles("files");
     List<String> strs = new ArrayList<>();
-    int c_No = Integer.parseInt(request.getParameter("communityNo"));
+    int c_No = Integer.parseInt(request.getParameter("comNo"));
 
     System.out.println("커뮤 사진번호 : " + c_No);
 

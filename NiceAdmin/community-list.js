@@ -1,29 +1,26 @@
-  document.querySelector('#btn-submit').onclick = (e) => {
-	 
-    
-    var doctorNo = 1;
-    var title = document.querySelector('#title').value;
-    var content = document.querySelector('#content').value;
-    var category = Number(document.querySelector('#category').value);
-   //var viewCnt;
-    var filter = 0;
-    var area = 0;
 
-   const data = {doctorNo, title, content, category, filter, area};
- };
 
-     fetch("http://localhost:8080/communityList", {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json",
-       },
-       body: JSON.stringify(data),
-     })
-       .then((response) => response.json())
-       .then((data) => {
-         console.log("성공:", data);
-       })
-       .catch((error) => {
-         console.error("실패:", error);
-       });
- 
+
+fetch('http://localhost:8080/community')
+.then((response) => {
+  return response.json();
+})
+.then((obj) => {
+  console.log(obj);
+  var html = '';
+  for (var f of obj.data) {
+    html += `<tr>
+        <td>${no}</td>
+        <td>${title}</td>
+        <td>${doctorNo}</td>
+        <td>${category}</td>
+        <td>${viewCnt}</td>
+        <td>${createdDate}</td>
+        </tr>\n`;
+  }
+  tr.innerHTML = html;
+})
+.catch((err) => {
+  alert('서버 요청 오류!');
+  console.log(err);
+});

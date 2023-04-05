@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>커뮤니티 - 글쓰기</title>
+  <title>커뮤니티 - 글 상세조회</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -185,7 +185,7 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>글쓰기</h1>
+      <h1>커뮤니티</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -201,44 +201,63 @@
           <div class="card">
             <div class="card-body">
              
-              <h5 class="card-title">글 작성</h5>
+              <h5 class="card-title"><strong>글 상세 조회</strong></h5>
               <div class="col-12 row g-3">
                   <div class="col-md-5">
-                    <input type="text" class="form-control" placeholder="글 제목 입력" id="title">
+                    <input type="text" class="form-control" placeholder="게시글 제목" id="title">
                   </div>
-                  <div class="col-md-5">
-                    <select class="form-select" aria-label="Default select example" id="category">
-                      <option selected >글 카테고리 선택</option>
-                      <option value="1">자유 게시판</option>
-                      <option value="2">의학 지식</option>
-                      <option value="3">3</option>
-                    </select>
-                  </div></div>
                   
-                  <div class="col-12 row g-3" style="margin-top: 10px;">
+                  <!-- <div class="col-12 row g-3" style="margin-top: 10px;">
+                  사진파일 위치
                   
-                    <form >
-                      <div class="col-sm-12">
-                        <input class="form-control community-files" type="file"  multiple id="formFile">
-                      </div>
-                    </form>
-                  
-                </div>
+                </div> -->
 
                 <div class="form-floating col-md-12 " style="margin-top: 20px;">
-                <textarea class="form-control content"  id="floatingTextarea" style="height: 100px;" placeholder="글 내용 입력"> </textarea>
+                <textarea class="form-control content" style="height: 300px;">
+                </textarea>
               </div>
               </div>
-              
-              <div class="text-center" style="margin-top: 20px;">
-                <button type="button" class="btn btn-primary btn-submit">저장</button>
-                <button type="reset" class="btn btn-secondary">이전</button>
-              </div>
-              <br>
+             
             </div>
           </div>
 
         </div>   
+
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+             
+              <h5 class="card-title"><strong>전체 댓글</strong></h5>
+              <div class="col-12 row g-3">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <!-- table 작업시에 <th><td> 갯수가 서로 일치하지 않으면 정렬 버튼 사라집니다 -->
+                        <th scope="col">번호</th>
+                        <th scope="col">내용</th>
+                        <th scope="col">작성자</th>
+                        <th scope="col">작성일</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-group-divider" >
+                      <tr>
+                        <td>11</td>
+                        <td>samplesamplesamplesamplesamplesamplesamplesamplesamplesamplesample</td>
+                        <td>doctor1</td>
+                        <td>today</td>
+                      </tr>
+    
+    
+                    </tbody>
+                  </table>
+                  
+              </div>
+             
+            </div>
+          </div>
+
+        </div> 
       </div>
     </section>
 
@@ -265,7 +284,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script src="community-test.js"></script>
+
 
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
