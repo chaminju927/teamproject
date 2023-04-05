@@ -124,7 +124,6 @@
       <input type="button" value="가입하기" id="btn-insert" />
     </form>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script>
       // 유효성 검사 기본
@@ -186,9 +185,10 @@
       checkDuplicateBtn.onclick = () => {
         const id = idInput.value;
 
-        fetch(`../doctors/check-duplicate?id=${id}`)
+        fetch(`http://localhost:8080/doctors/check-duplicate/${id}`)
           .then((response) => response.json())
           .then((result) => {
+            console.log(result);
             if (result.status === 'FAILURE') {
               messageDiv.textContent = result.message;
               isDuplicate = true;
@@ -275,10 +275,10 @@
       document.querySelector('#btn-insert').onclick = () => {
         const form = document.querySelector('#doctors-register-form');
         const formData = new FormData(form);
-        // if (isDuplicate) {
-        //   messageDiv.textContent = 'ID를 중복 확인하세요.';
-        //   return;
-        // }
+        if (isDuplicate) {
+          messageDiv.textContent = 'ID를 중복 확인하세요.';
+          return;
+        }
 
         const fileInput = document.querySelector('#file-input');
 
