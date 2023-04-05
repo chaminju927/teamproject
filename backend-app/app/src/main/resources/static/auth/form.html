@@ -62,7 +62,7 @@
                     <p class="text-center small">로그인 후 다양한 진료 서비스를 받아보세요!</p>
                   </div>
 
-                  <form id="login-form" action="login" mehtod="post" class="row g-3 needs-validation" novalidate>
+                  <form id="login-form" action="doctorLogin" mehtod="post" class="row g-3 needs-validation" novalidate>
 
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">회원 ID</label>
@@ -144,7 +144,7 @@
     const form = document.querySelector('#login-form');
     const formData = new FormData(form);
     
-    fetch("login", {
+    fetch("doctorLogin", {
         method: "post",
         body: formData
       })

@@ -12,7 +12,7 @@
    const data = {doctorNo, title, content, category, filter, area};
  };
 
-     fetch("http://localhost:8080/community", {
+     fetch("http://localhost:8080/communityList", {
        method: "POST",
        headers: {
          "Content-Type": "application/json",

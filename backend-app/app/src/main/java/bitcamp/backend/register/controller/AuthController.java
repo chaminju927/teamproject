@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import bitcamp.backend.register.service.DoctorService;
 import bitcamp.backend.register.service.PatientService;
@@ -16,7 +17,7 @@ import bitcamp.util.RestStatus;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping(value = "/auth", method = RequestMethod.GET)
+@RequestMapping(value = "/auth", method=RequestMethod.GET)
 public class AuthController {
 
   Logger log = LogManager.getLogger(getClass());
@@ -28,22 +29,33 @@ public class AuthController {
   @Autowired private PatientService patientService;
   @Autowired private DoctorService doctorService;
 
-  @PostMapping("login")
-  public Object login(
-      //      String usertype,
+  @PostMapping("patientLogin")
+  public Object patientLogin(
       String id,
       String password,
       HttpSession session) {
 
     Member member = null;
-    //    switch (usertype) {
-    //      case "patient":
     member = patientService.get(id, password);
-    //        break;
-    //      case "doctor":
-    //    member = doctorService.get(id, password);
-    //        break;
-    //
+
+    if (member != null) {
+      session.setAttribute("loginUser", member);
+      return new RestResult()
+          .setStatus(RestStatus.SUCCESS);
+    } else {
+      return new RestResult()
+          .setStatus(RestStatus.FAILURE);
+    }
+  }
+
+  @PostMapping("doctorLogin")
+  public Object doctorLogin(
+       String id,
+       String password,
+      HttpSession session) {
+
+    Member member = null;
+    member = doctorService.get(id, password);
 
     if (member != null) {
       session.setAttribute("loginUser", member);

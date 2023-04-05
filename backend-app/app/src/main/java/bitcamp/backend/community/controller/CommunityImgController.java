@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,19 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import bitcamp.backend.community.service.CommunityImgService;
-import bitcamp.backend.community.service.CommunityService;
-import bitcamp.backend.community.service.ObjectStorageService;
 import bitcamp.backend.community.vo.CommunityImg;
+import bitcamp.backend.user.service.ObjectStorageService;
 
 @RestController
 @RequestMapping("/communityimg")
 @CrossOrigin("*")
+@SpringBootApplication
 public class CommunityImgController {
 
   private String bucketName = "study-bucket/community-img";
-
-  @Autowired
-  private CommunityService communityService;
 
   @Autowired
   private ObjectStorageService objectStorageService;
@@ -51,6 +49,7 @@ public class CommunityImgController {
   //    return result;
   //  }
 
+  @CrossOrigin("*")
   @PostMapping("/files")
   public Object home(MultipartHttpServletRequest request) {
 
@@ -69,13 +68,14 @@ public class CommunityImgController {
     return strs;
   }
 
-  @PostMapping("/insertCommunityImg")
+  @CrossOrigin("*")
+  @PostMapping("/insertComImg")
   public void imgCommunity(MultipartHttpServletRequest request) {
     List<MultipartFile> files = request.getFiles("files");
     List<String> strs = new ArrayList<>();
     int c_No = Integer.parseInt(request.getParameter("communityNo"));
 
-    System.out.println("보드 번호 : " + c_No);
+    System.out.println("커뮤 사진번호 : " + c_No);
 
     for (MultipartFile file : files) {
       System.out.println(file.getOriginalFilename() + ":" + file.getSize());
@@ -91,7 +91,8 @@ public class CommunityImgController {
     }
   }
 
-  @PostMapping("/findAllCommunityImg")
+  @CrossOrigin("*")
+  @PostMapping("/findAllComImg")
   public Object findimgCommunity(@RequestBody HashMap<String, Object> param) {
     Map<String, Object> result = new HashMap<>();
 

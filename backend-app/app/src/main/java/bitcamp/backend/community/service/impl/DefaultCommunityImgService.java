@@ -1,9 +1,11 @@
 package bitcamp.backend.community.service.impl;
 
 import java.util.List;
+import org.springframework.stereotype.Service;
 import bitcamp.backend.community.service.CommunityImgService;
 import bitcamp.backend.community.vo.CommunityImg;
 
+@Service
 public class DefaultCommunityImgService implements CommunityImgService{
 
   @Override

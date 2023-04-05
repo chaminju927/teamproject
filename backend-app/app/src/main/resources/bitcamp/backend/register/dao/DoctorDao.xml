@@ -73,12 +73,12 @@
       app_doctor d
       inner join app_member m on d.d_no = m.m_no
     where
+      <!--  
       m.m_id = m_id
       and m.m_pw = m_pw 
-      <!--  
+      -->
       m.m_id = #{id}
       and m.m_pw = sha2(#{password},256)  
-      -->
   </select>
   
   <update id="update" parameterType="doctor">
