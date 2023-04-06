@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import bitcamp.backend.register.service.DoctorService;
 import bitcamp.backend.register.service.PatientService;
@@ -50,8 +49,8 @@ public class AuthController {
 
   @PostMapping("doctorLogin")
   public Object doctorLogin(
-       String id,
-       String password,
+      String id,
+      String password,
       HttpSession session) {
 
     Member member = null;
