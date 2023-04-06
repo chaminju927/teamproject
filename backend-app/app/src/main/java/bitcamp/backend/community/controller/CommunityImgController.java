@@ -18,7 +18,7 @@ import bitcamp.backend.community.vo.CommunityImg;
 import bitcamp.backend.user.service.ObjectStorageService;
 
 @RestController
-@RequestMapping("/communityimg")
+@RequestMapping("/communityImg")
 @CrossOrigin("*")
 @SpringBootApplication
 public class CommunityImgController {
