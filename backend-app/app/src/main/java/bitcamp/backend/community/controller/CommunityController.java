@@ -45,7 +45,7 @@ public class CommunityController {
     return restResult;
   }
 
-  @GetMapping("/list")
+  @GetMapping("http://localhost:8080/community")
   public Object list() {
     return new RestResult()
         .setStatus(RestStatus.SUCCESS)

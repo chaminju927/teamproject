@@ -1,8 +1,6 @@
 package bitcamp.backend.register.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import bitcamp.backend.register.service.DoctorService;
 import bitcamp.backend.register.vo.Doctor;
+import bitcamp.backend.register.vo.License;
 import bitcamp.backend.user.service.ObjectStorageService;
 import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
@@ -39,31 +38,31 @@ public class DoctorController {
   @Autowired
   ObjectStorageService objectStorageService;
 
-  private String bucketName = "study-bucket/member-img";
+  private String memberImg = "study-bucket/member-img";
+  private String licenseImg = "study-bucket/license-img";
 
   @PostMapping
-  public Object insert(@RequestBody Doctor doctor) {
-    doctorService.add(doctor);
+  public Object insert(@RequestBody License license) {
+    doctorService.add(license);
+
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
   }
 
   @PostMapping("/profileimg")
   public Object insertimg(MultipartHttpServletRequest request) {
-    Map<String, Object> result = new HashMap<>();
     List<MultipartFile> files = request.getFiles("files");
-    for(int i =0;i<files.size();i++) {
-      System.out.println(files.get(i).getOriginalFilename());
-      System.out.println(files.get(i));
-      System.out.println(files.get(i).getContentType());
+    String url = "";
+    for (MultipartFile file : files) {
+
+      System.out.println(file.getOriginalFilename() + ":" + file.getSize());
+      url = objectStorageService.uploadFile(memberImg, file);
+      url = url.split("/")[5];
     }
-
-
-
-    return null;
+    return url;
   }
 
-  @PostMapping("/check-duplicate/{id}")
+  @GetMapping("/check-duplicate/{id}")
   public Object checkDuplicateId(@PathVariable String id) {
     boolean isDuplicate = doctorService.isDuplicateId(id);
 
