@@ -93,7 +93,7 @@
     and license_no=#{licenseNo}
   </update>
   
-  <delete id="delete" parameterType="int">
+  <delete id="delete" parameterType="license">
     delete from app_license
     where d_no=#{no}
     and license_no=#{licenseNo}
