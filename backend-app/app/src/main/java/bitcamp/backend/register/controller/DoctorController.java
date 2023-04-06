@@ -1,6 +1,8 @@
 package bitcamp.backend.register.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import bitcamp.backend.register.service.DoctorService;
 import bitcamp.backend.register.vo.Doctor;
+import bitcamp.backend.user.service.ObjectStorageService;
 import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
 
@@ -33,6 +36,11 @@ public class DoctorController {
 
   @Autowired private DoctorService doctorService;
 
+  @Autowired
+  ObjectStorageService objectStorageService;
+
+  private String bucketName = "study-bucket/member-img";
+
   @PostMapping
   public Object insert(@RequestBody Doctor doctor) {
     doctorService.add(doctor);
@@ -42,12 +50,15 @@ public class DoctorController {
 
   @PostMapping("/profileimg")
   public Object insertimg(MultipartHttpServletRequest request) {
+    Map<String, Object> result = new HashMap<>();
     List<MultipartFile> files = request.getFiles("files");
     for(int i =0;i<files.size();i++) {
       System.out.println(files.get(i).getOriginalFilename());
       System.out.println(files.get(i));
       System.out.println(files.get(i).getContentType());
     }
+
+
 
     return null;
   }
