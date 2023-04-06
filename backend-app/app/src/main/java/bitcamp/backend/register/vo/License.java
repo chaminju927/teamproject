@@ -1,15 +1,17 @@
 package bitcamp.backend.register.vo;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
-public class License extends Doctor {
-  private int licenseNo;
-  private String licenseName;
+public class License {
+  private Doctor doctor;
+  public int getNo() {
+    return doctor.getNo();
+  }
+  private LicenseCategory category;
+  public int getLicenseNo() {
+    return category.getLicenseNo();
+  }
   private String licensePhoto;
   private String phoFilename;
   private String phoType;
