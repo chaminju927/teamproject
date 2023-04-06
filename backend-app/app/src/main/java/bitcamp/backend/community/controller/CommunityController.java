@@ -44,7 +44,9 @@ public class CommunityController {
 
   @GetMapping("/list")
   public Object list() {
-    return new RestResult().setStatus(RestStatus.SUCCESS).setData(communityService.list());
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS)
+        .setData(communityService.list());
   }
 
   @GetMapping("{no}")

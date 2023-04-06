@@ -25,22 +25,23 @@
   <select id="findAll" resultMap="communityMap">
     select 
       c.com_no,
-      d.d_no,
+      m.m_no as d_no,
+      m.m_name as doctorName,
       cat.cat_no,
       c.com_tile,
       c.com_date, 
-      c.com_cont, 
       c.com_view, 
       c.filter, 
+      c.com_cont, 
       c.com_area
     from 
-      app_community as c
-      left outer join app_category cat on c.cat_no = cat.cat_no
-      right outer join app_doctor d on c.d_no = d.d_no
+      app_community c
+      join app_category cat on c.cat_no = cat.cat_no
+      join app_member m on c.d_no = m.m_no
     order by 
       com_no desc
   </select>
-
+<!-- 
   <select id="findByNo" parameterType="int" resultMap="communityMap">
     select
       c.com_no,
@@ -82,6 +83,6 @@
       com_view = com_view + 1
     where com_no=#{maumdaerohaedodoi}
   </update>
-  
+   -->
 </mapper>
 

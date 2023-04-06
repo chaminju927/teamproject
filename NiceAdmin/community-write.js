@@ -9,7 +9,7 @@ document.querySelector('.btn-submit').onclick = (e) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      doctorNo: 1,
+      doctorNo: 165,
       title: document.querySelector('#title').value,
       content: document.querySelector('.content').value,
       category: Number(document.querySelector('#category').value),

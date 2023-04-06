@@ -1,24 +1,25 @@
 
-tbody = document.querySelector('community-list');
+tbody = document.querySelector('#community-list');
 
 
-fetch('http://localhost:8080/community')
+fetch('http://localhost:8080/community/list')
   .then((response) => {
     return response.json();
   })
-  .then((obj) => {
-    console.log(obj);
+  .then((data) => {
+   
     var html = '';
-    for (var f of obj.data) {
+    for (var row of data.data) {
       html += `<tr>
-          <td>${no}</td>
-          <td>${title}</td>
-          <td>${doctorNo}</td>
-          <td>${category}</td>
-          <td>${viewCnt}</td>
-          <td>${createdDate}</td>
+          <td>${row.no}</td>
+          <td>${row.title}</td>
+          <td>${row.doctorName}</td>
+          <td>${row.category}</td>
+          <td>${row.viewCnt}</td>
+          <td>${row.createdDate}</td>
           </tr>\n`;
     }
+    console.log(data);
     tbody.innerHTML = html;
   })
   .catch((err) => {

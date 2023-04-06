@@ -1,6 +1,5 @@
 package bitcamp.backend.community.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,30 +48,27 @@ public class CommunityImgController {
   //    return result;
   //  }
 
-  @CrossOrigin("*")
-  @PostMapping("/files")
-  public Object home(MultipartHttpServletRequest request) {
-
-
-    List<MultipartFile> files = request.getFiles("files");
-    List<String> strs = new ArrayList<>();
-
-    System.out.println("커뮤 번호 : " + request.getParameter("comNo"));
-
-    for (MultipartFile file : files) {
-      System.out.println(file.getOriginalFilename() + ":" + file.getSize());
-      strs.add(objectStorageService.uploadFile(bucketName, file));
-    }
-
-
-    return strs;
-  }
+  //  @CrossOrigin("*")
+  //  @PostMapping("/files")
+  //  public Object home(MultipartHttpServletRequest request) {
+  //
+  //
+  //    List<MultipartFile> files = request.getFiles("files");
+  //    List<String> strs = new ArrayList<>();
+  //
+  //    System.out.println("커뮤 번호 : " + request.getParameter("comNo"));
+  //
+  //    for (MultipartFile file : files) {
+  //      System.out.println(file.getOriginalFilename() + ":" + file.getSize());
+  //      strs.add(objectStorageService.uploadFile(bucketName, file));
+  //    }
+  //    return strs;
+  //  }
 
   @CrossOrigin("*")
   @PostMapping("/insertComImg")
   public void imgCommunity(MultipartHttpServletRequest request) {
     List<MultipartFile> files = request.getFiles("files");
-    List<String> strs = new ArrayList<>();
     int c_No = Integer.parseInt(request.getParameter("comNo"));
 
     System.out.println("커뮤 사진번호 : " + c_No);
