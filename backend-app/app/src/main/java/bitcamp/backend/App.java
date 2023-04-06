@@ -39,8 +39,6 @@ public class App {
 
   private String bucketName = "study-bucket/board-img";
 
-
-
   public static void main(String args[]) {
     SpringApplication.run(App.class, args);
   }

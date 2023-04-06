@@ -35,8 +35,11 @@ public class CommunityController {
 
   @PostMapping
   public Object insert(@RequestBody Community community) {
+    RestResult restResult = new RestResult();
     communityService.add(community);
-    return new RestResult().setStatus(RestStatus.SUCCESS);
+    restResult.setData(community);
+    restResult.setStatus(RestStatus.SUCCESS);
+    return restResult;
   }
 
   @GetMapping("/list")

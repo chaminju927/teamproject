@@ -15,13 +15,37 @@
     <result column="m_gender" property="gender"/>
     <result column="m_tel" property="tel"/>
     <result column="m_auth" property="auth"/>
+    <result column="m_photo" property="phoUrl"/>
+    <result column="pho_filename" property="phoName"/>
+    <result column="pho_type" property="phoType"/>
   </resultMap>
 
   <insert id="insert" parameterType="member" 
           useGeneratedKeys="true" keyProperty="no" keyColumn="m_no">
-    insert into app_member(m_id, m_pw, m_name, m_bday, addr, m_email, m_gender, m_tel, m_auth)
-    values(#{id}, sha2(#{password},256), #{name}, #{birth}, #{addr}, #{email}, #{gender}, #{tel}, #{auth})
+    insert into app_member(m_id, m_pw, m_name, m_bday, addr, m_email, m_gender, m_tel, m_auth, m_photo, pho_filename, pho_type)
+    values(#{id}, sha2(#{password},256), #{name}, #{birth}, #{addr}, #{email}, #{gender}, #{tel}, #{auth}, #{phoUrl}, #{phoName}, #{phoType})
   </insert>
+  
+  <select id="findById" parameterType="String" resultMap="memberMap">
+	  select 
+	    m_no, 
+	    m_id, 
+	    m_pw, 
+	    m_name, 
+	    m_bday, 
+	    addr, 
+	    m_email, 
+	    m_gender, 
+	    m_tel, 
+	    m_auth, 
+	    m_photo, 
+	    pho_filename, 
+	    pho_type 
+	  from 
+	    app_member 
+	  where 
+	    m_id=#{id}
+  </select>
 
   <select id="findAll" resultMap="memberMap">
     select 
@@ -63,8 +87,4 @@
     where m_no=#{no}
   </delete>
 </mapper>
-
-
-
-
 
