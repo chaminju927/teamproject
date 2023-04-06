@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.backend.community.dao.CommunityImgDao">
+
+ <resultMap type="communityImg" id="communityImgMap">
+ <id column="com_no" property="c_no"/>
+ <result column="pho_no" property="no"/>
+ <result column="pho_name" property="url"/>
+ <result column="pho_filename" property="name"/>
+ <result column="pho_type" property="MIMETYPE"/>
+ </resultMap>
+
+  <insert id="insert" parameterType="CommunityImg"
+          useGeneratedKeys="true" keyColumn="comNo" keyProperty="no">
+    insert into app_comm_photo (com_no, pho_name, pho_filename, pho_type)
+    value (#{no}, #{url}, #{name}, #{MIMETYPE});
+  </insert>
+  
+  <select id="findAll" resultType="bitcamp.backend.communtiy.vo.CommunityImg" parameterType="string">
+   select 
+      c.com_no,
+      d.d_no,
+      cat.cat_no,
+      c.com_tile,
+      c.com_date, 
+      c.com_cont, 
+      c.com_view, 
+      c.filter, 
+      c.com_area
+    from 
+      app_communityImg as cImg
+      left outer join app_category cat on c.cat_no = cat.cat_no
+      left outer join app_community cat on p.cat_no = c.c_no
+    order by 
+      com_no desc
+  </select>
+  
+  <select id="findByCno" resultType="bitcamp.backend.user.vo.BoardImg" parameterType="int">
+    select 
+      bp.pho_no as no, 
+      bp.symp_no as b_no,
+      bp.pho_name as url,
+      bp.pho_filename as name,
+      bp.pho_type as MIMETYPE
+    from 
+      app_symp_photo bp
+    <if test="no != 0 and no != null">
+    where 
+      bp.symp_no like #{no}
+    </if> 
+  </select>
+  
+  
+  
+</mapper>

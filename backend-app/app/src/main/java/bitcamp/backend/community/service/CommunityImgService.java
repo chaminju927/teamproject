@@ -4,9 +4,9 @@ import java.util.List;
 import bitcamp.backend.community.vo.CommunityImg;
 
 public interface CommunityImgService {
-  void add(CommunityImg comImg);
+  public void add(CommunityImg communityImg);
 
-  List<CommunityImg> list(int B_no);
+  List<CommunityImg> list(int C_no);
 
   CommunityImg get(int no);
 
