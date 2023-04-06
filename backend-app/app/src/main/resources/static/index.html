@@ -46,6 +46,10 @@
     height: 70px;
     font-size: 20px;
   }
+  .nav-item.logout {
+    display: none;
+  }
+  
   </style>
 </head>
 
@@ -74,7 +78,7 @@
     
     <a href="doctors-community-main.html"  class="nav-link collapsed"><span>커뮤니티</span></a>
 
-    <a href="auth/form.html"  class="nav-link collapsed"><span>로그인</span></a>
+    <a href="auth/form.html"  class="nav-link collapsed login"><span class="login">로그인</span></a>
   </div>
 
   <nav class="header-nav ms-auto">
@@ -261,8 +265,8 @@
       </a>
     </li><!-- End Register Page Nav -->
 
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="pages-login.html">
+    <li class="nav-item logout">
+      <a class="nav-link collapsed" href="index.html" onclick="logout(); return false">
         <i class="bi bi-box-arrow-in-right"></i>
         <span>로그아웃</span>
       </a>
@@ -381,6 +385,35 @@
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
   <script type='text/babel' src="doctor-boardlist.js"></script>
+  <script>
+    fetch("auth/user")
+      .then((response) => {
+        return response.json();
+      })
+      .then((result) => {
+        if (result.status == "success") {
+          document.querySelector(".nav-item.logout").classList.remove("nav-item", "logout");
+          document.querySelector(".nav-link.collapsed.login").remove();
+        } 
+      })
+      .catch((exception) => {
+        alert("로그인 사용자 정보 조회 오류!");
+      });
+
+
+    function logout() {
+      fetch("auth/logout")
+        .then((response) => {
+          return response.json();
+        })
+        .then((result) => {
+          location.reload();
+        })
+        .catch((exception) => {
+          console.log(exception);
+        });
+    }
+  </script> 
 </body>
 
 </html>
