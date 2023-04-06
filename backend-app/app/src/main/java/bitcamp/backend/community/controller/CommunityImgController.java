@@ -94,7 +94,7 @@ public class CommunityImgController {
   public Object findimgCommunity(@RequestBody HashMap<String, Object> param) {
     Map<String, Object> result = new HashMap<>();
 
-    List<CommunityImg> list = communityImgService.list(Integer.parseInt((String) param.get("cno")));
+    List<CommunityImg> list = communityImgService.get(Integer.parseInt((String) param.get("Cno")));
 
     if (list != null && list.size() > 0) {
       result.put("status", "success");

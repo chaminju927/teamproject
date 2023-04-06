@@ -19,15 +19,8 @@ public class DefaultCommunityImgService implements CommunityImgService{
   }
 
   @Override
-  public List<CommunityImg> list(int B_no) {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public CommunityImg get(int no) {
-    // TODO Auto-generated method stub
-    return null;
+  public List<CommunityImg> get(int no) {
+    return communityImgDao.findByCno(no);
   }
 
   @Override

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import bitcamp.backend.community.service.CommunityImgService;
 import bitcamp.backend.community.service.CommunityService;
 import bitcamp.backend.community.vo.Community;
 import bitcamp.util.RestResult;
@@ -26,6 +27,8 @@ public class CommunityController {
 
   @Autowired
   private CommunityService communityService;
+
+  @Autowired private CommunityImgService communityImgService;
 
   //  @GetMapping("/test")
   //  public void test(){
@@ -51,7 +54,10 @@ public class CommunityController {
 
   @GetMapping("{no}")
   public Object view(@PathVariable int no) {
-    return new RestResult().setStatus(RestStatus.SUCCESS).getData();
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS)
+        .setData(communityService.get(no))
+        .setPhoto(communityImgService.get(no));
   }
 
   @PutMapping("{no}")

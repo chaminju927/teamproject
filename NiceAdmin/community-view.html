@@ -202,22 +202,34 @@
             <div class="card-body">
              
               <h5 class="card-title"><strong>글 상세 조회</strong></h5>
+
               <div class="col-12 row g-3">
-                  <div class="col-md-5">
+                  <div class="col-md-6">
                     <input type="text" class="form-control" placeholder="게시글 제목" id="title">
                   </div>
-                  
-                  <!-- <div class="col-12 row g-3" style="margin-top: 10px;">
-                  사진파일 위치
-                  
-                </div> -->
+                  <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="카테고리" id="category">
+                  </div>
+                  <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="작성자" id="doctorName">
+                  </div>
+                  <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="작성일" id="createdDate">
+                  </div>
 
-                <div class="form-floating col-md-12 " style="margin-top: 20px;">
-                <textarea class="form-control content" style="height: 300px;">
-                </textarea>
-              </div>
-              </div>
-             
+                <div style=" margin-top: 20px; margin-bottom: 20px; width: 490px;  overflow: hidden; background-color: white; margin-left: auto; margin-right: auto;" class="carousel slide" data-bs-ride="carousel">
+                  <div class=" arousel-inner" style="width: 100%; margin-top: auto;" id="comImg">
+                    <div class="carousel-item active photocover" id="comImg" >
+                      <img src="" id="comImg" class="d-block w-100 comphoto" alt="...">
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="form-floating col-md-12 " style="margin-top: 20px;" >
+                <input type="text" id="content" class="form-control content" style="height: 300px;">
+                </div>
+              
+              </div>   
             </div>
           </div>
 
@@ -284,6 +296,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="community-view.js"></script>
 
 
   

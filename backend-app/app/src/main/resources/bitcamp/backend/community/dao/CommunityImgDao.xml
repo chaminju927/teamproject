@@ -18,6 +18,21 @@
   </insert>
   
   
+  <select id ="findByCno" resultMap="communityImgMap" parameterType="int">
+    select 
+      c.com_no,
+      p.pho_no,
+      p.pho_name,
+      p.pho_filename,
+      p.pho_type
+    from app_comm_photo p
+      left join app_community c
+      on p.com_no=c.com_no
+    where 
+      p.com_no=#{no}
+      
+  
+  </select>
   
   
 </mapper>

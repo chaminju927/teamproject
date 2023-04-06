@@ -12,7 +12,8 @@ fetch('http://localhost:8080/community/list')
     for (var row of data.data) {
       html += `<tr>
           <td>${row.no}</td>
-          <td>${row.title}</td>
+          <td></td>
+          <td><a href="community-view.html?no=${row.no}">${row.title}</a></td>
           <td>${row.doctorName}</td>
           <td>${row.category}</td>
           <td>${row.viewCnt}</td>

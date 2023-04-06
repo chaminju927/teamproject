@@ -11,5 +11,6 @@ public interface CommunityImgDao {
   CommunityImg findByComNo(int no);
   int update(CommunityImg communityImg);
   int delete(int no);
+  List<CommunityImg> findByCno(int no);
 
 }
