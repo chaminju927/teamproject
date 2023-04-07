@@ -17,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import bitcamp.backend.register.service.DoctorService;
 import bitcamp.backend.register.vo.Doctor;
-import bitcamp.backend.register.vo.License;
 import bitcamp.backend.user.service.ObjectStorageService;
 import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
@@ -33,7 +32,8 @@ public class DoctorController {
     log.trace("DoctorController 생성됨!");
   }
 
-  @Autowired private DoctorService doctorService;
+  @Autowired
+  private DoctorService doctorService;
 
   @Autowired
   ObjectStorageService objectStorageService;
@@ -42,11 +42,10 @@ public class DoctorController {
   private String licenseImg = "study-bucket/license-img";
 
   @PostMapping
-  public Object insert(@RequestBody License license) {
-    doctorService.add(license);
+  public Object insert(@RequestBody Doctor doctor) {
+    doctorService.add(doctor);
 
-    return new RestResult()
-        .setStatus(RestStatus.SUCCESS);
+    return new RestResult().setStatus(RestStatus.SUCCESS);
   }
 
   @PostMapping("/profileimg")
@@ -67,49 +66,37 @@ public class DoctorController {
     boolean isDuplicate = doctorService.isDuplicateId(id);
 
     if (isDuplicate) {
-      return new RestResult()
-          .setStatus(RestStatus.FAILURE)
-          .setMessage("이미 사용하고 있는 ID입니다.");
+      return new RestResult().setStatus(RestStatus.FAILURE).setMessage("이미 사용하고 있는 ID입니다.");
     } else {
-      return new RestResult()
-          .setStatus(RestStatus.SUCCESS)
-          .setMessage("사용 가능한 ID입니다.");
+      return new RestResult().setStatus(RestStatus.SUCCESS).setMessage("사용 가능한 ID입니다.");
     }
   }
 
   @GetMapping
   public Object list() {
-    return new RestResult()
-        .setStatus(RestStatus.SUCCESS)
-        .setData(doctorService.list());
+    return new RestResult().setStatus(RestStatus.SUCCESS).setData(doctorService.list());
   }
 
   @GetMapping("{no}")
   public Object view(@PathVariable int no) {
-    return new RestResult()
-        .setStatus(RestStatus.SUCCESS)
-        .setData(doctorService.get(no));
+    return new RestResult().setStatus(RestStatus.SUCCESS).setData(doctorService.get(no));
   }
 
   @PutMapping("{no}")
-  public Object update(
-      @PathVariable int no,
-      @RequestBody Doctor doctor) {
+  public Object update(@PathVariable int no, @RequestBody Doctor doctor) {
 
     log.debug(doctor);
 
     doctor.setNo(no);
     doctorService.update(doctor);
 
-    return new RestResult()
-        .setStatus(RestStatus.SUCCESS);
+    return new RestResult().setStatus(RestStatus.SUCCESS);
   }
 
   @DeleteMapping("{no}")
   public Object delete(@PathVariable int no) {
     doctorService.delete(no);
-    return new RestResult()
-        .setStatus(RestStatus.SUCCESS);
+    return new RestResult().setStatus(RestStatus.SUCCESS);
   }
 
 }

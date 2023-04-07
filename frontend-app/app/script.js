@@ -749,7 +749,6 @@ $(".btn-3").click(() => {
               .then(response => response.json())
               .then(data => {
                 if (data.status == "success") {
-
                   console.log(data);
                   $("#root_2 > *")[0].style.opacity = 0;
                   $("#root_2 > *")[1].style.opacity = 0;
@@ -766,6 +765,7 @@ $(".btn-3").click(() => {
                     }, 1200);
 
                   }, 1000);
+
                 } else {
                   alert("잘못된 비밀번호 입니다")
                 }
