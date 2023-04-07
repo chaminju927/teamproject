@@ -749,22 +749,9 @@ $(".btn-3").click(() => {
               .then(response => response.json())
               .then(data => {
                 if (data.status == "success") {
-                  console.log(data);
-                  $("#root_2 > *")[0].style.opacity = 0;
-                  $("#root_2 > *")[1].style.opacity = 0;
-                  $("#root_2").css("width", "700px")
-                  setTimeout(() => {
-                    $("#root_2").css("height", "800px")
-
-                    setTimeout(() => {
-
-                      ReactDOM.createRoot(document.getElementById('root_2')).render(
-                        <Spans props={data.data} />
-                      )
-
-                    }, 1200);
-
-                  }, 1000);
+                  let no = data.data.no
+                  window.localStorage.setItem("boardNo", no);
+                  location.href = "/NiceAdmin/patients-record.html?no=" + no;
 
                 } else {
                   alert("잘못된 비밀번호 입니다")
