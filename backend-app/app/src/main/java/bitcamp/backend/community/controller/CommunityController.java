@@ -58,7 +58,6 @@ public class CommunityController {
 
   @PutMapping("/update")
   public Object update(@RequestBody Community community) {
-    System.out.println(community);
 
     Community newCommunity = new Community();
     newCommunity.setNo(community.getNo());

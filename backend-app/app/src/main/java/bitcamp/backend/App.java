@@ -146,7 +146,6 @@ public class App {
   @PostMapping("/files")
   public Object home(MultipartHttpServletRequest request) {
 
-
     List<MultipartFile> files = request.getFiles("files");
     List<String> strs = new ArrayList<>();
 
