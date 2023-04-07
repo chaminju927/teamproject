@@ -7,6 +7,19 @@ fetch('http://localhost:8080/community/list')
     return response.json();
   })
   .then((data) => {
+
+    function categoryName(category) {
+      switch (category) {
+        case 1 :
+          return '자유게시판';
+        case 2 :
+          return '의학뉴스';
+        case 3 :
+          return '질문게시판';
+        default : 
+          return '-';
+      }
+    }
    
     var html = '';
     for (var row of data.data) {
@@ -15,7 +28,7 @@ fetch('http://localhost:8080/community/list')
           
           <td><a href="community-view.html?no=${row.no}">${row.title}</a></td>
           <td>${row.doctorName}</td>
-          <td>${row.category}</td>
+          <td>${categoryName(row.category)}</td>
           <td>${row.viewCnt}</td>
           <td>${row.createdDate}</td>
           </tr>\n`;

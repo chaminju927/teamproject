@@ -1,7 +1,7 @@
 const urlParams = new URL(location.href).searchParams;
 const no = urlParams.get('no');
 
-fetch(`http://localhost:8080/community/${63}`)
+fetch(`http://localhost:8080/community/${no}`)
 .then((response) => {
   return response.json();
 })
@@ -29,4 +29,17 @@ fetch(`http://localhost:8080/community/${63}`)
   alert('서버 요청 오류!');
   console.log(err);
 });
+
+document.querySelector('#former-btn').onclick = (e) => {
+  location.href='communtiy-list.html';
+};
+
+document.querySelector('#udpate-btn').onclick = (e) => {
+
+  fetch(`http://localhost:8080/community/${no}`)
+
+
+};
+
+
   

@@ -6,19 +6,13 @@ import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import lombok.Data;
 
 @Data
-public class Community {
+public class Recomment {
 
   @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd")
   private Date createdDate;
 
-  private int no;
-  private int doctorNo;
-  private String doctorName;
-  private String title;
-  private String content;
-  private int category;
-  private int viewCnt;
-  private int filter;
-  private int area;  // 게시글 공개 범위
-
+  private int ComNo;
+  private int recNo;
+  private int docNo;
+  private String recContent;
 }
