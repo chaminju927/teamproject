@@ -28,13 +28,14 @@ public class CommunityController {
   @Autowired
   private CommunityService communityService;
 
-  @Autowired private CommunityImgService communityImgService;
+  @Autowired
+  private CommunityImgService communityImgService;
 
-  //  @GetMapping("/test")
-  //  public void test(){
-  //    communityService.get(7);
-  //    System.out.println(communityService);
-  //  }
+  // @GetMapping("/test")
+  // public void test(){
+  // communityService.get(7);
+  // System.out.println(communityService);
+  // }
 
   @PostMapping
   public Object insert(@RequestBody Community community) {
@@ -45,40 +46,32 @@ public class CommunityController {
     return restResult;
   }
 
-  @GetMapping("http://localhost:8080/community")
+  @GetMapping("/list")
   public Object list() {
-    return new RestResult()
-        .setStatus(RestStatus.SUCCESS)
-        .setData(communityService.list());
+    return new RestResult().setStatus(RestStatus.SUCCESS).setData(communityService.list());
   }
 
   @GetMapping("{no}")
   public Object view(@PathVariable int no) {
-    return new RestResult()
-        .setStatus(RestStatus.SUCCESS)
-        .setData(communityService.get(no))
+    return new RestResult().setStatus(RestStatus.SUCCESS).setData(communityService.get(no))
         .setPhoto(communityImgService.get(no));
   }
 
   @PutMapping("{no}")
-  public Object update(
-      @PathVariable int no,
-      @RequestBody Community community) {
+  public Object update(@PathVariable int no, @RequestBody Community community) {
 
     log.debug(community);
 
     community.setNo(no);
     communityService.update(community);
 
-    return new RestResult()
-        .setStatus(RestStatus.SUCCESS);
+    return new RestResult().setStatus(RestStatus.SUCCESS);
   }
 
   @DeleteMapping("{no}")
   public Object delete(@PathVariable int no) {
     communityService.delete(no);
-    return new RestResult()
-        .setStatus(RestStatus.SUCCESS);
+    return new RestResult().setStatus(RestStatus.SUCCESS);
   }
 
 
