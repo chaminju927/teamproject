@@ -60,7 +60,7 @@
       d_no=#{no}
   </select>
   
-  <select id="findByIdAndPassword" parameterType="map" resultMap="doctorMap">
+  <select id="findByIdAndPassword" parameterType="Map" resultMap="doctorMap">
     select
       d.d_no,
       m.m_id,
@@ -78,7 +78,7 @@
       and m.m_pw = m_pw 
       -->
       m.m_id = #{id}
-      and m.m_pw = sha2(#{password},256)  
+      and m.m_pw = #{password}  
   </select>
   
   <update id="update" parameterType="doctor">
