@@ -18,7 +18,7 @@ public class DefaultCommunityService implements CommunityService{
   @Override
   public void add(Community community) {
     communityDao.insert(community);
-    communityDao.increaseViewCount(community.getNo());
+
   }
 
   @Override

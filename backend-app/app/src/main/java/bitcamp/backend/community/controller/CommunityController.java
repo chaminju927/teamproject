@@ -56,18 +56,21 @@ public class CommunityController {
         .setPhoto(communityImgService.get(no));
   }
 
-  @PutMapping("{no}")
-  public Object update(@PathVariable int no, @RequestBody Community community) {
+  @PutMapping("/update")
+  public Object update(@RequestBody Community community) {
+    System.out.println(community);
 
-    community.setNo(no);
+    Community newCommunity = new Community();
+    newCommunity.setNo(community.getNo());
+    newCommunity.setTitle(community.getTitle());
 
-    Community old = communityService.get(community.getNo());
+    System.out.println(newCommunity);
 
+    communityService.update(newCommunity);
 
-    communityService.update(community);
-
-    return new RestResult()
-        .setStatus(RestStatus.SUCCESS);
+    RestResult restResult = new RestResult();
+    restResult.setData(newCommunity);
+    restResult.setStatus(RestStatus.SUCCESS);
+    return restResult;
   }
-
 }

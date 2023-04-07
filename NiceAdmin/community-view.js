@@ -39,36 +39,32 @@ document.querySelector('#former-btn').onclick = (e) => {
 //}
 
 
-document.querySelector('#udpate-btn').onclick = (e) => {
-  
-  // var title = document.querySelector('#title').value;
-  // var category = document.querySelector('#category').value;
-  // var content = document.querySelector('#content').value;
-  // var Img = $('#comImg')[0].src;
+document.querySelector('#update-btn').onclick = (e) => {
  
-  fetch("http://localhost:8080/community/${no}", {
+  fetch("http://localhost:8080/community/update", {
     method: "PUT",
     headers: {
-      "Content-Type": "application/json",
+      'Content-type': 'application/json',
     },
     body: JSON.stringify({
-     title: document.querySelector('#title').value,
-     category: document.querySelector('#category').value,
-     content: document.querySelector('#content').value
-     //Img:  $('#comImg')[0].src
+      doctorNo: 10,
+      title: document.querySelector('#title').value,
+      category: document.querySelector('#category').value,
+      content: document.querySelector('#content').value,
+      doctorName: document.querySelector('#doctorName').value,
+      createdDate: document.querySelector('#createdDate').value,
+      filter: 0,
+      area: 0
+      //Img:  $('#comImg')[0].src
     }),
+    mode: 'cors'
   })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("성공:", data);
-      //submitFiles(data.data.no);
-    })
-    .catch((error) => {
-      console.error("실패:", error);
-    })
-
-
-}
-
-
-  
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("성공:", data);
+    //submitFiles(data.data.no);
+  })
+  .catch((error) => {
+    console.error("실패:", error);
+  });
+};
