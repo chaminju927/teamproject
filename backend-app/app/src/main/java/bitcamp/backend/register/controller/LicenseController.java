@@ -86,4 +86,13 @@ public class LicenseController {
 
     return result;
   }
+  @PostMapping("/doinsert")
+  public Object test1() {
+    Map<String, Object> result = new HashMap<>();
+    result.put("status", "success");
+    result.put("data", 1);
+
+    return result;
+
+  }
 }
