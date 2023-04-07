@@ -1,11 +1,2 @@
-/.project
-/.settings/
-/Dockerfile
-/build.gradle
-/hs_err_pid10152.log
-/hs_err_pid10708.log
-/hs_err_pid588.log
-/hs_err_pid7316.log
 /main/
 /test/
-/src/

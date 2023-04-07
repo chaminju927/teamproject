@@ -19,11 +19,11 @@ fetch(`http://localhost:8080/community/${no}`)
   document.querySelector('#createdDate').value = data.data.createdDate;
   document.querySelector('#content').value = data.data.content;
   if(data.photo.length >0 ) {
-    $(".comphoto")[0].src = data.photo[0].imgUrl;
+    $('#comImg')[0].src = data.photo[0].imgUrl;
   } else {
     $(".photocover").html("")
   }
-  // console.log(data.photo[0].imgUrl)
+   console.log(data.photo[0].imgUrl)
 })
 .catch((err) => {
   alert('서버 요청 오류!');
@@ -31,15 +31,44 @@ fetch(`http://localhost:8080/community/${no}`)
 });
 
 document.querySelector('#former-btn').onclick = (e) => {
-  location.href='communtiy-list.html';
+  location.href='community-list.html';
 };
+
+//document.querySelector('#img-update').onclick = (e) => {
+  // 사진  변경
+//}
+
 
 document.querySelector('#udpate-btn').onclick = (e) => {
+  
+  // var title = document.querySelector('#title').value;
+  // var category = document.querySelector('#category').value;
+  // var content = document.querySelector('#content').value;
+  // var Img = $('#comImg')[0].src;
+ 
+  fetch("http://localhost:8080/community/${no}", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+     title: document.querySelector('#title').value,
+     category: document.querySelector('#category').value,
+     content: document.querySelector('#content').value
+     //Img:  $('#comImg')[0].src
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("성공:", data);
+      //submitFiles(data.data.no);
+    })
+    .catch((error) => {
+      console.error("실패:", error);
+    })
 
-  fetch(`http://localhost:8080/community/${no}`)
 
-
-};
+}
 
 
   

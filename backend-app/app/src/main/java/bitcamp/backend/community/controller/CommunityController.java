@@ -1,7 +1,5 @@
 package bitcamp.backend.community.controller;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,13 +20,11 @@ import bitcamp.util.RestStatus;
 @CrossOrigin("*")
 public class CommunityController {
 
-  Logger log = LogManager.getLogger(getClass());
+  //Logger log = LogManager.getLogger(getClass());
 
-  @Autowired
-  private CommunityService communityService;
+  @Autowired private CommunityService communityService;
 
-  @Autowired
-  private CommunityImgService communityImgService;
+  @Autowired private CommunityImgService communityImgService;
 
   // @GetMapping("/test")
   // public void test(){
@@ -60,50 +56,18 @@ public class CommunityController {
         .setPhoto(communityImgService.get(no));
   }
 
-  //  @PutMapping("{no}")
-  //  public Object update(@PathVariable int no, @RequestBody Community community) {
-  //
-  //    community.setNo(no);
-  //    communityService.update(community);
-  //
-  //    return new RestResult()
-  //        .setStatus(RestStatus.SUCCESS);
-  //  }
-
   @PutMapping("{no}")
-  public Object update(@PathVariable int no, Community community) throws Exception {
+  public Object update(@PathVariable int no, @RequestBody Community community) {
 
-    // URL 의 번호와 요청 파라미터의 번호가 다를 경우를 방지하기 위해
-    // URL의 번호를 게시글 번호로 설정한다.
     community.setNo(no);
 
     Community old = communityService.get(community.getNo());
-    //    if (old.getWriter().getNo() != loginUser.getNo()) {
-    //      return new RestResult()
-    //          .setStatus(RestStatus.FAILURE)
-    //          .setErrorCode(ErrorCode.rest.UNAUTHORIZED)
-    //          .setData("권한이 없습니다.");
-    //    }
 
 
+    communityService.update(community);
 
-    //      String filename = UUID.randomUUID().toString();
-    //      file.transferTo(new File(System.getProperty("user.home") + "/webapp-upload/" + filename));
-    //
-    //      BoardFile boardFile = new BoardFile();
-    //      boardFile.setOriginalFilename(file.getOriginalFilename());
-    //      boardFile.setFilepath(filename);
-    //      boardFile.setMimeType(file.getContentType());
-    //      boardFile.setBoardNo(board.getNo());
-    //      boardFiles.add(boardFile);
-    //    }
-    //    board.setAttachedFiles(boardFiles);
-    //
-    //    boardService.update(board);
-    //
-    //    return new RestResult()
-    //        .setStatus(RestStatus.SUCCESS);
-    //  }
-
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS);
   }
+
 }
