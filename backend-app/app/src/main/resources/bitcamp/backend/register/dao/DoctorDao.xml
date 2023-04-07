@@ -78,7 +78,7 @@
       and m.m_pw = m_pw 
       -->
       m.m_id = #{id}
-      and m.m_pw = #{password}  
+      and m.m_pw = sha2(#{password},256)  
   </select>
   
   <update id="update" parameterType="doctor">
