@@ -1,7 +1,7 @@
 const urlParams = new URL(location.href).searchParams;
 const no = urlParams.get('no');
 
-fetch(`http://localhost:8080/community/${no}`)
+fetch(`http://localhost:8080/community/${63}`)
 .then((response) => {
   return response.json();
 })
