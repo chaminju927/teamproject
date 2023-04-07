@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import bitcamp.backend.register.service.LicenseService;
 import bitcamp.backend.register.vo.License;
-import bitcamp.backend.user.service.LicenseService;
 import bitcamp.backend.user.service.ObjectStorageService;
 
 @RestController
@@ -61,7 +61,7 @@ public class LicenseController {
       String str = objectStorageService.uploadFile(bucketName, file);
 
       License license = new License();
-      license.setLicenseNo(licenseNo);
+      license.setL_no(licenseNo);
       license.setLicensePhoto(str);
       license.setPhoFilename(file.getOriginalFilename());
       license.setPhoType(file.getContentType());
