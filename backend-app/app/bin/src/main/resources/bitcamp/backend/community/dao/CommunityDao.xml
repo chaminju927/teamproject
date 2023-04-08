@@ -68,6 +68,7 @@
      com_no=#{no}, 
      com_tile=#{title}, 
      com_date=#{createdDate}, 
+     cat_no=#{category},
      com_cont=#{content}, 
      com_view=#{viewCnt}, 
      filter=#{filter}, 

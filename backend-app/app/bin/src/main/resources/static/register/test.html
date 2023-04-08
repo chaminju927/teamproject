@@ -5,12 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style>
-      /* 검증 후에만 :invalid 스타일을 적용한다 */
-      form.was-validated input:invalid {
-        border-color: red;
-      }
-    </style>
   </head>
   <body>
     <form id="doctors-register-form" method="post">
@@ -133,13 +127,6 @@
         readonly
       /><br />
       <label>전화번호:</label>
-      <select id="tel-carrier" required>
-        <option value="">통신사 선택</option>
-        <option value="SKT">SKT</option>
-        <option value="KT">KT</option>
-        <option value="LG U+">LG U+</option>
-        <option value="알뜰폰">알뜰폰</option>
-      </select>
       <input
         type="tel"
         id="tel"
@@ -152,36 +139,14 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script>
-      // 유효성 검사 기본
-      document.querySelectorAll('input').forEach((input) => {
-        input.addEventListener('invalid', () => {
-          // 검증 후 폼 요소에 was-validated 클래스로 표시해 둔다
-          document.forms[0].classList.add('was-validated');
-        });
-      });
-
-      // 오류 메세지 사전을 만든다
-      const validityMessage = {
-        badInput: '[커스텀 메세지] 잘못된 입력입니다.',
-        patternMismatch: '[커스텀 메세지] 패턴에 맞게 입력하세요',
-        rangeOverflow: '[커스텀 메세지] 범위를 초과하였습니다',
-        rangeUnderflow: '[커스텀 메세지] 범위에 미달하였습니다',
-        stepMismatch: '[커스텀 메세지] 간격에 맞게 입력하세요',
-        tooLong: '[커스텀 메세지] 최대 글자 미만으로 입력하세요',
-        tooShort: '[커스텀 메세지] 최소 글자 미만으로 입력하세요',
-        typeMismatch: '[커스텀 메세지] 형식에 맞게 입력하세요',
-        valueMissing: '[커스텀 메세지] 이 필드를 반드시 입력하세요',
-      };
-
-      // validity 객체를 받아 메세지 맵에서 오류 메세지를 찾는다
-      function getMessage(validity) {
-        for (const key in validityMessage) {
-          if (validity[key]) {
-            return validityMessage[key];
-          }
-        }
-      }
-
+      const idInput = document.querySelector('#id-input');
+      const messageDiv = document.querySelector('#message');
+      const checkDuplicateBtn = document.querySelector('#check-duplicate-btn');
+      let isDuplicate = true;
+  
+      const emailIdInput = document.querySelector('#email-id');
+      const emailDomainSelect = document.querySelector('#email-domain');
+      const emailDirectInput = document.querySelector('#email-direct');
       // 프로필 이미지
       function previewImage(event) {
         const input = event.target;
@@ -198,19 +163,10 @@
         }
       }
 
-      const idInput = document.querySelector('#id-input');
-      const messageDiv = document.querySelector('#message');
-      const checkDuplicateBtn = document.querySelector('#check-duplicate-btn');
-      let isDuplicate = true;
-
-      const emailIdInput = document.querySelector('#email-id');
-      const emailDomainSelect = document.querySelector('#email-domain');
-      const emailDirectInput = document.querySelector('#email-direct');
 
       // ID 중복 확인 버튼 클릭 이벤트
       checkDuplicateBtn.onclick = () => {
         const id = idInput.value;
-
         fetch(`http://localhost:8080/doctors/check-duplicate/${id}`)
           .then((response) => response.json())
           .then((result) => {
@@ -326,9 +282,8 @@
         const detailAddress = document.getElementById('detailAddress').value;
         formData.set('addr', `${zipcode}: ${roadAddress} ${detailAddress}`);
 
-        const telCarrier = document.getElementById('tel-carrier').value;
         const tel = document.getElementById('tel').value;
-        formData.set('tel', `${telCarrier}: ${tel}`);
+        formData.set('tel', `${tel}`);
 
         if (form.checkValidity()) {
           let url = '';

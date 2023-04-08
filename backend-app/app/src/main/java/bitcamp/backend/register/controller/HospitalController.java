@@ -18,7 +18,7 @@ import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
 
 @RestController
-@RequestMapping("/hospitals")
+@RequestMapping("/hospital")
 @CrossOrigin("*")
 public class HospitalController {
 
@@ -32,12 +32,15 @@ public class HospitalController {
 
   @PostMapping
   public Object insert(@RequestBody Hospital hospital) {
+    RestResult restResult = new RestResult();
+    System.out.println(restResult);
     hospitalService.add(hospital);
-    return new RestResult()
-        .setStatus(RestStatus.SUCCESS);
+    restResult.setData(hospital);
+    restResult.setStatus(RestStatus.SUCCESS);
+    return restResult;
   }
 
-  @GetMapping
+  @GetMapping("/list")
   public Object list() {
     return new RestResult()
         .setStatus(RestStatus.SUCCESS)
