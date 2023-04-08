@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import bitcamp.backend.register.service.PatientService;
 import bitcamp.backend.register.vo.Patient;
+import bitcamp.backend.user.service.ObjectStorageService;
 import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
 
@@ -31,7 +32,13 @@ public class PatientController {
     log.trace("PatientController 생성됨!");
   }
 
-  @Autowired private PatientService patientService;
+  @Autowired
+  private PatientService patientService;
+
+  @Autowired
+  ObjectStorageService objectStorageService;
+
+  private String memberImg = "study-bucket/member-img";
 
   @PostMapping
   public Object insert(@RequestBody Patient patient) {
@@ -39,20 +46,22 @@ public class PatientController {
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
   }
+
   @PostMapping("/profileimg")
   public Object insertimg(MultipartHttpServletRequest request) {
     List<MultipartFile> files = request.getFiles("files");
-    for(int i =0;i<files.size();i++) {
-      System.out.println(files.get(i).getOriginalFilename());
-      System.out.println(files.get(i));
-      System.out.println(files.get(i).getContentType());
-    }
+    String url = "";
+    for (MultipartFile file : files) {
 
-    return null;
+      System.out.println(file.getOriginalFilename() + ":" + file.getSize());
+      url = objectStorageService.uploadFile(memberImg, file);
+      url = url.split("/")[5];
+    }
+    return url;
   }
 
-  @GetMapping("/check-duplicate")
-  public Object checkDuplicateId(String id) {
+  @GetMapping("/check-duplicate/{id}")
+  public Object checkDuplicateId(@PathVariable String id) {
     boolean isDuplicate = patientService.isDuplicateId(id);
 
     if (isDuplicate) {

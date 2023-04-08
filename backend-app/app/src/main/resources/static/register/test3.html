@@ -1,55 +1,73 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <form id="doctors-register-form" method="post">
-      <label for="degree">학력:</label>
-      <input type="text">
-      <label for="">경력:</label>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="row mb-3">
+    <label for="id-input" class="col-sm-2 form-label padding-right-0">ID</label>
+    <div class="col-sm-5">
+      <input type="text" name="id" class="form-control" id="id-input" placeholder="4자 이상의 ID 입력" minlength="4" required />
+      <div class="invalid-feedback" id="id-input-feedback">
+        ID를 4자 이상 입력하세요.
+      </div>
+      <div class="valid-feedback" id="id-input-valid-feedback">
+        사용 가능한 ID입니다.
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <button type="button" id="check-duplicate-btn" class="btn btn-primary">중복 확인</button>
+    </div>
+  </div>
+  <script>
+    const idInput = document.querySelector('#id-input');
+const messageDiv = document.querySelector('#id-input-feedback');
+const validMessageDiv = document.querySelector('#id-input-valid-feedback');
+const checkDuplicateBtn = document.querySelector('#check-duplicate-btn');
+let isDuplicate = true;
 
-      <input type="button" value="가입하기" id="btn-insert" />
-    </form>
-    <script>
+// ID 중복 확인
+checkDuplicateBtn.onclick = () => {
+  const id = idInput.value;
 
-      document.querySelector('#btn-insert').onclick = () => {
-        const form = document.querySelector('#doctors-register-form');
-        const formData = new FormData(form);
+  if (id.length < 4) {
+    idInput.classList.add('is-invalid');
+    idInput.classList.remove('is-valid');
+    messageDiv.textContent = 'ID를 4자 이상 입력하세요.';
+    validMessageDiv.textContent = '';
+    return;
+  }
 
+  fetch(`http://localhost:8080/patients/check-duplicate?id=${id}`, {
+    method: 'GET',
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      if (result.status === 'FAILURE') {
+        idInput.classList.add('is-invalid');
+        idInput.classList.remove('is-valid');
+        messageDiv.textContent = result.message;
+        messageDiv.style.color = 'red';
+        validMessageDiv.textContent = '';
+        isDuplicate = true;
+      } else {
+        idInput.classList.remove('is-invalid');
+        idInput.classList.add('is-valid');
+        messageDiv.textContent = '';
+        validMessageDiv.textContent = result.message;
+        validMessageDiv.style.color = 'green';
+        isDuplicate = false;
+      }
+    })
+    .catch((exception) => {
+      console.error('ID 중복 확인 중 오류 발생:', exception);
+      messageDiv.textContent = '오류가 발생했습니다. 다시 시도해주세요.';
+    });
+};
 
-        if (form.checkValidity()) {
-          let json = JSON.stringify(Object.fromEntries(formData));
-
-          fetch('http://localhost:8080/doinsert', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: json,
-          })
-            .then((response) => response.json())
-            .then((result) => {
-              if (result.status == 'success') {
-                location.reload();
-                console.log('성공:', data);
-              } else {
-                alert('입력실패');
-                console.log(result.data);
-              }
-            })
-            .catch((exception) => {
-              alert('입력 중 오류 발생');
-              console.log(exception);
-              console.error('실패:', error);
-            });
-        } else {
-          form.reportValidity();
-        }
-      };
-    </script>
-  </body>
+  </script>
+</body>
 </html>

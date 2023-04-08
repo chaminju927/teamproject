@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import bitcamp.backend.register.service.DoctorService;
+import bitcamp.backend.register.service.LicenseService;
 import bitcamp.backend.register.vo.Doctor;
 import bitcamp.backend.user.service.ObjectStorageService;
 import bitcamp.util.RestResult;
@@ -36,6 +37,9 @@ public class DoctorController {
   private DoctorService doctorService;
 
   @Autowired
+  private LicenseService licenseService;
+
+  @Autowired
   ObjectStorageService objectStorageService;
 
   private String memberImg = "study-bucket/member-img";
@@ -44,6 +48,7 @@ public class DoctorController {
   @PostMapping
   public Object insert(@RequestBody Doctor doctor) {
     doctorService.add(doctor);
+    //  licenseService.add(doctor.getNo(), l_no);
 
     return new RestResult().setStatus(RestStatus.SUCCESS);
   }

@@ -11,8 +11,8 @@
       <label for="name">이름:</label>
       <input type="text" id="name" name="name" required /><br />
       <div>
-        <label for="career">자격:</label>
-        <select id="career" name="career" required>
+        <label for="license">자격:</label>
+        <select id="license" name="licenseNo" required>
           <option value="">선택하세요</option>
           <option value="MD">의사</option>
           <option value="DMD">치과의사</option>
@@ -41,21 +41,21 @@
         "#specialist-container"
       );
       const specialistSelect = document.querySelector("#specialist");
-      const careerSelect = document.querySelector("#career");
+      const licenseSelect = document.querySelector("#license");
 
-      careerSelect.addEventListener("change", () => {
-        const selectedCareer = careerSelect.value;
+      licenseSelect.addEventListener("change", () => {
+        const selectedLicense = licenseSelect.value;
         const selectedSpecialist = specialistSelect.value;
 
         // 전문의 자격 select 보이도록 함
-        if (selectedCareer !== "") {
+        if (selectedLicense !== "") {
           specialistContainer.style.display = "block";
         } else {
           specialistContainer.style.display = "none";
         }
 
         // 전문의 자격 select 옵션 설정
-        if (selectedCareer === "MD") {
+        if (selectedLicense === "MD") {
           specialistSelect.innerHTML = `
         <option value="">선택하세요</option>
         <option value="1">General Practitioner, 일반의</option>
@@ -86,7 +86,7 @@
         <option value="26">Preventive medicine, 예방의학과</option>
         <option value="27">Pathology, 병리과</option>
       `;
-        } else if (selectedCareer === "DMD") {
+        } else if (selectedLicense === "DMD") {
           specialistSelect.innerHTML = `
         <option value="">선택하세요</option>
         <option value="1">General Practitioner, 일반의</option>
@@ -102,7 +102,7 @@
         <option value="37">Oral &amp; Maxillofacial Pathology, 구강병리과</option>
         <option value="38">Preventive Dentistry, 예방치과</option>
       `;
-        } else if (selectedCareer === "KMD") {
+        } else if (selectedLicense === "KMD") {
           specialistSelect.innerHTML = `
         <option value="">선택하세요</option>
         <option value="1">General Practitioner, 일반의</option>
@@ -144,7 +144,7 @@
 
         const selectedSpecialist = specialistSelect.value;
 
-        formData.set("licenseName", `${selectedSpecialist}`);        
+        formData.set("licenseNo", `${selectedSpecialist}`);        
 
         if (form.checkValidity()) {
         let json = JSON.stringify(Object.fromEntries(formData));

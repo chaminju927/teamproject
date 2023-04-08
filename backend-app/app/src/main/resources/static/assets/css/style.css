@@ -27,14 +27,46 @@ body {
 }
 
 .container {
-  width:1200px; 
-  max-width:none!important;
+  width: 1200px;
+  max-width: none !important;
 }
-#patients-form {
-  left: 50%; 
-  width:550px; 
+#register-form {
+  left: 50%;
+  width: 700px;
+}
 
-  }
+#preview-container {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+#preview-img {
+  width: 100%;
+  height: 100%;
+}
+
+#email-direct {
+  display: none;
+}
+
+.validation-msg {
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+}
+
+.col-0 {
+  flex: 0 0 auto;
+  width: 0;
+}
+
+.padding-right-0 {
+  padding-right: 0;
+}
 
 a {
   color: #4154f1;
