@@ -54,6 +54,10 @@ body {
   display: none;
 }
 
+#specialist {
+  display: none;
+}
+
 .validation-msg {
   margin-top: 0.25rem;
   font-size: 0.875em;
