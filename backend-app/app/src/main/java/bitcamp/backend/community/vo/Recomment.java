@@ -11,7 +11,7 @@ public class Recomment {
   @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd")
   private Date createdDate;
 
-  private int ComNo;
+  private int comNo;
   private int recNo;
   private int docNo;
   private String recContent;
