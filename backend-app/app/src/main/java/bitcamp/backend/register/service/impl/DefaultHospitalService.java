@@ -19,6 +19,14 @@ public class DefaultHospitalService implements HospitalService{
   public void add(Hospital hospital) {
     hospitalDao.insert(hospital);
   }
+  @Override
+  public boolean findByTel(String tel) {
+    return hospitalDao.findByTel(tel) != null;
+  }
+  public boolean isDuplicateTel(String tel) {
+    Hospital hospital = hospitalDao.findByTel(tel);
+    return hospital != null;
+  }
 
   @Override
   public List<Hospital> list() {

@@ -39,7 +39,20 @@ public class HospitalController {
     restResult.setStatus(RestStatus.SUCCESS);
     return restResult;
   }
+  @GetMapping("/check-duplicate/{tel}")
+  public Object checkDuplicateTel(@PathVariable("tel") String tel) {
+    boolean isDuplicate = hospitalService.findByTel(tel);
 
+    if (isDuplicate) {
+      return new RestResult()
+          .setStatus(RestStatus.FAILURE)
+          .setMessage("이미 사용하고 있는 전화번호입니다.");
+    } else {
+      return new RestResult()
+          .setStatus(RestStatus.SUCCESS)
+          .setMessage("사용 가능한 전화번호입니다.");
+    }
+  }
   @GetMapping("/list")
   public Object list() {
     return new RestResult()
