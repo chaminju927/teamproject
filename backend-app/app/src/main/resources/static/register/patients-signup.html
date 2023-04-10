@@ -95,10 +95,10 @@
                           <label class="col-sm-2 form-label padding-right-0"
                             >프로필 사진</label
                           >
-                          <div class="col-sm-7">
+                          <div class="col-sm-6">
                             <input
                               type="file"
-                              id="file-input"
+                              id="profile-file"
                               accept="image/*"
                               class="form-control"
                               onchange="previewImage(event);"
@@ -109,7 +109,7 @@
 
                       <div class="row mb-3">
                         <label
-                          for="id-input"
+                          for="id"
                           class="col-sm-2 form-label padding-right-0"
                           >ID</label
                         >
@@ -118,7 +118,7 @@
                             type="text"
                             name="id"
                             class="form-control"
-                            id="id-input"
+                            id="id"
                             placeholder="ID"
                             minlength="4"
                             required
@@ -421,7 +421,7 @@
                           ></textarea>
                         </div>
                       </div>
-                      <div class="col-12 mb-3">
+                      <div class="row mb-3">
                         <button
                           type="submit"
                           class="btn btn-primary w-100"
@@ -474,7 +474,7 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
       // ID 변수
-      const idInput = document.getElementById('id-input');
+      const id = document.getElementById('id');
       const idValidationMsg = document.getElementById('id-validation-msg');
       const checkDuplicateBtn = document.getElementById('check-duplicate-btn');
       let isDuplicate = true;
@@ -517,11 +517,10 @@
 
       // ID 중복 확인
       checkDuplicateBtn.addEventListener('click', () => {
-        const id = idInput.value;
-        if (id.length < 4) {
+        if (id.value.length < 4) {
           idValidationMsg.textContent = 'ID를 4자 이상 입력하세요.';
-          idInput.classList.remove('is-valid', 'is-invalid');
-          idInput.classList.add('is-invalid');
+          id.classList.remove('is-valid', 'is-invalid');
+          id.classList.add('is-invalid');
           idValidationMsg.style.color = '#dc3545';
           return;
         } else {
@@ -530,16 +529,16 @@
             .then((result) => {
               if (result.status === 'failure') {
                 idValidationMsg.textContent = result.message;
-                idInput.classList.remove('is-valid', 'is-invalid');
-                idInput.classList.add('is-invalid');
+                id.classList.remove('is-valid', 'is-invalid');
+                id.classList.add('is-invalid');
                 idValidationMsg.style.color = '#dc3545';
                 isDuplicate = true;
                 // console.log(result.status);
                 // console.log(isDuplicate);
               } else {
                 idValidationMsg.textContent = result.message;
-                idInput.classList.remove('is-valid', 'is-invalid');
-                idInput.classList.add('is-valid');
+                id.classList.remove('is-valid', 'is-invalid');
+                id.classList.add('is-valid');
                 idValidationMsg.style.color = '#198754';
                 isDuplicate = false;
                 // console.log(result.status);
@@ -550,8 +549,8 @@
               console.error('ID 중복 확인 중 오류 발생:', exception);
               idValidationMsg.textContent =
                 '오류가 발생했습니다. 다시 시도해주세요.';
-              idInput.classList.remove('is-valid', 'is-invalid');
-              idInput.classList.add('is-invalid');
+              id.classList.remove('is-valid', 'is-invalid');
+              id.classList.add('is-invalid');
               idValidationMsg.style.color = '#dc3545';
             });
         }
@@ -688,32 +687,29 @@
         const form = document.getElementById('patients-register-form');
         const formData = new FormData(form);
 
-        // ID 변수
-        const id = idInput.value;
-
         // ID 확인
-        if (id.length < 4) {
+        if (id.value.length < 4) {
           idValidationMsg.textContent = 'ID를 4자 이상 입력하세요.';
-          idInput.classList.remove('is-valid', 'is-invalid');
-          idInput.classList.add('is-invalid');
+          id.classList.remove('is-valid', 'is-invalid');
+          id.classList.add('is-invalid');
           idValidationMsg.style.color = '#dc3545';
           isDuplicate = true;
           return;
-        } else if (id.length >= 4 && isDuplicate) {
+        } else if (id.value.length >= 4 && isDuplicate) {
           idValidationMsg.textContent = 'ID를 중복 확인하세요.';
-          idInput.classList.remove('is-valid', 'is-invalid');
-          idInput.classList.add('is-invalid');
+          id.classList.remove('is-valid', 'is-invalid');
+          id.classList.add('is-invalid');
           idValidationMsg.style.color = '#dc3545';
           return;
         }
 
         // 파일 변수
-        const fileInput = document.getElementById('file-input');
+        const profileFile = document.getElementById('profile-file');
 
         // 파일 정보 추가
-        if (fileInput.files && fileInput.files[0]) {
-          formData.append('phoName', fileInput.files[0].name);
-          formData.append('phoType', fileInput.files[0].type);
+        if (profileFile.files && profileFile.files[0]) {
+          formData.append('phoName', profileFile.files[0].name);
+          formData.append('phoType', profileFile.files[0].type);
         }
 
         // 이메일 변수 및 정보 추가
