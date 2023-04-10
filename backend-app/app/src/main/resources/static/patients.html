@@ -357,6 +357,44 @@
    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
    <script type='text/babel' src="doctor-board.js"></script>
 
+   <script>
+    fetch("auth/user")
+      .then((response) => {
+        return response.json();
+      })
+      .then((result) => {
+        if (result.status == "success") {
+          document.querySelector(".nav-item.logout").classList.remove("nav-item", "logout");
+          document.querySelector(".nav-link.collapsed.login").remove();
+          document.querySelector(".nav-item.dropdown.pe-3").style.display = "block";
+        } 
+      })
+      .catch((exception) => {
+        alert("로그인 사용자 정보 조회 오류!");
+      });
+      
+      // document.querySelector("nav-link.nav-profile.d-flex.align-items-center.pe-0").remove();
+    //   <li class="nav-item logout">
+    //   <a class="nav-link collapsed" href="index.html" onclick="logout(); return false">
+    //     <i class="bi bi-box-arrow-in-right"></i>
+    //     <span>로그아웃</span>
+    //   </a>
+    // </li><!-- End Login Page Nav -->
+
+
+    function logout() { 
+      fetch("auth/logout")
+        .then((response) => {
+          return response.json();
+        })
+        .then((result) => {
+          location.reload();
+        })
+        .catch((exception) => {
+          console.log(exception);
+        });
+    }
+  </script> 
 </body>
 
 </html>

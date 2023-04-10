@@ -148,7 +148,7 @@
       const form = document.querySelector('#login-form');
       const formData = new FormData(form);
 
-      fetch("http://localhost:8080/auth/doctorLogin", {
+      fetch("http://localhost:8080/auth/patientLogin", {
         method: "POST",
         body: formData
       })
@@ -157,7 +157,7 @@
         })
         .then(result => {
           if (result.status == 'success') {
-            location.href = '../';
+            location.href = '../patients.html';
           } else {
             alert('로그인 실패!');
             document.querySelector('input[name="id"]').value = "";
