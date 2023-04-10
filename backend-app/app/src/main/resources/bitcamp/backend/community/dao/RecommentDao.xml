@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="bitcamp.backend.Recomment.dao.RecommentDao">
+<mapper namespace="bitcamp.backend.community.dao.RecommentDao">
 
   <resultMap type="Recomment" id="RecommentMap">
     <id column="com_no" property="no"/>

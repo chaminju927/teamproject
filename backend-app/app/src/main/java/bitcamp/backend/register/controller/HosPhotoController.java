@@ -39,7 +39,7 @@ public class HosPhotoController {
       System.out.println(str);
 
       HosPhoto hosPhoto = new HosPhoto();
-      hosPhoto.setPhotoNo(photoNo);
+      hosPhoto.setHospitalNo(photoNo);
       hosPhoto.setHosPhotoUrl(str);
       hosPhoto.setHosPhotoFilename(file.getOriginalFilename());
       hosPhoto.setHosPhotoType(file.getContentType());
@@ -47,8 +47,6 @@ public class HosPhotoController {
       hosPhotoService.add(hosPhoto);
     }
   }
-
-
 
 
 }
