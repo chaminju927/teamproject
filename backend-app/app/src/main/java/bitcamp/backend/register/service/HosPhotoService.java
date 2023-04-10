@@ -5,8 +5,7 @@ import bitcamp.backend.register.vo.HosPhoto;
 
 public interface HosPhotoService {
   void add(HosPhoto hosPhoto);
-  List<HosPhoto> list();
-  HosPhoto get(int no);
-  HosPhoto get(String id, String password);
+  List<HosPhoto>get(int no);
+  void update(HosPhoto hosPhoto);
   void delete(int no);
 }

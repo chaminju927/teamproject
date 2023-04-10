@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import bitcamp.backend.register.service.HosPhotoService;
 import bitcamp.backend.register.service.HospitalService;
 import bitcamp.backend.register.vo.Hospital;
 import bitcamp.util.RestResult;
@@ -29,6 +30,7 @@ public class HospitalController {
   }
 
   @Autowired private HospitalService hospitalService;
+  @Autowired private HosPhotoService hosPhotoService;
 
   @PostMapping
   public Object insert(@RequestBody Hospital hospital) {
