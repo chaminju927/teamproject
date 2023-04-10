@@ -1,4 +1,4 @@
-package bitcamp.backend.community.vo;
+>package bitcamp.backend.community.vo;
 
 import java.sql.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
