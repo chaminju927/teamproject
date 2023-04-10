@@ -302,12 +302,12 @@
                           <tr>                  
                             <td><input id="hosName" class="hos-name" type="text"/></td>
                             <td><input id="hosAddr" class="hos-addr"type="text"/></td>
-                            <td><input id="hosTel"  class="hos-tel"type="text"/></td>
+                            <td><input id="hosTel"  class="hos-tel"type="text" required/></td>
                             <td><input id="hosTime" class="hos-time" type="text"/></td>
                             <td><input id="hosSub"  class="hos-sub"type="text"/></td>
                             <td><input id="hosBusno"  class="hos-busno"type="text"/></td>   
                             <form> 
-                            <td><input type="file" id="hosPhoto" class="hos-photo hospital-files" accept="image/*" multiple required></td>                               
+                            <td><input type="file" id="hosPhoto" class="hos-photo hospital-files" style="width: 220px;" accept="image/*" multiple required></td>                               
                             </form>
                           </tr>   
                         </div>                          
@@ -398,7 +398,7 @@
 //검색기능
 const tbody = document.querySelector('tbody');
 const searchInput = document.querySelector('#search-input');
-const hospitalNo = document.querySelector('#hospitalNo').value;
+// const hospitalNo = document.querySelector('#hospitalNo').value;
 
 let dataList = [];
 
@@ -489,6 +489,9 @@ hosTel.addEventListener('keyup', () => {
 const message = document.querySelector('#hospital-success-message');
 
 document.querySelector('#btn-submit').onclick = (e) => {
+  if(hosTel.value === '' || hosTel.value.length < 4){
+    return false;
+  }
 document.getElementById("btn-submit").style.display = "none";
 
     //인풋태그 read only로 변경
