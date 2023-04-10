@@ -46,6 +46,12 @@
   justify-content: center;
   margin-top: 20px;
 }
+/* #hospital-list-css{
+  display: inline-block;
+  box-sizing: border-box;
+} */
+
+
   </style>
     <!-- <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/>  -->
     <!-- <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script> -->
@@ -283,7 +289,7 @@
                           <tr>                              
                             <th scope="col">병원명</th>
                             <th scope="col">주소</th>
-                            <th scope="col">전화</th>
+                            <th scope="col">전화<span id="id-validation-msg"class="validation-msg"></span></th>
                             <th scope="col">진료시간</th> 
                             <th scope="col">진료과목</th>
                             <th scope="col">사업자번호</th>
@@ -292,15 +298,17 @@
                         </thead>
                         <form id="hospital-list">
                         <tbody class="table-group-divider">
-                          <tr class>                  
+                          <div class="hospital-list-css">
+                          <tr>                  
                             <td><input id="hosName" class="hos-name" type="text"/></td>
                             <td><input id="hosAddr" class="hos-addr"type="text"/></td>
-                            <td><input id="hosTel"  class="hos-tel"type="text"/><span id="id-validation-msg"class="validation-msg"></span></td>
+                            <td><input id="hosTel"  class="hos-tel"type="text"/></td>
                             <td><input id="hosTime" class="hos-time" type="text"/></td>
                             <td><input id="hosSub"  class="hos-sub"type="text"/></td>
                             <td><input id="hosBusno"  class="hos-busno"type="text"/></td>   
                             <td><input type="file" id="hosPhoto" class="hos-photo" accept="image/*" required></td>                               
-                          </tr>                             
+                          </tr>   
+                        </div>                          
                         </tbody>
                         </form>
                       </table>                      
@@ -442,7 +450,7 @@ let isDuplicate = false;
 hosTel.addEventListener('keyup', () => {
   const tel = hosTel.value;
   if (tel.length < 4) {
-    idValidationMsg.textContent = '전화번호를 4자 이상 입력하세요.';
+    idValidationMsg.textContent = '번호를 4자 이상 입력하세요.';
     hosTel.classList.remove('is-valid', 'is-invalid');
     hosTel.classList.add('is-invalid');
     idValidationMsg.style.color = '#dc3545';
@@ -478,6 +486,18 @@ hosTel.addEventListener('keyup', () => {
 const message = document.querySelector('#hospital-success-message');
 
 document.querySelector('#btn-submit').onclick = (e) => {
+document.getElementById("btn-submit").style.display = "none";
+
+    //인풋태그 read only로 변경
+    function makeInputsReadonly() {
+      var inputs = document.querySelectorAll(".hos-name, .hos-addr, .hos-tel, .hos-time, .hos-sub, .hos-busno, .hos-photo");
+      inputs.forEach(function(input) {
+      input.setAttribute("readonly", true);
+      input.style.color = 'gray';
+      });
+    }
+    makeInputsReadonly();
+
     fetch("http://localhost:8080/hospital", {
       method: "POST",
       headers: {
@@ -503,6 +523,7 @@ document.querySelector('#btn-submit').onclick = (e) => {
       })
 
     }; 
+
 
     document.getElementById('btn-submit').addEventListener('click', function() {
     document.getElementById('hospital-list').innerHTML = ''; // clear the table
