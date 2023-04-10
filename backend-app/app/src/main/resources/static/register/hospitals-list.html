@@ -46,10 +46,9 @@
   justify-content: center;
   margin-top: 20px;
 }
-/* #hospital-list-css{
-  display: inline-block;
-  box-sizing: border-box;
-} */
+body::-webkit-scrollbar {
+  background-color: transparent;
+}
 
 
   </style>
@@ -241,9 +240,14 @@
         <div class="col-12">
           <div class="card"> 
             <div class="card-body">
-              <h4 class="card-title"><strong>병원정보</strong></h4>
-              <input type="text" id="search-input" placeholder="검색어를 입력하세요🔍">
-              <!-- <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p> -->
+              <h4 class="card-title" style="float: right;">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#staticBackdrop"style="background-color: #77DD77; color: #FFFFFF; border: none; height:40px; border-radius: 5px 5px 5px 5px;">
+                  병원추가
+                </button> 
+                <strong style="margin-left: 710px;">병원정보검색</strong>
+                  <input type="text" id="search-input" placeholder="병원명,주소,진료과목🔍">
+                </h4>            
+                  <!-- <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p> -->
               
               <!-- Table with stripped rows -->
               <table id= "foo-table"class="table table-hover">
@@ -272,9 +276,9 @@
                 </tbody>
               </table>
                           
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#staticBackdrop"style="background-color: #77DD77; color: #FFFFFF; border: none; height:40px; border-radius: 5px 5px 5px 5px;">
+              <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#staticBackdrop"style="background-color: #77DD77; color: #FFFFFF; border: none; height:40px; border-radius: 5px 5px 5px 5px;">
                 병원추가
-              </button>              
+              </button>               -->
               <!-- Modal -->
               <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl"   style="max-width: 1600px;">
@@ -302,9 +306,14 @@
                           <tr>                  
                             <td><input id="hosName" class="hos-name" type="text"/></td>
                             <td><input id="hosAddr" class="hos-addr"type="text"/></td>
-                            <td><input id="hosTel"  class="hos-tel"type="text" required/></td>
-                            <td><input id="hosTime" class="hos-time" type="text"/></td>
-                            <td><input id="hosSub"  class="hos-sub"type="text"/></td>
+                            <td><input id="hosTel"  class="hos-tel"type="text" 
+                              placeholder="'-' 없이 입력" 
+                              pattern="^01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}$"
+                              maxlength="13"
+                              oninput="autoTelHyphen(event)"
+                              required/></td>
+                            <td><input id="hosTime" class="hos-time" type="text" placeholder="예: 08시~18시30분"/></td>
+                            <td><input id="hosSub"  class="hos-sub"type="text" placeholder="예: 가정의학과,소아과"/></td>
                             <td><input id="hosBusno"  class="hos-busno"type="text"/></td>   
                             <form> 
                             <td><input type="file" id="hosPhoto" class="hos-photo hospital-files" style="width: 220px;" accept="image/*" multiple required></td>                               
@@ -452,13 +461,22 @@ let isDuplicate = false;
 // tel 중복 확인
 hosTel.addEventListener('keyup', () => {
   const tel = hosTel.value;
-  if (tel.length < 4) {
-    idValidationMsg.textContent = '번호를 4자 이상 입력하세요.';
+  if (tel.length < 7) {
+    idValidationMsg.textContent = '번호를 7자 이상 입력하세요.';
     hosTel.classList.remove('is-valid', 'is-invalid');
     hosTel.classList.add('is-invalid');
     idValidationMsg.style.color = '#dc3545';
     return;
   }
+        // 전화번호 자동 하이픈 입력
+        function autoTelHyphen(event) {
+        const target = event.target;
+        target.value = target.value
+          .replace(/[^0-9]/g, '')
+          .replace(/^(\d{3})(\d{4})(\d{4})$/g, '$1-$2-$3')
+          .replace(/(\-{1,2})$/g, '');
+      }
+
   // 유효한 전화번호인 경우에만 fetch 요청을 보냅니다.
   fetch(`http://localhost:8080/hospital/check-duplicate/${tel}`)
     .then((response) => response.json())
@@ -489,7 +507,7 @@ hosTel.addEventListener('keyup', () => {
 const message = document.querySelector('#hospital-success-message');
 
 document.querySelector('#btn-submit').onclick = (e) => {
-  if(hosTel.value === '' || hosTel.value.length < 4){
+  if(hosTel.value === '' || hosTel.value.length < 7){
     return false;
   }
 document.getElementById("btn-submit").style.display = "none";
@@ -499,7 +517,7 @@ document.getElementById("btn-submit").style.display = "none";
       var inputs = document.querySelectorAll(".hos-name, .hos-addr, .hos-tel, .hos-time, .hos-sub, .hos-busno, .hos-photo");
       inputs.forEach(function(input) {
       input.setAttribute("readonly", true);
-      input.style.color = 'gray';
+      input.style.color = 'grey;';
       });
     }
     makeInputsReadonly();

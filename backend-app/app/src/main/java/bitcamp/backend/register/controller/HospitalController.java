@@ -48,7 +48,7 @@ public class HospitalController {
     if (isDuplicate) {
       return new RestResult()
           .setStatus(RestStatus.FAILURE)
-          .setMessage("이미 사용하고 있는 전화번호입니다.");
+          .setMessage("사용 불가능한 전화번호입니다.");
     } else {
       return new RestResult()
           .setStatus(RestStatus.SUCCESS)
