@@ -41,6 +41,14 @@
     .carousel-item {
       transition: 1s;
     }
+
+    .nav-item.logout {
+      display: none;
+    }
+
+    .nav-item.dropdown.pe-3 {
+      display: none;
+    }
   </style>
 </head>
 
@@ -68,7 +76,7 @@
     
     <a href="doctors-community-main.html"  class="nav-link collapsed"><span>커뮤니티</span></a>
 
-    <a href="patients-signup.html"  class="nav-link collapsed"><span>회원가입(환자)</span></a>
+    <a href="register/patients-signup.html"  class="nav-link collapsed"><span>회원가입(환자)</span></a>
   </div>
 
   <nav class="header-nav ms-auto">
@@ -134,7 +142,9 @@
           <span class="d-none d-md-block dropdown-toggle ps-2">엄 진 영</span>
         </a><!-- End Profile Iamge Icon -->
       </li><!-- End Profile Nav -->
-
+      <div class="top-menu nav-item dropdown pe-4">
+        <a href="auth/patients-login.html" class="nav-link collapsed login"><span>로그인</span></a>
+     </div>
     </ul>
   </nav><!-- End Icons Navigation -->
 
@@ -237,10 +247,10 @@
     </li><!-- End F.A.Q Page Nav -->
 
   
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="pages-login.html">
+    <li class="nav-item logout">
+      <a class="nav-link collapsed" href="index.html" onclick="logout(); return false">
         <i class="bi bi-box-arrow-in-right"></i>
-        <span>로그인</span>
+        <span>로그아웃</span>
       </a>
     </li><!-- End Login Page Nav -->
 
