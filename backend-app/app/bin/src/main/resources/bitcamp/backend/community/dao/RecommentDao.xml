@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.backend.community.dao.RecommentDao">
+
+  <resultMap type="Recomment" id="RecommentMap">
+    <id column="com_no" property="no"/>
+    <result column="d_no" property="doctorNo"/>
+    <result column="cat_no" property="category"/>
+    <result column="com_tile" property="title"/>
+    <result column="com_date" property="createdDate"/>
+    <result column="com_cont" property="content"/>
+    <result column="com_view" property="viewCnt"/>
+    <result column="filter" property="filter"/>
+    <result column="com_area" property="area"/>
+  </resultMap>
+
+  <insert id="insert" parameterType="Recomment" 
+          useGeneratedKeys="true" keyProperty="no" keyColumn="com_no">
+    insert into app_Recomment(d_no, cat_no, com_no, com_tile, com_cont, com_view, filter, com_area)
+    values(#{doctorNo},#{category}, #{no}, #{title}, #{content}, #{viewCnt}, #{filter}, #{area})
+  </insert>
+
+  <select id="findAll" resultMap="RecommentMap">
+    select 
+      c.com_no,
+      m.m_no as d_no,
+      m.m_name as doctorName,
+      cat.cat_no,
+      c.com_tile,
+      c.com_date, 
+      c.com_view, 
+      c.filter, 
+      c.com_cont, 
+      c.com_area
+    from 
+      app_Recomment r
+      join app_category cat on c.cat_no = cat.cat_no
+      join app_member m on c.d_no = m.m_no
+    order by 
+      com_no desc
+  </select>
+  
+  <delete id="delete" parameterType="int">
+    delete from app_Recomment
+    where com_no=#{no}
+  </delete>
+  
+  <update id="increaseViewCount" parameterType="int">
+    update app_Recomment set
+      com_view = com_view + 1
+    where com_no=#{maumdaerohaedodoi}
+  </update>
+  
+</mapper>
+

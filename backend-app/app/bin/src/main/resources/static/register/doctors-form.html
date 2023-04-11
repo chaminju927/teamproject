@@ -45,7 +45,6 @@
 
       licenseSelect.addEventListener("change", () => {
         const selectedLicense = licenseSelect.value;
-        const selectedSpecialist = specialistSelect.value;
 
         // 전문의 자격 select 보이도록 함
         if (selectedLicense !== "") {
@@ -117,6 +116,7 @@
       `;
         }
       });
+      
       specialistSelect.onchange = function () {
         selectedValue =
           specialistSelect.options[specialistSelect.selectedIndex].value;

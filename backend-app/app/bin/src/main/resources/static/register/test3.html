@@ -1,73 +1,125 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <div class="row mb-3">
-    <label for="id-input" class="col-sm-2 form-label padding-right-0">ID</label>
-    <div class="col-sm-5">
-      <input type="text" name="id" class="form-control" id="id-input" placeholder="4자 이상의 ID 입력" minlength="4" required />
-      <div class="invalid-feedback" id="id-input-feedback">
-        ID를 4자 이상 입력하세요.
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form
+      id="patients-register-form"
+      class="row g-3 needs-validation"
+      method="post"
+      novalidate
+    >
+      <div class="row mb-3">
+        <label for="email-id" class="col-sm-2 form-label padding-right-0"
+          >이메일</label
+        >
+        <div class="col-sm-3">
+          <input
+            type="text"
+            class="form-control"
+            name="email"
+            id="email-id"
+            placeholder="이메일 ID"
+            required
+          />
+        </div>
+        <div class="col-sm-3">
+          <select class="form-select" id="email-domain" required>
+            <option selected disabled value="">선택</option>
+            <option value="naver.com">naver.com</option>
+            <option value="daum.net">daum.net</option>
+            <option value="nate.com">nate.com</option>
+            <option value="gmail.com">gmail.com</option>
+            <option value="hanmail.net">hanmail.net</option>
+            <option value="직접입력">직접입력</option>
+          </select>
+        </div>
+        <div class="col-sm-3">
+          <input
+            type="text"
+            class="form-control"
+            id="email-direct"
+            placeholder="이메일 주소"
+          />
+        </div>
       </div>
-      <div class="valid-feedback" id="id-input-valid-feedback">
-        사용 가능한 ID입니다.
+      <div class="col-12 mb-3">
+        <button type="submit" class="btn btn-primary w-100" id="btn-insert">
+          가입 완료
+        </button>
       </div>
-    </div>
-    <div class="col-sm-3">
-      <button type="button" id="check-duplicate-btn" class="btn btn-primary">중복 확인</button>
-    </div>
-  </div>
-  <script>
-    const idInput = document.querySelector('#id-input');
-const messageDiv = document.querySelector('#id-input-feedback');
-const validMessageDiv = document.querySelector('#id-input-valid-feedback');
-const checkDuplicateBtn = document.querySelector('#check-duplicate-btn');
-let isDuplicate = true;
+    </form>
+    <script>
+      // 이메일 변수
+      const emailIdInput = document.getElementById('email-id');
+      const emailDomainSelect = document.getElementById('email-domain');
+      const emailDirectInput = document.getElementById('email-direct');
+      // 이메일 유효성 검사
+      emailIdInput.addEventListener('input', updateEmailValue);
+      emailDomainSelect.addEventListener('change', updateEmailValue);
 
-// ID 중복 확인
-checkDuplicateBtn.onclick = () => {
-  const id = idInput.value;
+      function updateEmailValue() {
+        const emailId = emailIdInput.value;
+        const emailDomain = emailDomainSelect.value;
+        let emailValue = '';
 
-  if (id.length < 4) {
-    idInput.classList.add('is-invalid');
-    idInput.classList.remove('is-valid');
-    messageDiv.textContent = 'ID를 4자 이상 입력하세요.';
-    validMessageDiv.textContent = '';
-    return;
-  }
+        if (emailId !== '' && emailDomain !== '직접입력') {
+          emailDirectInput.style.display = 'none';
+          emailDirectInput.required = false;
+          emailDirectInput.removeAttribute('pattern');
+          emailValue = `${emailId}@${emailDomain}`;
+        } else if (emailId !== '' && emailDomain === '직접입력') {
+          emailDirectInput.style.display = 'inline-block';
+          emailDirectInput.required = true;
+          emailDirectInput.pattern =
+            "^([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])";
+          emailValue = `${emailId}@${emailDirectInput.value}`;
+        }
 
-  fetch(`http://localhost:8080/patients/check-duplicate?id=${id}`, {
-    method: 'GET',
-  })
-    .then((response) => response.json())
-    .then((result) => {
-      if (result.status === 'FAILURE') {
-        idInput.classList.add('is-invalid');
-        idInput.classList.remove('is-valid');
-        messageDiv.textContent = result.message;
-        messageDiv.style.color = 'red';
-        validMessageDiv.textContent = '';
-        isDuplicate = true;
-      } else {
-        idInput.classList.remove('is-invalid');
-        idInput.classList.add('is-valid');
-        messageDiv.textContent = '';
-        validMessageDiv.textContent = result.message;
-        validMessageDiv.style.color = 'green';
-        isDuplicate = false;
+        emailIdInput.setAttribute('value', emailValue);
+        return emailValue;
       }
-    })
-    .catch((exception) => {
-      console.error('ID 중복 확인 중 오류 발생:', exception);
-      messageDiv.textContent = '오류가 발생했습니다. 다시 시도해주세요.';
-    });
-};
-
-  </script>
-</body>
+      // 회원가입 버튼 클릭
+      document.getElementById('btn-insert').addEventListener('click', () => {
+        const form = document.getElementById('patients-register-form');
+        const formData = new FormData(form);
+        // 이메일 변수 및 정보 추가
+        const emailValue = updateEmailValue();
+        formData.set('email', emailValue);
+        console.log(emailValue);
+        // 폼 유효성 검사 및 요청
+        if (form.checkValidity()) {
+          let json = JSON.stringify(Object.fromEntries(formData));
+          console.log(json);
+          fetch('http://localhost:8080/patients', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: json,
+          })
+            .then((response) => response.json())
+            .then((result) => {
+              if (result.status == 'success') {
+                location.reload();
+                console.log('성공:', result);
+              } else {
+                alert('입력실패');
+                console.log(result.data);
+              }
+            })
+            .catch((exception) => {
+              alert('입력 중 오류 발생');
+              console.log(exception);
+            });
+        } else {
+          form.reportValidity();
+        }
+      });
+    </script>
+  </body>
 </html>
