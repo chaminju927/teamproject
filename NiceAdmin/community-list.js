@@ -1,6 +1,9 @@
 
 tbody = document.querySelector('#community-list');
 
+document.querySelector('#btn-write').onclick = (e) => {
+  location.href="community-write.html";
+}
 
 fetch('http://localhost:8080/community/list')
   .then((response) => {
@@ -25,7 +28,6 @@ fetch('http://localhost:8080/community/list')
     for (var row of data.data) {
       html += `<tr>
           <td>${row.no}</td>
-          
           <td><a href="community-view.html?no=${row.no}">${row.title}</a></td>
           <td>${row.doctorName}</td>
           <td>${categoryName(row.category)}</td>

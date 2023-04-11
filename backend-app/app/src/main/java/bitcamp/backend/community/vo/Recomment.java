@@ -12,6 +12,6 @@ public class Recomment {
   private Date createdDate;
   private int comNo;
   private int recNo;
-  private int docNo;
+  private String docName;
   private String recContent;
 }

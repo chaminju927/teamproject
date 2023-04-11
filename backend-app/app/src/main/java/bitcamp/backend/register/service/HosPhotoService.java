@@ -8,4 +8,5 @@ public interface HosPhotoService {
   List<HosPhoto>get(int no);
   void update(HosPhoto hosPhoto);
   void delete(int no);
+  List<HosPhoto>hget(int no);
 }

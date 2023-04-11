@@ -19,10 +19,6 @@ public class DefaultHosPhotoService implements HosPhotoService  {
     hosPhotoDao.insert(hosPhoto);
   }
 
-  @Override
-  public List<HosPhoto> get(int no) {
-    return hosPhotoDao.findByPhotoNo(no);
-  }
 
   @Override
   public void update(HosPhoto hosPhoto) {
@@ -37,5 +33,17 @@ public class DefaultHosPhotoService implements HosPhotoService  {
     } else {
       throw new RuntimeException("사진이 존재하지 않습니다.");
     }
+  }
+
+  @Override
+  public List<HosPhoto> hget(int no) {
+    return hosPhotoDao.findByHno(no);
+  }
+
+
+  @Override
+  public List<HosPhoto> get(int no) {
+    // TODO Auto-generated method stub
+    return null;
   }
 }

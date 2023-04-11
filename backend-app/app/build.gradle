@@ -71,6 +71,8 @@ dependencies {
     //implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
     implementation 'io.awspring.cloud:spring-cloud-starter-aws:2.4.4'
     //implementation 'org.apache.ibatis:ibatis-core:3.0'
+    implementation 'org.apache.httpcomponents.client5:httpclient5:5.2.1'
+    
 }
 
 // run 명령을 실행할 때 run 명령으로 실행시킬 java Class 이름

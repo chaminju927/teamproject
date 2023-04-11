@@ -62,11 +62,11 @@ public class HospitalController {
         .setData(hospitalService.list());
   }
 
-  @GetMapping("{no}")
+  @GetMapping("/list/{no}")
   public Object view(@PathVariable int no) {
     return new RestResult()
         .setStatus(RestStatus.SUCCESS)
-        .setData(hospitalService.get(no));
+        .setData(hospitalService.get(no).setHosphotos(hosPhotoService.hget(no)));
   }
 
   @PutMapping("{no}")

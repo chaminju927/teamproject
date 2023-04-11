@@ -70,6 +70,8 @@ public class CommunityController {
 
   @DeleteMapping("{no}")
   public Object delete(@PathVariable int no) {
+    System.out.println("커뮤 사진번호 : " + no);
+    communityImgService.delete(no);
 
     communityService.delete(no);
 
