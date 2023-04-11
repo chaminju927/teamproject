@@ -26,7 +26,6 @@ fetch(`http://localhost:8080/community/${no}`)
     $('#comImg')[0].src = data.photo[0].imgUrl;
   } else {
     $("#comImg").attr('src', '');
-
     document.querySelector('#btn-img-delete').style.display = 'none';
   }
    console.log(data.photo[0].imgUrl)
@@ -35,6 +34,58 @@ fetch(`http://localhost:8080/community/${no}`)
   //alert('서버 요청 오류!');
   console.log(err);
 });
+
+
+//댓글 리스트
+tbody = document.querySelector('#recomment-list');
+
+fetch('http://localhost:8080/recomment/list')
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data);
+    var html = '';
+    for (var row of data.data) {
+      html += `<tr>
+          <td>${row.recNo}</td>
+          <td><p>${row.recContent}</p></td>
+          <td>${row.docName}</td> 
+          <td>${row.createdDate}</td>
+          </tr>\n`;
+    }
+    console.log(data);
+    tbody.innerHTML = html;
+  })
+  .catch((err) => {
+    alert('서버 요청 오류!');
+    console.log(err);
+  });
+
+//댓글 입력
+document.querySelector('#rec-save-btn').onclick = (e) => {
+
+  fetch("http://localhost:8080/recomment", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      docNo: 1,
+      comNo: Number(no),
+      recContent: document.querySelector('.recomment').value
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("성공:", data);
+    })
+    .catch((error) => {
+      console.error("실패:", error);
+    })
+};
+
+
 
 //게시물 내용 변경
 document.querySelector('#update-btn').onclick = (e) => {
@@ -68,10 +119,6 @@ document.querySelector('#update-btn').onclick = (e) => {
   // 게시물 삭제
   document.querySelector('#delete-btn').onclick = (e) => {
 
-    if (!document.querySelector('#comImg').value == 0) {
-      deleteImg(no);
-    }
-  
     fetch(`http://localhost:8080/community/${no}`,{
       method: 'DELETE',
     })
@@ -112,22 +159,22 @@ document.querySelector('#update-btn').onclick = (e) => {
     };
   
 
-    function deleteImg(no) {
-        fetch(`http://localhost:8080/communityImg/${no}`,{
-        method: 'DELETE',
-      })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("성공:", data);
-        document.querySelector('#btn-img-delete').style.display = 'none';
+    // function deleteImg(no) {
+    //     fetch(`http://localhost:8080/communityImg/${no}`,{
+    //     method: 'DELETE',
+    //   })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log("성공:", data);
+    //     document.querySelector('#btn-img-delete').style.display = 'none';
     
-        if (data.status == 'failure') {
-          alert('삭제 실패!\n' + data.data);
-          return;
-        } 
-      })
-      .catch((error) => {
-        console.log("실패:", error);
-      });
-      };
+    //     if (data.status == 'failure') {
+    //       alert('삭제 실패!\n' + data.data);
+    //       return;
+    //     } 
+    //   })
+    //   .catch((error) => {
+    //     console.log("실패:", error);
+    //   });
+    //   };
     

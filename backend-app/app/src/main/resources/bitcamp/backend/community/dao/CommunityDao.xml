@@ -77,8 +77,8 @@
   </update>
   
   <delete id="delete" parameterType="int">
-   delete from app_community c
-    where c.com_no=#{no}
+   delete from app_community 
+    where com_no=#{no}
 		    
   </delete>
   

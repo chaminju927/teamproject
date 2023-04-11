@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import bitcamp.backend.community.service.RecommentService;
 import bitcamp.backend.community.vo.Recomment;
 import bitcamp.util.RestResult;
@@ -24,7 +23,14 @@ public class RecommentController {
 
   @Autowired
   private RecommentService recommentService;
-  
+
+  @GetMapping("/list")
+  public Object list() {
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS)
+        .setData(recommentService.list());
+  }
+
   @PostMapping
   public Object insert(@RequestBody Recomment recomment) {
     RestResult restResult = new RestResult();
@@ -34,16 +40,10 @@ public class RecommentController {
     return restResult;
   }
 
-  @GetMapping("/list")
-  public Object list() {
-    return new RestResult()
-        .setStatus(RestStatus.SUCCESS)
-        .setData(recommentService.list());
-  }
-  
+
   @DeleteMapping("{no}")
   public Object delete(@PathVariable int no) {
-    
+
     recommentService.delete(no);
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
