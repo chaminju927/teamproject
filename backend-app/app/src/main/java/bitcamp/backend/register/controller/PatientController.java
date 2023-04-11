@@ -77,15 +77,19 @@ public class PatientController {
 
   @GetMapping("{no}")
   public Object view(@PathVariable int no) {
+    System.out.println("get" + no);
     return new RestResult().setStatus(RestStatus.SUCCESS).setData(patientService.get(no));
   }
 
   @PutMapping("{no}")
-  public Object update(@PathVariable int no, @RequestBody Patient patient) {
-
+  public Object update(@PathVariable int no, Patient patient) {
     log.debug(patient);
+    Patient pat = patientService.get(no);
 
+    patient.setPassword(pat.getPassword());
+    patient.setName(pat.getName());
     patient.setNo(no);
+
     patientService.update(patient);
 
     return new RestResult().setStatus(RestStatus.SUCCESS);
