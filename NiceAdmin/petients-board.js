@@ -340,6 +340,9 @@ class FeedPage extends React.Component {
   }
 }
 
+
+
+
 class DocInfo extends React.Component {
   constructor(props) {
     super(props);
@@ -349,17 +352,18 @@ class DocInfo extends React.Component {
   }
   render() {
     return (
-      <div className="top-area">
+      <div className="top-area text-center">
+        <img className="doc-img" src={this.state.data.doc_image} alt="의사 이미지"/>
         <div className="doc-area">
+          
           <span className="doc-name">{this.state.data.doc_name}</span>
           <div className="doc-career">
             <span>경력 사항 1</span>
             <span>경력 사항 2</span>
           </div>
         </div>
-        <img className="doc-img"/>
         <div className="hos-area">
-          <span className="hos-name">{this.state.data.hos_name}</span>
+          <span className="hos-name"><i class="bx bx-plus-medical"></i>{this.state.data.hos_name}</span>
           <span className="hos-info">병원 정보</span>
           <span className="hos-addr">{this.state.data.hos_addr}</span>
         </div>
