@@ -1,6 +1,10 @@
 const urlParams = new URL(location.href).searchParams;
 const no = urlParams.get('no');
 
+document.querySelector('#former-btn').onclick = (e) => {
+  location.href='community-list.html';
+};
+
 fetch(`http://localhost:8080/community/${no}`)
 .then((response) => {
   return response.json();
@@ -9,7 +13,7 @@ fetch(`http://localhost:8080/community/${no}`)
 
   console.log(data);
     if (data.status == 'failure') {
-      alert('서버 요청 오류!');
+      // alert('서버 요청 오류!');
       console.log(data);
       return;
     }
@@ -21,26 +25,19 @@ fetch(`http://localhost:8080/community/${no}`)
   if(data.photo.length >0 ) {
     $('#comImg')[0].src = data.photo[0].imgUrl;
   } else {
-    $(".photocover").html("")
+    $("#comImg").attr('src', '');
+
+    document.querySelector('#btn-img-delete').style.display = 'none';
   }
    console.log(data.photo[0].imgUrl)
 })
 .catch((err) => {
-  alert('서버 요청 오류!');
+  //alert('서버 요청 오류!');
   console.log(err);
 });
 
-document.querySelector('#former-btn').onclick = (e) => {
-  location.href='community-list.html';
-};
-
-//document.querySelector('#img-update').onclick = (e) => {
-  // 사진  변경
-//}
-
-
+//게시물 내용 변경
 document.querySelector('#update-btn').onclick = (e) => {
-
   fetch('http://localhost:8080/community',{
     method: 'PUT',
     headers: {
@@ -60,9 +57,77 @@ document.querySelector('#update-btn').onclick = (e) => {
   .then((response) => response.json())
   .then((data) => {
     console.log("성공:", data);
+    location.reload();
     //submitFiles(data.data.no);
   })
   .catch((error) => {
     console.error("실패:", error);
   });
   };
+
+  // 게시물 삭제
+  document.querySelector('#delete-btn').onclick = (e) => {
+
+    if (!document.querySelector('#comImg').value == 0) {
+      deleteImg(no);
+    }
+  
+    fetch(`http://localhost:8080/community/${no}`,{
+      method: 'DELETE',
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("성공:", data);
+      location.href='community-list.html';
+      
+      if (data.status == 'failure') {
+        alert('삭제 실패!\n' + data.data);
+        return;
+      }
+    })
+    .catch((error) => {
+      console.error("실패:", error);
+    });
+    };
+
+    
+  //이미지만 삭제
+    document.querySelector('#btn-img-delete').onclick = (e) => {
+
+      fetch(`http://localhost:8080/communityImg/${no}`,{
+      method: 'DELETE',
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status == 'failure') {
+        console.log('이미지 삭제 실패!\n' + data.data);
+        return;
+      } 
+      console.log("성공:", data);
+      document.querySelector('#btn-img-delete').style.display = 'none';
+    })
+    .catch((error) => {
+      console.log("실패:", error);
+    });
+    };
+  
+
+    function deleteImg(no) {
+        fetch(`http://localhost:8080/communityImg/${no}`,{
+        method: 'DELETE',
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("성공:", data);
+        document.querySelector('#btn-img-delete').style.display = 'none';
+    
+        if (data.status == 'failure') {
+          alert('삭제 실패!\n' + data.data);
+          return;
+        } 
+      })
+      .catch((error) => {
+        console.log("실패:", error);
+      });
+      };
+    
