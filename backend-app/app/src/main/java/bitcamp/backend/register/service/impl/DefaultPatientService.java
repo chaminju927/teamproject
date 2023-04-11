@@ -21,6 +21,7 @@ public class DefaultPatientService implements PatientService {
 
   @Autowired
   private MemberDao memberDao;
+
   @Autowired
   private PatientDao patientDao;
 
@@ -59,7 +60,6 @@ public class DefaultPatientService implements PatientService {
   @Override
   public void update(Patient patient) {
     if (memberDao.update(patient) == 1 && patientDao.update(patient) == 1) {
-      System.out.println(patient);
     } else {
       throw new RuntimeException("회원이 존재하지 않습니다.");
     }
@@ -73,6 +73,19 @@ public class DefaultPatientService implements PatientService {
       throw new RuntimeException("회원이 존재하지 않습니다.");
     }
   }
+
+  @Override
+  public void updateImg(Patient patient) {
+    memberDao.updateImg(patient);
+  }
+
+  @Override
+  public int updatePw(Patient patient) {
+    memberDao.updatePw(patient);
+    return 0;
+  }
+
+
 
 }
 

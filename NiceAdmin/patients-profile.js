@@ -1,6 +1,7 @@
 let patientNo = 0;
+let samePw = false;
 
-patientNo = 7
+patientNo = 17;
 
 if(patientNo > 0) {
   fetch(`http://192.168.0.7:8080/patients/${patientNo}`, {
@@ -12,13 +13,23 @@ if(patientNo > 0) {
       data = data.data;
       console.log(data);
 
+      if (data.phoUrl != null) {
+        let imgUrl = "http://uyaxhfqyqnwh16694929.cdn.ntruss.com/member-img/" + data.phoUrl + "?type=f&w=120&h=180&quality=90&autorotate=true&faceopt=true&anilimit=24"
+        document.querySelector(".patients-img").src = imgUrl;
+      }else {
+        
+      }
+
       document.querySelector(".patients-name").innerText = data.name
+      document.querySelector(".change-name").value = data.name
       document.querySelector(".patients-name").innerHTML = document.querySelector(".patients-name").innerHTML + `<span class="patients-gender">${data.gender ? data.gender : "-"}</span>`
 
       document.querySelector(".patients-id").innerText = data.id
       document.querySelector(".change-id").value = data.id
 
       document.querySelector(".patients-birth").innerText = data.birth
+      document.querySelector(".change-birth").value = data.birth
+
       document.querySelector(".patients-tel").innerText = data.tel
       document.querySelector(".change-tel").value = data.tel
 
@@ -50,7 +61,20 @@ function tel() {
 
 $(".change-btn").click(() => {
   let formData = new FormData();
+  if (document.querySelector(".change-img").files.length > 0) {
+    formData.append("file", document.querySelector(".change-img").files[0])
+    fetch(`http://192.168.0.7:8080/patients/${patientNo}`, {
+      method: 'POST',
+      body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+    })
+  }
   formData.append("id", document.querySelector(".change-id").value);
+  formData.append("name", document.querySelector(".change-name").value);
+  formData.append("birth", document.querySelector(".change-birth").value);
   formData.append("tel", document.querySelector(".change-tel").value);
   formData.append("addr", document.querySelector(".change-addr").value);
   formData.append("gender", '1');
@@ -68,3 +92,52 @@ $(".change-btn").click(() => {
     window.location = ""
   })
 })
+
+function checkPw() {
+  let pw = document.querySelector(".change-pw").value;
+  let checkpw = document.querySelector(".change-pw-check").value;
+  if(pw == checkpw) {
+    console.log("동일")
+    samePw = true;
+  }else {
+    console.log("다름")
+    samePw = false;
+  }
+}
+
+$(".change-pw-btn").click(() => {
+  if (samePw && document.querySelector(".change-pw-check").value != document.querySelector(".patients-pw").value) {
+    fetch(`http://192.168.0.7:8080/patients/updatePw/${patientNo}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        password: document.querySelector(".patients-pw").value,
+        changepassword: document.querySelector(".change-pw-check").value
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        if(data.status == "success"){
+          alert("비밀번호 정상적으로 변경됨");
+          window.location = ""
+        }else {
+          alert("기존 비밀번호와 다름");
+        }
+      })
+  } else {
+    alert("비밀번호 확인 과 입력 비밀번호가 다르거나 기존 비밀번호와 동일")
+  }
+})
+
+// {
+//   "messages":{
+//     "to":"01051521314",
+//     "content":"1234"
+//   },
+//   "from":"01012345678",
+//   "type":"SMS",
+//   "contentType":"COMM",
+//   "content":"1234"
+// }

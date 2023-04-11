@@ -52,9 +52,14 @@
       m.m_pw, 
       m.m_name, 
       m.m_email, 
+      m.m_bday,
       m.m_tel,
       m.addr,
+      m.m_photo,
+      m.pho_filename,
+      m.pho_type,
       p.p_phy,
+      p.p_drug,
       p.p_drug,
       p.p_no
     from 
