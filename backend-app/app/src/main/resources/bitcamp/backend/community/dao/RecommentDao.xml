@@ -5,21 +5,18 @@
 <mapper namespace="bitcamp.backend.community.dao.RecommentDao">
 
   <resultMap type="Recomment" id="RecommentMap">
-    <id column="com_no" property="no"/>
-    <result column="d_no" property="doctorNo"/>
-    <result column="cat_no" property="category"/>
-    <result column="com_tile" property="title"/>
-    <result column="com_date" property="createdDate"/>
-    <result column="com_cont" property="content"/>
-    <result column="com_view" property="viewCnt"/>
-    <result column="filter" property="filter"/>
-    <result column="com_area" property="area"/>
+    <id column="rcom_no" property="recNo"/>
+    <result column="com_no" property="comNo"/>
+    <result column="d_no" property="docNo"/>
+    <result column="rcom_date" property="createdDate"/>
+    <result column="rcom_cont" property="recContent"/>
+    
   </resultMap>
 
   <insert id="insert" parameterType="Recomment" 
-          useGeneratedKeys="true" keyProperty="no" keyColumn="com_no">
-    insert into app_Recomment(d_no, cat_no, com_no, com_tile, com_cont, com_view, filter, com_area)
-    values(#{doctorNo},#{category}, #{no}, #{title}, #{content}, #{viewCnt}, #{filter}, #{area})
+          useGeneratedKeys="true" keyProperty="no" keyColumn="rcom_no">
+    insert into app_Recomment(rcom_no, com_no, d_no, rcom_cont)
+    values(#{recNo},#{comNo}, #{docNo}, #{recContent})
   </insert>
 
   <select id="findAll" resultMap="RecommentMap">

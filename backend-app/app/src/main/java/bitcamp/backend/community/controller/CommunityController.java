@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import bitcamp.backend.community.service.CommunityImgService;
 import bitcamp.backend.community.service.CommunityService;
 import bitcamp.backend.community.vo.Community;
-import bitcamp.util.ErrorCode;
 import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
 
@@ -59,30 +57,24 @@ public class CommunityController {
         .setPhoto(communityImgService.get(no));
   }
 
-  @PutMapping("/update")
+  @PutMapping
   public Object update(@RequestBody Community community) {
 
-    Community newCommunity = new Community();
-    newCommunity.setNo(community.getNo());
-    newCommunity.setTitle(community.getTitle());
-
-    System.out.println(newCommunity);
-
-    communityService.update(newCommunity);
+    communityService.update(community);
 
     RestResult restResult = new RestResult();
-    restResult.setData(newCommunity);
-    restResult.setStatus(RestStatus.SUCCESS);
-    return restResult;
+    return restResult.setStatus(RestStatus.SUCCESS)
+        .setData(community);
   }
-  
+
+
   @DeleteMapping("{no}")
   public Object delete(@PathVariable int no) {
-    
+
     communityService.delete(no);
 
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
   }
-  
+
 }

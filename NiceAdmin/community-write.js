@@ -2,7 +2,6 @@
 
 document.querySelector('.btn-submit').onclick = (e) => {
 
-
   fetch("http://localhost:8080/community", {
     method: "POST",
     headers: {

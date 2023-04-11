@@ -40,24 +40,22 @@ document.querySelector('#former-btn').onclick = (e) => {
 
 
 document.querySelector('#update-btn').onclick = (e) => {
- 
-  fetch("http://localhost:8080/community/update", {
-    method: "PUT",
+
+  fetch('http://localhost:8080/community',{
+    method: 'PUT',
     headers: {
       'Content-type': 'application/json',
     },
     body: JSON.stringify({
-      doctorNo: 10,
+      doctorNo: Number(1),
+      no : no,
       title: document.querySelector('#title').value,
       category: document.querySelector('#category').value,
       content: document.querySelector('#content').value,
-      doctorName: document.querySelector('#doctorName').value,
-      createdDate: document.querySelector('#createdDate').value,
       filter: 0,
       area: 0
       //Img:  $('#comImg')[0].src
     }),
-    mode: 'cors'
   })
   .then((response) => response.json())
   .then((data) => {
@@ -67,4 +65,4 @@ document.querySelector('#update-btn').onclick = (e) => {
   .catch((error) => {
     console.error("실패:", error);
   });
-};
+  };
