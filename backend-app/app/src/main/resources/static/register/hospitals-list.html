@@ -49,6 +49,18 @@
 body::-webkit-scrollbar {
   background-color: transparent;
 }
+.hos-time::-webkit-scrollbar {
+  width: 10px;
+}
+
+.hos-time::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.hos-time::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border: none;
+}
 
 
   </style>
@@ -258,7 +270,7 @@ body::-webkit-scrollbar {
                     <th scope="col">병원명</th>
                     <th scope="col">주소</th>
                     <th scope="col">전화</th>
-                    <th scope="col">진료시간</th> 
+                    <!-- <th scope="col">진료시간</th> 굳이시간 받을필요 없음 --> 
                     <th scope="col">진료과목</th>
                     <th scope="col">사업자번호</th>
                   </tr> 
@@ -269,7 +281,7 @@ body::-webkit-scrollbar {
                     <td id="hospitalName"></td>
                     <td id="hospitalAddr"></td>
                     <td id="hospitalTel"></td>
-                    <td id="hospitalTime"></td>
+                    <!-- <td id="hospitalTime"></td> 굳이시간 받을필요 없음 -->
                     <td id="hospitalSub"></td>
                     <td id="hospitalBusno"></td>
                   </tr>
@@ -312,7 +324,7 @@ body::-webkit-scrollbar {
                               maxlength="13"
                               oninput="autoTelHyphen(event)"
                               required/></td>
-                            <td><input id="hosTime" class="hos-time" type="text" placeholder="예: 08시~18시30분"/></td>
+                            <td><input id="hosTime" class="hos-time" type="text" placeholder="예:월~금 08시~18시30분,토 휴진"/></td>  
                             <td><input id="hosSub"  class="hos-sub"type="text" placeholder="예: 가정의학과,소아과"/></td>
                             <td><input id="hosBusno"  class="hos-busno"type="text"/></td>   
                             <form> 
@@ -377,33 +389,7 @@ body::-webkit-scrollbar {
   <script src="../assets/js/main.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script>    
-  //   const tbody = document.querySelector('tbody');
-  //   fetch('http://localhost:8080/hospital/list')
-  //   .then((response) => {
-  //     return response.json();
-  //   })
-  //   .then((data) => {      
-  //     var html = '';
-  //     console.log(data);
-  //     for (var row of data.data) {
-  //     html += `<tr>
-  //         <td>${row.hospitalNo}</td>
-  //         <td><a href="community-view.html?no=${row.hospitalNo}">${row.hosName}</a></td>
-  //         <td>${row.hosAddr}</td>
-  //         <td>${row.hosTel}</td>
-  //         <td>${row.hosTime}</td>
-  //         <td>${row.hosSub}</td>
-  //         <td>${row.hosBusno}</td>
-  //         </tr>\n`;
-  //   }
-  //   tbody.innerHTML = html;
-  // })
-  // .catch((err) => {
-  //   alert('서버 요청 오류!');
-  //   console.log(err);
-  // });
-
-
+ 
 //검색기능
 const tbody = document.querySelector('tbody');
 const searchInput = document.querySelector('#search-input');
@@ -425,6 +411,7 @@ searchInput.addEventListener('input', function() {
   }
 });
 //검색기능 출력(렌더링)
+// <td>${row.hosTime}</td>
 function renderDataList(dataList) {
   let html = '';
   for (var row of dataList) {
@@ -432,8 +419,7 @@ function renderDataList(dataList) {
         <td>${row.hospitalNo}</td>
         <td><a href="community-view.html?no=${row.hospitalNo}">${row.hosName}</a></td>
         <td>${row.hosAddr}</td>
-        <td>${row.hosTel}</td>
-        <td>${row.hosTime}</td>
+        <td>${row.hosTel}</td>        
         <td>${row.hosSub}</td>
         <td>${row.hosBusno}</td>
         </tr>\n`;
