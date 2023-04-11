@@ -11,7 +11,6 @@
 --------------------------------------------------------------*/
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap');
 
-
 :root {
   scroll-behavior: smooth;
 }
@@ -30,6 +29,7 @@ body {
   width: 1200px;
   max-width: none !important;
 }
+
 #register-form {
   left: 50%;
   width: 700px;
@@ -54,6 +54,14 @@ body {
   display: none;
 }
 
+#specialist {
+  display: none;
+}
+
+#license-file-row {
+  display: none;
+}
+
 .validation-msg {
   margin-top: 0.25rem;
   font-size: 0.875em;
@@ -66,6 +74,12 @@ body {
 
 .padding-right-0 {
   padding-right: 0;
+}
+
+.btn-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 a {
@@ -206,7 +220,7 @@ h6 {
 
 @media (min-width: 768px) {
   .dropdown-menu-arrow::before {
-    content: "";
+    content: '';
     width: 13px;
     height: 13px;
     background: #fff;
@@ -269,13 +283,13 @@ h6 {
   border-color: #d3d3d4;
 }
 
-.community-topic{
-  color:#012970;
+.community-topic {
+  color: #012970;
   font-size: 30px;
   font-weight: 600;
-  padding:15px;
+  padding: 15px;
 }
- 
+
 /* Card */
 .card {
   margin-bottom: 30px;
@@ -283,7 +297,6 @@ h6 {
   border-radius: 5px;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
 }
-
 
 .card-header {
   font-size: 20px;
@@ -531,7 +544,7 @@ h6 {
   list-style: none;
 }
 
-.header-nav>ul {
+.header-nav > ul {
   margin: 0;
   padding: 0;
 }
@@ -726,7 +739,6 @@ h6 {
 }
 
 @media (min-width: 1200px) {
-
   #main,
   #footer {
     margin-left: 300px;
@@ -740,7 +752,6 @@ h6 {
 }
 
 @media (min-width: 1200px) {
-
   .toggle-sidebar #main,
   .toggle-sidebar #footer {
     margin-left: 0;
@@ -946,7 +957,7 @@ h6 {
 }
 
 .dashboard .activity .activity-item .activite-label::before {
-  content: "";
+  content: '';
   position: absolute;
   right: -11px;
   width: 4px;
@@ -980,7 +991,7 @@ h6 {
 }
 
 /* News & Updates */
-.dashboard .news .post-item+.post-item {
+.dashboard .news .post-item + .post-item {
   margin-top: 15px;
 }
 
@@ -1019,7 +1030,6 @@ h6 {
 
 .dashboard .recent-sales .table thead {
   background: #f6f6fe;
-  
 }
 
 .dashboard .recent-sales .table thead th {
@@ -1221,7 +1231,7 @@ h6 {
 }
 
 .contact .php-email-form .loading:before {
-  content: "";
+  content: '';
   display: inline-block;
   border-radius: 50%;
   width: 24px;
@@ -1253,7 +1263,7 @@ h6 {
   padding: 12px 15px;
 }
 
-.contact .php-email-form button[type=submit] {
+.contact .php-email-form button[type='submit'] {
   background: #4154f1;
   border: 0;
   padding: 10px 30px;
@@ -1262,7 +1272,7 @@ h6 {
   border-radius: 4px;
 }
 
-.contact .php-email-form button[type=submit]:hover {
+.contact .php-email-form button[type='submit']:hover {
   background: #5969f3;
 }
 

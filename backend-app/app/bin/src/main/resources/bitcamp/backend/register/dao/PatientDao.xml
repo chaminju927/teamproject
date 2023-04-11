@@ -51,11 +51,12 @@
       m.m_id, 
       m.m_name, 
       m.m_email, 
-      m.m_tel
+      m.m_tel,
       p.p_phy,
-      p.p_drug  
+      p.p_drug,
+      p.p_no
     from 
-      app_patient as p
+      app_patient p
       inner join app_member m on p.p_no = m.m_no
     where 
       p_no=#{no}
@@ -70,7 +71,9 @@
       m.m_tel,
       m.m_email,
       p.p_phy,
-      p.p_drug  
+      p.p_drug,
+      m.addr,
+      m.m_gender
     from
       app_patient p
       inner join app_member m on p.p_no = m.m_no
@@ -86,7 +89,7 @@
   <update id="update" parameterType="patient">
     update app_patient set
       p_phy=#{phy},
-      p_drug=#{drug} 
+      p_drug=#{drug}
     where p_no=#{no}
   </update>
   

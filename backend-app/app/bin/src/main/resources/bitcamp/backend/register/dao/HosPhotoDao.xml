@@ -13,7 +13,7 @@
   </resultMap>
 
   <insert id="insert" parameterType="hosPhoto" 
-          useGeneratedKeys="true" keyProperty="no" keyColumn="hos_photo_no">
+          useGeneratedKeys="true" keyProperty="photoNo" keyColumn="pho_no">
     insert into app_hos_photo(hos_no, pho_name, pho_filename, pho_type)
     values( #{hospitalNo}, #{hosPhotoUrl}, #{hosPhotoFilename}, #{hosPhotoType})
   </insert>
@@ -64,4 +64,3 @@
     where pho_no=#{no}
   </delete>
 </mapper>
-

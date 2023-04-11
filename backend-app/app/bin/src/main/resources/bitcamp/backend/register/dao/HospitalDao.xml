@@ -34,6 +34,21 @@
     order by 
       hos_no desc
   </select>
+  
+<select id="findByTel" parameterType="String" resultMap="hospitalMap">
+    select 
+      hos_no,
+      hos_name, 
+      hos_addr, 
+      hos_tel, 
+      hos_time,
+      hos_sub,
+      hos_busno
+    from 
+      app_hospital 
+    where 
+      hos_tel = #{tel}
+</select>
 
   <select id="findByNo" parameterType="int" resultMap="hospitalMap">
     select 

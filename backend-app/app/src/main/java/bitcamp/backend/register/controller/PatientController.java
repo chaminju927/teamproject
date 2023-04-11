@@ -43,8 +43,7 @@ public class PatientController {
   @PostMapping
   public Object insert(@RequestBody Patient patient) {
     patientService.add(patient);
-    return new RestResult()
-        .setStatus(RestStatus.SUCCESS);
+    return new RestResult().setStatus(RestStatus.SUCCESS);
   }
 
   @PostMapping("/profileimg")
@@ -65,49 +64,37 @@ public class PatientController {
     boolean isDuplicate = patientService.isDuplicateId(id);
 
     if (isDuplicate) {
-      return new RestResult()
-          .setStatus(RestStatus.FAILURE)
-          .setMessage("이미 사용하고 있는 ID입니다.");
+      return new RestResult().setStatus(RestStatus.FAILURE).setMessage("이미 사용하고 있는 ID입니다.");
     } else {
-      return new RestResult()
-          .setStatus(RestStatus.SUCCESS)
-          .setMessage("사용 가능한 ID입니다.");
+      return new RestResult().setStatus(RestStatus.SUCCESS).setMessage("사용 가능한 ID입니다.");
     }
   }
 
   @GetMapping
   public Object list(String keyword) {
-    return new RestResult()
-        .setStatus(RestStatus.SUCCESS)
-        .setData(patientService.list(keyword));
+    return new RestResult().setStatus(RestStatus.SUCCESS).setData(patientService.list(keyword));
   }
 
   @GetMapping("{no}")
   public Object view(@PathVariable int no) {
-    return new RestResult()
-        .setStatus(RestStatus.SUCCESS)
-        .setData(patientService.get(no));
+    return new RestResult().setStatus(RestStatus.SUCCESS).setData(patientService.get(no));
   }
 
   @PutMapping("{no}")
-  public Object update(
-      @PathVariable int no,
-      @RequestBody Patient patient) {
+  public Object update(@PathVariable int no, @RequestBody Patient patient) {
 
     log.debug(patient);
 
     patient.setNo(no);
     patientService.update(patient);
 
-    return new RestResult()
-        .setStatus(RestStatus.SUCCESS);
+    return new RestResult().setStatus(RestStatus.SUCCESS);
   }
 
   @DeleteMapping("{no}")
   public Object delete(@PathVariable int no) {
     patientService.delete(no);
-    return new RestResult()
-        .setStatus(RestStatus.SUCCESS);
+    return new RestResult().setStatus(RestStatus.SUCCESS);
   }
 
 }
