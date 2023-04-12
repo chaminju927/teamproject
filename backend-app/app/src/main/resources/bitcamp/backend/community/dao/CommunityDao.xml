@@ -78,8 +78,7 @@
   
   <delete id="delete" parameterType="int">
    delete from app_community 
-    where com_no=#{no}
-		    
+    where com_no=#{no}	    
   </delete>
   
   <update id="increaseViewCount" parameterType="int">

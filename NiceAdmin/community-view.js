@@ -46,6 +46,8 @@ Promise.all([
         <td><p>${row.recContent}</p></td>
         <td>${row.docName}</td> 
         <td>${row.createdDate}</td>
+        <td><button type="button" class="btn btn-outline-danger btn-sm" 
+                    id="btn-recomment-delete">X</button></td>
         </tr>\n`;
   }
   tbody.innerHTML = html;

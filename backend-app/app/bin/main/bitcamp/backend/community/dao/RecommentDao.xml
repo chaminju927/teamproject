@@ -17,19 +17,6 @@
     insert into app_recomment(rcom_no, com_no, d_no, rcom_cont)
     values(#{recNo}, #{comNo}, #{docNo}, #{recContent})
   </insert>
-
- <!--   <select id="findAllRec" resultMap="recommentMap">
-    select 
-      r.rcom_no,
-      m.m_name,
-      r.rcom_date,
-      r.rcom_cont
-    from 
-      app_recomment r
-      join app_member m on r.d_no = m.m_no
-    order by 
-      rcom_no desc
-  </select>  -->
   
    <select id ="findAllRec" resultMap="recommentMap" parameterType="int">
     select 
@@ -42,6 +29,11 @@
     where 
       r.com_no=#{no}
   </select>
+  
+   <delete id="delete" parameterType="int">
+   delete from app_recomment r 
+    where r.com_no=#{no}      
+  </delete>
   
  
 </mapper>
