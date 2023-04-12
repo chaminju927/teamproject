@@ -193,7 +193,7 @@ public class PatientController {
   public Object phonecheck(@RequestBody HashMap<String, Object> param) {
     String sn = (String) param.get("serial");
     if (sn.length() == 6) {
-      if (this.serial.equals(sn)) {
+      if (this.serial.equals(sn)) { 
 
         return new RestResult().setStatus(RestStatus.SUCCESS);
       } else {

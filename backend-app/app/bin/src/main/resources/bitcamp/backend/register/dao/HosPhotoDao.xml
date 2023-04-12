@@ -53,6 +53,19 @@
     where 
       pho_no=#{no}
   </select>
+
+  <select id="findByHno" parameterType="int" resultMap="hos_photoMap">
+  select
+      hos_no, 
+      pho_no, 
+      pho_name, 
+      pho_filename, 
+      pho_type
+    from 
+      app_hos_photo
+    where 
+      hos_no=#{no}
+  </select>
   
   <delete id="delete" parameterType="int">
     delete from app_hos_photo
