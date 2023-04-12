@@ -1,5 +1,10 @@
 /.apt_generated/
 /.apt_generated_tests/
+<<<<<<< HEAD
 /.gitignore
 /main/
 /test/
+=======
+>>>>>>> ae28cc567fca0d0d2b146a888f0a9be1f03ffd12
+/.settings/
+/src/

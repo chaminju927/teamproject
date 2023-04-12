@@ -14,11 +14,19 @@
 
   <insert id="insertRec" parameterType="recomment" 
           useGeneratedKeys="true" keyProperty="recNo" keyColumn="rcom_no">
+<<<<<<< HEAD
     insert into app_recomment(rcom_no, com_no, d_no, rcom_cont)
     values(#{recNo}, #{comNo}, #{docNo}, #{recContent})
   </insert>
 
  <!--   <select id="findAllRec" resultMap="recommentMap">
+=======
+    insert into app_recomment(rcom_no, com_no, m_name, rcom_cont)
+    values(#{recNo}, #{comNo}, #{docName}, #{recContent})
+  </insert>
+
+  <select id="findAllRec" resultMap="recommentMap">
+>>>>>>> ae28cc567fca0d0d2b146a888f0a9be1f03ffd12
     select 
       r.rcom_no,
       m.m_name,
@@ -29,6 +37,7 @@
       join app_member m on r.d_no = m.m_no
     order by 
       rcom_no desc
+<<<<<<< HEAD
   </select>  -->
   
    <select id ="findAllRec" resultMap="recommentMap" parameterType="int">
@@ -41,6 +50,8 @@
 		  join app_member m on r.d_no = m.m_no
     where 
       r.com_no=#{no}
+=======
+>>>>>>> ae28cc567fca0d0d2b146a888f0a9be1f03ffd12
   </select>
   
  
