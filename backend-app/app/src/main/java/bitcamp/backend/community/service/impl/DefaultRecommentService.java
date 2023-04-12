@@ -18,8 +18,8 @@ public class DefaultRecommentService implements RecommentService {
   }
 
   @Override
-  public List<Recomment> list() {
-    return recommentDao.findAllRec();
+  public List<Recomment> list(int no) {
+    return recommentDao.findAllRec(no);
   }
 
   @Override

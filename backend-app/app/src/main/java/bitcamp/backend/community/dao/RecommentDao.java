@@ -8,7 +8,7 @@ import bitcamp.backend.community.vo.Recomment;
 public interface RecommentDao {
 
   void insertRec(Recomment recomment);
-  List<Recomment> findAllRec();
+  List<Recomment> findAllRec(int no);
   int delete(int no);
 
 }

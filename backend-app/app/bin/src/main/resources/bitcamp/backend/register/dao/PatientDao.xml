@@ -52,6 +52,7 @@
       m.m_pw, 
       m.m_name, 
       m.m_email, 
+      m.m_gender,
       m.m_bday,
       m.m_tel,
       m.addr,

@@ -43,11 +43,11 @@ public class App {
   @Autowired
   FeedBackService backService;
 
-  public static void main(String args[]) {
+  public static void main(String args[]) { 
     SpringApplication.run(App.class, args);
   }
 
-  @GetMapping("/hello")
+  @GetMapping("/hello") 
   public long hello() {
 
 
