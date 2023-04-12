@@ -1,7 +1,7 @@
 let patientNo = 0;
 let samePw = false;
 
-patientNo = 17;
+patientNo = 15;
 
 if(patientNo > 0) {
   fetch(`http://192.168.0.7:8080/patients/${patientNo}`, {
@@ -22,7 +22,7 @@ if(patientNo > 0) {
 
       document.querySelector(".patients-name").innerText = data.name
       document.querySelector(".change-name").value = data.name
-      document.querySelector(".patients-name").innerHTML = document.querySelector(".patients-name").innerHTML + `<span class="patients-gender">${data.gender ? data.gender : "-"}</span>`
+      document.querySelector(".patients-name").innerHTML = document.querySelector(".patients-name").innerHTML + `<span class="patients-gender">${data.gender ? "남성" : "여성"}</span>`
 
       document.querySelector(".patients-id").innerText = data.id
       document.querySelector(".change-id").value = data.id
@@ -77,7 +77,7 @@ $(".change-btn").click(() => {
   formData.append("birth", document.querySelector(".change-birth").value);
   formData.append("tel", document.querySelector(".change-tel").value);
   formData.append("addr", document.querySelector(".change-addr").value);
-  formData.append("gender", '1');
+  // formData.append("gender", '1');
   formData.append("email", document.querySelector(".change-email").value);
   formData.append("drug", document.querySelector(".change-drug").value);
   formData.append("phy", document.querySelector(".change-phy").value);

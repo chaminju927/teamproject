@@ -87,7 +87,7 @@
       app_symp_board b
     <if test="no != 0 and no != null">
     where 
-      b.symp_no = #{no}
+      b.p_no = #{no}
     </if> 
   </select>
   

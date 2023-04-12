@@ -43,11 +43,11 @@ public class App {
   @Autowired
   FeedBackService backService;
 
-  public static void main(String args[]) { 
+  public static void main(String args[]) {
     SpringApplication.run(App.class, args);
   }
 
-  @GetMapping("/hello") 
+  @GetMapping("/hello")
   public long hello() {
 
 
@@ -262,7 +262,7 @@ public class App {
       result.put("data", boards);
     } else {
       result.put("status", "fail");
-      System.out.println("빔");
+      System.out.println("환자 회원 작성글 없거나 어류");
     }
 
 

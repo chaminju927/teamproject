@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>환자 - 마이페이지</title>
+  <title>나의 진료 기록 리스트- 환자</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -38,20 +38,6 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-  <style>
-    div .row {
-      font-size: 20px !important;
-      margin-bottom: 40px !important;
-    }
-
-    div .row:first-child {
-      margin-top: 30px !important;
-    }
-
-    .patients-gender {
-      margin-left: 60px;
-    }
-  </style>
 </head>
 
 <body>
@@ -316,14 +302,14 @@
       <li class="nav-heading">My page</li>
 
       <li class="nav-item">
-        <a class="nav-link " href="patients-profile.html">
+        <a class="nav-link collapsed" href="patients-profile.html">
           <i class="bi bi-person"></i>
           <span>내 정보</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="patients-records.html">
+        <a class="nav-link" href="patients-records.html">
           <i class="bi bi-file-earmark"></i>
           <span>작성글 목록</span>
         </a>
@@ -369,210 +355,100 @@
     </ul>
 
   </aside><!-- End Sidebar-->
-
-
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>내 정보</h1>
+      <h1>나의 진료 기록</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Profile</li>
+          <li class="breadcrumb-item">Pages</li>
+          <li class="breadcrumb-item active">Records</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-    <section class="section profile">
+    <section class="section">
       <div class="row">
-        <div class="col-xl-2">
 
-          <div class="card">
-            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-
-              <img src="assets/img/eom.jfif" alt="Profile" class="rounded-circle patients-img">
-              <h2>엄 진 영</h2>
-
+        <!-- <div class="col-lg-6">
+          <div class="card cursor" >
+            <div class="card-body" onclick="location.href='patients-records-detail.html'">
+              <h5 class="card-title">제목 : 갑자기 복통</h5>
+              <h6>문의 날짜 : 2023/03/01</h6>
+              <p>오늘 오전부터 복통이 너무 심합니다. 속이 쓰리고 위액이 올라오는 느낌이 들어요</p>
+              <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> 진료 완료</span>
             </div>
           </div>
-
         </div>
 
-        <div class="col-xl-8">
-
-          <div class="card">
-            <div class="card-body pt-3">
-              <!-- Bordered Tabs -->
-              <ul class="nav nav-tabs nav-tabs-bordered">
-
-                <li class="nav-item" style="">
-                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">개인 정보
-                    조회</button>
-                </li>
-
-                <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">개인 정보 변경</button>
-                </li>
-
-                <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">비밀번호
-                    변경</button>
-                </li>
-
-              </ul>
-              <div class="tab-content pt-2">
-
-                <div class="tab-pane fade show active profile-overview row gx-3" id="profile-overview">
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">이 름/ 성 별</div>
-                    <div class="col-lg-9 col-md-8 patients-name"></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">아이디</div>
-                    <div class="col-lg-9 col-md-8 patients-id"></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">생년월일</div>
-                    <div class="col-lg-9 col-md-8 patients-birth"></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">전화 번호</div>
-                    <div class="col-lg-9 col-md-8 patients-tel"></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">주소</div>
-                    <div class="col-lg-9 col-md-8 patients-addr"></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">이메일</div>
-                    <div class="col-lg-9 col-md-8 patients-email"></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">특이사항</div>
-                    <div class="col-lg-9 col-md-8 patients-drug"></div>
-                  </div>
-
-                </div>
-
-                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-
-                  <!-- Profile Edit Form -->
-                  <form>
-                    <div class="row mb-3">
-                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">사진 수정</label>
-                      <input type="file" class="form-control change-img" accept="image/*" id="inputGroupFile01" style="width: 300px; height: 38px; margin-left: 12px;">
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">아이디</label>
-                      <div class="col-md-8 col-lg-3">
-                        <input name="fullName" type="text" class="form-control change-id" id="fullName" value="" readonly>
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">이름</label>
-                      <div class="col-md-8 col-lg-3">
-                        <input name="fullName" type="text" class="form-control change-name" id="fullName" value="">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">생년월일</label>
-                      <div class="col-md-8 col-lg-3">
-                        <input name="fullName" type="text" class="form-control change-birth" id="fullName" value="">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="company" class="col-md-4 col-lg-3 col-form-label">전화번호</label>
-                      <div class="col-md-6 col-lg-3">
-                        <input name="company" type="text" class="form-control change-tel" id="company" value="" readonly>
-                      </div>
-                      <button type="button" onclick="tel()" class="btn btn-secondary col-md-2" style="height: 90%;">변경 / 인증</button>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Job" class="col-md-4 col-lg-3 col-form-label">주소</label>
-                      <div class="col-md-4 col-lg-6">
-                        <input name="job" type="text" class="form-control change-addr" id="Job" value="" readonly>
-                      </div>
-                      <button type="button" onclick="addr()" class="btn btn-secondary col-md-2" style="height: 90%;">주소 정보 변경</button>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Country" class="col-md-4 col-lg-3 col-form-label">이메일</label>
-                      <div class="col-md-8 col-lg-5">
-                        <input name="country" type="text" class="form-control change-email" id="Country"
-                          value="" readonly>
-                      </div>
-                      <button type="button" onclick="tel()" class="btn btn-secondary col-md-2" style="height: 90%;">변경 / 인증</button>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">특이사항(약물)</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control change-drug" id="Email" value="">
-                      </div>
-                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">특이사항(신체)</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control change-phy" id="Email" value="">
-                      </div>
-                    </div>
-
-
-                    <div class="text-center">
-                      <button type="button" class="btn btn-primary change-btn">저장</button>
-                    </div>
-                  </form><!-- End Profile Edit Form -->
-
-                </div>
-
-                <div class="tab-pane fade pt-3" id="profile-change-password">
-                  <!-- Change Password Form -->
-                  <form>
-
-                    <div class="row mb-3">
-                      <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">현재 비밀번호</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="password" type="password" class="form-control patients-pw" id="currentPassword">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">새 비밀번호</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="newpassword" type="password" class="form-control change-pw" id="newPassword" onchange="checkPw()">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">새 비밀번호 확인</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="renewpassword" type="password" class="form-control change-pw-check" id="renewPassword" onchange="checkPw()">
-                      </div>
-                    </div>
-
-                    <div class="text-center">
-                      <button type="button" class="btn btn-primary change-pw-btn">변경하기</button>
-                    </div>
-                  </form><!-- End Change Password Form -->
-
-                </div>
-
-              </div><!-- End Bordered Tabs -->
-
+        <div class="col-lg-6">
+          <div class="card cursor">
+            <div class="card-body"  onclick="location.href='patients-records-detail.html'">
+              <h5 class="card-title">제목 : 넘어졌는데</h5>
+              <h6>문의 날짜 : 2023/02/21</h6>
+              <p>넘어졌는데 이정도 부으면 심각한거죠?</p>
+              <span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i>진료 급해요</span>
             </div>
           </div>
-
         </div>
+
+        <div class="col-lg-6">
+          <div class="card cursor">
+            <div class="card-body" onclick="location.href='patients-records-detail.html'">
+              <h5 class="card-title">제목 : 갑자기 복통</h5>
+              <h6>문의 날짜 : 2023/03/01</h6>
+              <p>오늘 오전부터 복통이 너무 심합니다. 속이 쓰리고 위액이 올라오는 느낌이 들어요</p>
+              <span class="badge bg-warning text-dark"><i class="bi bi-exclamation-triangle me-1"></i>진료 대기중</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card cursor">
+            <div class="card-body" onclick="location.href='patients-records-detail.html'">
+              <h5 class="card-title">제목 : 갑자기 복통</h5>
+              <h6>문의 날짜 : 2023/03/01</h6>
+              <p>오늘 오전부터 복통이 너무 심합니다. 속이 쓰리고 위액이 올라오는 느낌이 들어요</p>
+              <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> 진료 완료</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card cursor">
+            <div class="card-body" onclick="location.href='patients-records-detail.html'">
+              <h5 class="card-title">제목 : 갑자기 복통</h5>
+              <h6>문의 날짜 : 2023/03/01</h6>
+              <p>오늘 오전부터 복통이 너무 심합니다. 속이 쓰리고 위액이 올라오는 느낌이 들어요</p>
+              <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> 진료 완료</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card cursor">
+            <div class="card-body" onclick="location.href='patients-records-detail.html'">
+              <h5 class="card-title">제목 : 갑자기 복통</h5>
+              <h6>문의 날짜 : 2023/03/01</h6>
+              <p>오늘 오전부터 복통이 너무 심합니다. 속이 쓰리고 위액이 올라오는 느낌이 들어요</p>
+              <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> 진료 완료</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card cursor">
+            <div class="card-body" onclick="location.href='patients-records-detail.html'">
+              <h5 class="card-title">제목 : 갑자기 복통</h5>
+              <h6>문의 날짜 : 2023/03/01</h6>
+              <p>오늘 오전부터 복통이 너무 심합니다. 속이 쓰리고 위액이 올라오는 느낌이 들어요</p>
+              <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> 진료 완료</span>
+            </div>
+          </div>
+        </div> -->
+
+
       </div>
     </section>
 
@@ -616,20 +492,7 @@
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-  <script type='text/babel' src="patients-profile.js"></script>
-  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  <script>
-    function addr() {
-      new daum.Postcode({
-        oncomplete: function (data) {
-          // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-          // 예제를 참고하여 다양한 활용법을 확인해 보세요.
-          document.querySelector(".change-addr").value = data.address;
-        }
-      }).open();
-    }
-  </script>
-
+  <script type='text/babel' src="petients-boards.js"></script>
 
 </body>
 
