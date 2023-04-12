@@ -47,15 +47,17 @@ import bitcamp.util.RestStatus;
 @RequestMapping("/patients")
 public class PatientController {
 
-  private static String sendNum = "01000000000";
+  private static String sendNum = "01051521314";
 
-  private String accessKey = "FKkSRtwA8TohXtQhMKHD";
+  private String accessKey = "xJ9GP8G6boaaxgBkKp2l";
 
-  private String secretKey = "2XmdALP0y7DsES8lTKwMYKcQoSlr6NuuIWXX4wOi";
+  private String secretKey = "tGJyZ5DFXw2KYbBH5Jp4XtpG2oNpvgVmg3Ci0xsJ";
 
-  private String serviceId = "ncp:sms:kr:295631920009:sms";
+  private String serviceId = "ncp:sms:kr:306085432212:sms";
 
   private String phone = "01051521314";
+
+  private String serial = "";
 
   Logger log = LogManager.getLogger(getClass());
 
@@ -112,7 +114,6 @@ public class PatientController {
       throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException,
       JsonProcessingException, RestClientException, URISyntaxException {
 
-    // postApiData();
     return new RestResult().setStatus(RestStatus.SUCCESS).setData(patientService.get(no));
   }
 
@@ -165,11 +166,52 @@ public class PatientController {
     return new RestResult().setStatus(RestStatus.SUCCESS);
   }
 
-  public void postApiData()
+  @PostMapping("/phone")
+  public Object phonenum(@RequestBody HashMap<String, Object> param) {
+    String tel = (String) param.get("tel");
+    if (tel.length() == 11) {
+      try {
+
+        this.serial = postApiData(tel);
+        if (!this.serial.equals("0")) {
+
+          System.out.println(this.serial);
+          return new RestResult().setStatus(RestStatus.SUCCESS);
+        } else {
+          this.serial = "";
+          return new RestResult().setStatus(RestStatus.FAILURE);
+        }
+      } catch (Exception e) {
+        return new RestResult().setStatus(RestStatus.FAILURE);
+      }
+    } else {
+      return new RestResult().setStatus(RestStatus.FAILURE);
+    }
+  }
+
+  @PostMapping("/phoneC")
+  public Object phonecheck(@RequestBody HashMap<String, Object> param) {
+    String sn = (String) param.get("serial");
+    if (sn.length() == 6) {
+      if (this.serial.equals(sn)) {
+
+        return new RestResult().setStatus(RestStatus.SUCCESS);
+      } else {
+
+        return new RestResult().setStatus(RestStatus.FAILURE);
+      }
+    } else {
+
+      return new RestResult().setStatus(RestStatus.FAILURE);
+    }
+
+  }
+
+  public String postApiData(String tel)
       throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException,
       JsonProcessingException, RestClientException, URISyntaxException {
-    String apiUrl =
-        "https://sens.apigw.ntruss.com/sms/v2/services/'ncp:sms:kr:295631920009:sms/messages";
+
+    String ran = ((int) ((Math.random() * (999999 - 111111)) + 111111) + "");
     Long time = System.currentTimeMillis();
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_JSON);
@@ -181,14 +223,14 @@ public class PatientController {
     Map<String, Object> mes = new HashMap<>();
     List<Map<String, Object>> mess = new ArrayList<>();
 
-    mes.put("to", this.phone);
-    mes.put("content", "1234");
+    mes.put("to", tel);
+    mes.put("content", ran);
     mess.add(mes);
 
     params.put("type", "SMS");
     params.put("contentType", "COMM");
     params.put("from", this.sendNum);
-    params.put("content", "1234");
+    params.put("content", ran);
     params.put("countryCode", "82");
     params.put("messages", mess);
 
@@ -199,10 +241,15 @@ public class PatientController {
     HttpEntity<String> httpBody = new HttpEntity<>(body, headers);
     RestTemplate restTemplate = new RestTemplate();
     restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
-    Object response = restTemplate.postForObject(
+    Map<String, Object> response = restTemplate.postForObject(
         new URI("https://sens.apigw.ntruss.com/sms/v2/services/" + this.serviceId + "/messages"),
-        httpBody, String.class);
-    System.out.println(response);
+        httpBody, Map.class);
+    System.out.println(response.get("statusName"));
+    if (response.get("statusName").equals("success")) {
+      return ran;
+    } else {
+      return "0";
+    }
   }
 
   public String encrypt(String text) throws NoSuchAlgorithmException {
