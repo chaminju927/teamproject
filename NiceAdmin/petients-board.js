@@ -349,23 +349,23 @@ class DocInfo extends React.Component {
     this.state = {
       data: props.props
     }
-  }
+  } 
   render() {
     return (
       <div className="top-area text-center">
         <img className="doc-img" src={this.state.data.doc_image} alt="의사 이미지"/>
         <div className="doc-area">
           
-          <span className="doc-name">{this.state.data.doc_name}</span>
+          <span className="doc-name"><i className="bx bx-user"></i>{this.state.data.doc_name}</span>
           <div className="doc-career">
-            <span>경력 사항 1</span>
-            <span>경력 사항 2</span>
+            <span><i class="bx bxs-heart-circle"></i>경력 사항 1</span><br></br>
+            <span><i class="bx bxs-heart-circle"></i>경력 사항 2</span>
           </div>
         </div>
         <div className="hos-area">
           <span className="hos-name"><i class="bx bx-plus-medical"></i>{this.state.data.hos_name}</span>
-          <span className="hos-info">병원 정보</span>
-          <span className="hos-addr">{this.state.data.hos_addr}</span>
+          <span className="hos-info"><i class="ri-information-line"></i>병원 정보</span>
+          <span className="hos-addr"><i class="bi-hospital"></i>{this.state.data.hos_addr}</span>
         </div>
       </div>  
     )
