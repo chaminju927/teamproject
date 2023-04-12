@@ -61,8 +61,8 @@
       hos_busno
     from 
       app_hospital 
-    order by 
-      hos_no desc
+    where 
+      hos_no=#{hosNo}
   </select>
   
   <update id="update" parameterType="hospital">
