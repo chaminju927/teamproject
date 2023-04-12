@@ -13,8 +13,8 @@ Promise.all([
 .then((responses) => Promise.all(responses.map((response) => response.json())))
 .then((data) => {
   console.log(data);
-  const communityData = data[0];
-  const recommentData = data[1];
+  var communityData = data[0];
+  var recommentData = data[1];
 
   //console.log(communityData);
   if (communityData.status == 'failure') {
@@ -34,11 +34,10 @@ Promise.all([
     document.querySelector('#btn-img-delete').style.display = 'none';
   }
   // console.log(communityData.photo[0].imgUrl)
+
   // 두번째 fetch 요청 후
   var tbody = document.querySelector('#recomment-list');
-
-  console.log(recommentData);
-
+  
   var html = '';
   for (var row of recommentData.data) {
     html += `<tr>
@@ -47,10 +46,34 @@ Promise.all([
         <td>${row.docName}</td> 
         <td>${row.createdDate}</td>
         <td><button type="button" class="btn btn-outline-danger btn-sm" 
-                    id="btn-recomment-delete">X</button></td>
+                    id="btn-recomment-delete-${row.recNo}">X</button></td>
         </tr>\n`;
   }
   tbody.innerHTML = html;
+
+  // 댓글 삭제
+  for (var row of recommentData.data) {
+    document.querySelector(`#btn-recomment-delete-${row.recNo}`).onclick = (e) => {
+     
+      fetch(`http://localhost:8080/recomment/delete/${row.recNo}`, {
+        method: 'DELETE',
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("성공:", data);
+
+        if (data.status == 'failure') {
+          alert('댓글 삭제 실패!\n' + data.data);
+          return;
+        }
+        // location.href = reload();
+      })
+      .catch((error) => {
+        console.error("실패:", error);
+      });
+      location.reload();
+    };
+  }
 })
 .catch((err) => {
   //alert('서버 요청 오류!');
@@ -83,6 +106,28 @@ document.querySelector('#rec-save-btn').onclick = (e) => {
     })
 };
 
+// //댓글 삭제
+// document.querySelector(`#btn-recomment-${recommentData.data.recNo}`).onclick = (e) => {
+//   console.log(recommentData);
+//   fetch(`http://localhost:8080/recomment/${no}/${recommentData.data.recNo}`,{
+//     method: 'DELETE',
+//   })
+//   .then((response) => response.json())
+//   .then((data) => {
+//     console.log("성공:", data);
+//     location.href=reload();
+    
+//     if (data.status == 'failure') {
+//       alert('댓글 삭제 실패!\n' + data.data);
+//       return;
+//     }
+//   })
+//   .catch((error) => {
+//     console.error("실패:", error);
+//   });
+//   };
+
+  
 
 
 //게시물 내용 변경

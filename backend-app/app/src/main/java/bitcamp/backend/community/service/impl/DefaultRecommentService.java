@@ -23,8 +23,8 @@ public class DefaultRecommentService implements RecommentService {
   }
 
   @Override
-  public void delete(int no) {
-    recommentDao.delete(no);
+  public void delete(int recNo) {
+    recommentDao.deleteRec(recNo);
   }
 
 }

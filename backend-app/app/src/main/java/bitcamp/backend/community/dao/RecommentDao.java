@@ -9,6 +9,6 @@ public interface RecommentDao {
 
   void insertRec(Recomment recomment);
   List<Recomment> findAllRec(int no);
-  int delete(int no);
+  int deleteRec(int no);
 
 }
