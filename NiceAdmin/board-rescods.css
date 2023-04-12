@@ -125,6 +125,10 @@ hr {
   box-shadow: 0px 0px 5px 1px #444;
 }
 
+.hos-name {
+  vertical-align: middle;
+}
+
 #new-windows {
   animation-name: up2;
   animation-duration: 0.3s;
@@ -416,6 +420,7 @@ DEMO
   width: 150px;
   height: 25px;
   background-color: #c5edff;
+
 }
 
 .doc-career {
@@ -424,6 +429,7 @@ DEMO
   height: 90px;
   margin-top: 5px;
   background-color: #c5edff;
+  
 }
 
 .top-area{
@@ -433,6 +439,7 @@ DEMO
   background-color: #e4f6ff;
 }
 
+
 .top-area i {
   padding-right: 9px;
 }
@@ -440,9 +447,9 @@ DEMO
 .hos-area {
   float: right;
   width: 200px;
-  height: 130px;
   padding: 5px;
-  box-sizing: border-box;
+  height: 130px;
+  /* box-sizing: border-box; */
 }
 
 .hos-area span {
