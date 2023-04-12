@@ -12,3 +12,6 @@
 /.settings/
 >>>>>>> 2c42fa2f056d135cdf361705e6e449a471d3cb97
 /src/
+/default/
+/generated-sources/
+/generated-test-sources/
