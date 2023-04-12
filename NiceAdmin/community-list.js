@@ -1,9 +1,8 @@
 
-tbody = document.querySelector('#community-list');
-
 document.querySelector('#btn-write').onclick = (e) => {
   location.href="community-write.html";
 }
+tbody = document.querySelector('#community-list');
 
 fetch('http://localhost:8080/community/list')
   .then((response) => {
@@ -42,3 +41,5 @@ fetch('http://localhost:8080/community/list')
     alert('서버 요청 오류!');
     console.log(err);
   });
+
+  
