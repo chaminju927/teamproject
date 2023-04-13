@@ -30,9 +30,9 @@
       r.com_no=#{no}
   </select>
   
-   <delete id="delete" parameterType="int">
+   <delete id="deleteRec" parameterType="int">
    delete from app_recomment r 
-    where r.com_no=#{no}      
+    where r.rcom_no=#{no}      
   </delete>
   
  

@@ -10,6 +10,27 @@
 .scroll::-webkit-scrollbar {
   display: none;
 }
+
+body {
+  width: 400%;
+  height: 100%;
+  background-image: url(44.jpg);
+  background-repeat: no-repeat;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.body-cover {
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  width: 1880px;
+  height: 950px;
+  box-sizing: border-box;
+}
+
 .body {
   width: 1880px;
   height: 950px;
