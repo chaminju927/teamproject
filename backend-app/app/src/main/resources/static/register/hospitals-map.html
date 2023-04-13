@@ -8,10 +8,14 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
     />
-
+    <title>간단한 지도 표시하기</title>
     <script
       type="text/javascript"
-      src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=YOUR_CLIENT_ID"
+      src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=3qoo58duf9"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=3qoo58duf9&submodules=geocoder"
     ></script>
     <title>Pages / Contact - NiceAdmin Bootstrap Template</title>
     <meta content="" name="description" />
@@ -337,151 +341,17 @@
       <section class="section contact align-middle">
         <div class="pagetitle">
           <h1>나의 병원 정보</h1>
-          <div id="hospitalNo" class="hos-no" style="display: none"></div>
-          <div id="hosName" class="hos-name"></div>
         </div>
+        <form id="hos-map-form">
+          <input
+            id="hosAddr"
+            class="hos-addr"
+            type="text"
+            style="display: none"
+          />
+          <div id="map" style="width: 100%; height: 450px"></div>
+        </form>
       </section>
-
-      <span class="align-middle">
-        <section class="section contact">
-          <div class="parent">
-            <form id="hos-mypage-form">
-              <div class="col-xl-11">
-                <div class="row">
-                  <div class="col-lg-6 card-size">
-                    <div class="info-box card">
-                      <i class="bi bi-telephone"></i>
-                      <h3>연락처</h3>
-                      <p>전화번호</p>
-                      <div id="hosTel" class="hos-tel"></div>
-                      <!-- <p>홈페이지</p> -->
-                      <!-- <a href=""></a> -->
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="info-box card">
-                      <i class="bi bi-clock"></i>
-                      <h3>진료 시간 안내</h3>
-                      <p>시간</p>
-                      <div id="hosTime" class="hos-time"></div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="info-box card">
-                      <i class="bi bi-info-circle"></i>
-                      <h3>진료 과목</h3>
-                      <div id="hosSub" class="hos-sub"></div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="info-box card">
-                      <i class="bi bi-geo-alt"></i>
-                      <h3>오시는 길</h3>
-                      <div
-                        id="hosAddr"
-                        class="hos-addr"
-                        onclick="goToHospitalMap()"
-                      >
-                        ${hospital.hosAddr}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-
-            <div class="col-xl-11">
-              <div class="card p-4">
-                <div
-                  id="carouselExampleIndicators"
-                  class="carousel slide"
-                  data-bs-ride="true"
-                >
-                  <div class="carousel-indicators">
-                    <button
-                      type="button"
-                      data-bs-target="#carouselExampleIndicators"
-                      data-bs-slide-to="0"
-                      class="active"
-                      aria-current="true"
-                      aria-label="Slide 1"
-                    ></button>
-                    <button
-                      type="button"
-                      data-bs-target="#carouselExampleIndicators"
-                      data-bs-slide-to="1"
-                      aria-label="Slide 2"
-                    ></button>
-                    <button
-                      type="button"
-                      data-bs-target="#carouselExampleIndicators"
-                      data-bs-slide-to="2"
-                      aria-label="Slide 3"
-                    ></button>
-                  </div>
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img
-                        src="https://www.bonebest.co.kr/images/hospital-inside-mobile/waiting-room/waiting-room1.jpg"
-                        class="d-block w-100"
-                        alt="..."
-                      />
-                    </div>
-                    <div class="carousel-item">
-                      <img
-                        src="http://m.therodem.com/file_data/rodem2017/2018/08/09/b38428414f97589e064828d11d85cf0f.jpg"
-                        class="d-block w-100"
-                        alt="..."
-                      />
-                    </div>
-                    <div class="carousel-item">
-                      <img
-                        src="http://www.snuh.org/upload/board/DF/df998729a14b447bb4a4e5305166a538.jpg"
-                        class="d-block w-100"
-                        alt="..."
-                      />
-                    </div>
-                  </div>
-                  <button
-                    class="carousel-control-prev"
-                    type="button"
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev"
-                  >
-                    <span
-                      class="carousel-control-prev-icon"
-                      aria-hidden="true"
-                    ></span>
-                    <span class="visually-hidden">Previous</span>
-                  </button>
-                  <button
-                    class="carousel-control-next"
-                    type="button"
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next"
-                  >
-                    <span
-                      class="carousel-control-next-icon"
-                      aria-hidden="true"
-                    ></span>
-                    <span class="visually-hidden">Next</span>
-                  </button>
-                </div>
-                <br />
-                <div class="text-center">
-                  <button
-                    type="button"
-                    class="btn btn-primary"
-                    onClick="location.href='doctors-myhospital-update.html'"
-                  >
-                    정보 변경하기
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </span>
     </main>
     <!-- End #main -->
 
@@ -522,19 +392,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
     <script>
-      const form = document.getElementById("hos-mypage-form");
+      var mapOptions = {
+        center: new naver.maps.LatLng(37.3595704, 127.105399),
+        zoom: 10,
+      };
+
+      var map = new naver.maps.Map("map", mapOptions);
+
+      const form = document.getElementById("hos-map-form");
       const formData = new FormData(form);
       let no = new URL(location.href).searchParams.get("no");
 
-      function goToHospitalMap() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const hospitalNo = urlParams.get("no");
-        location.href = `http://localhost:8080/register/hospitals-map.html?no=${hospitalNo}`;
-      }
-
       // 폼 유효성 검사 및 요청
       if (form.checkValidity()) {
-        let json = JSON.stringify(Object.fromEntries(formData));
         fetch(`http://localhost:8080/hospital/list/${no}`, {
           method: "GET",
         })
@@ -542,18 +412,46 @@
           .then((result) => {
             if (result.status == "success") {
               const hospital = result.data;
-              let photos = hospital.hosphotos;
-              for (let i = 0; i < photos.length; i++) {
-                let photo = photos[i];
-                $(".d-block")[i].src = photo.hosPhotoUrl;
-              }
-              document.getElementById("hospitalNo").innerHTML =
-                hospital.hospitalNo;
-              document.getElementById("hosName").innerHTML = hospital.hosName;
-              document.getElementById("hosTel").innerHTML = hospital.hosTel;
-              document.getElementById("hosTime").innerHTML = hospital.hosTime;
-              document.getElementById("hosSub").innerHTML = hospital.hosSub;
-              document.getElementById("hosAddr").innerHTML = hospital.hosAddr;
+              document.getElementById("hosAddr").value = hospital.hosAddr;
+
+              // 주소로 지도 검색
+              naver.maps.Service.geocode(
+                { address: hospital.hosAddr },
+                function (status, response) {
+                  if (status === naver.maps.Service.Status.ERROR) {
+                    return alert("Something wrong!");
+                  }
+                  var new_position = new naver.maps.LatLng(
+                    response.v2.addresses[0].y,
+                    response.v2.addresses[0].x
+                  );
+                  map.setCenter(new_position);
+
+                  var marker = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(
+                      response.v2.addresses[0].y,
+                      response.v2.addresses[0].x
+                    ),
+                    map: map,
+                  });
+
+                  // 마커 클릭 시 정보창 표시
+                  naver.maps.Event.addListener(marker, "click", function () {
+                    var infowindow = new naver.maps.InfoWindow({
+                      content:
+                        "<div style='background-color:#E6E6FA;'>" +
+                        "<h3>" +
+                        hospital.hosName +
+                        "</h3><p>" +
+                        hospital.hosAddr +
+                        "</h3></p>" +
+                        hospital.hosTel +
+                        "</p>",
+                    });
+                    infowindow.open(map, marker);
+                  });
+                }
+              );
             } else {
               alert("입력실패");
             }
@@ -565,6 +463,27 @@
       } else {
         form.reportValidity();
       }
+      // naver.maps.Service.geocode(
+      //   { address: "666" },
+      //   function (status, response) {
+      //     if (status === naver.maps.Service.Status.ERROR) {
+      //       return alert("Something wrong!");
+      //     }
+      //     var new_position = new naver.maps.LatLng(
+      //       response.v2.addresses[0].y,
+      //       response.v2.addresses[0].x
+      //     );
+      //     map.setCenter(new_position);
+
+      //     var marker = new naver.maps.Marker({
+      //       position: new naver.maps.LatLng(
+      //         response.v2.addresses[0].y,
+      //         response.v2.addresses[0].x
+      //       ),
+      //       map: map,
+      //     });
+      //   }
+      // );
     </script>
   </body>
 </html>
