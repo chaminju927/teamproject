@@ -2,18 +2,20 @@
 <projectDescription>
 	<name>backend</name>
 	<comment></comment>
-	<projects>
-	</projects>
-	<buildSpec>
-		<buildCommand>
-			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-	</buildSpec>
+	<projects/>
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+<<<<<<< HEAD
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments/>
+		</buildCommand>
+	</buildSpec>
+	<linkedResources/>
+	<filteredResources/>
+=======
 	<filteredResources>
 		<filter>
 			<id>1681274988972</id>
@@ -25,4 +27,5 @@
 			</matcher>
 		</filter>
 	</filteredResources>
+>>>>>>> 7e18343af93ffc6b649cf3fbfc95a026c0fcdcba
 </projectDescription>
