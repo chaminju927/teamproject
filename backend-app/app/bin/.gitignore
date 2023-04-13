@@ -1,17 +1,1 @@
-/.apt_generated/
-/.apt_generated_tests/
-<<<<<<< HEAD
-/.gitignore
-/main/
-/test/
-<<<<<<< HEAD
-/main/
-=======
-=======
->>>>>>> ae28cc567fca0d0d2b146a888f0a9be1f03ffd12
-/.settings/
->>>>>>> 2c42fa2f056d135cdf361705e6e449a471d3cb97
-/src/
-/default/
-/generated-sources/
-/generated-test-sources/
+/bin/

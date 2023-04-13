@@ -152,9 +152,9 @@
                             id="password"
                             class="form-control"
                             placeholder="8자 이상 숫자, 특수 문자 포함"
-                            pattern="^(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
-                            required
                           />
+                          pattern="^(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
+                          required />
                           <div
                             id="password-validation-msg"
                             class="validation-msg"
@@ -174,8 +174,8 @@
                             id="confirmPassword"
                             class="form-control"
                             placeholder="비밀번호를 다시 입력해주세요."
-                            required
                           />
+                          required />
                           <div
                             id="confirm-password-validation-msg"
                             class="validation-msg"
@@ -211,10 +211,9 @@
                             name="tel"
                             class="form-control"
                             placeholder="'-' 없이 입력"
-                            pattern="^01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}$"
-                            maxlength="13"
-                            oninput="autoTelHyphen(event)"
-                            required
+                          />
+                          pattern="^01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}$"
+                          maxlength="13" oninput="autoTelHyphen(event)" required
                           />
                           <div
                             id="tel-validation-msg"
@@ -436,7 +435,33 @@
                         </div>
                       </div>
 
-                      <div class="register-list">
+                      <div class="register-degree-list">
+                        <div class="row mb-3">
+                          <label
+                            for="degree"
+                            class="col-sm-2 form-label padding-right-0"
+                            >학력</label
+                          >
+                          <div class="col-sm-9">
+                            <input
+                              type="text"
+                              id="degree"
+                              placeholder="학력 사항"
+                              class="form-control career"
+                            />
+                          </div>
+                          <div class="col-sm-1 btn-list">
+                            <button
+                              type="button"
+                              class="btn btn-outline-primary btn-sm add-degree-btn"
+                            >
+                              ＋
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="register-career-list">
                         <div class="row mb-3">
                           <label
                             for="career"
@@ -454,7 +479,7 @@
                           <div class="col-sm-1 btn-list">
                             <button
                               type="button"
-                              class="btn btn-outline-primary btn-sm add-btn"
+                              class="btn btn-outline-primary btn-sm add-career-btn"
                             >
                               ＋
                             </button>
@@ -464,7 +489,7 @@
 
                       <div class="row mb-3">
                         <button
-                          type="submit"
+                          type="button"
                           class="btn btn-primary w-100"
                           id="btn-insert"
                         >
@@ -474,7 +499,7 @@
                       <div class="col-12">
                         <p class="small mb-0">
                           이미 계정이 있으신가요?
-                          <a href="pages-login.html">로그인</a>
+                          <a href="../auth/doctors-login.html">로그인</a>
                         </p>
                       </div>
                     </form>
@@ -823,10 +848,46 @@
         }
       });
 
+      // 학력
       // '＋' 버튼 클릭 시 새로운 row div 추가
-      const addButton = document.querySelector('.add-btn');
-      addButton.addEventListener('click', () => {
-        const registerList = document.querySelector('.register-list');
+      const addDegreeButton = document.querySelector('.add-degree-btn');
+      addDegreeButton.addEventListener('click', () => {
+        const registerDegreeList = document.querySelector(
+          '.register-degree-list'
+        );
+        const newRow = document.createElement('div');
+        newRow.classList.add('row', 'mb-3');
+        newRow.innerHTML = `
+          <label class="col-sm-2 form-label padding-right-0"></label>
+          <div class="col-sm-9">
+            <input type="text" placeholder="학력 사항" class="form-control career">
+          </div>
+          <div class="col-sm-1 btn-list">
+            <button type="button" class="btn btn-outline-danger btn-sm remove-degree-btn">×</button>
+          </div>
+        `;
+        registerDegreeList.appendChild(newRow);
+      });
+
+      // '×' 버튼 클릭 시 해당 row div 삭제
+      const registerDegreeList = document.querySelector(
+        '.register-degree-list'
+      );
+      registerDegreeList.addEventListener('click', (event) => {
+        const removeDegreeButton = event.target.closest('.remove-degree-btn');
+        if (removeDegreeButton) {
+          const rowToRemove = removeDegreeButton.closest('.row');
+          rowToRemove.remove();
+        }
+      });
+
+      // 경력
+      // '＋' 버튼 클릭 시 새로운 row div 추가
+      const addCareerButton = document.querySelector('.add-career-btn');
+      addCareerButton.addEventListener('click', () => {
+        const registerCareerList = document.querySelector(
+          '.register-career-list'
+        );
         const newRow = document.createElement('div');
         newRow.classList.add('row', 'mb-3');
         newRow.innerHTML = `
@@ -835,18 +896,20 @@
             <input type="text" placeholder="경력 사항" class="form-control career">
           </div>
           <div class="col-sm-1 btn-list">
-            <button type="button" class="btn btn-outline-danger btn-sm remove-btn">×</button>
+            <button type="button" class="btn btn-outline-danger btn-sm remove-career-btn">×</button>
           </div>
         `;
-        registerList.appendChild(newRow);
+        registerCareerList.appendChild(newRow);
       });
 
       // '×' 버튼 클릭 시 해당 row div 삭제
-      const registerList = document.querySelector('.register-list');
-      registerList.addEventListener('click', (event) => {
-        const removeButton = event.target.closest('.remove-btn');
-        if (removeButton) {
-          const rowToRemove = removeButton.closest('.row');
+      const registerCareerList = document.querySelector(
+        '.register-career-list'
+      );
+      registerCareerList.addEventListener('click', (event) => {
+        const removeCareerButton = event.target.closest('.remove-career-btn');
+        if (removeCareerButton) {
+          const rowToRemove = removeCareerButton.closest('.row');
           rowToRemove.remove();
         }
       });
@@ -856,21 +919,21 @@
         const form = document.getElementById('doctors-register-form');
         const formData = new FormData(form);
 
-        // ID 확인
-        if (idInput.value.length < 4) {
-          idValidationMsg.textContent = 'ID를 4자 이상 입력하세요.';
-          idInput.classList.remove('is-valid', 'is-invalid');
-          idInput.classList.add('is-invalid');
-          idValidationMsg.style.color = '#dc3545';
-          isDuplicate = true;
-          return;
-        } else if (idInput.value.length >= 4 && isDuplicate) {
-          idValidationMsg.textContent = 'ID를 중복 확인하세요.';
-          idInput.classList.remove('is-valid', 'is-invalid');
-          idInput.classList.add('is-invalid');
-          idValidationMsg.style.color = '#dc3545';
-          return;
-        }
+        // // ID 확인
+        // if (idInput.value.length < 4) {
+        //   idValidationMsg.textContent = 'ID를 4자 이상 입력하세요.';
+        //   idInput.classList.remove('is-valid', 'is-invalid');
+        //   idInput.classList.add('is-invalid');
+        //   idValidationMsg.style.color = '#dc3545';
+        //   isDuplicate = true;
+        //   return;
+        // } else if (idInput.value.length >= 4 && isDuplicate) {
+        //   idValidationMsg.textContent = 'ID를 중복 확인하세요.';
+        //   idInput.classList.remove('is-valid', 'is-invalid');
+        //   idInput.classList.add('is-invalid');
+        //   idValidationMsg.style.color = '#dc3545';
+        //   return;
+        // }
 
         // 파일 변수
         const profileFile = document.getElementById('profile-file');
@@ -897,7 +960,7 @@
         career.forEach((input) => {
           careers.push(input.value);
         });
-        formData.set('career', careers.join(', '));
+        formData.append('career', careers.join(', '));
 
         // 폼 유효성 검사 및 요청
         if (form.checkValidity()) {
@@ -910,6 +973,30 @@
             resolve();
           }).then(() => {
             formData.append('phoUrl', url);
+
+            if (
+              $('#specialist').val() == '1' ||
+              $('#specialist').val() == '28' ||
+              $('#specialist').val() == '40'
+            ) {
+              formData.append('licenseName', $('#specialist').val());
+              formData.append('file', $('#license-file')[0].files[0]);
+            } else {
+              formData.append('licenseName', $('#specialist').val());
+              formData.append('file', $('#license-file')[0].files[0]);
+
+              let lnono = '';
+              if ($('#specialist').val() > 40) {
+                lnono = '40';
+              } else if ($('#specialist').val() > 28) {
+                lnono = '28';
+              } else if ($('#specialist').val() > 1) {
+                lnono = '1';
+              }
+              formData.append('licenseName', lnono);
+              formData.append('file', $('#specialist-file')[0].files[0]);
+            }
+
             json = JSON.stringify(Object.fromEntries(formData));
             console.log(json);
             fetch('http://localhost:8080/doctors', {
@@ -922,7 +1009,23 @@
               .then((response) => response.json())
               .then((result) => {
                 if (result.status == 'success') {
-                  location.reload();
+                  console.log('성공:', result);
+                  return result.data.no;
+                } else {
+                  alert('입력실패');
+                  console.log(result.data);
+                }
+              })
+              .then((dno) => {
+                console.log(dno);
+                fetch(`http://localhost:8080/doctors/${dno}`, {
+                  method: 'POST',
+                  body: formData,
+                });
+              })
+              .then((result) => {
+                if (result.status == 'success') {
+                  location.replace('../auth/doctors-login.html');
                   console.log('성공:', result);
                 } else {
                   alert('입력실패');

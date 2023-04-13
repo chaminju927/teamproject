@@ -63,7 +63,6 @@ $(".btn-1").click(() => {
   if (stat == 1)
     return
   stat = 1
-  $(".body")[0].style = "background-color: #0d6efd;";
   roots.render()
   setTimeout(() => {
     roots.render(
@@ -573,7 +572,6 @@ $(".btn-2").click(() => {
   if (stat == 2)
     return
   stat = 2
-  $(".body")[0].style = "background-color: rgb(219, 255, 119);";
   roots.render()
   setTimeout(() => {
     roots.render(
@@ -719,7 +717,6 @@ $(".btn-3").click(() => {
   if (stat == 3)
     return
   stat = 3
-  $(".body")[0].style = "background-color: rgb(0, 129, 129);";
   roots.render()
   setTimeout(() => {
     roots.render(
@@ -849,3 +846,53 @@ function submitFiles(no) {
     }
   });
 }
+
+let scleft = true;
+let scright = true;
+$(window).on("wheel", function (event){
+  // deltaY obviously records vertical scroll
+  
+  // event.originalEvent → JavaScript 의 wheelEvent 객체
+  // deltaY 값은 개인이 마우스 설정에서 설정한 휠 설정 값에 따라 다르다.
+  if(event.originalEvent.deltaY == 100 && scright){
+    console.log(event.originalEvent.deltaY +" "+$(document).scrollLeft());
+    new Promise(resolve => {
+      $('html').animate({scrollLeft : $(document).scrollLeft()+200}, 1)
+      scright = false;
+      resolve();
+    })
+    .then(() => {
+      setTimeout(() => {
+        scright = true;
+        console.log(scright)
+      }, 175)
+    })
+  }else if(event.originalEvent.deltaY == -100 && scleft) {
+    console.log(event.originalEvent.deltaY +" "+$(document).scrollLeft());
+    new Promise(resolve => {
+      $('html').animate({scrollLeft : $(document).scrollLeft()-200}, 1)
+      scleft = false;
+      resolve();
+    })
+    .then(() => {
+      setTimeout(() => {
+        scleft = true;
+        console.log(scleft)
+      }, 175)
+    })
+  }
+
+  if (event.originalEvent.deltaY < 0) {
+
+
+  }
+  else {
+
+
+  }
+});
+// $(window).scroll(function (event) { 
+//   console.log(event.originalEvent.deltaY +" "+$(document).scrollLeft());
+// 	// var scrollValue = $(document).scrollLeft(); 
+//   //   console.log(scrollValue); 
+// });

@@ -1,7 +1,7 @@
 let patientNo = 0;
 let samePw = false;
 
-patientNo = 15;
+patientNo = 17;
 
 if(patientNo > 0) {
   fetch(`http://192.168.0.7:8080/patients/${patientNo}`, {
