@@ -6,7 +6,6 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-<<<<<<< HEAD
 	<buildSpec>
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
@@ -15,17 +14,4 @@
 	</buildSpec>
 	<linkedResources/>
 	<filteredResources/>
-=======
-	<filteredResources>
-		<filter>
-			<id>1681274988972</id>
-			<name></name>
-			<type>30</type>
-			<matcher>
-				<id>org.eclipse.core.resources.regexFilterMatcher</id>
-				<arguments>node_modules|\.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
-			</matcher>
-		</filter>
-	</filteredResources>
->>>>>>> 7e18343af93ffc6b649cf3fbfc95a026c0fcdcba
 </projectDescription>
