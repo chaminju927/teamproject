@@ -152,7 +152,6 @@
                             id="password"
                             class="form-control"
                             placeholder="8자 이상 숫자, 특수 문자 포함"
-                          />
                           pattern="^(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
                           required />
                           <div
@@ -174,7 +173,6 @@
                             id="confirmPassword"
                             class="form-control"
                             placeholder="비밀번호를 다시 입력해주세요."
-                          />
                           required />
                           <div
                             id="confirm-password-validation-msg"
@@ -211,7 +209,6 @@
                             name="tel"
                             class="form-control"
                             placeholder="'-' 없이 입력"
-                          />
                           pattern="^01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}$"
                           maxlength="13" oninput="autoTelHyphen(event)" required
                           />
@@ -536,7 +533,6 @@
       src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
     ></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    <!-- <script type='text/babel' src="doctor-board.js"></script> -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
       // ID 변수
@@ -919,21 +915,21 @@
         const form = document.getElementById('doctors-register-form');
         const formData = new FormData(form);
 
-        // // ID 확인
-        // if (idInput.value.length < 4) {
-        //   idValidationMsg.textContent = 'ID를 4자 이상 입력하세요.';
-        //   idInput.classList.remove('is-valid', 'is-invalid');
-        //   idInput.classList.add('is-invalid');
-        //   idValidationMsg.style.color = '#dc3545';
-        //   isDuplicate = true;
-        //   return;
-        // } else if (idInput.value.length >= 4 && isDuplicate) {
-        //   idValidationMsg.textContent = 'ID를 중복 확인하세요.';
-        //   idInput.classList.remove('is-valid', 'is-invalid');
-        //   idInput.classList.add('is-invalid');
-        //   idValidationMsg.style.color = '#dc3545';
-        //   return;
-        // }
+        // ID 확인
+        if (idInput.value.length < 4) {
+          idValidationMsg.textContent = 'ID를 4자 이상 입력하세요.';
+          idInput.classList.remove('is-valid', 'is-invalid');
+          idInput.classList.add('is-invalid');
+          idValidationMsg.style.color = '#dc3545';
+          isDuplicate = true;
+          return;
+        } else if (idInput.value.length >= 4 && isDuplicate) {
+          idValidationMsg.textContent = 'ID를 중복 확인하세요.';
+          idInput.classList.remove('is-valid', 'is-invalid');
+          idInput.classList.add('is-invalid');
+          idValidationMsg.style.color = '#dc3545';
+          return;
+        }
 
         // 파일 변수
         const profileFile = document.getElementById('profile-file');
