@@ -2,9 +2,8 @@ const urlParams = new URL(location.href).searchParams;
 const no = urlParams.get('no');
 
 document.querySelector('#former-btn').onclick = (e) => {
-  location.href='community-list.html';
+  location.href='doctors-community-main.html';
 };
-
 
 Promise.all([
   fetch(`http://localhost:8080/community/${no}`),
@@ -105,30 +104,7 @@ document.querySelector('#rec-save-btn').onclick = (e) => {
       console.error("실패:", error);
     })
 };
-
-// //댓글 삭제
-// document.querySelector(`#btn-recomment-${recommentData.data.recNo}`).onclick = (e) => {
-//   console.log(recommentData);
-//   fetch(`http://localhost:8080/recomment/${no}/${recommentData.data.recNo}`,{
-//     method: 'DELETE',
-//   })
-//   .then((response) => response.json())
-//   .then((data) => {
-//     console.log("성공:", data);
-//     location.href=reload();
-    
-//     if (data.status == 'failure') {
-//       alert('댓글 삭제 실패!\n' + data.data);
-//       return;
-//     }
-//   })
-//   .catch((error) => {
-//     console.error("실패:", error);
-//   });
-//   };
-
   
-
 
 //게시물 내용 변경
 document.querySelector('#update-btn').onclick = (e) => {
@@ -145,13 +121,12 @@ document.querySelector('#update-btn').onclick = (e) => {
       content: document.querySelector('#content').value,
       filter: 0,
       area: 0
-      //Img:  $('#comImg')[0].src
     }),
   })
   .then((response) => response.json())
   .then((data) => {
     console.log("성공:", data);
-    location.reload();
+    location.href = location.href;
     //submitFiles(data.data.no);
   })
   .catch((error) => {
@@ -168,7 +143,7 @@ document.querySelector('#update-btn').onclick = (e) => {
     .then((response) => response.json())
     .then((data) => {
       console.log("성공:", data);
-      location.href='community-list.html';
+      location.href='doctors-community-main.html';
       
       if (data.status == 'failure') {
         alert('삭제 실패!\n' + data.data);
@@ -189,12 +164,14 @@ document.querySelector('#update-btn').onclick = (e) => {
     })
     .then((response) => response.json())
     .then((data) => {
+
+      document.querySelector('#btn-img-delete').style.display = 'none';
+      location.href = location.href;
+
       if (data.status == 'failure') {
         console.log('이미지 삭제 실패!\n' + data.data);
         return;
       } 
-      console.log("성공:", data);
-      document.querySelector('#btn-img-delete').style.display = 'none';
     })
     .catch((error) => {
       console.log("실패:", error);

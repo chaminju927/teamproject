@@ -54,7 +54,7 @@ console.log(no);
     type: 'POST',
     success: function (data) {
       console.log("데이터 업로드 성공");
-      location.href = 'community-list.html';
+      location.href = 'doctors-community-main.html';
       
     },
     error: function (e) {

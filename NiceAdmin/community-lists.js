@@ -1,4 +1,8 @@
 
+document.querySelector('#btn-write').onclick = (e) => {
+  location.href='community-write.html';
+};
+
 tbody = document.querySelector('#community-list')
 
 fetch('http://localhost:8080/community/list')
