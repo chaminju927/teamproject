@@ -46,7 +46,9 @@ fetch('http://localhost:8080/community/list')
     var hotPostings = data.data.sort(function(a, b) {
       return b.viewCnt - a.viewCnt;
     }).slice(0, 2);
-    for (var row of data.data) {
+
+     for (var i = data.data.length - 1; i >= 0; i--) {
+      var row = data.data[i];
       html += `<tr>
           <td>${row.no}</td>
           <td><a href="community-view.html?no=${row.no}">${row.title}</a></td>
