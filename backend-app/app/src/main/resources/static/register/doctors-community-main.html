@@ -141,7 +141,7 @@
 
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
           <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-          <span class="d-none d-md-block dropdown-toggle ps-2">엄 진 영</span>
+          <span id="username" class="d-none d-md-block dropdown-toggle ps-2"></span>
         </a><!-- End Profile Iamge Icon -->
 
 
@@ -344,7 +344,30 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script type='text/babel' src="doctor-boardlist.js"></script>
   <script src="community-lists.js"></script>
+
+  <!-- 사용자 스크립트 추가-->
+  <script>
+    fetch(`http://localhost:8080/auth/user`, {
+      method: 'GET'
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status == "success") {
+          document.querySelector('#username').innerHTML = data.data.name;
+          console.log(data.data)
+          return data.data;
+        } else {
+          location.href = "../auth/doctors-login.html"
+        }
+        return data.data
+      })
+      .then((user) => {
+        myno = user.no
+        console.log(myno)
+      })
+  </script>
 
 </body>
 

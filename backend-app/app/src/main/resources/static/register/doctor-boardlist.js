@@ -11,7 +11,7 @@ function Td(props) {
   return (<td>{props.data}</td>)
 }
 
-  let myno = 0;
+  let myno = 0; 
 
   fetch(`http://localhost:8080/auth/user`, {
     method: 'GET'
