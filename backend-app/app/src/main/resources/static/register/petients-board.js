@@ -350,25 +350,23 @@ class DocInfo extends React.Component {
     this.state = {
       data: props.props
     }
-  } 
+  }  
   render() {
     return (
       <div className="top-area text-center">
-        <img className="doc-img" src={this.state.data.doc_image} alt="의사 이미지"/>
         <div className="doc-area">
-          
-          <span className="doc-name badge bg-info text-dark">
-            <i className="bx bx-user"></i>{this.state.data.doc_name}
+          <img className="doc-img" src={this.state.data.doc_image} alt="의사 이미지"/>
+          <span className="doc-name">
+            <i className="bx bx-user"></i>{' '}{this.state.data.doc_name}
           </span>
-          <div className="doc-career badge bg-info text-dark">
-            <span><i class="bx bxs-heart-circle"></i>경력 사항 1</span><br></br>
-            <span><i class="bx bxs-heart-circle"></i>경력 사항 2</span>
-          </div>
+        </div>
+        <div className="doc-career">
+          <span class="badge custom-badge text-dark"><i class="fas fa-solid fa-certificate"></i>{' '}경력 사항</span>
         </div>
         <div className="hos-area">
-          <span className="hos-name badge bg-info text-dark"><i class="bx bx-plus-medical"></i>{this.state.data.hos_name}</span>
-          <span className="hos-info badge bg-info text-dark" ><i class="ri-information-line"></i>병원 정보</span>
-          <span className="hos-addr badge bg-info text-dark"><i class="bi-hospital"></i>{this.state.data.hos_addr}</span>
+          <span className="hos-name"><i class="bx bx-plus-medical"></i>{' '}{this.state.data.hos_name}</span>
+          <span className="hos-info" ><i class="fas fa-stethoscope"></i>{' '}병원 진료 과목</span>
+          <span className="hos-addr"><i class="bi-hospital"></i>{' '}{this.state.data.hos_addr}</span>
         </div>
       </div>  
     )
