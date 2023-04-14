@@ -42,13 +42,11 @@ fetch('http://localhost:8080/community/list')
       }
     }
    
+    // for (var i = data.data.length - 1; i >= 0; i--) {
+     // var row = data.data[i];
     var html = '';
-    var hotPostings = data.data.sort(function(a, b) {
-      return b.viewCnt - a.viewCnt;
-    }).slice(0, 2);
-
-     for (var i = data.data.length - 1; i >= 0; i--) {
-      var row = data.data[i];
+    
+     for( row of data.data) {
       html += `<tr>
           <td>${row.no}</td>
           <td><a href="community-view.html?no=${row.no}">${row.title}</a></td>
@@ -60,8 +58,14 @@ fetch('http://localhost:8080/community/list')
     }
     console.log(data);
     tbody.innerHTML = html;
+  
 
     // 조회수가 가장 높은 게시글 정보를 HTML에 추가
+
+    var hotPostings = data.data.sort(function(a, b) {
+      return b.viewCnt - a.viewCnt;
+    }).slice(0, 2);
+
     var hotPosting1 = hotPostings[0];
     var hotPosting2 = hotPostings[1];
     document.querySelector("#hot-posting1").textContent = `${hotPosting1.title} (${hotPosting1.viewCnt} views)`;

@@ -1,19 +1,18 @@
-# 네이버 클라우드 AIaaS 개발자 양성과정 Final Project
-### 비대면 진료와 의사 커뮤니티를 제공하는 사이트입니다.
+## 네이버 클라우드 AIaaS 개발자 양성과정 Final Project
 
 ## 🖥️ 프로젝트 소개
-### 비대면 진료와 의사 커뮤니티를 제공하는 사이트입니다.
+### 의사의 진료가 급한 환자들을 위해 비대면 진료 서비스를 제공합니다. <br>증상 작성 후 의사의 진단글이 입력되며 이를 통해 환자는 필요한 정보를 얻을 수 있게 합니다.<br>의사 커뮤니티 사이트를 통해 의사간 다양한 소통과 정보 교환이 가능하게 합니다.<br> 네이버 클라우드에서 제공하는 AI서비스 역시 활용합니다.
 <br>
 
 ## 🕰️ 개발 기간
-* #### 23.04.01 - 23.05.04
+* ### 23.04.01 - 23.05.04
 
-### 🧑‍🤝‍🧑 멤버구성
- - #### 팀원1 : 조승현([@whtmdgus](http://github.com/whtmdgus)) - 비대면 진료 board(CRUD), 발표
- - #### 팀원2 : 차민주([@chaminju927](http://github.com/chaminju927)) - 의사 커뮤니티 게시판(CRUD), 프론트엔드 UI작업
- - #### 팀원3 : 이예찬([@omelase](http://github.com/omelase)) - 의사/환자 회원가입(CRUD)
- - #### 팀원4 : 이준영([@molang2](http://github.com/molang2)) - 로그인
- - #### 팀원5 : 김현우([@hyunwookimkim](http://github.com/hyunwookimkim)) - 
+## 🧑‍🤝‍🧑 멤버구성
+ - ### 팀원1 : 조승현([@whtmdgus](http://github.com/whtmdgus)) - 비대면 진료 board(CRUD), 발표
+ - ### 팀원2 : 차민주([@chaminju927](http://github.com/chaminju927)) - 의사 커뮤니티 게시판(CRUD), 프론트엔드 UI작업
+ - ### 팀원3 : 이예찬([@omelase](http://github.com/omelase)) - 의사/환자 회원가입(CRUD)
+ - ### 팀원4 : 이준영([@molang2](http://github.com/molang2)) - 로그인
+ - ### 팀원5 : 김현우([@hyunwookimkim](http://github.com/hyunwookimkim)) - 병원 정보 관리(CRUD)
 
 ### ⚙️ 개발 환경과 기술 스택
 - `Java 17`, `JDK 1.8.0`
@@ -51,3 +50,11 @@
 - 영화관 추가(대분류, 소분류)
 - 영화 추가(상영시간 및 상영관 설정)
 -->
+
+## 🗒 진행 기록 및 중간 발표 기록
+### 2023/04/14
+- #### 진행 상황 및 발표 내용 : 
+  #### 1. 의사/환자 회원 가입 CRUD 구현(카카오 주소 API연동, 네이버 문자 인증 서비스 연동)
+  #### 2. 로그인 계정 연동
+  #### 3. 커뮤니티 글/댓글 CRUD 구현
+  #### 4. 의사 > 병원 정보 입력/ 리스트 출력 
