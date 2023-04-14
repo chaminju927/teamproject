@@ -35,6 +35,10 @@
     where r.rcom_no=#{no}      
   </delete>
   
+  <delete id="delete" parameterType="int">
+   delete from app_recomment r 
+    where r.com_no=#{no}      
+  </delete>
  
 </mapper>
 
