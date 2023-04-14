@@ -70,7 +70,7 @@ public class HospitalController {
             .setHosphotos(hosPhotoService.hget(no)));
   }
 
-  @PutMapping("{no}")
+  @PutMapping("/{no}")
   public Object update(
       @PathVariable int no,
       @RequestBody Hospital hospital) {
