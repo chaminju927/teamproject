@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import bitcamp.backend.community.service.CommunityImgService;
 import bitcamp.backend.community.service.CommunityService;
+import bitcamp.backend.community.service.RecommentService;
 import bitcamp.backend.community.vo.Community;
 import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
@@ -21,11 +22,16 @@ import bitcamp.util.RestStatus;
 @CrossOrigin("*")
 public class CommunityController {
 
-  //Logger log = LogManager.getLogger(getClass());
+  // Logger log = LogManager.getLogger(getClass());
 
-  @Autowired private CommunityService communityService;
+  @Autowired
+  private CommunityService communityService;
 
-  @Autowired private CommunityImgService communityImgService;
+  @Autowired
+  private CommunityImgService communityImgService;
+
+  @Autowired
+  private RecommentService recommentService;
 
   // @GetMapping("/test")
   // public void test(){
@@ -44,16 +50,12 @@ public class CommunityController {
 
   @GetMapping("/list")
   public Object list() {
-    return new RestResult()
-        .setStatus(RestStatus.SUCCESS)
-        .setData(communityService.list());
+    return new RestResult().setStatus(RestStatus.SUCCESS).setData(communityService.list());
   }
 
   @GetMapping("{no}")
   public Object view(@PathVariable int no) {
-    return new RestResult()
-        .setStatus(RestStatus.SUCCESS)
-        .setData(communityService.get(no))
+    return new RestResult().setStatus(RestStatus.SUCCESS).setData(communityService.get(no))
         .setPhoto(communityImgService.get(no));
   }
 
@@ -63,20 +65,21 @@ public class CommunityController {
     communityService.update(community);
 
     RestResult restResult = new RestResult();
-    return restResult.setStatus(RestStatus.SUCCESS)
-        .setData(community);
+    return restResult.setStatus(RestStatus.SUCCESS).setData(community);
   }
 
 
   @DeleteMapping("{no}")
   public Object delete(@PathVariable int no) {
     System.out.println("커뮤 사진번호 : " + no);
+
+    recommentService.deleteCno(no);
+
     communityImgService.delete(no);
 
     communityService.delete(no);
 
-    return new RestResult()
-        .setStatus(RestStatus.SUCCESS);
+    return new RestResult().setStatus(RestStatus.SUCCESS);
   }
 
 }

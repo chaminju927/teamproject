@@ -49,15 +49,16 @@ public class DoctorController {
   @PostMapping
   public Object insert(@RequestBody Doctor doctor) {
     doctorService.add(doctor);
+    System.out.println(doctor);
 
     return new RestResult().setStatus(RestStatus.SUCCESS).setData(doctor);
   }
 
-  @PostMapping("/{no}")
-  public Object insertL(@PathVariable int no, MultipartHttpServletRequest request) {
+  @PostMapping("{no}")
+  public void insertL(@PathVariable int no, MultipartHttpServletRequest request) {
     List<MultipartFile> files = request.getFiles("file");
     String[] names = request.getParameterValues("licenseName");
-    for(int i=0;i<files.size();i++) {
+    for (int i = 0; i < files.size(); i++) {
       String url = objectStorageService.uploadFile(licenseImg, files.get(i));
       url = url.split("/")[5];
       License license = new License();
@@ -68,8 +69,7 @@ public class DoctorController {
       license.setPhoType(files.get(i).getContentType());
       licenseService.add(license);
     }
-
-    return new RestResult().setStatus(RestStatus.SUCCESS);
+    System.out.println(no);
   }
 
   @PostMapping("/profileimg")
