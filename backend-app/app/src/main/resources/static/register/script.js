@@ -59,512 +59,895 @@ var catSelect = "";
 
 const roots = ReactDOM.createRoot(document.getElementById('roots'));
 
+
+let myno = 0;
+let mydata;
+
+fetch(`http://localhost:8080/auth/user`, {
+  method: 'GET'
+})
+  .then(response => response.json())
+  .then(data => {
+    if (data.status == "success") {
+      myno = data.data.no;
+      mydata = data.data;
+      console.log(mydata)
+    } else {
+
+    }
+})
+
 $(".btn-1").click(() => {
   if (stat == 1)
     return
   stat = 1
   roots.render()
   setTimeout(() => {
-    roots.render(
-      <div id="root">
-        <div className="insert-left">
-          <h3>필수 입력항목</h3>
-          <div className="input-group mb-3" style={{ height: 50, float: "left" }}>
-            <span className="input-group-text" id="basic-addon1">
-              제목
-            </span>
-            <input
-              type="text"
-              className="form-control insert-title"
-              placeholder="글의 제목이 되는 부분으로 증상의 간단한 설명을 작성하십시오"
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-            />
-          </div>
-          <h5>증상 부위 또는 증상의 종류</h5>
-          <div className="input-group mb-3" style={{ height: 38 }}>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>머리</span>
+    if(myno > 0) {
+      roots.render(
+        <div id="root">
+          <div className="insert-left">
+            <h3>필수 입력항목</h3>
+            <div className="input-group mb-3" style={{ height: 50, float: "left" }}>
+              <span className="input-group-text" id="basic-addon1">
+                제목
+              </span>
               <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="머리"
-                aria-label="Checkbox for following text input"
+                type="text"
+                className="form-control insert-title"
+                placeholder="글의 제목이 되는 부분으로 증상의 간단한 설명을 작성하십시오"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
               />
             </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>인후</span>
+            <h5>증상 부위 또는 증상의 종류</h5>
+            <div className="input-group mb-3" style={{ height: 38 }}>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>머리</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="머리"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>인후</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="인후"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>가슴</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="가슴"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>복부</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="복부"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>손,발</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="손발"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>팔</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="팔"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>하체</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="하체"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>허리</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="허리"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>두통</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="두통"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>흉통(가슴)</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="흉통"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>복통</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="복통"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>요통</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="요통"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>치통</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="치통"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상1</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상1"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상2</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상2"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+            </div>
+            <div className="input-group mb-3">
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상4</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상4"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상5</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상5"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상6</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상6"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상7</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상7"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상8</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상8"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
               <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="인후"
-                aria-label="Checkbox for following text input"
+                type="text"
+                className="form-control"
+                placeholder="기타문항"
+                aria-label="Text input with checkbox"
               />
             </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>가슴</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="가슴"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>복부</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="복부"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>손,발</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="손발"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>팔</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="팔"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>하체</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="하체"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>허리</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="허리"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>두통</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="두통"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>흉통(가슴)</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="흉통"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>복통</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="복통"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>요통</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="요통"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>치통</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="치통"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>증상1</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="증상1"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>증상2</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="증상2"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-          </div>
-          <div className="input-group mb-3">
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>증상4</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="증상4"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>증상5</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="증상5"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>증상6</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="증상6"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>증상7</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="증상7"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>증상8</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="증상8"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>증상</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="증상"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>증상</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="증상"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>증상</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="증상"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>증상</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="증상"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>증상</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="증상"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>증상</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="증상"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>증상</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="증상"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>증상</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="증상"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <div className="input-group-text">
-              <span className="font12" style={{ marginRight: 2 }}>증상</span>
-              <input
-                className="form-check-input mt-0"
-                type="checkbox"
-                defaultValue="증상"
-                aria-label="Checkbox for following text input"
-              />
-            </div>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="기타문항"
-              aria-label="Text input with checkbox"
-            />
-          </div>
-          <h3>추가 입력항목</h3>
-          <div className="input-group mb-3" style={{ width: 200, float: "left" }}>
-            <span className="input-group-text" id="basic-addon1">
-              이름
-            </span>
-            <input
-              type="text"
-              className="form-control insert-name"
-              placeholder="이름"
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-            />
-          </div>
-          <div className="input-group mb-3" style={{ marginLeft: 20, width: 120, float: "left" }}>
-            <span className="input-group-text" id="basic-addon1">
-              나이
-            </span>
-            <input
-              type="text"
-              className="form-control insert-age"
-              placeholder="대략"
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-            />
-          </div>
-          <div className="input-group mb-3" style={{ marginLeft: 20, width: 200, float: "left" }}>
-            <span className="input-group-text" id="basic-addon1">
-              연락처
-            </span>
-            <input
-              type="text"
-              className="form-control insert-tel"
-              placeholder="연락처"
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-            />
-          </div>
-
-          <div className="form-check form-check-inline" style={{ padding: 0, lineHeight: 2, with: 40, height: 40, marginLeft: 20, float: "left" }}>
-            <input
-              type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio1"
-              defaultValue="남"
-            />
-            <label className="form-check-label" htmlFor="inlineRadio1">
-              남
-            </label>
-          </div>
-          <div className="form-check form-check-inline" style={{ padding: 0, lineHeight: 2, with: 40, height: 40, marginLeft: 0, float: "left" }}>
-            <input
-              type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio2"
-              defaultValue="여"
-            />
-            <label className="form-check-label" htmlFor="inlineRadio2">
-              여
-            </label>
-          </div>
-
-          {/* <div className="input-group mb-3" style={{ marginLeft: 5, marginRight: 5, width: 320, float: "left" }}>
-            <span className="input-group-text" id="basic-addon1">
-              비밀번호
-            </span>
-            <input
-              type="password"
-              className="form-control insert-password"
-              placeholder="작성글 조회시에 필요합니다"
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-            />
-          </div> */}
-
-          {/* <button type="button" className="btn btn-primary insert-btn" onClick={() => {
-            // 비밀번호 중복 조회
-            if ($(".insert-password").val().length > 3) {
-              fetch("http://localhost:8080/boardPassword", {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ // 스프링에 전달할 값
-                  password: $(".insert-password").val(),
-                })
-              })
-                .then(response => response.json())
-                .then(data => {
-                  if (data.status == "success") {
-                    alert("중복 된 비밀번호")
-                  } else {
-                    alert("사용가능한 비밀번호")
-                    bool = $(".insert-password").val();
-                  }
-                })
-
-            } else {
-              alert("비밀번호 4자리 이상 입력 필요")
-            }
-            // .then((response) => response.json())
-            // .then((data) => console.log(data));
-          }}>
-            중복확인
-          </button> */}
-
-
-          <div className="input-group mb-3" style={{ marginLeft: 0, marginRight: 200, width: 500, float: "left" }}>
-            <span className="input-group-text" id="basic-addon1">
-              주소
-            </span>
-            <input
-              type="text"
-              className="form-control insert-addr1"
-              placeholder="새주소?"
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-            />
-          </div>
-
-          <form>
-            <input type="file" name="files" multiple="multiple" style={{ width: 250 }} />
-            <span style={{ fontWeight: 900 }}>증상 사진 선택</span>
-          </form>
-
-          <div className="input-group mb-3" style={{ width: 700, float: "left" }}>
-            <span className="input-group-text" id="basic-addon1">
-              상세주소
-            </span>
-            <input
-              type="text"
-              className="form-control insert-addr2"
-              placeholder="예: xxx동 xxx호"
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-            />
-          </div>
-          <div className="input-group" style={{ height: 150 }}>
-            <span className="input-group-text">
-              그 외<br />
-              전달사항
-            </span>
-            <textarea
-              className="form-control insert-another"
-              aria-label="With textarea"
-              defaultValue={""}
-            />
-          </div>
-          <div className="insert-btns">
-            <button type="button" className="btn btn-primary insert-btn" onClick={() => {
-              // 저장버튼 툴린후에 발생할 코드 입력 필요
-              let pa = "";
-              let vaol = $(".form-check-input:checked");
-              for (let i = 0; i < vaol.length; i++) {
-                if (vaol[i].value.length > 0) {
-                  pa = pa + (vaol[i].value);
-                  if (i != vaol.length - 1) {
-                    pa = pa + ",";
+            <h3>추가 입력항목</h3>
+  
+            <form>
+              <input type="file" name="files" multiple="multiple" style={{ width: 250 }} />
+              <span style={{ fontWeight: 900 }}>증상 사진 선택</span>
+            </form>
+  
+            <div className="insert-btns">
+              <button type="button" className="btn btn-primary insert-btn" onClick={() => {
+                // 저장버튼 툴린후에 발생할 코드 입력 필요
+                let pa = "";
+                let vaol = $(".form-check-input:checked");
+                for (let i = 0; i < vaol.length; i++) {
+                  if (vaol[i].value.length > 0) {
+                    pa = pa + (vaol[i].value);
+                    if (i != vaol.length - 1) {
+                      pa = pa + ",";
+                    }
                   }
                 }
-              }
-              if ($(".insert-title").val().length > 0 && $(".form-check-input:checked").length > 0) {
-
-                fetch('http://localhost:8080/insert', {
-                  method: 'POST', // 또는 'PUT'
+                if ($(".insert-title").val().length > 0 && $(".form-check-input:checked").length > 0) {
+  
+                  fetch('http://localhost:8080/insert', {
+                    method: 'POST', // 또는 'PUT'
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ // 스프링에 전달할 값
+                      no: myno,
+                      title: $(".insert-title").val(),
+                      pain: pa,
+                      name: mydata.name,
+                      age: mydata.birth.split("-")[0] - new Date().getYear()+1900,
+                      tel: mydata.tel,
+                      addr1: mydata.addr,
+                      addr2: "",
+                      another: mydata.phy + "\n" + mydata.drug,
+                      gender: mydata.gender ? "남" : "여",
+                    }),
+                  }).then(data => data.json())
+                    .then(data => {
+                      let bno = data.no;
+                      submitFiles(bno);
+                      alert("인증 번호(비회원 작성글 조회시에 필요 합니다) : "+data.serial);
+                    })
+  
+                  $("#root").fadeOut(1000)
+                  setTimeout(() => {
+                    roots.render(
+                    );
+                  }, 1000);
+                } else {
+                  alert("제목 및 필수 선택 사항 입력 필요")
+                }
+                // .then((response) => response.json())
+                // .then((data) => console.log(data));
+              }}>
+                저장
+              </button>
+              <button type="button" className="btn btn-primary close-btn" onClick={() => {
+                // 취소버튼 툴린후에 발생할 코드 입력 필요
+                $("#root").fadeOut(400)
+                setTimeout(() => {
+                  roots.render(
+                  );
+                }, 400);
+              }}>
+                취소
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }else {
+      roots.render(
+        <div id="root">
+          <div className="insert-left">
+            <h3>필수 입력항목</h3>
+            <div className="input-group mb-3" style={{ height: 50, float: "left" }}>
+              <span className="input-group-text" id="basic-addon1">
+                제목
+              </span>
+              <input
+                type="text"
+                className="form-control insert-title"
+                placeholder="글의 제목이 되는 부분으로 증상의 간단한 설명을 작성하십시오"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+              />
+            </div>
+            <h5>증상 부위 또는 증상의 종류</h5>
+            <div className="input-group mb-3" style={{ height: 38 }}>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>머리</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="머리"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>인후</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="인후"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>가슴</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="가슴"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>복부</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="복부"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>손,발</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="손발"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>팔</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="팔"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>하체</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="하체"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>허리</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="허리"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>두통</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="두통"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>흉통(가슴)</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="흉통"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>복통</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="복통"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>요통</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="요통"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>치통</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="치통"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상1</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상1"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상2</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상2"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+            </div>
+            <div className="input-group mb-3">
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상4</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상4"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상5</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상5"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상6</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상6"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상7</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상7"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상8</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상8"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <div className="input-group-text">
+                <span className="font12" style={{ marginRight: 2 }}>증상</span>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  defaultValue="증상"
+                  aria-label="Checkbox for following text input"
+                />
+              </div>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="기타문항"
+                aria-label="Text input with checkbox"
+              />
+            </div>
+            <h3>추가 입력항목</h3>
+            <div className="input-group mb-3" style={{ width: 200, float: "left" }}>
+              <span className="input-group-text" id="basic-addon1">
+                이름
+              </span>
+              <input
+                type="text"
+                className="form-control insert-name"
+                placeholder="이름"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+              />
+            </div>
+            <div className="input-group mb-3" style={{ marginLeft: 20, width: 120, float: "left" }}>
+              <span className="input-group-text" id="basic-addon1">
+                나이
+              </span>
+              <input
+                type="text"
+                className="form-control insert-age"
+                placeholder="대략"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+              />
+            </div>
+            <div className="input-group mb-3" style={{ marginLeft: 20, width: 200, float: "left" }}>
+              <span className="input-group-text" id="basic-addon1">
+                연락처
+              </span>
+              <input
+                type="text"
+                className="form-control insert-tel"
+                placeholder="연락처"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+              />
+            </div>
+  
+            <div className="form-check form-check-inline" style={{ padding: 0, lineHeight: 2, with: 40, height: 40, marginLeft: 20, float: "left" }}>
+              <input
+                type="radio"
+                name="inlineRadioOptions"
+                id="inlineRadio1"
+                defaultValue="남"
+              />
+              <label className="form-check-label" htmlFor="inlineRadio1">
+                남
+              </label>
+            </div>
+            <div className="form-check form-check-inline" style={{ padding: 0, lineHeight: 2, with: 40, height: 40, marginLeft: 0, float: "left" }}>
+              <input
+                type="radio"
+                name="inlineRadioOptions"
+                id="inlineRadio2"
+                defaultValue="여"
+              />
+              <label className="form-check-label" htmlFor="inlineRadio2">
+                여
+              </label>
+            </div>
+  
+            {/* <div className="input-group mb-3" style={{ marginLeft: 5, marginRight: 5, width: 320, float: "left" }}>
+              <span className="input-group-text" id="basic-addon1">
+                비밀번호
+              </span>
+              <input
+                type="password"
+                className="form-control insert-password"
+                placeholder="작성글 조회시에 필요합니다"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+              />
+            </div> */}
+  
+            {/* <button type="button" className="btn btn-primary insert-btn" onClick={() => {
+              // 비밀번호 중복 조회
+              if ($(".insert-password").val().length > 3) {
+                fetch("http://localhost:8080/boardPassword", {
+                  method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',
                   },
                   body: JSON.stringify({ // 스프링에 전달할 값
-                    title: $(".insert-title").val(),
-                    pain: pa,
-                    name: $(".insert-name").val(),
-                    age: $(".insert-age").val(),
-                    tel: $(".insert-tel").val(),
-                    addr1: $(".insert-addr1").val(),
-                    addr2: $(".insert-addr2").val(),
-                    anothr: $(".insert-another").val(),
-                    gender: $("input[name=inlineRadioOptions]:checked").val(),
-                  }),
-                }).then(data => data.json())
-                  .then(data => {
-                    let bno = data.no;
-                    submitFiles(bno);
-                    alert("인증 번호(비회원 작성글 조회시에 필요 합니다) : "+data.serial);
+                    password: $(".insert-password").val(),
                   })
-
-                $("#root").fadeOut(1000)
-                setTimeout(() => {
-                  roots.render(
-                  );
-                }, 1000);
+                })
+                  .then(response => response.json())
+                  .then(data => {
+                    if (data.status == "success") {
+                      alert("중복 된 비밀번호")
+                    } else {
+                      alert("사용가능한 비밀번호")
+                      bool = $(".insert-password").val();
+                    }
+                  })
+  
               } else {
-                alert("제목 및 필수 선택 사항 입력 필요")
+                alert("비밀번호 4자리 이상 입력 필요")
               }
               // .then((response) => response.json())
               // .then((data) => console.log(data));
             }}>
-              저장
-            </button>
-            <button type="button" className="btn btn-primary close-btn" onClick={() => {
-              // 취소버튼 툴린후에 발생할 코드 입력 필요
-              $("#root").fadeOut(400)
-              setTimeout(() => {
-                roots.render(
-                );
-              }, 400);
-            }}>
-              취소
-            </button>
+              중복확인
+            </button> */}
+  
+  
+            <div className="input-group mb-3" style={{ marginLeft: 0, marginRight: 200, width: 500, float: "left" }}>
+              <span className="input-group-text" id="basic-addon1">
+                주소
+              </span>
+              <input
+                type="text"
+                className="form-control insert-addr1"
+                placeholder="새주소?"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+              />
+            </div>
+  
+            <form>
+              <input type="file" name="files" multiple="multiple" style={{ width: 250 }} />
+              <span style={{ fontWeight: 900 }}>증상 사진 선택</span>
+            </form>
+  
+            <div className="input-group mb-3" style={{ width: 700, float: "left" }}>
+              <span className="input-group-text" id="basic-addon1">
+                상세주소
+              </span>
+              <input
+                type="text"
+                className="form-control insert-addr2"
+                placeholder="예: xxx동 xxx호"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+              />
+            </div>
+            <div className="input-group" style={{ height: 150 }}>
+              <span className="input-group-text">
+                그 외<br />
+                전달사항
+              </span>
+              <textarea
+                className="form-control insert-another"
+                aria-label="With textarea"
+                defaultValue={""}
+              />
+            </div>
+            <div className="insert-btns">
+              <button type="button" className="btn btn-primary insert-btn" onClick={() => {
+                // 저장버튼 툴린후에 발생할 코드 입력 필요
+                let pa = "";
+                let vaol = $(".form-check-input:checked");
+                for (let i = 0; i < vaol.length; i++) {
+                  if (vaol[i].value.length > 0) {
+                    pa = pa + (vaol[i].value);
+                    if (i != vaol.length - 1) {
+                      pa = pa + ",";
+                    }
+                  }
+                }
+                if ($(".insert-title").val().length > 0 && $(".form-check-input:checked").length > 0) {
+  
+                  fetch('http://localhost:8080/insert', {
+                    method: 'POST', // 또는 'PUT'
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ // 스프링에 전달할 값
+                      no: myno,
+                      title: $(".insert-title").val(),
+                      pain: pa,
+                      name: $(".insert-name").val(),
+                      age: $(".insert-age").val(),
+                      tel: $(".insert-tel").val(),
+                      addr1: $(".insert-addr1").val(),
+                      addr2: $(".insert-addr2").val(),
+                      another: $(".insert-another").val(),
+                      gender: $("input[name=inlineRadioOptions]:checked").val(),
+                    }),
+                  }).then(data => data.json())
+                    .then(data => {
+                      let bno = data.no;
+                      submitFiles(bno);
+                      alert("인증 번호(비회원 작성글 조회시에 필요 합니다) : "+data.serial);
+                    })
+  
+                  $("#root").fadeOut(1000)
+                  setTimeout(() => {
+                    roots.render(
+                    );
+                  }, 1000);
+                } else {
+                  alert("제목 및 필수 선택 사항 입력 필요")
+                }
+                // .then((response) => response.json())
+                // .then((data) => console.log(data));
+              }}>
+                저장
+              </button>
+              <button type="button" className="btn btn-primary close-btn" onClick={() => {
+                // 취소버튼 툴린후에 발생할 코드 입력 필요
+                $("#root").fadeOut(400)
+                setTimeout(() => {
+                  roots.render(
+                  );
+                }, 400);
+              }}>
+                취소
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }, 10);
 
 })
@@ -765,8 +1148,6 @@ $(".btn-3").click(() => {
   }, 10);
 
 })
-
-
 
 
 function formatDate(date) {

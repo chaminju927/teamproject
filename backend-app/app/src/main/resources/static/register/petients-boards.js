@@ -10,8 +10,9 @@ class Board extends React.Component {
     return (
       <div class="col-lg-6">
         <div class="card cursor">
-          <div class="card-body" onclick={() => {
-
+          <div class="card-body" onClick={() => {
+            window.localStorage.setItem("boardNo", this.state.data.no)
+            location.href = "patients-record.html"
           }}>
             <h5 class="card-title">제목 : {this.state.data.title}</h5>
             <h6>문의 날짜 : {this.state.data.createdDate}</h6>

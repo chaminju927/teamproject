@@ -69,6 +69,7 @@ body::-webkit-scrollbar {
 .btn-3 {
   background-color: rgb(105, 105, 105);
   width: 65px;
+  font-size: 20px;
 }
 
 #root {

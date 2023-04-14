@@ -79,7 +79,6 @@ public class App {
     }
     System.out.println("param : " + param);
     String str = "";
-
     str += param.get("name") + ",";
     str += param.get("age") + ",";
     str += param.get("gender") + ",";
@@ -88,6 +87,13 @@ public class App {
     str += param.get("another");
 
     Board board = new Board();
+
+    int no = (int) (param.get("no"));
+    if (no > 0) {
+      board.setPno(no);
+    } else {
+
+    }
 
     board.setTitle((String) param.get("title"));
     board.setSerial(ran + "");
@@ -268,7 +274,7 @@ public class App {
       result.put("data", boards);
     } else {
       result.put("status", "fail");
-      System.out.println("환자 회원 작성글 없거나 어류");
+      System.out.println("환자 회원 작성글 없거나 오류");
     }
 
 

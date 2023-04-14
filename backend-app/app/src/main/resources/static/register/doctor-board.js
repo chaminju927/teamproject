@@ -343,7 +343,7 @@ class Btns extends React.Component {
             },
             body: JSON.stringify({ // 스프링에 전달할 값
               bno: str,
-              dno: 1,
+              dno: myno,
               popen: $(".check-pro").is(':checked'),
               visit: $(".check-visit").is(':checked'),
               money: $(".sogyon-money").val(),
@@ -404,7 +404,7 @@ class Cbtns extends React.Component {
             },
             body: JSON.stringify({ // 스프링에 전달할 값
               bno: Number(str),
-              dno: 1,
+              dno: myno,
               popen: $(".check-pro").is(':checked'),
               visit: $(".check-visit").is(':checked'),
               money: $(".sogyon-money").val(),
