@@ -8,6 +8,7 @@ fetch(`http://localhost:8080/auth/user`, {
   .then(response => response.json())
   .then(data => {
     if (data.status == "success") {
+      document.querySelector('#username').innerHTML = data.data.name;
       console.log(data.data)
       return data.data;
     } else {
