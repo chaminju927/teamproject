@@ -15,6 +15,10 @@
   scroll-behavior: smooth;
 }
 
+.nav-link:hover {
+  cursor: pointer;
+}
+
 body {
   font-family: 'Noto Sans KR', sans-serif;
   background: #f6f9ff;
