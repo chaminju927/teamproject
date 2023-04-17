@@ -1,5 +1,5 @@
-const urlParams = new URL(location.href).searchParams;
-const no = urlParams.get('no');
+let urlParams = new URL(location.href).searchParams;
+let no = urlParams.get('no');
 
 let myno = 0;
 
@@ -10,6 +10,7 @@ fetch(`http://localhost:8080/auth/user`, {
   .then(data => {
     if (data.status == "success") {
       console.log(data.data)
+      
       return data.data;
     } else {
       location.href = "../auth/doctors-login.html"
@@ -20,6 +21,8 @@ fetch(`http://localhost:8080/auth/user`, {
   myno = user.no
   console.log(myno)
 })
+
+
 
 document.querySelector('#former-btn').onclick = (e) => {
   location.href='doctors-community-main.html';
@@ -46,19 +49,44 @@ Promise.all([
   document.querySelector('#doctorName').value = communityData.data.doctorName;
   document.querySelector('#createdDate').value = communityData.data.createdDate;
   document.querySelector('#content').value = communityData.data.content;
-  if(communityData.photo.length >0 ) {
+  
+  if(communityData.photo.length >0 && myno == communityData.data.doctorNo) {
     $('#comImg')[0].src = communityData.photo[0].imgUrl;
+    document.querySelector('#btn-img-delete').style.display = 'block';
+  } else if (communityData.photo.length >0 && myno != communityData.data.doctorNo) {
+    $('#comImg')[0].src = communityData.photo[0].imgUrl;
+    document.querySelector('#btn-img-delete').style.display = 'none';
   } else {
     $("#comImg").attr('src', '');
     document.querySelector('#btn-img-delete').style.display = 'none';
   }
+  
+  console.log(myno);
+  console.log(communityData);
+   if ( myno == communityData.data.doctorNo ) {  
+       document.querySelector('#uptdel-btns').style.display = 'block';    
+      document.querySelector('#title').readOnly = false;
+      document.querySelector('#content').readOnly = false;
+      document.querySelector('#category').readOnly = false;
+      document.querySelector('#createdDate').readOnly = false;
+    } else {
+      document.querySelector('#uptdel-btns').style.display = 'none';
+      document.querySelector('#title').readOnly = true;
+      document.querySelector('#content').readOnly = true;
+      document.querySelector('#category').readOnly = true;
+      document.querySelector('#createdDate').readOnly = true;
+    }
+  
   // console.log(communityData.photo[0].imgUrl)
 
   // 두번째 fetch 요청 후
   var tbody = document.querySelector('#recomment-list');
   
+  
   var html = '';
   for (var row of recommentData.data) {
+    console.log (row)
+  if ( row.docNo == myno) {
     html += `<tr>
         <td>${row.recNo}</td>
         <td><p>${row.recContent}</p></td>
@@ -67,8 +95,18 @@ Promise.all([
         <td><button type="button" class="btn btn-outline-danger btn-sm" 
                     id="btn-recomment-delete-${row.recNo}">X</button></td>
         </tr>\n`;
-  }
+  } else {
+     html += `<tr>
+        <td>${row.recNo}</td>
+        <td><p>${row.recContent}</p></td>
+        <td>${row.docName}</td> 
+        <td>${row.createdDate}</td>
+        </tr>\n`;
+    
+  } }
+    
   tbody.innerHTML = html;
+  
 
   // 댓글 삭제
   for (var row of recommentData.data) {

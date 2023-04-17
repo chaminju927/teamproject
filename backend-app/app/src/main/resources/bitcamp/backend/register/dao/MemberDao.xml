@@ -101,5 +101,6 @@
     delete from app_member
     where m_no=#{no}
   </delete>
+  
 </mapper>
 

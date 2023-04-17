@@ -22,9 +22,7 @@ fetch(`http://localhost:8080/auth/user`, {
 // 게시글 입력
 document.querySelector('.btn-submit').onclick = (e) => {
   
-  if (pwd == null) {
-    alert ('비밀번호를 입력해주세요!');
-  } else {
+  
     fetch("http://localhost:8080/community", {
       method: "POST",
       headers: {
@@ -32,7 +30,6 @@ document.querySelector('.btn-submit').onclick = (e) => {
       },
       body: JSON.stringify({
         doctorNo: myno,
-        password: password,
         title: document.querySelector('#title').value,
         content: document.querySelector('.content').value,
         category: Number(document.querySelector('#category').value),
@@ -48,7 +45,6 @@ document.querySelector('.btn-submit').onclick = (e) => {
       .catch((error) => {
         console.error("실패:", error);
       })
-   } 
 };
 
 
