@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import bitcamp.backend.community.service.CommunityImgService;
 import bitcamp.backend.community.service.CommunityService;
@@ -40,11 +41,15 @@ public class CommunityController {
   // }
 
   @PostMapping
-  public Object insert(@RequestBody Community community) {
+  public Object insert(@RequestBody Community community, @RequestParam String password) {
+
     RestResult restResult = new RestResult();
     communityService.add(community);
     restResult.setData(community);
     restResult.setStatus(RestStatus.SUCCESS);
+    restResult.setStatus(RestStatus.FAILURE);
+
+
     return restResult;
   }
 
@@ -68,7 +73,6 @@ public class CommunityController {
     return restResult.setStatus(RestStatus.SUCCESS).setData(community);
   }
 
-
   @DeleteMapping("{no}")
   public Object delete(@PathVariable int no) {
     System.out.println("커뮤 사진번호 : " + no);
@@ -81,5 +85,6 @@ public class CommunityController {
 
     return new RestResult().setStatus(RestStatus.SUCCESS);
   }
+
 
 }

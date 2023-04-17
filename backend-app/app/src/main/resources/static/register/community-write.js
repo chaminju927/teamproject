@@ -1,5 +1,6 @@
-
+// 로그인 정보 가져오기
 let myno = 0;
+let password = document.querySelector('#password').value;
 
 fetch(`http://localhost:8080/auth/user`, {
   method: 'GET'
@@ -18,33 +19,37 @@ fetch(`http://localhost:8080/auth/user`, {
   console.log(myno)
 })
 
+// 게시글 입력
 document.querySelector('.btn-submit').onclick = (e) => {
-
-  fetch("http://localhost:8080/community", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      doctorNo: myno,
-      title: document.querySelector('#title').value,
-      content: document.querySelector('.content').value,
-      category: Number(document.querySelector('#category').value),
-      filter: 0,
-      area: 0
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("성공:", data);
-      submitFiles(data.data.no);
+  
+  if (pwd == null) {
+    alert ('비밀번호를 입력해주세요!');
+  } else {
+    fetch("http://localhost:8080/community", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        doctorNo: myno,
+        password: password,
+        title: document.querySelector('#title').value,
+        content: document.querySelector('.content').value,
+        category: Number(document.querySelector('#category').value),
+        filter: 0,
+        area: 0
+      }),
     })
-    .catch((error) => {
-      console.error("실패:", error);
-    })
-
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("성공:", data);
+        submitFiles(data.data.no);
+      })
+      .catch((error) => {
+        console.error("실패:", error);
+      })
+   } 
 };
-
 
 
 function submitFiles(no) {
@@ -80,3 +85,4 @@ console.log(no);
     }
   });
 }
+

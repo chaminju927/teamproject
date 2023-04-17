@@ -257,7 +257,7 @@
                     </div>
 
                     <div class="row mb-3">
-                      <button type="button" class="btn btn-primary w-100" id="btn-insert">
+                      <button type="submit" class="btn btn-primary w-100" id="btn-insert">
                         가입 완료
                       </button>
                     </div>
@@ -675,6 +675,7 @@
 
     // 회원가입 버튼 클릭
     document.getElementById('btn-insert').addEventListener('click', () => {
+      $("#btn-insert").prop('disabled', true);
       const form = document.getElementById('doctors-register-form');
       const formData = new FormData(form);
 
