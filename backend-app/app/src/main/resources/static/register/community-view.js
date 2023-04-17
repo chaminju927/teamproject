@@ -37,6 +37,7 @@ Promise.all([
   console.log(data);
   var communityData = data[0];
   var recommentData = data[1];
+  console.log(communityData);
 
   //console.log(communityData);
   if (communityData.status == 'failure') {
@@ -51,18 +52,18 @@ Promise.all([
   document.querySelector('#content').value = communityData.data.content;
   
   
-  let photourl = "http://uyaxhfqyqnwh16694929.cdn.ntruss.com/community-img/"+communityData.photo[0].imgUrl+"?type=f&w=500&h=500&quality=85&autorotate=true&faceopt=true&anilimit=24"
+  let photoUrl = "http://uyaxhfqyqnwh16694929.cdn.ntruss.com/community-img/"+communityData.photo[0].imgUrl+"?type=f&w=500&h=500&quality=85&autorotate=true&faceopt=true&anilimit=24"
   if(communityData.photo.length >0 && myno == communityData.data.doctorNo) {
-    $('#comImg')[0].src = photourl;
+    $('#comImg')[0].src = photoUrl;
     document.querySelector('#btn-img-delete').style.display = 'block';
     
-  } else if (communityData.photo.length >0 && myno != communityData.data.doctorNo) {
-    $('#comImg')[0].src = photourl;
-    document.querySelector('#btn-img-delete').style.display = 'none';
-    
-  } else {
-    $("#comImg").attr('src', '');
-    document.querySelector('#btn-img-delete').style.display = 'none';
+      } else if (communityData.photo.length >0 && myno != communityData.data.doctorNo) {
+        $('#comImg')[0].src = photoUrl;
+        document.querySelector('#btn-img-delete').style.display = 'none';
+        
+      } else {
+        $("#comImg").attr('src', ' ');
+        document.querySelector('#btn-img-delete').style.display = 'none';
   }
   
    if ( myno == communityData.data.doctorNo ) {  
