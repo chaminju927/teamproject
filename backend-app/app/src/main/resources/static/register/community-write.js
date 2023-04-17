@@ -1,6 +1,5 @@
 // 로그인 정보 가져오기
 let myno = 0;
-let password = document.querySelector('#password').value;
 
 fetch(`http://localhost:8080/auth/user`, {
   method: 'GET'

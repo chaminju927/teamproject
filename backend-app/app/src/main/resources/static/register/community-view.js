@@ -50,19 +50,21 @@ Promise.all([
   document.querySelector('#createdDate').value = communityData.data.createdDate;
   document.querySelector('#content').value = communityData.data.content;
   
+  
+  let photourl = "http://uyaxhfqyqnwh16694929.cdn.ntruss.com/community-img/"+communityData.photo[0].imgUrl+"?type=f&w=500&h=500&quality=85&autorotate=true&faceopt=true&anilimit=24"
   if(communityData.photo.length >0 && myno == communityData.data.doctorNo) {
-    $('#comImg')[0].src = communityData.photo[0].imgUrl;
+    $('#comImg')[0].src = photourl;
     document.querySelector('#btn-img-delete').style.display = 'block';
+    
   } else if (communityData.photo.length >0 && myno != communityData.data.doctorNo) {
-    $('#comImg')[0].src = communityData.photo[0].imgUrl;
+    $('#comImg')[0].src = photourl;
     document.querySelector('#btn-img-delete').style.display = 'none';
+    
   } else {
     $("#comImg").attr('src', '');
     document.querySelector('#btn-img-delete').style.display = 'none';
   }
   
-  console.log(myno);
-  console.log(communityData);
    if ( myno == communityData.data.doctorNo ) {  
        document.querySelector('#uptdel-btns').style.display = 'block';    
       document.querySelector('#title').readOnly = false;
@@ -81,8 +83,6 @@ Promise.all([
 
   // 두번째 fetch 요청 후
   var tbody = document.querySelector('#recomment-list');
-  
-  
   var html = '';
   for (var row of recommentData.data) {
     console.log (row)
@@ -104,10 +104,8 @@ Promise.all([
         </tr>\n`;
     
   } }
-    
   tbody.innerHTML = html;
   
-
   // 댓글 삭제
   for (var row of recommentData.data) {
     document.querySelector(`#btn-recomment-delete-${row.recNo}`).onclick = (e) => {
@@ -156,7 +154,6 @@ document.querySelector('#rec-save-btn').onclick = (e) => {
     .then((data) => {
       console.log("성공:", data);
       location.reload();
-
     })
     .catch((error) => {
       console.error("실패:", error);
