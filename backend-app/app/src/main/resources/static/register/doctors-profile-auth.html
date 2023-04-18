@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <title>의사 / 전체 상담글 조회 - Myclinic</title>
+    <title>의사 - 마이페이지</title>
     <meta content="" name="description" />
     <meta content="" name="keywords" />
 
@@ -35,7 +35,7 @@
     <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet" />
 
     <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="../assets/css/style.css" rel="stylesheet" />
 
     <!-- =======================================================
   * Template Name: NiceAdmin
@@ -45,24 +45,19 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
     <style>
-      .pagination {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
+      .card-body {
+        padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+      }
+      /* 
+      #profile-preview {
+        min-width: 180px;
+        min-height: 218px;
       }
 
-      .datatable tbody tr {
-        height: 70px;
-        font-size: 20px;
-      }
-      .selects {
-        box-sizing: border-box;
-      }
-      .selects:hover {
-        cursor: pointer;
-        background-color: rgb(225, 255, 245);
-        font-weight: 500;
-      }
+      #profile-detail {
+        margin-left: 3rem;
+        min-height: 218px;
+      } */
     </style>
   </head>
 
@@ -71,7 +66,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
       <div class="d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo d-flex align-items-center">
-          <img src="assets/img/newlogo.png" alt="" />
+          <img src="assets/img/logo.png" alt="" />
           <span class="d-none d-lg-block">MyClinic</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -105,9 +100,6 @@
         <a href="doctors-community-main.html" class="nav-link collapsed"
           ><span>커뮤니티</span></a
         >
-
-        <!-- <a href="../auth/doctors-login.html"
-        class="nav-link collapsed"><span>로그인</span></a> -->
       </div>
 
       <nav class="header-nav ms-auto">
@@ -194,80 +186,14 @@
           <!-- End Notification Nav -->
 
           <li class="nav-item dropdown pe-3">
-            <a
-              class="nav-link nav-profile d-flex align-items-center pe-0"
-              href="#"
-              data-bs-toggle="dropdown"
-            >
+            <a class="nav-link nav-profile d-flex align-items-center pe-0">
               <img
                 src="assets/img/profile-img.jpg"
                 alt="Profile"
                 class="rounded-circle"
               />
-              <span
-                id="username"
-                class="d-none d-md-block dropdown-toggle ps-2"
-              ></span> </a
+              <span id="username" class="d-none d-md-block ps-2"></span> </a
             ><!-- End Profile Iamge Icon -->
-
-            <ul
-              class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
-            >
-              <li class="dropdown-header">
-                <h6>엄 진 영</h6>
-                <span>개발자</span>
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-
-              <li>
-                <a
-                  class="dropdown-item d-flex align-items-center"
-                  href="users-profile.html"
-                >
-                  <i class="bi bi-person"></i>
-                  <span>My Profile</span>
-                </a>
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-
-              <li>
-                <a
-                  class="dropdown-item d-flex align-items-center"
-                  href="users-profile.html"
-                >
-                  <i class="bi bi-gear"></i>
-                  <span>Account Settings</span>
-                </a>
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-
-              <li>
-                <a
-                  class="dropdown-item d-flex align-items-center"
-                  href="pages-faq.html"
-                >
-                  <i class="bi bi-question-circle"></i>
-                  <span>Need Help?</span>
-                </a>
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-
-              <li>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <i class="bi bi-box-arrow-right"></i>
-                  <span>Sign Out</span>
-                </a>
-              </li>
-            </ul>
-            <!-- End Profile Dropdown Items -->
           </li>
           <!-- End Profile Nav -->
         </ul>
@@ -282,7 +208,7 @@
         <li class="nav-heading">의사 전용 페이지</li>
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="doctors-profile.html">
+          <a class="nav-link" href="doctors-profile.html">
             <i class="bi bi-person"></i>
             <span>내 정보</span>
           </a>
@@ -303,7 +229,6 @@
           </a>
         </li>
         <!-- End Contact Page Nav -->
-
         <li class="nav-item">
           <a class="nav-link collapsed" href="pages-faq.html">
             <i class="bi bi-question-circle"></i>
@@ -348,72 +273,77 @@
         </script>
 
         <!--
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="pages-blank.html">
-        <i class="bi bi-file-earmark"></i>
-        <span>Blank</span>
-      </a>
-    </li> End Blank Page Nav -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="pages-blank.html">
+      <i class="bi bi-file-earmark"></i>
+      <span>Blank</span>
+    </a>
+  </li> End Blank Page Nav -->
       </ul>
     </aside>
     <!-- End Sidebar-->
 
     <main id="main" class="main">
       <div class="pagetitle">
-        <h1>전체 상담글 조회</h1>
+        <h1>내 정보</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="index.html"><i class="bi bi-house-door"></i></a>
-            </li>
-            <li class="breadcrumb-item active">전체 상담글 조회</li>
-            <!-- <li class="breadcrumb-item active">Data</li> -->
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active">Profile</li>
           </ol>
         </nav>
       </div>
       <!-- End Page Title -->
 
-      <section class="section">
+      <section class="section profile">
         <div class="row">
-          <div class="col-lg-12">
+          <div class="col-xl-6">
             <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">환자 상담내역</h5>
-                <!-- <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p> -->
-                <form>
-                  <input
-                    type="text"
-                    name="keyword"
-                    class="search-filter"
-                    placeholder="입력하기"
-                  />
-                  <button type="button" class="search-btn">검색</button>
+              <div class="card-body pt-3">
+                <div class="pt-4 pb-2">
+                  <h5 class="card-title text-center pb-0 fs-4">계정 관리</h5>
+                  <p class="text-center small">
+                    회원님의 정보 보호를 위하여 다시 한 번 로그인해 주시기
+                    바랍니다.
+                  </p>
+                </div>
+                <form
+                  id="check-password-form"
+                  class="needs-validation"
+                  novalidate
+                >
+                  <div
+                    class="row mb-3 d-flex align-items-center justify-content-center"
+                  >
+                    <label
+                      for="password"
+                      class="col-sm-2 form-label padding-right-0"
+                      >비밀번호</label
+                    >
+                    <div class="col-sm-5">
+                      <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        class="form-control"
+                        required
+                      />
+                      <div
+                        id="password-validation-msg"
+                        class="validation-msg"
+                      ></div>
+                    </div>
+                    <div class="col-sm-2">
+                      <button
+                        type="button"
+                        id="check-password-btn"
+                        class="btn btn-primary"
+                      >
+                        확인
+                      </button>
+                    </div>
+                  </div>
                 </form>
-                <!-- Table with stripped rows -->
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <!-- table 작업시에 <th><td> 갯수가 서로 일치하지 않으면 정렬 버튼 사라집니다 -->
-                      <th scope="col">답변</th>
-                      <th scope="col">번호</th>
-                      <th scope="col" clas="cursor">제목</th>
-                      <th scope="col">위급정도</th>
-                      <th scope="col">작성자</th>
-                      <th scope="col">작성일</th>
-                    </tr>
-                  </thead>
-                  <tbody class="table-group-divider" id="board-list">
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td class="cursor"></td>
-                      <td><span class="badge bg-danger text-dark"></span></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <!-- End Table with stripped rows -->
               </div>
             </div>
           </div>
@@ -450,8 +380,7 @@
     <script src="assets/vendor/chart.js/chart.umd.js"></script>
     <script src="assets/vendor/echarts/echarts.min.js"></script>
     <script src="assets/vendor/quill/quill.min.js"></script>
-    <!-- <script src="assets/vendor/simple-datatables/simple-datatables.js"></script> -->
-    <script src="assets/vendor/simple-datatables/doctor-datatables.js"></script>
+    <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
     <script src="assets/vendor/tinymce/tinymce.min.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
 
@@ -461,6 +390,11 @@
     <!-- 사용자가 추가한 스크립트 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <script
       crossorigin
       src="https://unpkg.com/react@18/umd/react.production.min.js"
     ></script>
@@ -469,6 +403,79 @@
       src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
     ></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    <script type="text/babel" src="doctor-boardlist.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+      let profileId;
+      fetch(`http://localhost:8080/auth/user`, {
+        method: 'GET',
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status == 'success') {
+            document.querySelector('#username').innerHTML = data.data.name;
+            console.log(data.data);
+            return data.data;
+          } else {
+            location.href = '../auth/doctors-login.html';
+          }
+        })
+        .then((user) => {
+          profileId = user.id;
+        });
+
+      const passwordInput = document.getElementById('password');
+      const passwordValidationMsg = document.getElementById(
+        'password-validation-msg'
+      );
+      const checkPasswordBtn = document.getElementById('check-password-btn');
+
+      checkPasswordBtn.addEventListener('click', () => {
+        // $("#btn-insert").prop('disabled', true);
+        const form = document.getElementById('check-password-form');
+        const formData = new FormData(form);
+
+        const password = passwordInput.value;
+
+        formData.append('id', profileId);
+
+        let json = JSON.stringify(Object.fromEntries(formData));
+        console.log(json);
+
+        fetch('http://localhost:8080/doctors/check-mypage', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: json,
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            if (result.status == 'success') {
+              console.log(result);
+              console.log(result.data);
+              // passwordValidationMsg.textContent = '올바른 비밀번호입니다.';
+              // passwordInput.classList.remove('is-valid', 'is-invalid');
+              // passwordInput.classList.add('is-valid');
+              // passwordValidationMsg.style.color = '#198754';
+              location.replace('./doctors-profile.html');
+            } else {
+              alert('잘못 된 회원 정보');
+              passwordValidationMsg.textContent = '비밀번호가 틀립니다.';
+              passwordInput.classList.remove('is-valid', 'is-invalid');
+              passwordInput.classList.add('is-invalid');
+              passwordValidationMsg.style.color = '#dc3545';
+            }
+          })
+          .then(() => {})
+          .catch((exception) => {
+            console.error('오류 발생:', exception);
+            passwordValidationMsg.textContent =
+              '오류가 발생했습니다. 다시 시도해주세요.';
+            passwordInput.classList.remove('is-valid', 'is-invalid');
+            passwordInput.classList.add('is-invalid');
+            passwordValidationMsg.style.color = '#dc3545';
+          });
+      });
+    </script>
   </body>
 </html>

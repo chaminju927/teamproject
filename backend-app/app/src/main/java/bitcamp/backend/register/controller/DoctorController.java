@@ -1,6 +1,11 @@
 package bitcamp.backend.register.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +18,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import bitcamp.backend.register.service.DoctorService;
 import bitcamp.backend.register.service.LicenseService;
 import bitcamp.backend.register.vo.Doctor;
@@ -22,6 +29,7 @@ import bitcamp.backend.register.vo.License;
 import bitcamp.backend.user.service.ObjectStorageService;
 import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/doctors")
@@ -85,6 +93,22 @@ public class DoctorController {
     return url;
   }
 
+  @PostMapping("/check-mypage")
+  public Object checkMypage(@RequestBody Map<String, String> formData, HttpSession session) {
+    String id = formData.get("id");
+    String password = formData.get("password");
+    System.out.println(id);
+    System.out.println(password);
+    System.out.println(doctorService.get(id, password));
+    Doctor doctor = doctorService.get(id, password);
+    if (doctor != null) {
+      session.setAttribute("mycheck", true);
+      return new RestResult().setStatus(RestStatus.SUCCESS).setData(doctor);
+    } else {
+      return new RestResult().setStatus(RestStatus.FAILURE).setData(doctor);
+    }
+  }
+
   @GetMapping("/check-duplicate/{id}")
   public Object checkDuplicateId(@PathVariable String id) {
     boolean isDuplicate = doctorService.isDuplicateId(id);
@@ -102,7 +126,10 @@ public class DoctorController {
   }
 
   @GetMapping("{no}")
-  public Object view(@PathVariable int no) {
+  public Object view(@PathVariable int no, HttpSession session)
+      throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException,
+      JsonProcessingException, RestClientException, URISyntaxException {
+
     return new RestResult().setStatus(RestStatus.SUCCESS).setData(doctorService.get(no));
   }
 
