@@ -64,17 +64,7 @@ fetch(`http://localhost:8080/auth/user`, {
     }
 
   })
-var popupWidth = 320;
-var popupHeight = 450;
 
-var popupX = (window.screen.width / 2) - (popupWidth / 2);
-
-var popupY = (window.screen.height / 2) - (popupHeight / 2);
-
-function tel() {
-  console.log(11)
-  window.open("tel-input.html", "popupNo1", 'status=no, height=' + popupHeight + ', width=' + popupWidth + ', left=' + popupX + ', top=' + popupY);
-}
 
 $(".change-btn").click(() => {
   let formData = new FormData();
