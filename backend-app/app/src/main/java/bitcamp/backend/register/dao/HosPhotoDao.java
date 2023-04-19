@@ -9,6 +9,6 @@ public interface HosPhotoDao {
   List<HosPhoto> findAll();
   HosPhoto findByHospitalNo(int no);
   int update(HosPhoto hosPhoto);
-  int delete(int no);
+  int deleteImg(int no);
   List<HosPhoto>findByHno(int no);
 }

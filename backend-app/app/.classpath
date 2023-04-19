@@ -27,6 +27,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17/"/>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Users/bitcamp/scoop/apps/gradle/current/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-configuration-processor/3.0.1/f14786a40bdc99cbed57e924a4c12e43abc95dd/spring-boot-configuration-processor-3.0.1.jar" sourcepath="C:/Users/bitcamp/scoop/apps/gradle/current/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-configuration-processor/3.0.1/6631078052e8ad6d79b65bd5245fcafb03c7be7d/spring-boot-configuration-processor-3.0.1-sources.jar">
 =======
@@ -965,6 +966,9 @@
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
+=======
+	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
+>>>>>>> Stashed changes
 	<classpathentry kind="src" path="bin/generated-sources/annotations">
 		<attributes>
 			<attribute name="optional" value="true"/>
