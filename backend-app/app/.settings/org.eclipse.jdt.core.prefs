@@ -1,7 +1,14 @@
+<<<<<<< Updated upstream
 eclipse.preferences.version=1
 org.eclipse.jdt.core.compiler.annotation.nonnull=org.eclipse.jdt.annotation.NonNull
 org.eclipse.jdt.core.compiler.annotation.nullable=org.eclipse.jdt.annotation.Nullable
 org.eclipse.jdt.core.compiler.annotation.nullanalysis=disabled
+=======
+#
+#Wed Apr 19 16:53:36 GMT+09:00 2023
+org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
+org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
+>>>>>>> Stashed changes
 org.eclipse.jdt.core.compiler.codegen.targetPlatform=17
 org.eclipse.jdt.core.compiler.compliance=17
 org.eclipse.jdt.core.compiler.problem.assertIdentifier=error

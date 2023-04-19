@@ -77,8 +77,52 @@
       .hos-addr:hover {
         cursor: pointer;
       }
+      .modal-open {
+        background: radial-gradient(
+          circle,
+          #000000,
+          #101010,
+          #202020,
+          #303030,
+          #404040,
+          #000000
+        );
+        /* background: linear-gradient(
+          to bottom right,
+          #ff0000,
+          #ff8000,
+          #ffff00,
+          #00ff00,
+          #0000ff,
+          #4b0082,
+          #8b00ff
+        ); */
+      }
+      .modal-open table {
+        background-color: white;
+      }
+
       .modal-body {
         padding: 0px;
+        background: radial-gradient(
+          circle,
+          #000000,
+          #101010,
+          #202020,
+          #303030,
+          #404040,
+          #000000
+        );
+        /* background: linear-gradient(
+          to bottom right,
+          #ff0000,
+          #ff8000,
+          #ffff00,
+          #00ff00,
+          #0000ff,
+          #4b0082,
+          #8b00ff
+        ); */
       }
       #update-hos-form {
         display: flex;
@@ -525,7 +569,7 @@
                       border-radius: 5px 5px 5px 5px;
                     "
                   >
-                    병원추가
+                    병원정보변경
                   </button>
                 </div>
                 <div
@@ -538,21 +582,19 @@
                     <div class="modal-content">
                       <div class="modal-body" style="min-height: 800px">
                         <form id="update-hos-form" style="width: 500px">
-                          <h5 class="card-title">병원정보 변경</h5>
-                          <div
-                            id="update-hosNo"
-                            class="hos-no"
-                            style="display: none"
-                          ></div>
+                          <h5 class="card-title" style="color: #ffffff">
+                            병원정보 변경
+                          </h5>
+                          <div id="update-hosNo" class="hos-no"></div>
                           <!-- Slides only carousel -->
                           <table class="table table-striped">
                             <thead>
                               <tr>
-                                <!-- <th scope="col">번호</th> -->
-                                <th scope="col">이미지</th>
-                                <th scope="col">파일명</th>
-                                <!-- <th scope="col">체크</th> -->
-                                <!-- <th scope="col">삭제</th> -->
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col">
+                                  기존 이미지(체크시 즉시 삭제)
+                                </th>
                               </tr>
                             </thead>
                             <tbody>
@@ -566,19 +608,6 @@
                                 </td>
                                 <td><div id="hos-phoNo"></div></td>
                                 <td><div id="hos-PhotoFilename"></div></td>
-                                <!-- <td>
-                                  <div
-                                    id="hos-listCheck"
-                                    class="hos-listCheck"
-                                  ></div>
-                                </td> -->
-
-                                <td>
-                                  <div
-                                    id="hos-PhotoDelete"
-                                    class="hos-PhotoDelete"
-                                  ></div>
-                                </td>
                               </tr>
                             </tbody>
                           </table>
@@ -592,9 +621,10 @@
                               <div class="col-sm-8">
                                 <input
                                   type="file"
-                                  id="profile-file"
+                                  id="hosPhoto"
                                   accept="image/*"
-                                  class="form-control"
+                                  class="hos-photo hospital-files form-control"
+                                  multiple
                                 />
                               </div>
                             </div>
@@ -653,7 +683,16 @@
                             />
                             <label for="floatingInput-b">사업자번호</label>
                           </div>
-
+                          <div
+                            id="hospital-success-message"
+                            style="
+                              display: none;
+                              text-align: center;
+                              color: #77dd77;
+                            "
+                          >
+                            <h4>✅변경되었습니다.</h4>
+                          </div>
                           <div class="row mb-3">
                             <div class="sm-10">
                               <button
@@ -676,7 +715,7 @@
                                   border-radius: 5px 5px 5px 5px;
                                 "
                               >
-                                병원추가
+                                병원정보변경
                               </button>
                             </div>
                           </div>
@@ -872,6 +911,8 @@
                 const phoNoElement = document.createElement("input");
                 phoNoElement.type = "number"; // type 속성 변경
                 phoNoElement.value = hosPhotoNo;
+                phoNoElement.style.width = "100px";
+                phoNoElement.style.margin = "0px auto";
                 phoNoElement.classList.add("photoNo");
                 phoNoDiv.appendChild(phoNoElement);
               });
@@ -879,7 +920,7 @@
               // const hosListNoDiv = document.getElementById("hos-listNo");
               // for (let i = 0; i < hospital.hosphotos.length; i++) {
               //   const hosListNo = i + 1;
-              //   const listNoElement = document.createElement("p");
+              //   const listNoElement = document.createElement("span");
               //   listNoElement.textContent = hosListNo;
               //   hosListNoDiv.appendChild(listNoElement);
               // }
@@ -887,7 +928,7 @@
                 document.getElementById("hos-PhotoFilename");
               for (let i = 0; i < hospital.hosphotos.length; i++) {
                 const hosPhotoFilename = hospital.hosphotos[i].hosPhotoFilename;
-                const filenameElement = document.createElement("p");
+                const filenameElement = document.createElement("span");
                 filenameElement.textContent = hosPhotoFilename;
 
                 //이미지
@@ -906,13 +947,13 @@
                 checkbox.type = "checkbox";
                 checkbox.setAttribute(
                   "id",
-                  `#hos-PhotoCheck-${hospital.hosphotos[i].id}`
+                  `#hos-PhotoCheck-${hospital.hosphotos[i].photoNo}`
                 );
                 checkbox.addEventListener("click", function () {
                   const container = this.parentElement;
                   container.remove();
                   imageContainer.remove();
-                  const phoNoElements = phoNoDiv.getElementsByTagName("p");
+                  const phoNoElements = phoNoDiv.getElementsByTagName("span");
                   if (phoNoElements.length > 0) {
                     phoNoElements[phoNoElements.length - 1].remove();
                   }
@@ -922,16 +963,18 @@
                 container.classList.add("filename-checkbox-container");
                 container.appendChild(filenameElement);
                 container.appendChild(checkbox);
+                container.style.marginLeft = "30px";
+                container.style.marginBottom = "80px";
                 photoFilenameDiv.appendChild(container);
               }
               //체크박스로 사진삭제
-              const hosListPhotoNo = document.querySelector(".photoNo").value;
               const checkboxes = document.querySelectorAll(
                 'input[type="checkbox"]'
               );
               checkboxes.forEach((checkbox) => {
-                checkbox.addEventListener("click", function () {
+                checkbox.addEventListener("click", function (event) {
                   const container = this.parentElement;
+                  hosListPhotoNo = event.target.id.split("-")[2];
                   container.remove();
                   imageContainer.remove();
 
@@ -964,34 +1007,8 @@
       } else {
         uform.reportValidity();
       }
-      // 체크박스이벤트
-      // const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-      // checkboxes.forEach((checkbox) => {
-      //   checkbox.addEventListener("click", function () {
-      //     const container = this.parentElement;
-      //     container.remove();
-      //     imageContainer.remove();
-
-      //     fetch(`http://localhost:8080/hospitalImg/${no}`, {
-      //       method: "DELETE",
-      //     })
-      //       .then((response) => response.json())
-      //       .then((data) => {
-      //         console.log("성공하였음");
-      //         // document.querySelector('#btn-img-delete').style.display = 'none';
-      //         // location.href = "";
-      //         if (data.status == "failure") {
-      //           console.log("이미지 삭제 실패!\n" + data.data);
-      //           return;
-      //         }
-      //       })
-      //       .catch((error) => {
-      //         console.log("실패:", error);
-      //       });
-      //   });
-      // });
-
       document.querySelector("#hos-update-submit").onclick = (e) => {
+        document.getElementById("hos-update-submit").style.display = "none";
         let kno = new URL(location.href).searchParams.get("no");
         fetch(`http://localhost:8080/hospital/${kno}`, {
           method: "PUT",
@@ -1011,14 +1028,60 @@
           .then((response) => response.json())
           .then((data) => {
             console.log("성공:", data);
-            // location.href = location.href;
-            //submitFiles(data.data.no);
+            message.style.display = "block";
+            const hosNo = new URL(location.href).searchParams.get("no");
+            submitFiles(hosNo);
+            console.log(hosNo);
           })
           .catch((error) => {
             console.error("실패:", error);
           });
       };
-      // 모든 체크된 체크박스를 찾습니다.
+      //사진인서트
+      function submitFiles(no) {
+        console.log(no);
+        let formData = new FormData();
+        let files = document.querySelector(".hospital-files").files;
+
+        if (files.length == 0) {
+          return;
+        }
+
+        for (let i = 0; i < files.length; i++) {
+          if (
+            files[i].name.includes(".bmp") ||
+            files[i].name.includes(".jpeg") ||
+            files[i].name.includes(".jpg") ||
+            files[i].name.includes(".gif") ||
+            files[i].name.includes(".png") ||
+            files[i].name.includes(".tiff") ||
+            files[i].name.includes(".psd") ||
+            files[i].name.includes(".tga") ||
+            files[i].name.includes(".ai") ||
+            iles[i].name.includes(".svg") ||
+            files[i].name.includes(".exif") ||
+            files[i].name.includes(".jfif")
+          ) {
+            formData.append("files", files[i]);
+            formData.append("hosNo", no); //  여기 입력되는 정수가 커뮤 번호여야 한다
+          }
+        }
+        $.ajax({
+          url: "http://localhost:8080/hospitalImg/insertHosImg",
+          data: formData,
+          cache: false,
+          contentType: false,
+          processData: false,
+          type: "POST",
+          success: function (data) {
+            console.log("데이터 업로드 성공");
+          },
+          error: function (e) {
+            console.log("데이터 업로드 실패");
+          },
+        });
+      }
+      const message = document.querySelector("#hospital-success-message");
     </script>
   </body>
 </html>
