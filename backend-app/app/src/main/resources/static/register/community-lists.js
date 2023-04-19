@@ -11,7 +11,7 @@ fetch(`http://localhost:8080/auth/user`, {
   .then(response => response.json())
   .then(data => {
     if (data.status == "success") {
-      console.log(data.data)
+     // console.log(data.data)
       return data.data;
     } else {
       location.href = "../auth/doctors-login.html"
@@ -20,7 +20,7 @@ fetch(`http://localhost:8080/auth/user`, {
 })
 .then((user) => {
   myno = user.no
-  console.log(myno)
+ // console.log(myno)
 })
 
 tbody = document.querySelector('#community-list')
@@ -42,8 +42,6 @@ fetch('http://localhost:8080/community/list')
       }
     }
    
-    // for (var i = data.data.length - 1; i >= 0; i--) {
-     // var row = data.data[i];
     var html = '';
     
      for( row of data.data) {
@@ -56,23 +54,58 @@ fetch('http://localhost:8080/community/list')
           <td>${row.createdDate}</td>
           </tr>\n`;
     }
-    console.log(data);
+   // console.log(data);
     tbody.innerHTML = html;
   
 
     // 조회수가 가장 높은 게시글 정보를 HTML에 추가
-
     var hotPostings = data.data.sort(function(a, b) {
       return b.viewCnt - a.viewCnt;
     }).slice(0, 2);
 
     var hotPosting1 = hotPostings[0];
-    var hotPosting2 = hotPostings[1];
+   // var hotPosting2 = hotPostings[1];
+   // console.log(hotPosting1.no);
+  //  console.log(hotPosting2);
+    
     document.querySelector("#hot-posting1").textContent = `${hotPosting1.title} (${hotPosting1.viewCnt} views)`;
-    document.querySelector("#hot-posting2").textContent = `${hotPosting2.title} (${hotPosting2.viewCnt} views)`;
-
+    //document.querySelector("#hot-posting2").textContent = `${hotPosting2.title} (${hotPosting2.viewCnt} views)`;
+  
+    document.querySelector('#hot-posting1').onclick = (e) => {
+    location.href = `community-view.html?no=${hotPosting1.no}`;
+    }
+   /* document.querySelector('#hot-posting2').onclick = (e) => {
+    location.href = `community-view.html?no=${hotPosting2.no}`;
+    }*/
   })
   .catch((err) => {
     alert('서버 요청 오류!');
     console.log(err);
   });
+  
+  // 네이버 검색 API
+  document.querySelector('.naver-btn').onclick = (e) => {  
+    var searchNaver = document.querySelector('#naver-search').value;
+    
+    fetch(`http://localhost:8080/community/search?query=${searchNaver}&display=5`)
+    .then(response => response.json())
+    .then(data => {
+  
+      if (data.status == "success") {
+        /*console.log("성공:",  JSON.parse(data.data));*/
+        let list = JSON.parse(data.data).items;
+        list.forEach(value => {
+          console.log(value);
+        })
+        return;
+      }
+    })
+    .catch((err) => {
+      alert('서버 요청 오류!');
+      console.log(err);
+    });
+    }
+
+  
+  
+  

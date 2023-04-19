@@ -72,7 +72,7 @@
     where pho_no=#{no}
   </delete>
   
-  <delete id="deleteOfBoard" parameterType="int">
+  <delete id="deleteImg" parameterType="int">
     delete from app_hos_photo 
     where pho_no=#{no}
   </delete>

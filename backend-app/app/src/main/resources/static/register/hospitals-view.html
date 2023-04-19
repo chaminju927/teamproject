@@ -94,6 +94,10 @@
         margin-right: auto;
         margin-bottom: 20px;
       }
+      #hos-PhotoDelete:hover {
+        cursor: pointer;
+        color: red;
+      }
     </style>
   </head>
 
@@ -541,35 +545,43 @@
                             style="display: none"
                           ></div>
                           <!-- Slides only carousel -->
-                          <div
-                            id="carouselExampleSlidesOnly"
-                            class="carousel slide"
-                            data-bs-ride="carousel"
-                          >
-                            <div class="carousel-inner">
-                              <div class="carousel-item active">
-                                <img
-                                  src="assets/img/slides-1.jpg"
-                                  class="d-block w-100"
-                                  alt="..."
-                                />
-                              </div>
-                              <div class="carousel-item">
-                                <img
-                                  src="assets/img/slides-2.jpg"
-                                  class="d-block w-100"
-                                  alt="..."
-                                />
-                              </div>
-                              <div class="carousel-item">
-                                <img
-                                  src="assets/img/slides-3.jpg"
-                                  class="d-block w-100"
-                                  alt="..."
-                                />
-                              </div>
-                            </div>
-                          </div>
+                          <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <!-- <th scope="col">번호</th> -->
+                                <th scope="col">이미지</th>
+                                <th scope="col">파일명</th>
+                                <!-- <th scope="col">체크</th> -->
+                                <!-- <th scope="col">삭제</th> -->
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr id="hosphoto-get-list">
+                                <td>
+                                  <div
+                                    id="hos-listNo"
+                                    class="hos-listNo"
+                                    style="display: none"
+                                  ></div>
+                                </td>
+                                <td><div id="hos-phoNo"></div></td>
+                                <td><div id="hos-PhotoFilename"></div></td>
+                                <!-- <td>
+                                  <div
+                                    id="hos-listCheck"
+                                    class="hos-listCheck"
+                                  ></div>
+                                </td> -->
+
+                                <td>
+                                  <div
+                                    id="hos-PhotoDelete"
+                                    class="hos-PhotoDelete"
+                                  ></div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                           <!-- End Slides only carousel-->
                           <div>
                             <!-- 파일 선택 버튼 -->
@@ -583,7 +595,6 @@
                                   id="profile-file"
                                   accept="image/*"
                                   class="form-control"
-                                  onchange="previewImage(event);"
                                 />
                               </div>
                             </div>
@@ -848,6 +859,100 @@
               document.getElementById("update-hosSub").value = hospital.hosSub;
               document.getElementById("update-hosBusno").value =
                 hospital.hosBusno;
+
+              //리스트숫자증가
+              const hosPhotoNoDiv = document.getElementById("hos-phoNo");
+              const hosPhotoFilenameDivs =
+                document.querySelectorAll("#hos-PhotoFilename");
+              const phoNoDiv = document.getElementById("hos-listNo");
+
+              //포토넘버
+              hospital.hosphotos.forEach((photo, index) => {
+                const hosPhotoNo = photo.photoNo;
+                const phoNoElement = document.createElement("input");
+                phoNoElement.type = "number"; // type 속성 변경
+                phoNoElement.value = hosPhotoNo;
+                phoNoElement.classList.add("photoNo");
+                phoNoDiv.appendChild(phoNoElement);
+              });
+              //순번
+              // const hosListNoDiv = document.getElementById("hos-listNo");
+              // for (let i = 0; i < hospital.hosphotos.length; i++) {
+              //   const hosListNo = i + 1;
+              //   const listNoElement = document.createElement("p");
+              //   listNoElement.textContent = hosListNo;
+              //   hosListNoDiv.appendChild(listNoElement);
+              // }
+              const photoFilenameDiv =
+                document.getElementById("hos-PhotoFilename");
+              for (let i = 0; i < hospital.hosphotos.length; i++) {
+                const hosPhotoFilename = hospital.hosphotos[i].hosPhotoFilename;
+                const filenameElement = document.createElement("p");
+                filenameElement.textContent = hosPhotoFilename;
+
+                //이미지
+                const image = document.createElement("img");
+                image.src = hospital.hosphotos[i].hosPhotoUrl;
+                image.width = "100";
+                image.height = "100";
+
+                var imageContainer = document.createElement("div");
+                imageContainer.classList.add("filename-checkbox-container");
+                imageContainer.appendChild(filenameElement);
+                imageContainer.appendChild(image);
+                hosPhotoNoDiv.appendChild(imageContainer);
+                //체크박스
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.setAttribute(
+                  "id",
+                  `#hos-PhotoCheck-${hospital.hosphotos[i].id}`
+                );
+                checkbox.addEventListener("click", function () {
+                  const container = this.parentElement;
+                  container.remove();
+                  imageContainer.remove();
+                  const phoNoElements = phoNoDiv.getElementsByTagName("p");
+                  if (phoNoElements.length > 0) {
+                    phoNoElements[phoNoElements.length - 1].remove();
+                  }
+                });
+                const checkboxlist = document.getElementById("hos-listCheck");
+                const container = document.createElement("div");
+                container.classList.add("filename-checkbox-container");
+                container.appendChild(filenameElement);
+                container.appendChild(checkbox);
+                photoFilenameDiv.appendChild(container);
+              }
+              //체크박스로 사진삭제
+              const hosListPhotoNo = document.querySelector(".photoNo").value;
+              const checkboxes = document.querySelectorAll(
+                'input[type="checkbox"]'
+              );
+              checkboxes.forEach((checkbox) => {
+                checkbox.addEventListener("click", function () {
+                  const container = this.parentElement;
+                  container.remove();
+                  imageContainer.remove();
+
+                  fetch(`http://localhost:8080/hospitalImg/${hosListPhotoNo}`, {
+                    method: "DELETE",
+                  })
+                    .then((response) => response.json())
+                    .then((data) => {
+                      console.log("성공하였음");
+                      // document.querySelector('#btn-img-delete').style.display = 'none';
+                      // location.href = "";
+                      if (data.status == "failure") {
+                        console.log("이미지 삭제 실패!\n" + data.data);
+                        return;
+                      }
+                    })
+                    .catch((error) => {
+                      console.log("실패:", error);
+                    });
+                });
+              });
             } else {
               alert("입력실패");
             }
@@ -859,6 +964,32 @@
       } else {
         uform.reportValidity();
       }
+      // 체크박스이벤트
+      // const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      // checkboxes.forEach((checkbox) => {
+      //   checkbox.addEventListener("click", function () {
+      //     const container = this.parentElement;
+      //     container.remove();
+      //     imageContainer.remove();
+
+      //     fetch(`http://localhost:8080/hospitalImg/${no}`, {
+      //       method: "DELETE",
+      //     })
+      //       .then((response) => response.json())
+      //       .then((data) => {
+      //         console.log("성공하였음");
+      //         // document.querySelector('#btn-img-delete').style.display = 'none';
+      //         // location.href = "";
+      //         if (data.status == "failure") {
+      //           console.log("이미지 삭제 실패!\n" + data.data);
+      //           return;
+      //         }
+      //       })
+      //       .catch((error) => {
+      //         console.log("실패:", error);
+      //       });
+      //   });
+      // });
 
       document.querySelector("#hos-update-submit").onclick = (e) => {
         let kno = new URL(location.href).searchParams.get("no");
@@ -887,6 +1018,7 @@
             console.error("실패:", error);
           });
       };
+      // 모든 체크된 체크박스를 찾습니다.
     </script>
   </body>
 </html>
