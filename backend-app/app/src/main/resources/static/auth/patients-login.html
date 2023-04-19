@@ -93,6 +93,9 @@
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="button">비회원</button>
                     </div>
+                    <div id="naver_id_login">
+                      <!-- <button id="naver_id_login" class="naver_login" style="width:400px"></button> -->
+                    </div>
                     <div class="col-12">
                       <p class="small mb-0">계정이 없으시다구요? <a href="../register/patients-signup.html">지금 계정 만들기</a></p>
                     </div>
@@ -129,6 +132,10 @@
   <script src="../assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="../assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="../assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Naver Login -->
+  <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
@@ -209,6 +216,16 @@
 
 
   </script>
+
+<script type="text/javascript">
+  var naver_id_login = new naver_id_login("nl3uBfB5yrcgZZAoTTMH", "http://localhost:8080/register/index.html");
+  var state = naver_id_login.getUniqState();
+  naver_id_login.setButton("green", 3, 60);
+  naver_id_login.setDomain("http://localhost:8080/auth/patients-login.html");
+  naver_id_login.setState(state);
+  naver_id_login.setPopup();
+  naver_id_login.init_naver_id_login();
+</script>
 
 </body>
 

@@ -350,4 +350,7 @@ body::-webkit-scrollbar {
   box-sizing: border-box;
 }
 
+#naver_id_login {
+  width :1500px;
+}
 
