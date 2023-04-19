@@ -20,7 +20,6 @@ import bitcamp.backend.community.service.CommunityImgService;
 import bitcamp.backend.community.service.CommunityService;
 import bitcamp.backend.community.service.RecommentService;
 import bitcamp.backend.community.vo.Community;
-import bitcamp.backend.register.service.DoctorService;
 import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
 
@@ -40,15 +39,10 @@ public class CommunityController {
   @Autowired
   private RecommentService recommentService;
 
-  @Autowired
-  private DoctorService doctorService;
-
   @PostMapping
   public Object insert(@RequestBody Community community) {
 
     RestResult restResult = new RestResult();
-
-
     communityService.add(community);
     restResult.setData(community);
     restResult.setStatus(RestStatus.SUCCESS);
@@ -83,11 +77,8 @@ public class CommunityController {
     System.out.println("커뮤 사진번호 : " + no);
 
     recommentService.deleteCno(no);
-
     communityImgService.delete(no);
-
     communityService.delete(no);
-
     return new RestResult().setStatus(RestStatus.SUCCESS);
   }
 
@@ -104,7 +95,7 @@ public class CommunityController {
     try {
       String query = str; //검색어
       String encodedQuery = URLEncoder.encode(query, "UTF-8");
-      String apiUrl = "https://openapi.naver.com/v1/search/blog.json?query=" + encodedQuery; //API URL
+      String apiUrl = "https://openapi.naver.com/v1/search/blog.json?query=" + encodedQuery +"&display=5&sort=sim"; //API URL
 
       URL url = new URL(apiUrl);
       HttpURLConnection conn = (HttpURLConnection)url.openConnection();
@@ -127,7 +118,6 @@ public class CommunityController {
       while ((inputLine = br.readLine()) != null) {
         response.append(inputLine);
       }
-
       br.close();
       System.out.println(response.toString());
       return response;
