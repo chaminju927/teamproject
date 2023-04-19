@@ -86,18 +86,23 @@ fetch('http://localhost:8080/community/list')
   // 네이버 검색 API
   document.querySelector('.naver-btn').onclick = (e) => {  
     var searchNaver = document.querySelector('#naver-search').value;
+    document.querySelector('#when-searched').style.display = 'block';
     
-    fetch(`http://localhost:8080/community/search?query=${searchNaver}&display=5`)
+    fetch(`http://localhost:8080/community/search?query=${searchNaver}`)
     .then(response => response.json())
     .then(data => {
-  
       if (data.status == "success") {
         /*console.log("성공:",  JSON.parse(data.data));*/
         let list = JSON.parse(data.data).items;
-        list.forEach(value => {
-          console.log(value);
-        })
-        return;
+        console.log(list);
+        console.log(list[0].title);
+        
+       for(i = 0; i < 3; i++) {
+         document.querySelector(`#search-title-${i}`).innerHTML = list[i].title;
+         document.querySelector(`#search-desc-${i}`).innerHTML = list[i].description;
+         document.querySelector(`#search-blogger-${i}`).innerHTML = list[i].bloggername;
+         document.querySelector(`#search-date-${i}`).innerHTML = list[i].postdate;
+       }        
       }
     })
     .catch((err) => {

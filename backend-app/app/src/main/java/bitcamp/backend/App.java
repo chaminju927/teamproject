@@ -201,8 +201,6 @@ public class App {
       System.out.println(file.getOriginalFilename() + ":" + file.getSize());
       strs.add(objectStorageService.uploadFile(bucketName, file));
     }
-
-
     return strs;
   }
 
