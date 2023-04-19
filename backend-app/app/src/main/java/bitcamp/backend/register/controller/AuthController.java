@@ -39,6 +39,7 @@ public class AuthController {
 
     if (member != null) {
       session.setAttribute("loginUser", member);
+      session.setAttribute("mycheck", false);
 
       return new RestResult().setStatus(RestStatus.SUCCESS);
     } else {
@@ -55,6 +56,7 @@ public class AuthController {
 
     if (member != null) {
       session.setAttribute("loginUser", member);
+      session.setAttribute("mycheck", false);
       return new RestResult().setStatus(RestStatus.SUCCESS);
     } else {
       return new RestResult().setStatus(RestStatus.FAILURE);
@@ -67,9 +69,11 @@ public class AuthController {
     return new RestResult().setStatus(RestStatus.SUCCESS);
   }
 
+  @SuppressWarnings("unused")
   @RequestMapping("user")
   public Object user(HttpSession session) {
     Member loginUser = (Member) session.getAttribute("loginUser");
+    loginUser.setPasswordcheck((boolean) session.getAttribute("mycheck"));;
 
     if (loginUser != null) {
       return new RestResult().setStatus(RestStatus.SUCCESS).setData(loginUser);

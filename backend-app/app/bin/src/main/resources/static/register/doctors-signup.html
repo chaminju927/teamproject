@@ -599,8 +599,10 @@
           specialistSelect.value === '40'
         ) {
           specialistFile.required = false;
+          specialistFile.style.display = "none";
         } else {
           specialistFile.required = true;
+          specialistFile.style.display = "block";
         }
       } else {
         licenseFileRow.style.display = 'none';
