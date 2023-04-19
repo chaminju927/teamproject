@@ -144,9 +144,19 @@ public class App {
   @PostMapping("/boardSearch")
   public Object bSearch(@RequestBody HashMap<String, Object> param, HttpSession session) {
 
-    System.out.println(negaText("무릎 수술 자국에 멍이 들기 시작했습니다", 0.9));
 
     List<Board> boards = boardService.list((String) param.get("search"));
+    for (int i = 0; i < boards.size(); i++) {
+      boards.get(i).setFedcount(backService.blist(boards.get(i).getNo()).size());
+    }
+    return boards;
+  }
+
+  @GetMapping("/boardSearch")
+  public Object boSearch() {
+
+
+    List<Board> boards = boardService.list("");
     for (int i = 0; i < boards.size(); i++) {
       boards.get(i).setFedcount(backService.blist(boards.get(i).getNo()).size());
     }

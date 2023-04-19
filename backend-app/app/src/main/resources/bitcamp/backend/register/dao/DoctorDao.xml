@@ -33,7 +33,15 @@
       m.m_name, 
       m.m_email, 
       m.m_tel,
+      m.m_auth,
+      m.m_photo,
+      m.pho_filename,
+      m.pho_type,
+      m.addr,
+      m.m_bday,
+      m.m_gender,
       h.hos_name,
+      d.d_no,
       d.career 
     from 
       app_doctor as d

@@ -24,7 +24,8 @@
       b.symp_title as title,
       b.symp_date as createdDate,
       b.symp_cont1 as pain,
-      b.symp_cont2 as another
+      b.symp_cont2 as another,
+      b.filter
     from 
       app_symp_board b
     <if test="keyword != '' and keyword != null">
@@ -42,7 +43,8 @@
       b.serial as serial,
       b.symp_date as createdDate,
       b.symp_cont1 as pain,
-      b.symp_cont2 as another
+      b.symp_cont2 as another,
+      b.filter
     from 
       app_symp_board b
     <if test="no != 0 and no != null">
@@ -57,7 +59,8 @@
 		SET
 		  b.symp_title=#{title},
 		  b.symp_cont1=#{pain},
-		  b.symp_cont2=#{another}
+		  b.symp_cont2=#{another},
+		  b.filter=#{filter}
 		WHERE symp_no=#{no};
   </update>
   
