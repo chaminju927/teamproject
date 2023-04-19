@@ -64,19 +64,19 @@ fetch('http://localhost:8080/community/list')
     }).slice(0, 2);
 
     var hotPosting1 = hotPostings[0];
-   // var hotPosting2 = hotPostings[1];
+    var hotPosting2 = hotPostings[1];
    // console.log(hotPosting1.no);
   //  console.log(hotPosting2);
     
     document.querySelector("#hot-posting1").textContent = `${hotPosting1.title} (${hotPosting1.viewCnt} views)`;
-    //document.querySelector("#hot-posting2").textContent = `${hotPosting2.title} (${hotPosting2.viewCnt} views)`;
+    document.querySelector("#hot-posting2").textContent = `${hotPosting2.title} (${hotPosting2.viewCnt} views)`;
   
     document.querySelector('#hot-posting1').onclick = (e) => {
     location.href = `community-view.html?no=${hotPosting1.no}`;
     }
-   /* document.querySelector('#hot-posting2').onclick = (e) => {
+    document.querySelector('#hot-posting2').onclick = (e) => {
     location.href = `community-view.html?no=${hotPosting2.no}`;
-    }*/
+    }
   })
   .catch((err) => {
     alert('서버 요청 오류!');
@@ -102,6 +102,11 @@ fetch('http://localhost:8080/community/list')
          document.querySelector(`#search-desc-${i}`).innerHTML = list[i].description;
          document.querySelector(`#search-blogger-${i}`).innerHTML = list[i].bloggername;
          document.querySelector(`#search-date-${i}`).innerHTML = list[i].postdate;
+         
+         document.querySelector(`#search-${i}`).onclick = (e) => {
+           location.href = list[i].link;
+         }
+         
        }        
       }
     })
