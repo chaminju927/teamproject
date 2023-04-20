@@ -60,4 +60,12 @@ public class HosPhotoController {
     return new RestResult().setStatus(RestStatus.SUCCESS);
   }
 
+  @CrossOrigin("*")
+  @DeleteMapping("/delete/{no}")
+  public Object delete(@PathVariable int no) {
+    System.out.println("삭제한 사진의 병원번호 : " + no);
+    hosPhotoService.deleteh(no);
+    return new RestResult().setStatus(RestStatus.SUCCESS);
+  }
+
 }

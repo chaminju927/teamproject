@@ -10,5 +10,6 @@ public interface HosPhotoDao {
   HosPhoto findByHospitalNo(int no);
   int update(HosPhoto hosPhoto);
   int deleteImg(int no);
+  int delete(int no);//병원의 모든사진 지우기
   List<HosPhoto>findByHno(int no);
 }

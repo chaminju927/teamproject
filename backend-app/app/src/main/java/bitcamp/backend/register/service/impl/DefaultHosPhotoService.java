@@ -33,6 +33,11 @@ public class DefaultHosPhotoService implements HosPhotoService  {
   }
 
   @Override
+  public void deleteh(int no) {//병원의 모든사진 지우기
+    hosPhotoDao.delete(no);
+  }
+
+  @Override
   public List<HosPhoto> hget(int no) {
     return hosPhotoDao.findByHno(no);
   }
