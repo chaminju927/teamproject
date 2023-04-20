@@ -61,11 +61,17 @@ fetch(`http://localhost:8080/auth/user`, {
             document.querySelector('.doctors-email').innerText = data.email;
             document.querySelector('.change-email').value = data.email;
 
-            // document.querySelector('.doctors-license').innerText = data.drug;
+            document.querySelector('.doctors-license').innerText = data.licenses[1].licensename;
             // document.querySelector('.change-license').value = data.drug;
 
-            document.querySelector('.doctors-career').innerText = data.career;
-            document.querySelector('.change-career').value = data.career;
+            const arrCareer = data.career.split(", ");
+
+            document.querySelector('.doctors-career').innerText = arrCareer.join("\n");
+            // document.querySelector('.change-career').value = data.career;
+
+            document.querySelector('.doctors-hospital').innerText = data.hospital;
+
+            if (data.hosName == null) document.querySelector('.doctors-hospital').innerText = "소속없음";
           } else {
             console.log('잘못 된 회원 정보');
           }
