@@ -89,16 +89,17 @@ public class CommunityController {
   }
 
   public Object Naver(String str) {
-    String clientId = "hw5sLEXYEIU41gqRI7Tn"; //API Client ID
-    String clientSecret = "Q4OYDrcdPf"; //API Client Secret
+    String clientId = "hw5sLEXYEIU41gqRI7Tn"; // API Client ID
+    String clientSecret = "Q4OYDrcdPf"; // API Client Secret
 
     try {
-      String query = str; //검색어
+      String query = str; // 검색어
       String encodedQuery = URLEncoder.encode(query, "UTF-8");
-      String apiUrl = "https://openapi.naver.com/v1/search/blog.json?query=" + encodedQuery +"&display=5&sort=sim"; //API URL
+      String apiUrl = "https://openapi.naver.com/v1/search/blog.json?query=" + encodedQuery
+          + "&display=5&sort=sim"; // API URL
 
       URL url = new URL(apiUrl);
-      HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
       conn.setRequestMethod("GET");
       conn.setRequestProperty("X-Naver-Client-Id", clientId);
       conn.setRequestProperty("X-Naver-Client-Secret", clientSecret);
@@ -106,9 +107,9 @@ public class CommunityController {
       int responseCode = conn.getResponseCode();
       BufferedReader br;
 
-      if(responseCode == 200) { //성공적으로 API를 호출한 경우
+      if (responseCode == 200) { // 성공적으로 API를 호출한 경우
         br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-      } else {  //에러 발생한 경우
+      } else { // 에러 발생한 경우
         br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
       }
 

@@ -12,13 +12,12 @@ public class Doctor extends Member {
   private List<License> licenses;
   private Hospital hospital;
   private String hosName;
-  private List<String> licenseName;
-  private List<String> licenseOx;
+  private int hosno;
 
   // Hospital 클래스의 hospitalNo 필드에 접근하기 위한 메서드
-  //  public int getHospitalNo() {
-  //    return hospital.getHospitalNo();
-  //  }
+  // public int getHospitalNo() {
+  // return hospital.getHospitalNo();
+  // }
 
   private String career;
 

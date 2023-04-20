@@ -157,7 +157,7 @@ public class DoctorController {
 
     log.debug(doctor);
 
-    //    doctor.setNo(no);
+    // doctor.setNo(no);
     doctorService.update(doctor);
 
     return new RestResult().setStatus(RestStatus.SUCCESS);
@@ -199,4 +199,20 @@ public class DoctorController {
     return new RestResult().setStatus(RestStatus.SUCCESS);
   }
 
+
+  @PostMapping("/changeLicenseCheck")
+  public Object changeLicenseCheck(@RequestBody Map<String, Object> param) {
+    try {
+      License license = new License();
+      license.setDoctorNo((int) param.get("dno"));
+      license.setLicenseNo((int) param.get("lno"));
+      license.setLicenseOx((boolean) param.get("filter"));
+      licenseService.update(license);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+
+    return new RestResult().setStatus(RestStatus.SUCCESS);
+  }
 }

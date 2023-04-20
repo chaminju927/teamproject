@@ -277,6 +277,17 @@ public class App {
     return result;
   }
 
+  @PostMapping("/deleteByNo")
+  public Object deleteByNo(@RequestBody HashMap<String, Object> param) {
+    try {
+      boardService.delete((int) param.get("no"));
+      return new RestResult().setStatus(RestStatus.SUCCESS);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new RestResult().setStatus(RestStatus.FAILURE);
+    }
+  }
+
 
   // @PostMapping("/insertComImg")
   // public void imgCom(MultipartHttpServletRequest request) {

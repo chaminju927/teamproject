@@ -26,6 +26,7 @@ fetch(`http://localhost:8080/auth/user`, {
         .then((data) => {
           if (data.status == 'success') {
             data = data.data;
+            console.log(data)
 
             if (data.phoUrl != null) {
               let imgUrl =

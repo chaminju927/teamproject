@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import bitcamp.backend.community.service.CommunityService;
+import bitcamp.backend.community.vo.Community;
 import bitcamp.backend.register.service.DoctorService;
 import bitcamp.backend.register.service.PatientService;
 import bitcamp.backend.register.vo.Member;
@@ -36,6 +38,8 @@ public class AuthController {
   private DoctorService doctorService;
   @Autowired
   private BoardService boardService;
+  @Autowired
+  private CommunityService communityService;
 
   @PostMapping("/patientLogin")
   public Object patientLogin(String id, String password, HttpSession session) {
@@ -137,6 +141,22 @@ public class AuthController {
       Board board = boardService.get((int) param.get("no"));
       board.setFilter((boolean) param.get("filter"));
       boardService.update(board);
+
+      return new RestResult().setStatus(RestStatus.SUCCESS);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new RestResult().setStatus(RestStatus.FAILURE);
+    }
+  }
+
+  @PostMapping("/adminComm")
+  public Object patientsComm(@RequestBody HashMap<String, Object> param) {
+    try {
+      Community community = communityService.get((int) param.get("no"));
+      System.out.println(community);
+      community.setFilter((boolean) param.get("filter"));
+      communityService.update(community);
+      System.out.println(communityService.get((int) param.get("no")));
 
       return new RestResult().setStatus(RestStatus.SUCCESS);
     } catch (Exception e) {
