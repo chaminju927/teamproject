@@ -124,6 +124,7 @@
           #8b00ff
         ); */
       }
+
       #update-hos-form {
         display: flex;
         flex-direction: column;
@@ -436,6 +437,39 @@
       <section class="section contact align-middle">
         <div class="pagetitle">
           <h1>나의 병원 정보</h1>
+          <p>
+            <button
+              class="btn btn-primary"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseExample"
+              aria-expanded="false"
+              aria-controls="collapseExample"
+            >
+              내병원삭제
+            </button>
+          </p>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body" style="width: 400px">
+              등록된 병원정보를 삭제하시겠습니까?
+              <button
+                id="hos-delete-ok"
+                class="btn btn-danger"
+                style="width: 150px"
+              >
+                내병원삭제
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary mr-auto"
+                onclick="location.reload()"
+                data-bs-dismiss="modal"
+                style="width: 150px"
+              >
+                취소
+              </button>
+            </div>
+          </div>
           <div id="hospitalNo" class="hos-no" style="display: none"></div>
           <div id="hosName" class="hos-name"></div>
         </div>
@@ -939,6 +973,7 @@
 
                 var imageContainer = document.createElement("div");
                 imageContainer.classList.add("filename-checkbox-container");
+                imageContainer.style.marginBottom = "10px";
                 imageContainer.appendChild(filenameElement);
                 imageContainer.appendChild(image);
                 hosPhotoNoDiv.appendChild(imageContainer);
@@ -1058,7 +1093,7 @@
             files[i].name.includes(".psd") ||
             files[i].name.includes(".tga") ||
             files[i].name.includes(".ai") ||
-            iles[i].name.includes(".svg") ||
+            files[i].name.includes(".svg") ||
             files[i].name.includes(".exif") ||
             files[i].name.includes(".jfif")
           ) {
@@ -1082,6 +1117,31 @@
         });
       }
       const message = document.querySelector("#hospital-success-message");
+
+      document.querySelector("#hos-delete-ok").onclick = (e) => {
+        let dno = new URL(location.href).searchParams.get("no");
+        fetch(`http://localhost:8080/hospitalImg/delete/${dno}`, {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status == "success") {
+              console.log("이미지삭제성공");
+              fetch(`http://localhost:8080/hospital/delete/${dno}`, {
+                method: "DELETE",
+              })
+                .then((response) => response.json())
+                .then((data) => {
+                  console.log("삭제성공 데이터베이스확인");
+                  location.href =
+                    "http://localhost:8080/register/hospitals-list.html";
+                });
+            }
+          })
+          .catch((error) => {
+            console.log("실패:", error);
+          });
+      };
     </script>
   </body>
 </html>

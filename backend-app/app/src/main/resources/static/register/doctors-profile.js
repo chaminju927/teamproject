@@ -40,14 +40,13 @@ fetch(`http://localhost:8080/auth/user`, {
 
             document.querySelector('.doctors-name').innerText = data.name;
             document.querySelector('.change-name').value = data.name;
-            document.querySelector('.doctors-name').innerHTML =
-              document.querySelector('.doctors-name').innerHTML +
+            document.querySelector('.doctors-gender').innerHTML = 
               `<span class="doctors-gender">${
                 data.gender ? '남성' : '여성'
               }</span>`;
 
             // document.querySelector('.doctors-id').innerText = data.id;
-            document.querySelector('.change-id').value = data.id;
+            // document.querySelector('.change-id').value = data.id;
 
             document.querySelector('.doctors-birth').innerText = data.birth;
             document.querySelector('.change-birth').value = data.birth;
@@ -61,9 +60,11 @@ fetch(`http://localhost:8080/auth/user`, {
             document.querySelector('.doctors-email').innerText = data.email;
             document.querySelector('.change-email').value = data.email;
 
-            document.querySelector('.doctors-drug').innerText = data.drug;
-            document.querySelector('.change-drug').value = data.drug;
-            document.querySelector('.change-phy').value = data.phy;
+            // document.querySelector('.doctors-license').innerText = data.drug;
+            // document.querySelector('.change-license').value = data.drug;
+
+            document.querySelector('.doctors-career').innerText = data.career;
+            document.querySelector('.change-career').value = data.career;
           } else {
             console.log('잘못 된 회원 정보');
           }
@@ -75,7 +76,7 @@ $('.change-btn').click(() => {
   let formData = new FormData();
   if (document.querySelector('.change-img').files.length > 0) {
     formData.append('file', document.querySelector('.change-img').files[0]);
-    fetch(`http://localhost:8080/doctors/${doctorNo}`, {
+    fetch(`http://localhost:8080/doctors/updateImg/${doctorNo}`, {
       method: 'POST',
       body: formData,
     })
@@ -84,7 +85,7 @@ $('.change-btn').click(() => {
         console.log(data);
       });
   }
-  formData.append('id', document.querySelector('.change-id').value);
+  // formData.append('id', document.querySelector('.change-id').value);
   formData.append('name', document.querySelector('.change-name').value);
   formData.append('birth', document.querySelector('.change-birth').value);
   formData.append('tel', document.querySelector('.change-tel').value);

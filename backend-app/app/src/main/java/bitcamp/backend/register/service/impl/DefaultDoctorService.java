@@ -10,6 +10,7 @@ import bitcamp.backend.register.dao.DoctorDao;
 import bitcamp.backend.register.dao.MemberDao;
 import bitcamp.backend.register.service.DoctorService;
 import bitcamp.backend.register.vo.Doctor;
+import bitcamp.backend.register.vo.Member;
 
 
 @Service
@@ -67,6 +68,22 @@ public class DefaultDoctorService implements DoctorService {
     } else {
       throw new RuntimeException("의사가 존재하지 않습니다.");
     }
+  }
+
+  @Override
+  public void updateImg(Doctor doctor) {
+    memberDao.updateImg(doctor);
+  }
+
+  @Override
+  public int updatePw(Doctor doctor) {
+    memberDao.updatePw(doctor);
+    return 0;
+  }
+
+  @Override
+  public Member tget(String tel) {
+    return memberDao.findByTel(tel);
   }
 
 }

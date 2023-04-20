@@ -125,7 +125,7 @@ public class PatientController {
     return new RestResult().setStatus(RestStatus.SUCCESS);
   }
 
-  @PostMapping("{no}")
+  @PostMapping("/updateImg/{no}")
   public Object imgUpdate(@PathVariable int no, @RequestParam("file") MultipartFile file) {
     log.debug(file);
     System.out.println(file.getOriginalFilename() + ":" + file.getSize());

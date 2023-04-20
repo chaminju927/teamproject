@@ -3,7 +3,9 @@ package bitcamp.backend.register.controller;
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.security.InvalidKeyException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.logging.log4j.LogManager;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.multipart.MultipartFile;
@@ -109,6 +112,22 @@ public class DoctorController {
     }
   }
 
+  @PostMapping("/updateImg/{no}")
+  public Object imgUpdate(@PathVariable int no, @RequestParam("file") MultipartFile file) {
+    log.debug(file);
+    System.out.println(file.getOriginalFilename() + ":" + file.getSize());
+    String url = objectStorageService.uploadFile(memberImg, file);
+    url = url.split("/")[5];
+    Doctor doctor = doctorService.get(no);
+    doctor.setPhoName(file.getOriginalFilename());
+    doctor.setPhoType(file.getContentType());
+    doctor.setPhoUrl(url);
+    doctorService.updateImg(doctor);
+    System.out.println(url);
+
+    return new RestResult().setStatus(RestStatus.SUCCESS);
+  }
+
   @GetMapping("/check-duplicate/{id}")
   public Object checkDuplicateId(@PathVariable String id) {
     boolean isDuplicate = doctorService.isDuplicateId(id);
@@ -138,10 +157,40 @@ public class DoctorController {
 
     log.debug(doctor);
 
-    doctor.setNo(no);
+    //    doctor.setNo(no);
     doctorService.update(doctor);
 
     return new RestResult().setStatus(RestStatus.SUCCESS);
+  }
+
+  @PostMapping("/updatePw/{no}")
+  public Object updatePw(@PathVariable int no, @RequestBody HashMap<String, Object> param)
+      throws NoSuchAlgorithmException {
+    String password = encrypt((String) param.get("password"));
+    log.debug(password);
+    Doctor doc = doctorService.get(no);
+    if (doc.getPassword().equals(password)) {
+      doc.setPassword(encrypt((String) param.get("changepassword")));
+      doctorService.updatePw(doc);
+      return new RestResult().setStatus(RestStatus.SUCCESS);
+    } else {
+      return new RestResult().setStatus(RestStatus.FAILURE);
+    }
+  }
+
+  public String encrypt(String text) throws NoSuchAlgorithmException {
+    MessageDigest md = MessageDigest.getInstance("SHA-256");
+    md.update(text.getBytes());
+
+    return bytesToHex(md.digest());
+  }
+
+  private String bytesToHex(byte[] bytes) {
+    StringBuilder builder = new StringBuilder();
+    for (byte b : bytes) {
+      builder.append(String.format("%02x", b));
+    }
+    return builder.toString();
   }
 
   @DeleteMapping("{no}")
