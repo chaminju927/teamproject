@@ -26,7 +26,7 @@ fetch(`http://localhost:8080/auth/user`, {
         .then((data) => {
           if (data.status == 'success') {
             data = data.data;
-            console.log(data)
+            console.log(data);
 
             if (data.phoUrl != null) {
               let imgUrl =
@@ -41,10 +41,11 @@ fetch(`http://localhost:8080/auth/user`, {
 
             document.querySelector('.doctors-name').innerText = data.name;
             document.querySelector('.change-name').value = data.name;
-            document.querySelector('.doctors-gender').innerHTML = 
-              `<span class="doctors-gender">${
-                data.gender ? '남성' : '여성'
-              }</span>`;
+            document.querySelector(
+              '.doctors-gender'
+            ).innerHTML = `<span class="doctors-gender">${
+              data.gender ? '남성' : '여성'
+            }</span>`;
 
             // document.querySelector('.doctors-id').innerText = data.id;
             // document.querySelector('.change-id').value = data.id;
@@ -61,17 +62,76 @@ fetch(`http://localhost:8080/auth/user`, {
             document.querySelector('.doctors-email').innerText = data.email;
             document.querySelector('.change-email').value = data.email;
 
-            document.querySelector('.doctors-license').innerText = data.licenses[1].licensename;
+            document.querySelector('.doctors-license').innerText =
+              data.licenses[1].licensename;
             // document.querySelector('.change-license').value = data.drug;
 
-            const arrCareer = data.career.split(", ");
+            const arrCareer = data.career.split(', ');
 
-            document.querySelector('.doctors-career').innerText = arrCareer.join("\n");
+            console.log(arrCareer);
+
+            document.querySelector('.doctors-career').innerText =
+              arrCareer.join('\n');
             // document.querySelector('.change-career').value = data.career;
 
-            document.querySelector('.doctors-hospital').innerText = data.hospital;
+            arrCareer.forEach((career) => {
+              const oldRow = document.createElement('div');
+              const registerCareerList = document.querySelector(
+                '.register-career-list'
+              );
+              oldRow.classList.add('row', 'mb-3');
+              oldRow.innerHTML = `
+                <label class="col-lg-3 col-form-label"></label>
+                <div class="col-lg-8">
+                  <input type="text" class="form-control change-career" value="${career}">
+                </div>
+                <div class="col-lg-1 btn-list">
+                  <button type="button" class="btn btn-outline-danger btn-sm remove-career-btn">×</button>
+                </div>
+              `;
+              registerCareerList.appendChild(oldRow);
+            });
 
-            if (data.hosName == null) document.querySelector('.doctors-hospital').innerText = "소속없음";
+            // 경력
+            // '＋' 버튼 클릭 시 새로운 row div 추가
+            const addCareerButton = document.querySelector('.add-career-btn');
+            addCareerButton.addEventListener('click', () => {
+              const registerCareerList = document.querySelector(
+                '.register-career-list'
+              );
+              const newRow = document.createElement('div');
+              newRow.classList.add('row', 'mb-3');
+              newRow.innerHTML = `
+          <label class="col-lg-3 col-form-label"></label>
+          <div class="col-lg-8">
+            <input type="text" class="form-control change-career">
+          </div>
+          <div class="col-lg-1 btn-list">
+            <button type="button" class="btn btn-outline-danger btn-sm remove-career-btn">×</button>
+          </div>
+        `;
+              registerCareerList.appendChild(newRow);
+            });
+
+            // '×' 버튼 클릭 시 해당 row div 삭제
+            const registerCareerList = document.querySelector(
+              '.register-career-list'
+            );
+            registerCareerList.addEventListener('click', (event) => {
+              const removeCareerButton =
+                event.target.closest('.remove-career-btn');
+              if (removeCareerButton) {
+                const rowToRemove = removeCareerButton.closest('.row');
+                rowToRemove.remove();
+              }
+            });
+
+            document.querySelector('.doctors-hospital').innerText =
+              data.hosName;
+
+            if (data.hosName == null)
+              document.querySelector('.doctors-hospital').innerText =
+                '소속없음';
           } else {
             console.log('잘못 된 회원 정보');
           }
@@ -99,8 +159,12 @@ $('.change-btn').click(() => {
   formData.append('addr', document.querySelector('.change-addr').value);
   // formData.append("gender", '1');
   formData.append('email', document.querySelector('.change-email').value);
-  formData.append('drug', document.querySelector('.change-drug').value);
-  formData.append('phy', document.querySelector('.change-phy').value);
+  const career = form.querySelectorAll('.change-career');
+  let careers = [];
+  career.forEach((input) => {
+    careers.push(input.value);
+  });
+  formData.append('career', careers.join(', '));
 
   fetch(`http://localhost:8080/doctors/${doctorNo}`, {
     method: 'PUT',
