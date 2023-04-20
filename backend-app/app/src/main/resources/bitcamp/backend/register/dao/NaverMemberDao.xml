@@ -17,7 +17,10 @@
   
   <insert id="insert" parameterType="naverMember"
           useGeneratedKeys="true" keyProperty="id" keyColumn="no">
-    insert into app_naver_member(id, username, password, email, nickname, mobile, create_date, modify_date)
-    values( #{id}, #{username} ,sha2(#{password},256), #{email}, #{nickname}, #{mobile}, #{createDate}, #{modifyDate} )
+    insert into app_naver_member(username, password, email, nickname, mobile, create_date, modify_date)
+    values( #{username} ,sha2(#{password},256), #{email}, #{nickname}, #{mobile}, now(), now())
+    <selectKey resultType="int" keyProperty="id" order="AFTER">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
   </insert>
 </mapper>
