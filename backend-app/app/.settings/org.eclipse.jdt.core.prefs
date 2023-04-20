@@ -1,4 +1,5 @@
 #
+<<<<<<< Updated upstream
 #Thu Apr 20 19:17:48 KST 2023
 =\=\=\=\=\=\=
 org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
@@ -15,6 +16,12 @@ org.eclipse.jdt.core.compiler.problem.nullAnnotationInferenceConflict=error
 org.eclipse.jdt.core.compiler.codegen.targetPlatform=17
 org.eclipse.jdt.core.compiler.problem.nullSpecViolation=error
 org.eclipse.jdt.core.compiler.problem.potentialNullReference=ignore
+=======
+#Thu Apr 20 15:32:50 GMT+09:00 2023
+org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
+org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
+org.eclipse.jdt.core.compiler.codegen.targetPlatform=17
+>>>>>>> Stashed changes
 org.eclipse.jdt.core.compiler.source=17
 org.eclipse.jdt.core.compiler.annotation.nonnull=org.eclipse.jdt.annotation.NonNull
 org.eclipse.jdt.core.compiler.annotation.nullanalysis=disabled

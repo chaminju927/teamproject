@@ -143,6 +143,10 @@
         cursor: pointer;
         color: red;
       }
+      .hos-pre-img {
+        width: 252px;
+        height: 40px;
+      }
     </style>
   </head>
 
@@ -437,39 +441,6 @@
       <section class="section contact align-middle">
         <div class="pagetitle">
           <h1>나의 병원 정보</h1>
-          <p>
-            <button
-              class="btn btn-primary"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseExample"
-              aria-expanded="false"
-              aria-controls="collapseExample"
-            >
-              내병원삭제
-            </button>
-          </p>
-          <div class="collapse" id="collapseExample">
-            <div class="card card-body" style="width: 400px">
-              등록된 병원정보를 삭제하시겠습니까?
-              <button
-                id="hos-delete-ok"
-                class="btn btn-danger"
-                style="width: 150px"
-              >
-                내병원삭제
-              </button>
-              <button
-                type="button"
-                class="btn btn-secondary mr-auto"
-                onclick="location.reload()"
-                data-bs-dismiss="modal"
-                style="width: 150px"
-              >
-                취소
-              </button>
-            </div>
-          </div>
           <div id="hospitalNo" class="hos-no" style="display: none"></div>
           <div id="hosName" class="hos-name"></div>
         </div>
@@ -621,14 +592,12 @@
                           </h5>
                           <div id="update-hosNo" class="hos-no"></div>
                           <!-- Slides only carousel -->
-                          <table class="table table-striped">
+                          <table class="table table-striped hos-pre-img">
                             <thead>
                               <tr>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
-                                <th scope="col">
-                                  기존 이미지(체크시 즉시 삭제)
-                                </th>
+                                <th scope="col">기존 이미지(체크시 삭제)</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -759,6 +728,47 @@
                   </div>
                 </div>
                 <!-- End Scrolling Modal-->
+              </div>
+              <p>
+                <button
+                  class="btn btn-danger"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseExample"
+                  aria-expanded="false"
+                  aria-controls="collapseExample"
+                  style="float: right"
+                >
+                  등록된 병원삭제
+                </button>
+              </p>
+              <div class="collapse" id="collapseExample">
+                <div
+                  class="card card-body"
+                  style="
+                    width: 300px;
+                    display: inline-block;
+                    text-align: center;
+                  "
+                >
+                  등록된 병원정보를 삭제하시겠습니까?
+                  <button
+                    id="hos-delete-ok"
+                    class="btn btn-danger"
+                    style="width: 100px"
+                  >
+                    내병원삭제
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary mr-auto"
+                    onclick="location.reload()"
+                    data-bs-dismiss="modal"
+                    style="width: 100px"
+                  >
+                    취소
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -961,19 +971,27 @@
               const photoFilenameDiv =
                 document.getElementById("hos-PhotoFilename");
               for (let i = 0; i < hospital.hosphotos.length; i++) {
-                const hosPhotoFilename = hospital.hosphotos[i].hosPhotoFilename;
+                let hosPhotoFilename = hospital.hosphotos[i].hosPhotoFilename;
                 const filenameElement = document.createElement("span");
+                if (hosPhotoFilename.length > 12) {
+                  hosPhotoFilename =
+                    hosPhotoFilename.substring(0, 15) + ". . . ";
+                }
                 filenameElement.textContent = hosPhotoFilename;
 
                 //이미지
                 const image = document.createElement("img");
                 image.src = hospital.hosphotos[i].hosPhotoUrl;
-                image.width = "100";
-                image.height = "100";
+                image.width = "20";
+                image.height = "20";
 
-                var imageContainer = document.createElement("div");
+                let imageContainer = document.createElement("div");
                 imageContainer.classList.add("filename-checkbox-container");
-                imageContainer.style.marginBottom = "10px";
+                imageContainer.setAttribute(
+                  "id",
+                  `hos-imageContainer-${hospital.hosphotos[i].photoNo}`
+                );
+                imageContainer.style.marginBottom = "2px";
                 imageContainer.appendChild(filenameElement);
                 imageContainer.appendChild(image);
                 hosPhotoNoDiv.appendChild(imageContainer);
@@ -982,10 +1000,15 @@
                 checkbox.type = "checkbox";
                 checkbox.setAttribute(
                   "id",
-                  `#hos-PhotoCheck-${hospital.hosphotos[i].photoNo}`
+                  `hos-PhotoCheck-${hospital.hosphotos[i].photoNo}`
                 );
-                checkbox.addEventListener("click", function () {
+                checkbox.addEventListener("click", function (event) {
                   const container = this.parentElement;
+                  //체크박스와 이미지 위치가 같으면 삭제인데 컨테이너 안에 체크박스와 span테그가 있음.
+                  console.log(container);
+                  console.log(event.target.id);
+                  console.log(imageContainer);
+
                   container.remove();
                   imageContainer.remove();
                   const phoNoElements = phoNoDiv.getElementsByTagName("span");
@@ -999,7 +1022,7 @@
                 container.appendChild(filenameElement);
                 container.appendChild(checkbox);
                 container.style.marginLeft = "30px";
-                container.style.marginBottom = "80px";
+                // container.style.marginBottom = "px";
                 photoFilenameDiv.appendChild(container);
               }
               //체크박스로 사진삭제
@@ -1011,7 +1034,6 @@
                   const container = this.parentElement;
                   hosListPhotoNo = event.target.id.split("-")[2];
                   container.remove();
-                  imageContainer.remove();
 
                   fetch(`http://localhost:8080/hospitalImg/${hosListPhotoNo}`, {
                     method: "DELETE",
