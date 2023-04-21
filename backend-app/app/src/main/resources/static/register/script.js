@@ -100,7 +100,9 @@ fetch(`http://localhost:8080/auth/user`, {
             }
           })
       })
-    } else {
+    }else if(data.status == "success" && data.data.admin) {
+      $(".log-btn").text("관리자")
+    }else {
       $(".log-btn").text("로그인")
     }
   })

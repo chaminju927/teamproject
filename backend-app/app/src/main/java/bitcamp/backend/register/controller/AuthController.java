@@ -59,7 +59,6 @@ public class AuthController {
       session.setAttribute("loginNo", member.getNo());
       session.setAttribute("pUser", member);
       session.setAttribute("mycheck", false);
-      System.out.println(member);
       if (member.isAdmin()) {
         return new RestResult().setStatus(RestStatus.SUCCESS).setData(member);
       } else {
@@ -96,10 +95,8 @@ public class AuthController {
   @SuppressWarnings("unused")
   @RequestMapping("user")
   public Object user(HttpSession session) {
-    int loginNo = (int) session.getAttribute("loginNo");
-    System.out.println(loginNo);
-
-    if (loginNo != 0) {
+    if (session.getAttribute("loginNo") != null) {
+      int loginNo = (int) session.getAttribute("loginNo");
       if (patientService.getMember(loginNo).isAdmin()) {
         Member member = patientService.getMember(loginNo);
         member.setPasswordcheck((boolean) session.getAttribute("mycheck"));
@@ -204,10 +201,8 @@ public class AuthController {
   public Object patientsComm(@RequestBody HashMap<String, Object> param) {
     try {
       Community community = communityService.get((int) param.get("no"));
-      System.out.println(community);
       community.setFilter((boolean) param.get("filter"));
       communityService.update(community);
-      System.out.println(communityService.get((int) param.get("no")));
 
       return new RestResult().setStatus(RestStatus.SUCCESS);
     } catch (Exception e) {
