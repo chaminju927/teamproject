@@ -1340,6 +1340,13 @@ h6 {
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
+
+.footer-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .footer {
   padding: 20px 0;
   font-size: 14px;
