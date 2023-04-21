@@ -62,8 +62,13 @@ fetch(`http://localhost:8080/auth/user`, {
             document.querySelector('.doctors-tel').innerText = data.tel;
             document.querySelector('.change-tel').value = data.tel;
 
+            const arrAddr = data.addr.split(', ');
+
+            document.getElementById('postcode').value = arrAddr[0];
+            document.getElementById('roadAddress').value = arrAddr[1];
+            document.getElementById('detailAddress').value = arrAddr[2];
+
             document.querySelector('.doctors-addr').innerText = data.addr;
-            document.querySelector('.change-addr').value = data.addr;
 
             document.querySelector('.doctors-email').innerText = data.email;
             document.querySelector('.change-email').value = data.email;
