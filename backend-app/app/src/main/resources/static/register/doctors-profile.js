@@ -56,8 +56,13 @@ fetch(`http://localhost:8080/auth/user`, {
             document.querySelector('.doctors-tel').innerText = data.tel;
             document.querySelector('.change-tel').value = data.tel;
 
+            const arrAddr = data.addr.split(', ');
+
+            document.getElementById('postcode').value = arrAddr[0];
+            document.getElementById('roadAddress').value = arrAddr[1];
+            document.getElementById('detailAddress').value = arrAddr[2];
+
             document.querySelector('.doctors-addr').innerText = data.addr;
-            document.querySelector('.change-addr').value = data.addr;
 
             document.querySelector('.doctors-email').innerText = data.email;
             document.querySelector('.change-email').value = data.email;
@@ -156,7 +161,11 @@ $('.change-btn').click(() => {
   formData.append('name', document.querySelector('.change-name').value);
   formData.append('birth', document.querySelector('.change-birth').value);
   formData.append('tel', document.querySelector('.change-tel').value);
-  formData.append('addr', document.querySelector('.change-addr').value);
+
+  const zipcode = document.getElementById('postcode').value;
+  const roadAddress = document.getElementById('roadAddress').value;
+  const detailAddress = document.getElementById('detailAddress').value;
+  formData.append('addr', `${zipcode}, ${roadAddress}, ${detailAddress}`);
   // formData.append("gender", '1');
   formData.append('email', document.querySelector('.change-email').value);
   const career = form.querySelectorAll('.change-career');
@@ -181,12 +190,12 @@ function checkPw() {
   let pw = document.querySelector('.change-pw').value;
   let checkpw = document.querySelector('.change-pw-check').value;
   if (pw == checkpw) {
-    $('.change-pw-check').css('border', '2px solid #0d62fd');
-    $('.change-pw').css('border', '2px solid #0d62fd');
+    $('.change-pw-check').css('border', '2px solid #198754');
+    $('.change-pw').css('border', '2px solid #198754');
     samePw = true;
   } else {
-    $('.change-pw-check').css('border', '2px solid #ff5a5a');
-    $('.change-pw').css('border', '2px solid #ff5a5a');
+    $('.change-pw-check').css('border', '2px solid #dc3545');
+    $('.change-pw').css('border', '2px solid #dc3545');
     samePw = false;
   }
 }
