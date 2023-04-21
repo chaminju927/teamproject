@@ -53,7 +53,7 @@ public class CommunityController {
   public Object insert(@RequestBody Community community) {
 
     RestResult restResult = new RestResult();
-    community.setFilter(negaText(community.getTitle() + community.getContent(), 0.9));
+    community.setFilter(!negaText(community.getTitle() + community.getContent(), 0.9));
     communityService.add(community);
     restResult.setData(community);
     restResult.setStatus(RestStatus.SUCCESS);
@@ -77,7 +77,7 @@ public class CommunityController {
   @PutMapping
   public Object update(@RequestBody Community community) {
 
-    community.setFilter(negaText(community.getTitle() + community.getContent(), 0.9));
+    community.setFilter(!negaText(community.getTitle() + community.getContent(), 0.9));
     communityService.update(community);
 
     RestResult restResult = new RestResult();
@@ -96,7 +96,6 @@ public class CommunityController {
 
   @GetMapping("/search")
   public Object search(@RequestParam String query) {
-    System.out.println(query);
     return new RestResult().setStatus(RestStatus.SUCCESS).setData(Naver(query));
   }
 
@@ -132,7 +131,6 @@ public class CommunityController {
         response.append(inputLine);
       }
       br.close();
-      System.out.println(response.toString());
       return response;
 
     } catch (Exception e) {

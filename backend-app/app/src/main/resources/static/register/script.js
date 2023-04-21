@@ -69,6 +69,7 @@ fetch(`http://localhost:8080/auth/user`, {
   .then(response => response.json())
   .then(data => {
     if (data.status == "success") {
+      console.log(data)
       myno = data.data.no;
       mydata = data.data;
       console.log(mydata)

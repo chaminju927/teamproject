@@ -17,8 +17,10 @@ import bitcamp.backend.community.vo.Community;
 import bitcamp.backend.register.service.DoctorService;
 import bitcamp.backend.register.service.NaverMemberService;
 import bitcamp.backend.register.service.PatientService;
+import bitcamp.backend.register.vo.Doctor;
 import bitcamp.backend.register.vo.Member;
 import bitcamp.backend.register.vo.NaverMember;
+import bitcamp.backend.register.vo.Patient;
 import bitcamp.backend.user.service.BoardService;
 import bitcamp.backend.user.vo.Board;
 import bitcamp.util.RestResult;
@@ -54,7 +56,8 @@ public class AuthController {
     member = patientService.get(id, password);
 
     if (member != null) {
-      session.setAttribute("loginUser", member);
+      session.setAttribute("loginNo", member.getNo());
+      session.setAttribute("pUser", member);
       session.setAttribute("mycheck", false);
 
       return new RestResult().setStatus(RestStatus.SUCCESS);
@@ -71,7 +74,8 @@ public class AuthController {
     member = doctorService.get(id, password);
 
     if (member != null) {
-      session.setAttribute("loginUser", member);
+      session.setAttribute("loginNo", member.getNo());
+      session.setAttribute("dUser", member);
       session.setAttribute("mycheck", false);
       return new RestResult().setStatus(RestStatus.SUCCESS);
     } else {
@@ -88,11 +92,23 @@ public class AuthController {
   @SuppressWarnings("unused")
   @RequestMapping("user")
   public Object user(HttpSession session) {
-    Member loginUser = (Member) session.getAttribute("loginUser");
+    int loginNo = (int) session.getAttribute("loginNo");
+    System.out.println(loginNo);
 
-    if (loginUser != null) {
-      loginUser.setPasswordcheck((boolean) session.getAttribute("mycheck"));;
-      return new RestResult().setStatus(RestStatus.SUCCESS).setData(loginUser);
+    if (loginNo != 0) {
+      if (patientService.getMember(loginNo).isAdmin()) {
+        Member member = patientService.getMember(loginNo);
+        member.setPasswordcheck((boolean) session.getAttribute("mycheck"));
+        return new RestResult().setStatus(RestStatus.SUCCESS).setData(member);
+      } else if (patientService.get(loginNo) != null) {
+        Patient patient = patientService.get(loginNo);
+        patient.setPasswordcheck((boolean) session.getAttribute("mycheck"));
+        return new RestResult().setStatus(RestStatus.SUCCESS).setData(patient);
+      } else {
+        Doctor doctor = doctorService.get(loginNo);
+        doctor.setPasswordcheck((boolean) session.getAttribute("mycheck"));
+        return new RestResult().setStatus(RestStatus.SUCCESS).setData(doctor);
+      }
     } else {
       return new RestResult().setStatus(RestStatus.FAILURE);
     }
@@ -106,7 +122,7 @@ public class AuthController {
     String email = (String) userInfo.get("email");
 
     NaverMember naverMember = naverMemberService.get(email);
-    if(naverMember == null) {
+    if (naverMember == null) {
       // 신규 회원 등록
       naverMember = new NaverMember();
       naverMember.setUsername(name);
@@ -115,7 +131,7 @@ public class AuthController {
     } else {
       // 기존 회원 정보 업데이트
       naverMember.setUsername(name);
-      //      naverMemberService.update(naverMember);
+      // naverMemberService.update(naverMember);
     }
 
     // 회원 정보 업데이트 후 응답 메시지를 생성해서 반환

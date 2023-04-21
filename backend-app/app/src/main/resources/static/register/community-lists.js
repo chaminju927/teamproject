@@ -28,7 +28,6 @@ fetch(`http://localhost:8080/auth/user`, {
   .then(response => response.json())
   .then(data => {
     if (data.status == "success") {
-      // console.log(data.data)
       return data.data;
     } else {
       location.href = "../auth/doctors-login.html"
@@ -36,7 +35,14 @@ fetch(`http://localhost:8080/auth/user`, {
     return data.data
   })
   .then((user) => {
-    myno = user.no
+    console.log(user.hosName !== undefined)
+    if(user.hosName !== undefined) {
+      myno = user.no
+    }else {
+      console.log(user.hosName)
+      location.href = "../auth/doctors-login.html"
+    }
+
   })
   .then(() => {
     fetch('http://localhost:8080/community/list')
@@ -88,7 +94,7 @@ fetch(`http://localhost:8080/auth/user`, {
 
     // 네이버 검색 API
     document.querySelector('.naver-btn').onclick = (e) => {
-      var searchNaver = document.querySelector('#naver-search').value;
+      var searchNaver = document.querySelector('.naver-search').value;
       document.querySelector('#when-searched').style.display = 'block';
 
       fetch(`http://localhost:8080/community/search?query=${searchNaver}`)
