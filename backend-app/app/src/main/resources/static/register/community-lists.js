@@ -1,10 +1,9 @@
-
+``
 document.querySelector('#btn-write').onclick = (e) => {
   location.href = 'community-write.html';
 };
 
 let myno = 0;
-
 function categoryName(category) {
   switch (category) {
     case 1:
@@ -17,11 +16,8 @@ function categoryName(category) {
       return '-';
   }
 }
-
+// 로그인 계정 정보
 tbody = document.querySelector('#community-list')
-
-
-
 fetch(`http://localhost:8080/auth/user`, {
   method: 'GET'
 })
@@ -42,14 +38,11 @@ fetch(`http://localhost:8080/auth/user`, {
       console.log(user.hosName)
       location.href = "../auth/doctors-login.html"
     }
-
   })
   .then(() => {
     fetch('http://localhost:8080/community/list')
       .then((response) => response.json())
       .then((data) => {
-
-
         var html = '';
 
         for (row of data.data) {
@@ -66,7 +59,6 @@ fetch(`http://localhost:8080/auth/user`, {
         }
         // console.log(data);
         tbody.innerHTML = html;
-
 
         // 조회수가 가장 높은 게시글 정보를 HTML에 추가
         var hotPostings = data.data.sort(function (a, b) {
@@ -91,42 +83,62 @@ fetch(`http://localhost:8080/auth/user`, {
         alert('서버 요청 오류!');
         console.log(err);
       });
+    })
 
     // 네이버 검색 API
-    document.querySelector('.naver-btn').onclick = (e) => {
-      var searchNaver = document.querySelector('.naver-search').value;
-      document.querySelector('#when-searched').style.display = 'block';
-
-      fetch(`http://localhost:8080/community/search?query=${searchNaver}`)
-        .then(response => response.json())
-        .then(data => {
-          if (data.status == "success") {
-            /*console.log("성공:",  JSON.parse(data.data));*/
-            let list = JSON.parse(data.data).items;
-            console.log(list);
-            console.log(list[0].title);
-
-            for (i = 0; i < 3; i++) {
-              document.querySelector(`#search-title-${i}`).innerHTML = list[i].title;
-              document.querySelector(`#search-desc-${i}`).innerHTML = list[i].description;
-              document.querySelector(`#search-blogger-${i}`).innerHTML = list[i].bloggername;
-              document.querySelector(`#search-date-${i}`).innerHTML = list[i].postdate;
-
-              document.querySelector(`#search-${i}`).onclick = (e) => {
-                location.href = list[i].link;
-              }
-
-            }
+ document.querySelector('.naver-btn').onclick = (e) => {
+  var searchNaver = document.querySelector('.naver-search').value;
+  document.querySelector('#when-searched').style.display = 'block';
+  
+  fetch(`http://localhost:8080/community/search?query=${searchNaver}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.status == "success") {
+        console.log("성공:",  JSON.parse(data.data));
+        let list = JSON.parse(data.data).items;
+        let currentPage = 1;
+        movePage(currentPage);
+        
+        function movePage(currentPage) {
+          start = (currentPage-1) * 3;
+          end = start + 3;
+          for (i = start; i < end; i++) {
+            document.querySelector(`#search-title-${i}`).innerHTML = list[i].title;
+            document.querySelector(`#search-desc-${i}`).innerHTML = list[i].description;
+            document.querySelector(`#search-blogger-${i}`).innerHTML = list[i].bloggername;
+            document.querySelector(`#search-date-${i}`).innerHTML = list[i].postdate;
+            document.querySelector(`#search-${i}`).onclick = (e) => {
+              location.href = list[i].link;
+            }  
           }
-        })
-        .catch((err) => {
-          alert('서버 요청 오류!');
-          console.log(err);
-        });
-    }
-  })
-
-
-
-
-
+          // 현재 페이지 업데이트
+          currentPageEl = document.querySelector('#current-page');
+          currentPageEl.innerHTML = currentPage;
+        }
+        
+        // 이전 버튼 클릭 시
+        document.querySelector('.page-item-former').onclick = (e) => {
+          if (currentPage === 1) {
+            return;
+          } else {
+            currentPage--;
+            movePage(currentPage);
+          }
+        };
+        
+        // 다음 버튼 클릭 시
+        document.querySelector('.page-item-next').onclick = (e) => {
+          if (currentPage === 3) {
+            return;
+          } else {
+            currentPage++;
+            movePage(currentPage);
+          }
+        };
+      }  
+    })
+    .catch((err) => {
+      alert('서버 요청 오류!');
+      console.log(err);
+    }); 
+}

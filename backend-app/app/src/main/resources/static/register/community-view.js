@@ -51,6 +51,7 @@ Promise.all([
   document.querySelector('#createdDate').value = communityData.data.createdDate;
   document.querySelector('#content').value = communityData.data.content;
   
+  // 사진 없을 경우와 있을 경우 이미지 삭제 버튼
   if (communityData.photo[0] != null) {
   let photoUrl = "http://uyaxhfqyqnwh16694929.cdn.ntruss.com/community-img/"+communityData.photo[0].imgUrl+"?type=f&w=500&h=500&quality=85&autorotate=true&faceopt=true&anilimit=24"
    
@@ -67,6 +68,7 @@ Promise.all([
         document.querySelector('#btn-img-delete').style.display = 'none';
   }
   
+  // 본인 글을 조회하는 경우와 아닌경우 버튼
    if ( myno == communityData.data.doctorNo ) {  
       document.querySelector('#uptdel-btns').style.display = 'block';    
       document.querySelector('#title').readOnly = false;

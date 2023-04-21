@@ -72,7 +72,7 @@ $(".search-btn").click(() => {
 function reflesh(string) {
   let lists;
 
-  fetch("http://192.168.0.7:8080/boardSearch", {
+  fetch("http://localhost:8080/boardSearch", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
