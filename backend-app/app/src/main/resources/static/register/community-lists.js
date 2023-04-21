@@ -67,7 +67,6 @@ fetch('http://localhost:8080/community/list')
     var hotPosting2 = hotPostings[1];
    // console.log(hotPosting1.no);
   //  console.log(hotPosting2);
-    
     document.querySelector("#hot-posting1").textContent = `${hotPosting1.title} (${hotPosting1.viewCnt} views)`;
     document.querySelector("#hot-posting2").textContent = `${hotPosting2.title} (${hotPosting2.viewCnt} views)`;
   
