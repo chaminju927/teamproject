@@ -533,14 +533,16 @@
                     <div class="row mb-3">
                       <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">현재 비밀번호</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="password" type="password" class="form-control doctors-pw" id="currentPassword">
+                        <input name="password" type="password" class="form-control doctors-pw" id="currentPassword" placeholder="8자 이상 숫자, 특수 문자 포함"
+                        pattern="^(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">새 비밀번호</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="newpassword" type="password" class="form-control change-pw" id="newPassword"
+                        <input name="newpassword" type="password" class="form-control change-pw" id="newPassword" placeholder="8자 이상 숫자, 특수 문자 포함"
+                        pattern="^(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
                           onchange="checkPw()">
                       </div>
                     </div>
@@ -548,7 +550,8 @@
                     <div class="row mb-3">
                       <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">새 비밀번호 확인</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="renewpassword" type="password" class="form-control change-pw-check"
+                        <input name="renewpassword" type="password" class="form-control change-pw-check" placeholder="8자 이상 숫자, 특수 문자 포함"
+                        pattern="^(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
                           id="renewPassword" onchange="checkPw()">
                       </div>
                     </div>
