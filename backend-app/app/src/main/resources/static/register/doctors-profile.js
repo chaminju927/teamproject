@@ -2,6 +2,7 @@ let doctorNo = 0;
 let samePw = false;
 doctorNo = 0;
 
+
 fetch(`http://localhost:8080/auth/user`, {
   method: 'GET',
 })
@@ -17,6 +18,11 @@ fetch(`http://localhost:8080/auth/user`, {
   })
   .then((user) => {
     if (!user.passwordcheck) location.href = 'doctors-profile-auth.html';
+    if(user.hosName !== undefined) {
+    }else {
+      console.log(user.hosName)
+      location.href = "../auth/doctors-login.html"
+    }
     doctorNo = user.no;
     if (doctorNo > 0) {
       fetch(`http://localhost:8080/doctors/${doctorNo}`, {

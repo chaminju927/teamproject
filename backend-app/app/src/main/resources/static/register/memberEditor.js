@@ -69,13 +69,26 @@ class Dtr extends React.Component {
   }
 }
 
-<button
-  type="button"
-  className="btn btn-danger"
-  style={{ width: 50, height: 25, padding: 0, fontSize: "70%" }}
->
-  증명필요
-</button>
+fetch(`http://localhost:8080/auth/user`, {
+  method: 'GET'
+})
+  .then(response => response.json())
+  .then(data => {
+    if (data.status == "success") {
+      return data.data;
+    } else {
+      location.href = "index.html"
+    }
+    return data.data
+  })
+  .then((user) => {
+    if(user.admin) {
+      myno = user.no
+    }else {
+      location.href = "index.html"
+    }
+
+  })
 
 fetch("http://localhost:8080/patients")
   .then((response) => response.json())

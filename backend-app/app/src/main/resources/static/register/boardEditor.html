@@ -373,6 +373,31 @@
           <span>의사 사이트</span>
         </a>
       </li><!-- End Login Page Nav -->
+      <!-- 로그아웃 태그 -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+      <li class="nav-item logout">
+        <a class="nav-link collapsed">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span>로그아웃</span>
+        </a>
+      </li><!-- End Login Page Nav -->
+      <script>
+        $(".logout").click(() => {
+          console.log(11)
+          fetch(`http://localhost:8080/auth/logout`, {
+            method: 'GET'
+          })
+            .then(response => response.json())
+            .then(data => {
+              if (data.status == "success") {
+                location.href = ""
+              } else {
+                alert("로그아웃 실패")
+                location.href = ""
+              }
+            })
+        })
+      </script>
 
     </ul>
 

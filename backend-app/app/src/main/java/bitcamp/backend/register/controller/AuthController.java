@@ -59,8 +59,12 @@ public class AuthController {
       session.setAttribute("loginNo", member.getNo());
       session.setAttribute("pUser", member);
       session.setAttribute("mycheck", false);
-
-      return new RestResult().setStatus(RestStatus.SUCCESS);
+      System.out.println(member);
+      if (member.isAdmin()) {
+        return new RestResult().setStatus(RestStatus.SUCCESS).setData(member);
+      } else {
+        return new RestResult().setStatus(RestStatus.SUCCESS);
+      }
     } else {
       return new RestResult().setStatus(RestStatus.FAILURE);
     }

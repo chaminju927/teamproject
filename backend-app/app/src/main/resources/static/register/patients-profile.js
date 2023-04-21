@@ -12,10 +12,15 @@ fetch(`http://localhost:8080/auth/user`, {
       console.log(data.data)
       return data.data;
     } else {
-      location.href = "../auth/patients-login.html"
+      location.href = 'index.html';
     }
   })
   .then((user) => {
+    if (user.phy !== undefined) {
+    } else {
+      console.log(user.phy)
+      location.href = 'index.html';
+    }
     patientNo = user.no;
     if (patientNo > 0) {
       fetch(`http://localhost:8080/patients/${patientNo}`, {

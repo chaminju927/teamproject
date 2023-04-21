@@ -349,7 +349,12 @@
         }
       })
       .then((user) => {
-        profileId = user.id;
+        if (user.hosName !== undefined) {
+        } else {
+          console.log(user.hosName)
+          location.href = "../auth/doctors-login.html"
+        }
+          profileId = user.id;
       });
 
     const passwordInput = document.getElementById('password');

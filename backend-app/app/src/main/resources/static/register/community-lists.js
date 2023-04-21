@@ -88,7 +88,6 @@ fetch(`http://localhost:8080/auth/user`, {
         }
       })
       .catch((err) => {
-        alert('서버 요청 오류!');
         console.log(err);
       });
 
@@ -120,7 +119,6 @@ fetch(`http://localhost:8080/auth/user`, {
           }
         })
         .catch((err) => {
-          alert('서버 요청 오류!');
           console.log(err);
         });
     }

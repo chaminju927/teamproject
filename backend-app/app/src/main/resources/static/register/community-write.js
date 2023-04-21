@@ -12,11 +12,17 @@ fetch(`http://localhost:8080/auth/user`, {
       location.href = "../auth/doctors-login.html"
     }
     return data.data
-})
-.then((user) => {
-  myno = user.no
-  console.log(myno)
-})
+  })
+  .then((user) => {
+    console.log(user.hosName !== undefined)
+    if(user.hosName !== undefined) {
+      myno = user.no
+    }else {
+      console.log(user.hosName)
+      location.href = "../auth/doctors-login.html"
+    }
+
+  })
 
 // 게시글 입력
 document.querySelector('.btn-submit').onclick = (e) => {

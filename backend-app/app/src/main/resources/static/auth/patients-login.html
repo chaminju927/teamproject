@@ -177,10 +177,14 @@
       })
         .then(response => {
           return response.json();
-        })
+        })  
         .then(result => {
           if (result.status == 'success') {
-            location.href = '../register/index.html';
+            if(result.data != null) {
+              location.href = '../register/memberEditor.html';
+            }else {
+              location.href = '../register/index.html';
+            }
           } else {
             alert('로그인 실패!');
             document.querySelector('input[name="id"]').value = "";

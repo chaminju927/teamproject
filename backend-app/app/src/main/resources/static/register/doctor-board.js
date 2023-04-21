@@ -51,17 +51,22 @@ fetch(`http://localhost:8080/auth/user`, {
   .then(response => response.json())
   .then(data => {
     if (data.status == "success") {
-      console.log(data.data)
       return data.data;
     } else {
       location.href = "../auth/doctors-login.html"
     }
     return data.data
-})
-.then((user) => {
-  myno = user.no
-  console.log(myno)
-})
+  })
+  .then((user) => {
+    console.log(user.hosName !== undefined)
+    if(user.hosName !== undefined) {
+      myno = user.no
+    }else {
+      console.log(user.hosName)
+      location.href = "../auth/doctors-login.html"
+    }
+
+  })
 
 if (window.localStorage.getItem("boardNo") != null) {
   str = window.localStorage.getItem("boardNo");
