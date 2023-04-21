@@ -168,7 +168,8 @@ $('.change-btn').click(() => {
   formData.append('addr', `${zipcode}, ${roadAddress}, ${detailAddress}`);
   // formData.append("gender", '1');
   formData.append('email', document.querySelector('.change-email').value);
-  const career = form.querySelectorAll('.change-career');
+  formData.append('hosNo', document.querySelector('.change-hospitalNo').value);
+  const career = document.querySelectorAll('.change-career');
   let careers = [];
   career.forEach((input) => {
     careers.push(input.value);
@@ -230,6 +231,49 @@ $('.change-pw-btn').click(() => {
   }
 });
 
+var popupWidth = 320;
+var popupHeight = 450;
+
+var popupX = window.screen.width / 2 - popupWidth / 2;
+
+var popupY = window.screen.height / 2 - popupHeight / 2;
+
+function calltel() {
+  window.open(
+    'tel-input.html',
+    'popupNo1',
+    'status=no, height=' +
+      popupHeight +
+      ', width=' +
+      popupWidth +
+      ', left=' +
+      popupX +
+      ', top=' +
+      popupY
+  );
+}
+
+var hosPopupWidth = 800;
+var hosPopupHeight = 450;
+
+var hosPopupX = window.screen.width / 2 - hosPopupWidth / 2;
+
+var hosPopupY = window.screen.height / 2 - hosPopupHeight / 2;
+
+function hospital() {
+  window.open(
+    'hospitals-input.html',
+    'popupNo1',
+    'status=no, height=' +
+      hosPopupHeight +
+      ', width=' +
+      hosPopupWidth +
+      ', left=' +
+      hosPopupX +
+      ', top=' +
+      hosPopupY
+  );
+}
 // {
 //   "messages":{
 //     "to":"01051521314",
