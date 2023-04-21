@@ -121,33 +121,33 @@ public class AuthController {
       System.out.println("기존 : "+naverMemberService.get((String) userInfo.get("accessToken")));
       return new RestResult().setStatus(RestStatus.SUCCESS).setData(naverMemberService.get((String) userInfo.get("accessToken")));
     }else {
-      NaverMember  naverMember = new NaverMember();
+      NaverMember naverMember = new NaverMember();
 
       naverMember.setUsername((String) userInfo.get("name"));
       naverMember.setEmail((String) userInfo.get("email"));
       naverMember.setNickname((String) userInfo.get("nickname"));
       naverMember.setPassword((String) userInfo.get("accessToken"));
 
-<<<<<<< HEAD
+
       naverMemberService.add(naverMember);
       System.out.println("새로 : "+naverMember);
       // 회원 정보 업데이트 후 응답 메시지를 생성해서 반환
       return new RestResult().setStatus(RestStatus.SUCCESS);
-=======
-    NaverMember naverMember = naverMemberService.get(email);
-    if (naverMember == null) {
-      // 신규 회원 등록
-      naverMember = new NaverMember();
-      naverMember.setUsername(name);
-      naverMember.setEmail(email);
-      naverMemberService.add(naverMember);
-    } else {
-      // 기존 회원 정보 업데이트
-      naverMember.setUsername(name);
-      // naverMemberService.update(naverMember);
->>>>>>> 9d64b46e806d96602c67e373c2a524f1b8859870
     }
   }
+  //      naverMember = naverMemberService.get(email);
+  //      if (naverMember == null) {
+  //        // 신규 회원 등록
+  //        naverMember = new NaverMember();
+  //        naverMember.setUsername(name);
+  //        naverMember.setEmail(email);
+  //        naverMemberService.add(naverMember);
+  //      } else {
+  //        // 기존 회원 정보 업데이트
+  //        naverMember.setUsername(name);
+  //        // naverMemberService.update(naverMember);
+  //      }
+  //    }
 
   // @PostMapping("facebookLogin")
   // public Object facebookLogin(
