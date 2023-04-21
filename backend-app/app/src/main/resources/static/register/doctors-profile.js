@@ -2,7 +2,6 @@ let doctorNo = 0;
 let samePw = false;
 doctorNo = 0;
 
-
 fetch(`http://localhost:8080/auth/user`, {
   method: 'GET',
 })
@@ -18,10 +17,10 @@ fetch(`http://localhost:8080/auth/user`, {
   })
   .then((user) => {
     if (!user.passwordcheck) location.href = 'doctors-profile-auth.html';
-    if(user.hosName !== undefined) {
-    }else {
-      console.log(user.hosName)
-      location.href = "../auth/doctors-login.html"
+    if (user.hosName !== undefined) {
+    } else {
+      console.log(user.hosName);
+      location.href = '../auth/doctors-login.html';
     }
     doctorNo = user.no;
     if (doctorNo > 0) {
@@ -68,7 +67,8 @@ fetch(`http://localhost:8080/auth/user`, {
             document.getElementById('roadAddress').value = arrAddr[1];
             document.getElementById('detailAddress').value = arrAddr[2];
 
-            document.querySelector('.doctors-addr').innerText = data.addr;
+            document.querySelector('.doctors-addr').innerText =
+              arrAddr.join(' ');
 
             document.querySelector('.doctors-email').innerText = data.email;
             document.querySelector('.change-email').value = data.email;
@@ -143,6 +143,9 @@ fetch(`http://localhost:8080/auth/user`, {
             if (data.hosName == null)
               document.querySelector('.doctors-hospital').innerText =
                 '소속없음';
+
+            document.querySelector('.change-hospital').value = data.hosName;
+            document.querySelector('.change-hospitalNo').value = data.hosNo;
           } else {
             console.log('잘못 된 회원 정보');
           }

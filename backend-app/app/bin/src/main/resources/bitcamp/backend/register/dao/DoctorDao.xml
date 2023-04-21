@@ -20,8 +20,7 @@
     <result column="pho_type" property="phoType"/>
     <result column="career" property="career"/>
     <result column="hos_name" property="hosName"/>
-    <result column="license_name" property="licenseName"/>
-    <result column="license_OX" property="licenseOx"/>
+    <result column="hos_no" property="hosNo"/>
   </resultMap>
 
   <insert id="insert" parameterType="doctor" 
@@ -64,20 +63,17 @@
       m.m_gender,
       m.m_bday, 
       m.m_tel,
-      m.addr,
+      m.addr, 
       m.m_photo,
       m.pho_filename,
       m.pho_type,
       h.hos_name,
-      d.career, 
-      i.license_name,
-      l.license_OX
+      h.hos_no,
+      d.career
     from 
       app_doctor as d
       inner join app_member m on d.d_no = m.m_no
       left outer join app_hospital h on d.hos_no = h.hos_no
-      left join app_license l on d.d_no=l.d_no
-      left join app_license_info i on l.license_no=i.license_no
     where 
       d.d_no=#{no}
   </select>
@@ -105,6 +101,14 @@
   
   <update id="update" parameterType="doctor">
     update app_doctor set
+       hos_no=#{hosNo},
+       career=#{career} 
+    where d_no=#{no}
+  </update>
+  
+  <update id="updatec" parameterType="doctor">
+    update app_doctor set
+       hos_no=null,
        career=#{career} 
     where d_no=#{no}
   </update>
