@@ -988,7 +988,7 @@
         const zipcode = document.getElementById('postcode').value;
         const roadAddress = document.getElementById('roadAddress').value;
         const detailAddress = document.getElementById('detailAddress').value;
-        formData.set('addr', `${zipcode} ${roadAddress} ${detailAddress}`);
+        formData.set('addr', `${zipcode}, ${roadAddress}, ${detailAddress}`);
 
         // 경력 변수 및 정보 추가
         const career = form.querySelectorAll('.career');
