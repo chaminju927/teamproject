@@ -227,10 +227,10 @@
   naver_id_login.setState(state);
   // naver_id_login.setPopup();
   naver_id_login.init_naver_id_login();
-  naver_id_login.get_naver_userprofile("naverSignInCallback");
+  naver_id_login.get_naver_userprofile("naverSignInCallback()");
 </script>
 
-<script type="text/javascript">
+<script type="text/javascript"> 
    var naver_id_login = new naver_id_login("xrpuojJYw18imfX2Z6DQ", "http://localhost:8080/register/index.html");
   // 접근 토큰 값 출력
   alert(naver_id_login.oauthParams.access_token + "접근 토큰");
@@ -239,7 +239,7 @@
   function naverSignInCallback() {
     alert(naver_id_login.getProfileData('name'));
     alert(naver_id_login.getProfileData('email'));
-    alert(naver_id_login.getProfileData('mobile'));
+    alert(naver_id_login.getProfileData('nickname'));
   } 
 </script>
 
