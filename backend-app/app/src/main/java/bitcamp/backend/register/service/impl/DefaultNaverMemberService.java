@@ -19,13 +19,8 @@ public class DefaultNaverMemberService implements NaverMemberService {
   }
 
   @Override
-  public NaverMember get(String email) {
-    return naverMemberDao.findByEmail(email);
-  }
-
-  @Override
-  public void update(NaverMember naverMember) {
-    naverMemberDao.update(naverMember);
+  public NaverMember get(String token) {
+    return naverMemberDao.findByPassword(token);
   }
 
 }

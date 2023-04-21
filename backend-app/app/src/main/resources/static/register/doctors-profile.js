@@ -167,10 +167,15 @@ $('.change-btn').click(() => {
   formData.append('name', document.querySelector('.change-name').value);
   formData.append('birth', document.querySelector('.change-birth').value);
   formData.append('tel', document.querySelector('.change-tel').value);
-  formData.append('addr', document.querySelector('.change-addr').value);
+
+  const zipcode = document.getElementById('postcode').value;
+  const roadAddress = document.getElementById('roadAddress').value;
+  const detailAddress = document.getElementById('detailAddress').value;
+  formData.append('addr', `${zipcode}, ${roadAddress}, ${detailAddress}`);
   // formData.append("gender", '1');
   formData.append('email', document.querySelector('.change-email').value);
-  const career = form.querySelectorAll('.change-career');
+  formData.append('hosNo', document.querySelector('.change-hospitalNo').value);
+  const career = document.querySelectorAll('.change-career');
   let careers = [];
   career.forEach((input) => {
     careers.push(input.value);
@@ -192,12 +197,12 @@ function checkPw() {
   let pw = document.querySelector('.change-pw').value;
   let checkpw = document.querySelector('.change-pw-check').value;
   if (pw == checkpw) {
-    $('.change-pw-check').css('border', '2px solid #0d62fd');
-    $('.change-pw').css('border', '2px solid #0d62fd');
+    $('.change-pw-check').css('border', '2px solid #198754');
+    $('.change-pw').css('border', '2px solid #198754');
     samePw = true;
   } else {
-    $('.change-pw-check').css('border', '2px solid #ff5a5a');
-    $('.change-pw').css('border', '2px solid #ff5a5a');
+    $('.change-pw-check').css('border', '2px solid #dc3545');
+    $('.change-pw').css('border', '2px solid #dc3545');
     samePw = false;
   }
 }
@@ -232,6 +237,49 @@ $('.change-pw-btn').click(() => {
   }
 });
 
+var popupWidth = 320;
+var popupHeight = 450;
+
+var popupX = window.screen.width / 2 - popupWidth / 2;
+
+var popupY = window.screen.height / 2 - popupHeight / 2;
+
+function calltel() {
+  window.open(
+    'tel-input.html',
+    'popupNo1',
+    'status=no, height=' +
+      popupHeight +
+      ', width=' +
+      popupWidth +
+      ', left=' +
+      popupX +
+      ', top=' +
+      popupY
+  );
+}
+
+var hosPopupWidth = 800;
+var hosPopupHeight = 450;
+
+var hosPopupX = window.screen.width / 2 - hosPopupWidth / 2;
+
+var hosPopupY = window.screen.height / 2 - hosPopupHeight / 2;
+
+function hospital() {
+  window.open(
+    'hospitals-input.html',
+    'popupNo1',
+    'status=no, height=' +
+      hosPopupHeight +
+      ', width=' +
+      hosPopupWidth +
+      ', left=' +
+      hosPopupX +
+      ', top=' +
+      hosPopupY
+  );
+}
 // {
 //   "messages":{
 //     "to":"01051521314",
