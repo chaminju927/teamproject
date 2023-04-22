@@ -15,6 +15,7 @@ public class QnA {
 
   private String title;
   private String content;
+  private String pname;
   private String recomment;
 
   // String name;

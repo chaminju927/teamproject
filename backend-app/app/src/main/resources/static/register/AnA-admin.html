@@ -39,30 +39,6 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-  <style>
-    .carousel-item {
-      transition: 1s;
-    }
-
-    main {
-      position: relative;
-    }
-
-    .new-windows {
-      position: absolute;
-      top: 10%;
-      left: 15%;
-    }
-    .new-window {
-      width: 960px;
-      height: 600px;
-      background-color: white;
-      box-shadow: 0px 0px 5px 1px black;
-      border-radius: 5px;
-      box-sizing: border-box;
-      padding: 2%;
-    }
-  </style>
 </head>
 
 <body>
@@ -211,7 +187,7 @@
       <li class="nav-heading">My page</li>
 
       <li class="nav-item">
-        <a class="nav-link " href="memberEditor.html">
+        <a class="nav-link collapsed" href="memberEditor.html">
           <i class="bi bi-person"></i>
           <span>회원 조회</span>
         </a>
@@ -225,7 +201,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="AnA-list.html">
+        <a class="nav-link" href="AnA-list.html">
           <i class="bi bi-file-earmark"></i>
           <span>QnA</span>
         </a>
@@ -256,7 +232,7 @@
       <script>
         $(".logout").click(() => {
           console.log(11)
-          fetch(`http://localhost:8080/auth/logout`, {
+          fetch(`http://175.106.99.31/auth/logout`, {
             method: 'GET'
           })
             .then(response => response.json())
@@ -277,186 +253,118 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>회원 조회</h1>
+      <h1>QnA</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Tables</li>
-          <li class="breadcrumb-item active">General</li>
+          <li class="breadcrumb-item">QnA</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
       <div class="row">
-        <div class="col-lg-6">
+        <style>
+          .scroll::-webkit-scrollbar {
+            display: none;
+          }
 
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">환자 회원 조회</h5>
+          .scroll {
+            -ms-overflow-style: none;
+            /* 인터넷 익스플로러 */
+            scrollbar-width: none;
+            /* 파이어폭스 */
+          }
 
-              <!-- Table with stripped rows -->
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col" class="second-th">이름</th>
-                    <th scope="col">특이사항(약물)</th>
-                    <th scope="col">특이사항(신체)</th>
-                  </tr>
-                </thead>
-                <tbody class="patients-members">
-                  <tr>
-                    <th scope="row">*</th>
-                    <td>*</td>
-                    <td>*</td>
-                    <td>*</td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- End Table with stripped rows -->
+          .chat-cover {
+            width: 780px;
+            height: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            box-sizing: border-box;
+          }
 
+          .chats {
+            width: 100%;
+            height: 85%;
+            box-sizing: border-box;
+            margin-bottom: 2%;
+            overflow: auto;
+            border-radius: 10px;
+            background-color: white;
+          }
+
+          .chat-list {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            border: 10px solid white;
+            box-sizing: border-box;
+          }
+
+          .chat-list li {
+            list-style: none;
+            width: 100%;
+            min-height: 90px;
+            margin-bottom: 2%;
+          }
+
+          .chat-left {}
+
+          .chat-left div {
+            float: left;
+            background-color: rgb(204, 224, 255);
+          }
+
+          .chat-right {}
+
+          .chat-right div {
+            float: right;
+            background-color: rgb(59, 137, 255);
+          }
+
+          .chats li div {
+            min-width: 25%;
+            max-width: 50%;
+            min-height: 90px;
+            padding: 5px;
+            border-radius: 5px;
+            box-sizing: border-box;
+          }
+
+          .chats li div span {
+            display: inline-block;
+            box-sizing: border-box;
+          }
+        </style>
+        <div class="chat-cover">
+          <div class="chats scroll">
+            <ul class="chat-list">
+
+            </ul>
+          </div>
+          <style>
+            .chat-send-cover {
+              width: 100%;
+              height: 13%;
+              box-sizing: border-box;
+              border-radius: 10px;
+            }
+          </style>
+          <div class="chat-send-cover">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control chat-text" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+              <button class="btn btn-outline-secondary chat-btn" type="button" id="button-addon2">Button</button>
             </div>
           </div>
-
-
-        </div>
-
-        <div class="col-lg-6">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">의사 회원 조회</h5>
-
-              <!-- Table with stripped rows -->
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col" class="second-th">이름</th>
-                    <th scope="col">자격 정보</th>
-                    <th scope="col">병원 정보</th>
-                  </tr>
-                </thead>
-                <tbody class="doctors-members">
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td><button type="button" class="btn btn-danger"
-                        style="width: 50px; height: 25px; padding: 0; font-size: 70%;">증명필요</button></td>
-                    <td>2016-05-25</td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- End Table with stripped rows -->
-
-            </div>
-          </div>
-
-
         </div>
 
       </div>
       </div>
     </section>
-    <style>
-      .btn-content {
-        margin-top: 1%;
-        display: inline-block;
-        width: 97%;
-        height: 6%;
-        margin-left: 1.5%;
-      }
-  
-      .btn-content button {
-        height: 100% !important;
-        width: 10% !important;
-        float: right;
-        margin-left: 2%;
-      }
-      .doctor-licence-list {
-        width: 100%;
-        height: 85%;
-        overflow: auto;
-      }
-
-      .doctor-licence-list li {
-        position: relative;
-        display: inline-block;
-        width: 100%;
-        height: 8%;
-        margin-bottom: 1%;
-        border-top-width: 1px !important;
-      }
-
-      .doctor-licence-list span {
-        display: inline-block;
-        width: 11%;
-        height: 100%;
-        font-size: 20px;
-        /* margin-top: 0.21%; */
-        border-radius: 5px;
-        text-align: center;
-        box-sizing: border-box;
-      }
-
-      .license-first {
-        margin-left: 1%;
-        margin-right: 2%;
-      }
-
-      .license-second {
-        margin-right: 3%;
-      }
-
-      .license-filename {
-        width: 50% !important;
-        margin-right: 1.5%;
-        padding: 1px;
-        box-shadow: 0px 0px 3px 0.3px;
-      }
-
-      .license-download {
-        box-sizing: border-box;
-        width: 8% !important;
-        margin-top: 0 !important;
-        margin-right: 1%;
-      }
-
-      .license-download button {
-        height: 90% !important;
-        width: 100% !important;
-        box-sizing: border-box;
-        display: inline-block;
-        padding: 0;
-        margin-bottom: 4.8%;
-      }
-      
-      .license-check {
-        box-sizing: border-box;
-        width: 11% !important;
-        margin-top: 0 !important;
-        margin-right: 0.5%;
-      }
-
-      .license-check button {
-        height: 90% !important;
-        width: 100% !important;
-        box-sizing: border-box;
-        display: inline-block;
-        padding: 0;
-        margin-bottom: 4.8%;
-      }
-
-      .doctor-licence-list li:hover {
-        background-color: unset;
-        cursor: unset;
-      }
-
-    </style>
     <div class="new-windows">
-    </div>
 
+    </div>
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -473,8 +381,9 @@
     </div>
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -486,8 +395,10 @@
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
+
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
 
   <!-- 사용자가 추가한 스크립트 -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -497,8 +408,7 @@
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-  <script type='text/babel' src="memberEditor.js"></script>
-
+  <script type='text/babel' src="AnA-admin.js"></script>
 </body>
 
 </html>

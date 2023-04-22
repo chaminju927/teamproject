@@ -11,6 +11,7 @@
     <result column="qna_title" property="title"/>
     <result column="qna_cont" property="content"/>
     <result column="qna_rcom" property="recomment"/>
+    <result column="m_name" property="pname"/>
   </resultMap>
 
   <insert id="insert" parameterType="qnA" 
@@ -21,14 +22,16 @@
 
   <select id="findAll" resultMap="qnAMap">
     select 
-      qna_no,
-      m_no,
-      qna_date,
-      qna_title,
-      qna_cont,
-      qna_rcom
+      q.qna_no,
+      q.m_no,
+      q.qna_date,
+      q.qna_title,
+      q.qna_cont,
+      q.qna_rcom,
+      m.m_name
     from 
-      app_qna 
+      app_qna q
+      inner join app_member m on q.m_no = m.m_no
     order by 
       qna_no desc
   </select>

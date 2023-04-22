@@ -1,18 +1,13 @@
-<<<<<<< HEAD
-arguments=--init-script C\:\\Users\\bitcamp\\AppData\\Roaming\\Code\\User\\globalStorage\\redhat.java\\1.17.0\\config_win\\org.eclipse.osgi\\53\\0\\.cp\\gradle\\init\\init.gradle --init-script C\:\\Users\\bitcamp\\AppData\\Roaming\\Code\\User\\globalStorage\\redhat.java\\1.17.0\\config_win\\org.eclipse.osgi\\53\\0\\.cp\\gradle\\protobuf\\init.gradle
-=======
-arguments=--init-script C\:\\Users\\chef_\\AppData\\Roaming\\Code\\User\\globalStorage\\redhat.java\\1.17.0\\config_win\\org.eclipse.osgi\\53\\0\\.cp\\gradle\\init\\init.gradle --init-script C\:\\Users\\chef_\\AppData\\Roaming\\Code\\User\\globalStorage\\redhat.java\\1.17.0\\config_win\\org.eclipse.osgi\\53\\0\\.cp\\gradle\\protobuf\\init.gradle
->>>>>>> 77b4b0672df58fd83a315151e94330966d59fc12
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=77b4b0672df58fd83a315151e94330966d59fc12
+arguments=--init-script C\:\\Users\\user\\AppData\\Roaming\\Code\\User\\globalStorage\\redhat.java\\1.13.0\\config_win\\org.eclipse.osgi\\53\\0\\.cp\\gradle\\init\\init.gradle --init-script C\:\\Users\\user\\AppData\\Roaming\\Code\\User\\globalStorage\\redhat.java\\1.13.0\\config_win\\org.eclipse.osgi\\53\\0\\.cp\\gradle\\protobuf\\init.gradle
 auto.sync=false
 build.scans.enabled=false
 connection.gradle.distribution=GRADLE_DISTRIBUTION(WRAPPER)
 connection.project.dir=
 eclipse.preferences.version=1
-<<<<<<< HEAD
-gradle.user.home=C\:/Users/bitcamp/scoop/apps/gradle/current/.gradle
-=======
-gradle.user.home=C\:/Users/chef_/scoop/apps/gradle/current/.gradle
->>>>>>> 77b4b0672df58fd83a315151e94330966d59fc12
+gradle.user.home=
 java.home=C\:/Program Files/Java/jdk-17.0.5
 jvm.arguments=
 offline.mode=false
