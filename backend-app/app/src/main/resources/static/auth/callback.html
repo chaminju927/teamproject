@@ -39,9 +39,14 @@
         accessToken: naver_id_login.oauthParams.access_token
       })
     }).then(function(response) {
-      location.href='../register/index.html';
+      // location.href='../register/index.html';
+      return response.json();
       // 서버로부터 응답을 받았을 때 처리할 코드
-    }).catch(function(error) {
+    })
+    .then(data => {
+      if(data.data)
+    })
+    .catch(function(error) {
       // 오류 처리 코드
     });
   }
