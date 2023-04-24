@@ -1,5 +1,6 @@
 package bitcamp.backend.register.controller;
 
+import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import bitcamp.backend.register.service.HospitalService;
 import bitcamp.backend.register.vo.Hospital;
 import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/hospital")
@@ -41,6 +43,7 @@ public class HospitalController {
     restResult.setStatus(RestStatus.SUCCESS);
     return restResult;
   }
+
   @GetMapping("/check-duplicate/{tel}")
   public Object checkDuplicateTel(@PathVariable("tel") String tel) {
     boolean isDuplicate = hospitalService.findByTel(tel);
@@ -82,6 +85,23 @@ public class HospitalController {
 
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
+  }
+  @PostMapping("/check-mypage")
+  public Object checkMypage(@RequestBody Map<String, String> formData, HttpSession session) {
+    String hosNo = formData.get("hosNo");
+    String hosName = formData.get("hosName");
+    String hosPwd = formData.get("hosPwd");
+    System.out.println(hosNo);
+    System.out.println(hosName);
+    System.out.println(hosPwd);
+    System.out.println(hospitalService.get(hosName, hosPwd));
+    Hospital hospital = hospitalService.get(hosName, hosPwd);
+    if (hospital != null) {
+      session.setAttribute("mycheck", true);
+      return new RestResult().setStatus(RestStatus.SUCCESS).setData(hospital);
+    } else {
+      return new RestResult().setStatus(RestStatus.FAILURE).setData(hospital);
+    }
   }
 
   @DeleteMapping("/delete/{no}")
