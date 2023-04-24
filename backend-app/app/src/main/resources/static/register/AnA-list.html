@@ -194,9 +194,16 @@
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link" href="boardEditor.html">
+        <a class="nav-link collapsed" href="boardEditor.html">
           <i class="bi bi-file-earmark"></i>
           <span>작성글 조회</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="AnA-list.html">
+          <i class="bi bi-file-earmark"></i>
+          <span>QnA</span>
         </a>
       </li>
 
@@ -294,63 +301,11 @@
             border: 10px solid white;
             box-sizing: border-box;
           }
-
-          .chat-list li {
-            list-style: none;
-            width: 100%;
-            min-height: 90px;
-            margin-bottom: 2%;
-          }
-
-          .chat-left {}
-
-          .chat-left div {
-            float: left;
-            background-color: rgb(204, 224, 255);
-          }
-
-          .chat-right {}
-
-          .chat-right div {
-            float: right;
-            background-color: rgb(59, 137, 255);
-          }
-
-          .chats li div {
-            min-width: 25%;
-            max-width: 50%;
-            min-height: 90px;
-            padding: 5px;
-            border-radius: 5px;
-            box-sizing: border-box;
-          }
-
-          .chats li div span {
-            display: inline-block;
-            box-sizing: border-box;
-          }
         </style>
         <div class="chat-cover">
           <div class="chats scroll">
-            <ul class="chat-list">
-              <li class="chat-left">
-                <div><span>asdascasdasdadasdasdasasdas<br>dasdasdasdasdasdasdasd<br>dasdasdasdasdasdasdasd<br>dasdasdasdasdasdasdasd</span></div>
-              </li>
-              <li class="chat-right">
-                <div><span>1</span></div>
-              </li>
-              <li class="chat-left">
-                <div><span>1</span></div>
-              </li>
-              <li class="chat-left">
-                <div><span>1</span></div>
-              </li>
-              <li class="chat-right">
-                <div><span>1</span></div>
-              </li>
-              <li class="chat-left">
-                <div><span>1</span></div>
-              </li>
+            <ul class="chat-list list-group">
+              
             </ul>
           </div>
           <style>
@@ -418,7 +373,7 @@
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-  <script type='text/babel' src="AnA.js"></script>
+  <script type='text/babel' src="AnA-list.js"></script>
 </body>
 
 </html>

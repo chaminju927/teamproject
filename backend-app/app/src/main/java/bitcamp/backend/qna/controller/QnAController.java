@@ -44,6 +44,28 @@ public class QnAController {
       return new RestResult().setStatus(RestStatus.FAILURE);
     }
   }
+  
+  @PostMapping("admin")
+  public Object qnaAdminInsert(@RequestBody HashMap<String, Object> param) {
+    System.out.println(param);
+    try {
+      if (qnAService.get((int) param.get("mno")) != null) {
+        QnA a = qnAService.get((int) param.get("mno"));
+        a.setContent(a.getContent() + "," + param.get("content") + ":관리자");
+        qnAService.updateM(a);
+      } else {
+        QnA qnA = new QnA();
+        qnA.setTitle((String) param.get("content"));
+        qnA.setContent((String) param.get("content") + ":관리자");
+        qnA.setMno((int) param.get("mno"));
+        qnAService.add(qnA);
+      }
+      return new RestResult().setStatus(RestStatus.SUCCESS);
+    } catch (Exception e) {
+    	e.printStackTrace();
+      return new RestResult().setStatus(RestStatus.FAILURE);
+    }
+  }
 
   @GetMapping
   public Object qnaList() {
@@ -57,5 +79,10 @@ public class QnAController {
     return new RestResult().setStatus(RestStatus.SUCCESS).setData(qnAService.getM(no));
   }
 
+
+  @GetMapping("admin/{no}")
+  public Object qnanoList(@PathVariable int no) {
+    return new RestResult().setStatus(RestStatus.SUCCESS).setData(qnAService.get(no));
+  }
 
 }
