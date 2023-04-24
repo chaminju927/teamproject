@@ -84,11 +84,11 @@ fetch(`http://localhost:8080/auth/user`, {
       });
     })
 
-    // 네이버 검색 API
- document.querySelector('.naver-btn').onclick = (e) => {
+ // 네이버 검색 API
+document.querySelector('.naver-btn').onclick = (e) => {
   var searchNaver = document.querySelector('.naver-search').value;
   document.querySelector('#when-searched').style.display = 'block';
-  
+
   fetch(`http://localhost:8080/community/search?query=${searchNaver}`)
     .then(response => response.json())
     .then(data => {
@@ -97,37 +97,28 @@ fetch(`http://localhost:8080/auth/user`, {
         let list = JSON.parse(data.data).items;
         let currentPage = 1;
         movePage(currentPage);
-        
+
         function movePage(currentPage) {
-          start = (currentPage-1) * 3;
-          end = start + 3;
-          for (i = start; i < end; i++) {
-            document.querySelector(`#search-title-${i}`).innerHTML = list[i].title;
-            document.querySelector(`#search-desc-${i}`).innerHTML = list[i].description;
-            document.querySelector(`#search-blogger-${i}`).innerHTML = list[i].bloggername;
-            document.querySelector(`#search-date-${i}`).innerHTML = list[i].postdate;
-            document.querySelector(`#search-${i}`).onclick = (e) => {
-              location.href = list[i].link;
-            }  
+          try {
+            start = (currentPage - 1) * 3;
+            end = start + 3;
+            for (i = start; i < end; i++) {
+              document.querySelector(`#search-title-${i}`).innerHTML = list[i].title;
+              document.querySelector(`#search-desc-${i}`).innerHTML = list[i].description;
+              document.querySelector(`#search-blogger-${i}`).innerHTML = list[i].bloggername;
+              document.querySelector(`#search-date-${i}`).innerHTML = list[i].postdate;
+              document.querySelector(`#search-${i}`).onclick = (e) => {
+                location.href = list[i].link;
+              }
+            }
+            // 현재 페이지 업데이트
+            currentPageEl = document.querySelector('#current-page');
+            currentPageEl.innerHTML = currentPage;
+          } catch (err) {
+            console.log(err);
           }
-<<<<<<< HEAD
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  })
-
-
-
-
-
-=======
-          // 현재 페이지 업데이트
-          currentPageEl = document.querySelector('#current-page');
-          currentPageEl.innerHTML = currentPage;
         }
-        
+
         // 이전 버튼 클릭 시
         document.querySelector('.page-item-former').onclick = (e) => {
           if (currentPage === 1) {
@@ -137,7 +128,7 @@ fetch(`http://localhost:8080/auth/user`, {
             movePage(currentPage);
           }
         };
-        
+
         // 다음 버튼 클릭 시
         document.querySelector('.page-item-next').onclick = (e) => {
           if (currentPage === 3) {
@@ -147,11 +138,10 @@ fetch(`http://localhost:8080/auth/user`, {
             movePage(currentPage);
           }
         };
-      }  
+      }
     })
     .catch((err) => {
       alert('서버 요청 오류!');
       console.log(err);
-    }); 
+    });
 }
->>>>>>> 6b408ffa18be61ec678725a143501fac61be5db4
