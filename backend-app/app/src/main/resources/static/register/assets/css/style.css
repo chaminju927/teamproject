@@ -9,7 +9,16 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap');
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+  font-family: 'SUIT-Regular' !important;
+}
 
 :root {
   scroll-behavior: smooth;
@@ -20,9 +29,14 @@
 }
 
 body {
-  font-family: 'Noto Sans KR', sans-serif;
   background: #f6f9ff;
   color: #444444;
+}
+
+  .pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .cursor {
@@ -38,6 +52,7 @@ body {
   left: 50%;
   width: 700px;
 }
+
 
 #preview-container {
   width: 120px;
@@ -1342,9 +1357,17 @@ h6 {
 --------------------------------------------------------------*/
 
 .footer-img-container {
+	
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; 
+}
+
+.tooltip-container {
+	display: flex;
+  margin-top: 20px;
+  justify-content: center; 
+  
 }
 
 .footer {

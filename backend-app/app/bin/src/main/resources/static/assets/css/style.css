@@ -30,6 +30,10 @@ body {
   max-width: none !important;
 }
 
+.custom-tooltip {
+  --bs-tooltip-bg: var(--bs-primary);
+}
+
 #register-form {
   left: 50%;
   width: 700px;
