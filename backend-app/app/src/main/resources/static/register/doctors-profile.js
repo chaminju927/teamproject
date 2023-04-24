@@ -240,6 +240,87 @@ $('.change-pw-btn').click(() => {
   }
 });
 
+// $('.member-delete-btn').click(() => {
+//   const memberDeleteDiv = document.querySelector('.member-delete');
+
+//   const reallyDelete = document.createElement('div');
+//   reallyDelete.classList.add(
+//     'member-delete',
+//     'row',
+//     'mb-3',
+//     'd-flex',
+//     'align-items-center',
+//     'justify-content-center'
+//   );
+//   reallyDelete.innerHTML = `
+//   <div class="pt-4 pb-2">
+//   <p class="text-center small">
+//   정말 탈퇴하시겠습니까?
+// </p>
+// </div>
+// <div class="col-sm-2 justify-content-center d-flex">
+//         <button type="button" class="btn btn-secondary member-delete-yes-btn">
+//           예
+//         </button>
+//         </div>
+//         <div class="col-sm-2 justify-content-center d-flex">
+//         <button type="button" class="btn btn-secondary member-delete-no-btn">
+//           아니오
+//         </button>
+//         </div>
+//   `;
+//   memberDeleteDiv.replaceWith(reallyDelete);
+
+//   // 회원 탈퇴 요청 후 응답 처리 함수
+//   const handleDelete = () => {
+//     // 응답이 성공이면 회원 정보 삭제 메시지를 보여줌
+//     const successDelete = document.createElement('div');
+//     successDelete.classList.add(
+//       'member-delete',
+//       'row',
+//       'mb-3',
+//       'd-flex',
+//       'align-items-center',
+//       'justify-content-center'
+//     );
+//     successDelete.innerHTML = `
+//       <div class="pt-4 pb-2">
+//         <p class="text-center small">
+//           회원 정보가 삭제되었습니다.
+//         </p>
+//         </div>
+//       `;
+//     memberDeleteDiv.replaceWith(successDelete);
+//   };
+
+//   // 예 버튼 클릭 시 동작
+//   const memberDeleteYesBtn = document.querySelector('.member-delete-yes-btn');
+//   memberDeleteYesBtn.addEventListener('click', () => {
+//     fetch(`http://localhost:8080/doctors/${doctorNo}`, {
+//       method: 'DELETE',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     })
+//       .then((response) => response.json())
+//       .then((data) => {
+//         if (data.status == 'success') {
+//           handleDelete();
+//         } else {
+//           alert('회원 정보 삭제 실패');
+//         }
+//       });
+//   });
+
+//     // 아니오 버튼 클릭 시 동작
+//     const memberDeleteNoBtn = document.querySelector('.member-delete-no-btn');
+//     memberDeleteNoBtn.addEventListener('click', () => {
+//       // 회원 탈퇴 버튼이 다시 보이도록 함
+//       reallyDelete.replaceWith(memberDeleteDiv);
+//     });
+
+// });
+
 var popupWidth = 320;
 var popupHeight = 450;
 
