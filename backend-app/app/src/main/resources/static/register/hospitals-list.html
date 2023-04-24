@@ -173,7 +173,7 @@
       <li class="nav-heading">의사 전용 페이지</li>
 
       <li class="nav-item">
-        <a class="nav-link " href="doctors-mypage.html">
+        <a class="nav-link " href="doctors-profile.html">
           <i class="bi bi-person"></i>
           <span>내 정보</span>
         </a>
@@ -186,13 +186,20 @@
         </a>
       </li>
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
       <li class="nav-item">
         <a class="nav-link collapsed" href="doctors-review.html">
           <i class="bi bi-envelope"></i>
           <span>진료 리뷰 확인</span>
         </a>
       </li><!-- End Contact Page Nav -->
+<<<<<<< Updated upstream
       
+=======
+>>>>>>> Stashed changes
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-faq.html">
           <i class="bi bi-question-circle"></i>
@@ -206,6 +213,7 @@
           <span>내 병원 정보</span>
         </a>
       </li><!-- End Register Page Nav -->
+
 
       <!-- 로그아웃 태그 -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -232,6 +240,16 @@
             })
         })
       </script>
+
+
+
+      <!--
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="pages-blank.html">
+      <i class="bi bi-file-earmark"></i>
+      <span>Blank</span>
+    </a>
+  </li> End Blank Page Nav -->
 
     </ul>
 
@@ -271,7 +289,7 @@
                       <th scope="col">전화</th>
                       <!-- <th scope="col">진료시간</th> 굳이시간 받을필요 없음 -->
                       <th scope="col">진료과목</th>
-                      <th scope="col">사업자번호</th>
+                      <!-- <th scope="col">사업자번호</th> -->
                     </tr>
                   </thead>
                   <tbody id="hospital-list" class="table-group-divider">
@@ -282,7 +300,7 @@
                       <td id="hospitalTel"></td>
                       <!-- <td id="hospitalTime"></td> 굳이시간 받을필요 없음 -->
                       <td id="hospitalSub"></td>
-                      <td id="hospitalBusno"></td>
+                      <!-- <td id="hospitalPwd"></td> -->
                     </tr>
                   </tbody>
                 </table>
@@ -308,7 +326,7 @@
                               <th scope="col">전화<span id="id-validation-msg" class="validation-msg"></span></th>
                               <th scope="col">진료시간</th>
                               <th scope="col">진료과목</th>
-                              <th scope="col">사업자번호</th>
+                              <th scope="col">병원 비밀번호</th>
                               <th scope="col">병원사진</th>
                             </tr>
                           </thead>
@@ -337,7 +355,7 @@
                                   <td><input id="hosTime" class="hos-time" type="text"
                                       placeholder="예:월~금 08시~18시30분,토 휴진" /></td>
                                   <td><input id="hosSub" class="hos-sub" type="text" placeholder="예: 가정의학과,소아과" /></td>
-                                  <td><input id="hosBusno" class="hos-busno" type="text" /></td>
+                                  <td><input id="hosPwd" class="hos-pwd" type="password" /></td>
                                   <form>
                                     <td><input type="file" id="hosPhoto" class="hos-photo hospital-files"
                                         style="width: 220px;" accept="image/*" multiple required></td>
@@ -452,7 +470,8 @@
       }
     });
     //검색기능 출력(렌더링)
-    // <td>${row.hosTime}</td>
+    // <td>${row.hosPwd}</td>  비밀번호 필요없음
+    // <td>${row.hosTime}</td> 진료시간 필요없음
     function renderDataList(dataList) {
       let html = '';
       for (var row of dataList) {
@@ -462,7 +481,6 @@
         <td>${row.hosAddr}</td>
         <td>${row.hosTel}</td>        
         <td>${row.hosSub}</td>
-        <td>${row.hosBusno}</td>
         </tr>\n`;
       }
       tbody.innerHTML = html;
@@ -524,7 +542,18 @@
         });
     });
 
+    let fileInput = document.querySelector('#hosPhoto');
+
+    fileInput.addEventListener('change', function(e) {
+      let files = e.target.files;
+      if (files.length > 3) {
+        alert('파일 첨부 개수는 3개 이상이 될 수 없습니다.');
+        // 최대 첨부 가능한 파일 개수를 넘어서는 경우, 파일 선택을 초기화합니다.
+        fileInput.value = '';
+      }
+    });
     const message = document.querySelector('#hospital-success-message');
+
 
     document.querySelector('#btn-submit').onclick = (e) => {
       if (hosTel.value === '' || hosTel.value.length < 7) {
@@ -534,7 +563,7 @@
 
       //인풋태그 read only로 변경
       function makeInputsReadonly() {
-        var inputs = document.querySelectorAll(".hos-name, .hos-addr, .hos-tel, .hos-time, .hos-sub, .hos-busno, .hos-photo");
+        var inputs = document.querySelectorAll(".hos-name, .hos-addr, .hos-tel, .hos-time, .hos-sub, .hos-pwd, .hos-photo");
         inputs.forEach(function (input) {
           input.setAttribute("readonly", true);
           input.style.color = 'grey;';
@@ -553,7 +582,7 @@
           hosTel: document.querySelector('#hosTel').value,
           hosTime: document.querySelector('#hosTime').value,
           hosSub: document.querySelector('#hosSub').value,
-          hosBusno: document.querySelector('#hosBusno').value,
+          hosPwd: document.querySelector('#hosPwd').value,
         }),
       })
         .then((response) => response.json())

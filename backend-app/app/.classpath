@@ -27,15 +27,21 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17/"/>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Users/kk373/scoop/apps/gradle/current/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-configuration-processor/3.0.1/f14786a40bdc99cbed57e924a4c12e43abc95dd/spring-boot-configuration-processor-3.0.1.jar" sourcepath="C:/Users/kk373/scoop/apps/gradle/current/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-configuration-processor/3.0.1/6631078052e8ad6d79b65bd5245fcafb03c7be7d/spring-boot-configuration-processor-3.0.1-sources.jar">
 =======
 	<classpathentry sourcepath="C:/Users/user/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-configuration-processor/3.0.1/6631078052e8ad6d79b65bd5245fcafb03c7be7d/spring-boot-configuration-processor-3.0.1-sources.jar" kind="lib" path="C:/Users/user/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-configuration-processor/3.0.1/f14786a40bdc99cbed57e924a4c12e43abc95dd/spring-boot-configuration-processor-3.0.1.jar">
 >>>>>>> 03c4954a647b9f353fde4ecc3b53cb4e50b9f2fb
+=======
+	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
+	<classpathentry kind="src" path="bin/generated-sources/annotations">
+>>>>>>> Stashed changes
 		<attributes>
-			<attribute name="gradle_used_by_scope" value=""/>
+			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Users/kk373/scoop/apps/gradle/current/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.24/13a394eed5c4f9efb2a6d956e2086f1d81e857d9/lombok-1.18.24.jar" sourcepath="C:/Users/kk373/scoop/apps/gradle/current/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.24/a95c9f4bc8e3000f7b7adfdf5732b13cca5451e/lombok-1.18.24-sources.jar">
 =======
@@ -976,5 +982,13 @@
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
+=======
+	<classpathentry kind="src" output="bin/test" path="bin/generated-test-sources/annotations">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+>>>>>>> Stashed changes
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>
