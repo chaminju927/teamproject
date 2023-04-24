@@ -88,8 +88,8 @@ public class HospitalController {
   }
   @PostMapping("/check-mypage")
   public Object checkMypage(@RequestBody Map<String, String> formData, HttpSession session) {
-    String hosNo = formData.get("hosNo");
-    String hosName = formData.get("hosName");
+    String hosNo = formData.get("delete-hosNo");
+    String hosName = formData.get("delete-hosName");
     String hosPwd = formData.get("hosPwd");
     System.out.println(hosNo);
     System.out.println(hosName);

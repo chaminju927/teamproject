@@ -79,55 +79,6 @@
         cursor: pointer;
       }
 
-      .modal-open {
-        background: radial-gradient(
-          circle,
-          #000000,
-          #101010,
-          #202020,
-          #303030,
-          #404040,
-          #000000
-        );
-        /* background: linear-gradient(
-          to bottom right,
-          #ff0000,
-          #ff8000,
-          #ffff00,
-          #00ff00,
-          #0000ff,
-          #4b0082,
-          #8b00ff
-        ); */
-      }
-
-      .modal-open table {
-        background-color: white;
-      }
-
-      .modal-body {
-        padding: 0px;
-        background: radial-gradient(
-          circle,
-          #000000,
-          #101010,
-          #202020,
-          #303030,
-          #404040,
-          #000000
-        );
-        /* background: linear-gradient(
-          to bottom right,
-          #ff0000,
-          #ff8000,
-          #ffff00,
-          #00ff00,
-          #0000ff,
-          #4b0082,
-          #8b00ff
-        ); */
-      }
-
       #update-hos-form {
         display: flex;
         flex-direction: column;
@@ -678,15 +629,28 @@
                             />
                             <label for="floatingInput-b">진료과목</label>
                           </div>
-                          <!-- <div class="form-floating mb-3 col-sm-6">
+                          <div class="form-floating mb-3 col-sm-6">
                             <input
-                              type="text"
+                              type="password"
                               class="form-control"
                               id="update-hosPwd"
-                              placeholder="사업자번호"
+                              placeholder="병원비밀번호 변경"
                             />
-                            <label for="floatingInput-b">사업자번호</label>
-                          </div> -->
+                            <label for="floatingInput-b"
+                              >병원비밀번호 변경</label
+                            >
+                          </div>
+                          <div id="password-msg"></div>
+                          <div class="form-floating mb-3 col-sm-6">
+                            <input
+                              type="password"
+                              class="form-control"
+                              id="update-hosPwd-check"
+                              placeholder="비밀번호확인 변경"
+                            />
+                            <label for="floatingInput-b">비밀번호확인</label>
+                          </div>
+                          <div id="confirm-password-validation-msg"></div>
                           <div
                             id="hospital-success-message"
                             style="
@@ -729,47 +693,92 @@
                   </div>
                 </div>
                 <!-- End Scrolling Modal-->
-              </div>
-              <p>
-                <button
-                  class="btn btn-danger"
-                  type="button"
-                  id="hos-delete-button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseExample"
-                  aria-expanded="false"
-                  aria-controls="collapseExample"
-                >
-                  등록된 병원삭제
-                </button>
-              </p>
-              <div class="collapse" id="collapseExample">
+
+                <!-- 삭제 Modal -->
                 <div
-                  class="card card-body"
-                  style="
-                    width: 300px;
-                    display: inline-block;
-                    text-align: center;
-                  "
+                  class="modal fade"
+                  id="staticBackdrop"
+                  data-bs-backdrop="static"
+                  data-bs-keyboard="false"
+                  tabindex="-1"
+                  aria-labelledby="staticBackdropLabel"
+                  aria-hidden="true"
                 >
-                  등록된 병원정보를 삭제하시겠습니까?
-                  <button
-                    id="hos-delete-ok"
-                    class="btn btn-danger"
-                    style="width: 100px"
-                  >
-                    내병원삭제
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-secondary mr-auto"
-                    onclick="location.reload()"
-                    data-bs-dismiss="modal"
-                    style="width: 100px"
-                  >
-                    취소
-                  </button>
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header"></div>
+                      <div class="modal-body">
+                        <div class="row">
+                          <div class="col-xl-6">
+                            <div class="card" style="width: 467px">
+                              <div class="card-body pt-3 row">
+                                <div class="pt-4 pb-2">
+                                  <h5 class="card-title text-center pb-0 fs-4">
+                                    병원정보 관리
+                                  </h5>
+                                  <p class="text-center small">
+                                    병원정보 변경을 원할시에 병원 기입하셨던
+                                    비밀번호를 입력해주세요
+                                  </p>
+                                </div>
+                                <form
+                                  id="check-password-form"
+                                  class="needs-validation"
+                                  novalidate
+                                >
+                                  <div id="delete-hosNo"></div>
+                                  <div id="delete-hosName"></div>
+                                  <div
+                                    class="row mb-3 d-flex align-items-center justify-content-center"
+                                    style="margin-left: 21px"
+                                  >
+                                    <label
+                                      for="password"
+                                      class="col-sm-2 form-label padding-right-0"
+                                      >비밀번호</label
+                                    >
+                                    <div class="col-sm-5">
+                                      <input
+                                        type="password"
+                                        name="password"
+                                        id="password"
+                                        class="form-control"
+                                        required
+                                      />
+                                      <div
+                                        id="password-validation-msg"
+                                        class="validation-msg"
+                                      ></div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                      <button
+                                        type="button"
+                                        id="check-password-btn"
+                                        class="btn btn-primary"
+                                      >
+                                        확인
+                                      </button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Close
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <!-- End 삭제 Modal-->
               </div>
             </div>
           </div>
@@ -886,39 +895,39 @@
         form.reportValidity();
       }
 
-      // 버튼 요소 참조
+      // // 버튼 요소 참조
       const updateBtn = document.querySelector("#update-button");
 
-      // 모달 요소 참조
+      // // 모달 요소 참조
       const scrollingModal = document.querySelector("#scrollingModal");
 
-      // 버튼 클릭 이벤트 리스너 추가
-      updateBtn.addEventListener("click", function () {
-        // 모달 열기
-        scrollingModal.classList.add("show");
-        scrollingModal.style.display = "block";
-        document.body.classList.add("modal-open");
-      });
+      // // 버튼 클릭 이벤트 리스너 추가
+      // updateBtn.addEventListener("click", function () {
+      //   // 모달 열기
+      // scrollingModal.classList.add("show");
+      // scrollingModal.style.display = "block";
+      // document.body.classList.add("modal-open");
+      // });
 
-      // 모달 창 요소 선택
-      const modal = document.querySelector(".modal");
+      // // 모달 창 요소 선택
+      // const modal = document.querySelector(".modal");
 
-      // 모달 열기 함수
-      function openModal() {
-        modal.style.display = "block";
-      }
+      // // 모달 열기 함수
+      // function openModal() {
+      //   modal.style.display = "block";
+      // }
 
-      // 모달 닫기 함수
-      function closeModal() {
-        modal.style.display = "none";
-      }
+      // // 모달 닫기 함수
+      // function closeModal() {
+      //   modal.style.display = "none";
+      // }
 
-      // ESC 키 누르면 모달 닫기
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-          closeModal();
-        }
-      });
+      // // ESC 키 누르면 모달 닫기
+      // document.addEventListener("keydown", function (event) {
+      //   if (event.key === "Escape") {
+      //     closeModal();
+      //   }
+      // });
 
       //모달창 get요청
       const uform = document.getElementById("update-hos-form");
@@ -963,14 +972,6 @@
                 phoNoElement.classList.add("photoNo");
                 phoNoDiv.appendChild(phoNoElement);
               });
-              //순번
-              // const hosListNoDiv = document.getElementById("hos-listNo");
-              // for (let i = 0; i < hospital.hosphotos.length; i++) {
-              //   const hosListNo = i + 1;
-              //   const listNoElement = document.createElement("span");
-              //   listNoElement.textContent = hosListNo;
-              //   hosListNoDiv.appendChild(listNoElement);
-              // }
               const photoFilenameDiv =
                 document.getElementById("hos-PhotoFilename");
               for (let i = 0; i < hospital.hosphotos.length; i++) {
@@ -1077,6 +1078,29 @@
           fileInput.value = "";
         }
       });
+      // 비밀번호 변수
+      const password = document.getElementById("update-hosPwd");
+      const passwordMsg = document.getElementById("password-msg");
+      const confirmPassword = document.getElementById("update-hosPwd-check");
+      const confirmPasswordValidationMsg = document.getElementById(
+        "confirm-password-validation-msg"
+      );
+      // 비밀번호 재확인
+      confirmPassword.addEventListener("input", () => {
+        if (password.value === confirmPassword.value) {
+          confirmPasswordValidationMsg.textContent = "비밀번호가 일치합니다.";
+          confirmPassword.classList.remove("is-valid", "is-invalid");
+          confirmPassword.classList.add("is-valid");
+          confirmPasswordValidationMsg.style.color = "#198754";
+        } else {
+          confirmPasswordValidationMsg.textContent =
+            "비밀번호가 일치하지 않습니다.";
+          confirmPassword.classList.remove("is-valid", "is-invalid");
+          confirmPassword.classList.add("is-invalid");
+          confirmPasswordValidationMsg.style.color = "#dc3545";
+        }
+      });
+
       document.querySelector("#hos-update-submit").onclick = (e) => {
         document.getElementById("hos-update-submit").style.display = "none";
         let kno = new URL(location.href).searchParams.get("no");
@@ -1092,7 +1116,7 @@
             hosTel: document.querySelector("#update-hosTel").value,
             hosTime: document.querySelector("#update-hosTime").value,
             hosSub: document.querySelector("#update-hosSub").value,
-            // hosPwd: document.querySelector("#update-hosPwd").value,
+            hosPwd: document.querySelector("#update-hosPwd").value,
           }),
         })
           .then((response) => response.json())
@@ -1152,33 +1176,122 @@
         });
       }
       const message = document.querySelector("#hospital-success-message");
-      document.querySelector("#hos-delete-button").onclick = (e) => {
-        location.href = `http://localhost:8080/register/hospitlas-profile-auth.html?no=${no}`;
-      };
-      document.querySelector("#hos-delete-ok").onclick = (e) => {
-        let dno = new URL(location.href).searchParams.get("no");
-        fetch(`http://localhost:8080/hospitalImg/delete/${dno}`, {
-          method: "DELETE",
+
+      //인증 오픈
+      $(document).ready(function () {
+        $("#update-button").click(function () {
+          $("#staticBackdrop").modal("show");
+        });
+      });
+      const hosNoInput = document.querySelector("#hosNo");
+      const hosNameInput = document.querySelector("#hosName");
+      const passwordInput = document.getElementById("password");
+      const passwordValidationMsg = document.getElementById(
+        "password-validation-msg"
+      );
+      const checkPasswordBtn = document.getElementById("check-password-btn");
+
+      // 비밀번호 확인 버튼 클릭 시 실행되는 함수
+      checkPasswordBtn.addEventListener("click", () => {
+        // FormData 객체 생성
+        const form = document.getElementById("check-password-form");
+        const formData = new FormData(form);
+
+        // FormData 객체에 hosName, password 값을 추가
+        formData.append("delete-hosNo", passwordInput.value);
+        formData.append("delete-hosName", hosNameInput.textContent);
+        formData.append("hosPwd", passwordInput.value);
+
+        // JSON.stringify를 이용해 JSON 형식으로 변환
+        const json = JSON.stringify(Object.fromEntries(formData));
+
+        // fetch 요청 보내기
+        fetch("http://localhost:8080/hospital/check-mypage", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: json,
         })
           .then((response) => response.json())
-          .then((data) => {
-            if (data.status == "success") {
-              console.log("이미지삭제성공");
-              fetch(`http://localhost:8080/hospital/delete/${dno}`, {
-                method: "DELETE",
-              })
-                .then((response) => response.json())
-                .then((data) => {
-                  console.log("삭제성공 데이터베이스확인");
-                  location.href =
-                    "http://localhost:8080/register/hospitals-list.html";
-                });
+          .then((result) => {
+            if (result.status == "success") {
+              console.log(result);
+              console.log(result.data);
+              $("#staticBackdrop").modal("hide");
+              scrollingModal.classList.add("show");
+              scrollingModal.style.display = "block";
+              document.body.classList.add("modal-open");
+            } else {
+              alert("병원 비밀번호가 틀렸습니다.");
+              passwordValidationMsg.textContent = "비밀번호가 틀립니다.";
+              passwordInput.classList.remove("is-valid", "is-invalid");
+              passwordInput.classList.add("is-invalid");
+              passwordValidationMsg.style.color = "#dc3545";
             }
           })
-          .catch((error) => {
-            console.log("실패:", error);
+          .catch((exception) => {
+            console.error("오류 발생:", exception);
+            passwordValidationMsg.textContent =
+              "오류가 발생했습니다. 다시 시도해주세요.";
+            passwordInput.classList.remove("is-valid", "is-invalid");
+            passwordInput.classList.add("is-invalid");
+            passwordValidationMsg.style.color = "#dc3545";
           });
-      };
+      });
+
+      document.addEventListener(
+        "keydown",
+        function (event) {
+          if (event.keyCode === 13) {
+            event.preventDefault();
+            console.log(11);
+            const form = document.getElementById("check-password-form");
+            const formData = new FormData(form);
+
+            // FormData 객체에 hosName, password 값을 추가
+            formData.append("delete-hosName", hosNameInput.textContent);
+            formData.append("hosPwd", passwordInput.value);
+
+            // JSON.stringify를 이용해 JSON 형식으로 변환
+            const json = JSON.stringify(Object.fromEntries(formData));
+
+            // fetch 요청 보내기
+            fetch("http://localhost:8080/hospital/check-mypage", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: json,
+            })
+              .then((response) => response.json())
+              .then((result) => {
+                if (result.status == "success") {
+                  console.log(result);
+                  console.log(result.data);
+                } else {
+                  alert("병원 비밀번호가 틀렸습니다.");
+                  passwordValidationMsg.textContent = "비밀번호가 틀립니다.";
+                  passwordInput.classList.remove("is-valid", "is-invalid");
+                  passwordInput.classList.add("is-invalid");
+                  passwordValidationMsg.style.color = "#dc3545";
+                }
+              })
+              .then((result) => {
+                $("#modalID").modal("hide");
+              })
+              .catch((exception) => {
+                console.error("오류 발생:", exception);
+                passwordValidationMsg.textContent =
+                  "오류가 발생했습니다. 다시 시도해주세요.";
+                passwordInput.classList.remove("is-valid", "is-invalid");
+                passwordInput.classList.add("is-invalid");
+                passwordValidationMsg.style.color = "#dc3545";
+              });
+          }
+        },
+        true
+      );
     </script>
   </body>
 </html>
