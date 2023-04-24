@@ -10,7 +10,7 @@ function categoryName(category) {
   switch (category) {
     case 1:
       return '자유게시판';
-    case 2:
+    case 2:j
       return '의학뉴스';
     case 3:
       return '질문게시판';
