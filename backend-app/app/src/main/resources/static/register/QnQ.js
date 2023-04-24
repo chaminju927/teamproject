@@ -32,7 +32,7 @@ fetch(`http://localhost:8080/auth/user`, {
     return data.data
   })
   .then((user) => {
-    if (user.phy !== undefined) {
+    if (!user.admin) {
       myno = user.no
       reflash()
     } else {
