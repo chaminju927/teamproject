@@ -120,7 +120,7 @@ public class AuthController {
     System.out.println(userInfo);
     if(naverMemberService.get((String) userInfo.get("accessToken")) != null) {
       System.out.println("기존 : "+naverMemberService.get((String) userInfo.get("accessToken")));
-      return new RestResult().setStatus(RestStatus.SUCCESS).setData(naverMemberService.get((String) userInfo.get("accessToken")));
+      return new RestResult().setStatus(RestStatus.SUCCESS).setData(naverMemberService.getT((String) userInfo.get("accessToken"))).setNaverMember(naverMemberService.get((String) userInfo.get("accessToken")));
     }else {
       NaverMember naverMember = new NaverMember();
 
@@ -133,7 +133,7 @@ public class AuthController {
       naverMemberService.add(naverMember);
       System.out.println("새로 : "+naverMember);
       // 회원 정보 업데이트 후 응답 메시지를 생성해서 반환
-      return new RestResult().setStatus(RestStatus.SUCCESS);
+      return new RestResult().setStatus(RestStatus.SUCCESS).setData(naverMemberService.getT((String) userInfo.get("accessToken"))).setNaverMember(naverMemberService.get((String) userInfo.get("accessToken")));
     }
   }
   //      naverMember = naverMemberService.get(email);
