@@ -87,60 +87,71 @@ fetch(`http://localhost:8080/auth/user`, {
     })
 
 // 네이버 검색 API
+    
 document.querySelector('.naver-btn').onclick = (e) => {
   var searchNaver = document.querySelector('.naver-search').value;
   document.querySelector('#when-searched').style.display = 'block';
-  
-  fetch(`http://localhost:8080/community/search?query=${searchNaver}`)
-    .then(response => response.json())
-    .then(data => {
+    
+    async function getData() {
+      const response = await fetch(`http://localhost:8080/community/search?query=${searchNaver}`);
+      const data = await response.json();
+      return data;
+   }
+    getData().then(data => {
+   // console.log(data);
       if (data.status == "success") {
-        console.log("성공:", JSON.parse(data.data));
-       /* let list = JSON.parse(data.data).items;
-        let currentPage = 1;
-        movePage(currentPage);
-        
-        function movePage(currentPage) {
-          let start = (currentPage - 1) * 3;
-          let end = start + 3;*/
-          for (let i = start; i < end; i++) {
+        //console.log("성공:", JSON.parse(data.data));
+        let list = JSON.parse(data.data).items;
+        console.log(list);
+        currentPage = 1;
+     
+    /*  document.querySelector('#page-link-1').onclick = (e) => {
+        currentPage = 2;  
+      }
+      document.querySelector('#page-link-2').onclick = (e) => {
+        currentPage = 3;
+      }*/
+      switch(currentPage) {
+        case 1 :
+           for (let i = 0; i < 3; i++) { // 현재 페이지에서 출력할 데이터만 출력
             document.querySelector(`#search-title-${i}`).innerHTML = list[i].title;
             document.querySelector(`#search-desc-${i}`).innerHTML = list[i].description;
             document.querySelector(`#search-blogger-${i}`).innerHTML = list[i].bloggername;
             document.querySelector(`#search-date-${i}`).innerHTML = list[i].postdate;
-            document.querySelector(`#search-${i}`).onclick = (e) => {
-              location.href = list[i].link;
-            }
+            document.querySelector(`#search-${i}`).onclick = createOnClickFunction(list[i].link);
           }
-
-          /*// 현재 페이지 업데이트
-          let currentPage = document.querySelector('#current-page');
-          currentPage.innerHTML = currentPage;
-
-          // 이전 버튼 클릭 시
-          document.querySelector('.page-item-former').onclick = (e) => {
-            if (currentPage === 1) {
-              return;
-            } else {
-              currentPage--;
-              movePage(currentPage);
-            }
-          };
-
-          // 다음 버튼 클릭 시
-          document.querySelector('.page-item-next').onclick = (e) => {
-            if (currentPage === 3) {
-              return;
-            } else {
-              currentPage++;
-              movePage(currentPage);
-            }
-          };
-        }*/
+          break;
+        case 2 :
+           for (let i = 3; i < 6; i++) { // 현재 페이지에서 출력할 데이터만 출력
+            document.querySelector(`#search-title-${i}`).innerHTML = list[i].title;
+            document.querySelector(`#search-desc-${i}`).innerHTML = list[i].description;
+            document.querySelector(`#search-blogger-${i}`).innerHTML = list[i].bloggername;
+            document.querySelector(`#search-date-${i}`).innerHTML = list[i].postdate;
+            document.querySelector(`#search-${i}`).onclick = createOnClickFunction(list[i].link);
+          }   
+          break;
+        case 3 :
+           for (let i = 6; i < 8; i++) { // 현재 페이지에서 출력할 데이터만 출력
+            document.querySelector(`#search-title-${i}`).innerHTML = list[i].title;
+            document.querySelector(`#search-desc-${i}`).innerHTML = list[i].description;
+            document.querySelector(`#search-blogger-${i}`).innerHTML = list[i].bloggername;
+            document.querySelector(`#search-date-${i}`).innerHTML = list[i].postdate;
+            document.querySelector(`#search-${i}`).onclick = createOnClickFunction(list[i].link);
+          }
+          break;
+      default : return;
       }
-    })
-    .catch((err) => {
-      alert('서버 요청 오류!');
+     
+      function createOnClickFunction(link) {
+        return (e) => {
+          location.href = link;
+        }
+      }
+        
+     }      
+    }).
+    catch(err => {
+      //alert('서버 요청 오류!');
       console.log(err);
     });
 }

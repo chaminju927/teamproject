@@ -31,6 +31,7 @@
 body {
   background: #f6f9ff;
   color: #444444;
+  padding-bottom : 50px;
 }
 
   .pagination {
@@ -1375,8 +1376,8 @@ h6 {
   bottom: 0;
   width: 100%;
 	background: #ffffff;
-  padding: 40px auto;
   transition: all 0.3s;
   border-top: 1px solid #cddfff;
+  margin-top:50px;
 }
 

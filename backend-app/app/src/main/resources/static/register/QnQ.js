@@ -1,3 +1,7 @@
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+
 // fetch(`http://localhost:8080/qna/${1}`)
 //   .then(response => response.json())
 //   .then(data => {
