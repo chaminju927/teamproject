@@ -33,13 +33,13 @@ public class QnAController {
       if (qnAService.getM((int) param.get("mno")) != null) {
         QnA a = qnAService.getM((int) param.get("mno"));
         a.setContent(a.getContent() + "," + param.get("content") + ":질문자:"
-            + new SimpleDateFormat("yyyy년 MM월 dd일").format(new Date()));
+            + new SimpleDateFormat("MM월dd일 HH시mm분").format(new Date()));
         qnAService.updateM(a);
       } else {
         QnA qnA = new QnA();
         qnA.setTitle((String) param.get("content"));
         qnA.setContent((String) param.get("content") + ":질문자:"
-            + new SimpleDateFormat("yyyy년 MM월 dd일").format(new Date()));
+            + new SimpleDateFormat("MM월dd일 HH시mm분").format(new Date()));
         qnA.setMno((int) param.get("mno"));
         qnAService.add(qnA);
       }
@@ -56,13 +56,13 @@ public class QnAController {
       if (qnAService.get((int) param.get("mno")) != null) {
         QnA a = qnAService.get((int) param.get("mno"));
         a.setContent(a.getContent() + "," + param.get("content") + ":관리자:"
-            + new SimpleDateFormat("yyyy년 MM월 dd일").format(new Date()));
+            + new SimpleDateFormat("MM월dd일 HH시mm분").format(new Date()));
         qnAService.updateM(a);
       } else {
         QnA qnA = new QnA();
         qnA.setTitle((String) param.get("content"));
         qnA.setContent((String) param.get("content") + ":관리자:"
-            + new SimpleDateFormat("yyyy년 MM월 dd일").format(new Date()));
+            + new SimpleDateFormat("MM월dd일 HH시mm분").format(new Date()));
         qnA.setMno((int) param.get("mno"));
         qnAService.add(qnA);
       }
