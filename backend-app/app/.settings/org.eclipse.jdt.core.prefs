@@ -1,9 +1,5 @@
 #
-<<<<<<< HEAD
-#Tue Apr 25 15:14:40 KST 2023
-=======
-#Tue Apr 25 15:17:54 KST 2023
->>>>>>> 6d6cde20f831686e65726ea850b616702d0ae99b
+#Tue Apr 25 15:57:35 GMT+09:00 2023
 org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
 org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
 org.eclipse.jdt.core.compiler.codegen.targetPlatform=17

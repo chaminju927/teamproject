@@ -86,7 +86,10 @@
       hos_tel=#{hosTel}, 
       hos_time=#{hosTime},
       hos_sub=#{hosSub},
-      hos_pwd=#{hosPwd}
+      hos_pwd=CASE 
+            WHEN #{hosPwd} IS NOT NULL THEN sha2(#{hosPwd}, 256) 
+            ELSE hos_pwd 
+        END
       
     where hos_no=#{hospitalNo}
   </update>
