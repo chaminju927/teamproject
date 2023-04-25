@@ -294,7 +294,7 @@
             <i class="bi bi-file-earmark"></i>
             <span>진료하기</span>
           </a>
-        </li> 
+        </li>
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="QnQ.html">
@@ -304,11 +304,12 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="hospitals-list.html">
+          <a class="nav-link collapsed" href="hospitals-view.html">
             <i class="bi bi-card-list"></i>
             <span>내 병원 정보</span>
           </a>
         </li>
+        <!-- End Register Page Nav -->
         <!-- End Register Page Nav -->
 
         <!-- 로그아웃 태그 -->
@@ -321,18 +322,18 @@
         </li>
         <!-- End Login Page Nav -->
         <script>
-          $('.logout').click(() => {
+          $(".logout").click(() => {
             console.log(11);
             fetch(`http://localhost:8080/auth/logout`, {
-              method: 'GET',
+              method: "GET",
             })
               .then((response) => response.json())
               .then((data) => {
-                if (data.status == 'success') {
-                  location.href = '';
+                if (data.status == "success") {
+                  location.href = "";
                 } else {
-                  alert('로그아웃 실패');
-                  location.href = '';
+                  alert("로그아웃 실패");
+                  location.href = "";
                 }
               });
           });

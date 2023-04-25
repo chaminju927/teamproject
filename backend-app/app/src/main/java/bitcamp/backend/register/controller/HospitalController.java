@@ -80,6 +80,9 @@ public class HospitalController {
 
     log.debug(hospital);
 
+    if (hospital.getHosPwd() != null && hospital.getHosPwd().isEmpty()) {
+      hospital.setHosPwd(null);
+    }
     hospital.setHospitalNo(no);//vo에 나온대로 setter이름 적용하였음
     hospitalService.update(hospital);
 
