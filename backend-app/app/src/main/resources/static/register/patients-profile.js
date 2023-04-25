@@ -1,7 +1,9 @@
 let patientNo = 0;
 let samePw = false;
 patientNo = 0;
-
+if(sessionStorage.getItem("token") != null) {
+  $(".pass-change").css("display", "none");
+}
 fetch(`http://localhost:8080/auth/user`, {
   method: 'GET'
 })

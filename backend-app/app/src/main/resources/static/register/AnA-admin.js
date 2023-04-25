@@ -47,7 +47,9 @@ function Lli(params) {
   return (
     <li className="chat-left">
       <div>
-        <span>{params.text}</span>
+        <span id="q-content">{params.text}</span>
+        <br/><br/><br/>
+        <span id="q-date">{params.date}</span>
       </div>
     </li>
   )
@@ -57,7 +59,9 @@ function Rli(params) {
   return (
     <li className="chat-right">
       <div>
-        <span>{params.text}</span>
+        <span id="a-content">{params.text}</span>
+        <br/><br/><br/>
+        <span id="a-date">{params.date}</span>
       </div>
     </li>
   )
@@ -89,10 +93,11 @@ function reflash() {
       data.data.content.split(",").forEach(text => {
         let content = text.split(":")[0];
         let user = text.split(":")[1];
+        let date = text.split(":")[2];
         if (user == "질문자") {
-          lilist.push(<Lli text={content} />)
+          lilist.push(<Lli text={content} date={date}/>)
         } else if (user == "관리자") {
-          lilist.push(<Rli text={content} />)
+          lilist.push(<Rli text={content} date={date}/>)
         }
       })
       return lilist;

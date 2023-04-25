@@ -76,12 +76,7 @@
   
   <select id="findByToken" parameterType="String" resultMap="memberMap">
     select 
-      m_id, 
-      m_pw, 
-      m_name, 
-      m_email, 
-      m_tel,
-      admin
+      *
     from 
       app_member 
     where 

@@ -16,7 +16,7 @@
   <insert id="insert" parameterType="naverMember"
           useGeneratedKeys="true" keyProperty="id" keyColumn="no">
     insert into app_naver_member(username, password, email, nickname, mobile)
-    values( #{username} ,sha2(#{password},256), #{email}, #{nickname}, #{mobile})
+    values( #{username} ,#{password}, #{email}, #{nickname}, #{mobile})
     <selectKey resultType="int" keyProperty="id" order="AFTER">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -28,6 +28,6 @@
     from 
       app_naver_member 
     where 
-      password=sha2(#{password},256)
+      password=#{password}
   </select>
 </mapper>

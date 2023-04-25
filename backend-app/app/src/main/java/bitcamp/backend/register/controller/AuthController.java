@@ -50,6 +50,7 @@ public class AuthController {
 
   @PostMapping("/patientLogin")
   public Object patientLogin(String id, String password, HttpSession session) {
+    System.out.println("id : " + id + " pw : " + password);
 
     Member member = null;
     member = patientService.get(id, password);
@@ -117,11 +118,12 @@ public class AuthController {
   @PostMapping("/naverLogin")
   public Object naverLogin(@RequestBody Map<String, Object> userInfo) {
     // 클라이언트에서 전송한 회원 정보를 Map<String, String> 형태로 받아옴
-    System.out.println(userInfo);
-    if(naverMemberService.get((String) userInfo.get("accessToken")) != null) {
-      System.out.println("기존 : "+naverMemberService.get((String) userInfo.get("accessToken")));
-      return new RestResult().setStatus(RestStatus.SUCCESS).setData(naverMemberService.getT((String) userInfo.get("accessToken"))).setNaverMember(naverMemberService.get((String) userInfo.get("accessToken")));
-    }else {
+    if (naverMemberService.get((String) userInfo.get("accessToken")) != null) {
+      System.out.println("기존 : " + patientService.getT((String) userInfo.get("accessToken")));
+      return new RestResult().setStatus(RestStatus.SUCCESS)
+          .setData(patientService.getT((String) userInfo.get("accessToken")))
+          .setNaverMember(naverMemberService.get((String) userInfo.get("accessToken")));
+    } else {
       NaverMember naverMember = new NaverMember();
 
       naverMember.setUsername((String) userInfo.get("name"));
@@ -131,24 +133,26 @@ public class AuthController {
 
 
       naverMemberService.add(naverMember);
-      System.out.println("새로 : "+naverMember);
+      System.out.println("새로 : " + naverMember);
       // 회원 정보 업데이트 후 응답 메시지를 생성해서 반환
-      return new RestResult().setStatus(RestStatus.SUCCESS).setData(naverMemberService.getT((String) userInfo.get("accessToken"))).setNaverMember(naverMemberService.get((String) userInfo.get("accessToken")));
+      return new RestResult().setStatus(RestStatus.SUCCESS)
+          .setData(patientService.getT((String) userInfo.get("accessToken")))
+          .setNaverMember(naverMemberService.get((String) userInfo.get("accessToken")));
     }
   }
-  //      naverMember = naverMemberService.get(email);
-  //      if (naverMember == null) {
-  //        // 신규 회원 등록
-  //        naverMember = new NaverMember();
-  //        naverMember.setUsername(name);
-  //        naverMember.setEmail(email);
-  //        naverMemberService.add(naverMember);
-  //      } else {
-  //        // 기존 회원 정보 업데이트
-  //        naverMember.setUsername(name);
-  //        // naverMemberService.update(naverMember);
-  //      }
-  //    }
+  // naverMember = naverMemberService.get(email);
+  // if (naverMember == null) {
+  // // 신규 회원 등록
+  // naverMember = new NaverMember();
+  // naverMember.setUsername(name);
+  // naverMember.setEmail(email);
+  // naverMemberService.add(naverMember);
+  // } else {
+  // // 기존 회원 정보 업데이트
+  // naverMember.setUsername(name);
+  // // naverMemberService.update(naverMember);
+  // }
+  // }
 
   // @PostMapping("facebookLogin")
   // public Object facebookLogin(
