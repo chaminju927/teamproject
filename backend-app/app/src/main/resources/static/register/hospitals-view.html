@@ -78,7 +78,15 @@
       .hos-addr:hover {
         cursor: pointer;
       }
+      .modal {
+        overflow-y: scroll;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE 10+ */
+      }
 
+      .modal::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Edge, Opera */
+      }
       #update-hos-form {
         display: flex;
         flex-direction: column;
@@ -330,7 +338,7 @@
             <i class="bi bi-file-earmark"></i>
             <span>진료하기</span>
           </a>
-        </li> 
+        </li>
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="QnQ.html">
@@ -340,7 +348,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="hospitals-list.html">
+          <a class="nav-link collapsed" href="hospitals-view.html">
             <i class="bi bi-card-list"></i>
             <span>내 병원 정보</span>
           </a>
@@ -532,9 +540,9 @@
                   aria-hidden="true"
                 >
                   <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content" style="width: 450px">
                       <div class="modal-body" style="min-height: 800px">
-                        <form id="update-hos-form" style="width: 500px">
+                        <form id="update-hos-form">
                           <h5 class="card-title" style="color: #ffffff">
                             병원정보 변경
                           </h5>
@@ -640,7 +648,7 @@
                               >병원비밀번호 변경</label
                             >
                           </div>
-                          <div id="password-msg"></div>
+                          <div id="confirm-password-validation-msg"></div>
                           <div class="form-floating mb-3 col-sm-6">
                             <input
                               type="password"
@@ -650,7 +658,6 @@
                             />
                             <label for="floatingInput-b">비밀번호확인</label>
                           </div>
-                          <div id="confirm-password-validation-msg"></div>
                           <div
                             id="hospital-success-message"
                             style="
@@ -714,11 +721,11 @@
                               <div class="card-body pt-3 row">
                                 <div class="pt-4 pb-2">
                                   <h5 class="card-title text-center pb-0 fs-4">
-                                    병원정보 관리
+                                    병원정보 변경관리
                                   </h5>
                                   <p class="text-center small">
-                                    병원정보 변경을 원할시에 병원 기입하셨던
-                                    비밀번호를 입력해주세요
+                                    병원정보 변경을 원할시에 병원 가입시
+                                    기입하셨던 비밀번호를 입력해주세요
                                   </p>
                                 </div>
                                 <form
@@ -841,12 +848,17 @@
         .then((user) => {
           if (user.hosName !== undefined) {
             myno = user.no;
+            if (new URL(location.href).searchParams.get("no") == null) {
+              if (user.hosNo == 0) {
+                location.href = "doctors-profile.html";
+              }
+              location.href = `?no=${user.hosNo}`;
+            }
           } else {
             console.log(user.hosName);
             location.href = "../auth/doctors-login.html";
           }
         });
-
       const form = document.getElementById("hos-mypage-form");
       const formData = new FormData(form);
       let no = new URL(location.href).searchParams.get("no");
@@ -857,44 +869,45 @@
         location.href = `http://localhost:8080/register/hospitals-map.html?no=${hospitalNo}`;
       }
 
-      // 폼 유효성 검사 및 요청
-      if (form.checkValidity()) {
-        let json = JSON.stringify(Object.fromEntries(formData));
-        fetch(`http://localhost:8080/hospital/list/${no}`, {
-          method: "GET",
-        })
-          .then((response) => response.json())
-          .then((result) => {
-            if (result.status == "success") {
-              const hospital = result.data;
-              let photos = hospital.hosphotos;
-              for (let i = 0; i < photos.length; i++) {
-                let photo = photos[i];
-                let purl = photo.hosPhotoUrl.split("/")[5];
-                $(".d-block")[i].src =
-                  "http://uyaxhfqyqnwh16694929.cdn.ntruss.com/hospital-img/" +
-                  purl +
-                  "?type=f&w=580&h=410&quality=100&autorotate=true&faceopt=true&anilimit=24";
-              }
-              document.getElementById("hospitalNo").innerHTML =
-                hospital.hospitalNo;
-              document.getElementById("hosName").innerHTML = hospital.hosName;
-              document.getElementById("hosTel").innerHTML = hospital.hosTel;
-              document.getElementById("hosTime").innerHTML = hospital.hosTime;
-              document.getElementById("hosSub").innerHTML = hospital.hosSub;
-              document.getElementById("hosAddr").innerHTML = hospital.hosAddr;
-            } else {
-              alert("입력실패");
-            }
+      setTimeout(() => {
+        // 폼 유효성 검사 및 요청
+        if (form.checkValidity()) {
+          let json = JSON.stringify(Object.fromEntries(formData));
+          fetch(`http://localhost:8080/hospital/list/${no}`, {
+            method: "GET",
           })
-          .catch((exception) => {
-            alert("입력 중 오류 발생");
-            console.log(exception);
-          });
-      } else {
-        form.reportValidity();
-      }
-
+            .then((response) => response.json())
+            .then((result) => {
+              if (result.status == "success") {
+                const hospital = result.data;
+                let photos = hospital.hosphotos;
+                for (let i = 0; i < photos.length; i++) {
+                  let photo = photos[i];
+                  let purl = photo.hosPhotoUrl.split("/")[5];
+                  $(".d-block")[i].src =
+                    "http://uyaxhfqyqnwh16694929.cdn.ntruss.com/hospital-img/" +
+                    purl +
+                    "?type=f&w=580&h=410&quality=100&autorotate=true&faceopt=true&anilimit=24";
+                }
+                document.getElementById("hospitalNo").innerHTML =
+                  hospital.hospitalNo;
+                document.getElementById("hosName").innerHTML = hospital.hosName;
+                document.getElementById("hosTel").innerHTML = hospital.hosTel;
+                document.getElementById("hosTime").innerHTML = hospital.hosTime;
+                document.getElementById("hosSub").innerHTML = hospital.hosSub;
+                document.getElementById("hosAddr").innerHTML = hospital.hosAddr;
+              } else {
+                alert("입력실패");
+              }
+            })
+            .catch((exception) => {
+              alert("입력 중 오류 발생");
+              console.log(exception);
+            });
+        } else {
+          form.reportValidity();
+        }
+      }, 200);
       // // 버튼 요소 참조
       const updateBtn = document.querySelector("#update-button");
 
@@ -935,139 +948,148 @@
       let uno = new URL(location.href).searchParams.get("no");
 
       // 폼 유효성 검사 및 요청
-      if (uform.checkValidity()) {
-        let json = JSON.stringify(Object.fromEntries(uformData));
-        fetch(`http://localhost:8080/hospital/list/${uno}`, {
-          method: "GET",
-        })
-          .then((response) => response.json())
-          .then((result) => {
-            if (result.status == "success") {
-              const hospital = result.data;
-              document.getElementById("hospitalNo").value = hospital.hospitalNo;
-              document.getElementById("update-hosName").value =
-                hospital.hosName;
-              document.getElementById("update-hosAddr").value =
-                hospital.hosAddr;
-              document.getElementById("update-hosTel").value = hospital.hosTel;
-              document.getElementById("update-hosTime").value =
-                hospital.hosTime;
-              document.getElementById("update-hosSub").value = hospital.hosSub;
-              // document.getElementById("update-hosPwd").value = hospital.hosPwd;
 
-              //리스트숫자증가
-              const hosPhotoNoDiv = document.getElementById("hos-phoNo");
-              const hosPhotoFilenameDivs =
-                document.querySelectorAll("#hos-PhotoFilename");
-              const phoNoDiv = document.getElementById("hos-listNo");
-
-              //포토넘버
-              hospital.hosphotos.forEach((photo, index) => {
-                const hosPhotoNo = photo.photoNo;
-                const phoNoElement = document.createElement("input");
-                phoNoElement.type = "number"; // type 속성 변경
-                phoNoElement.value = hosPhotoNo;
-                phoNoElement.style.width = "100px";
-                phoNoElement.style.margin = "0px auto";
-                phoNoElement.classList.add("photoNo");
-                phoNoDiv.appendChild(phoNoElement);
-              });
-              const photoFilenameDiv =
-                document.getElementById("hos-PhotoFilename");
-              for (let i = 0; i < hospital.hosphotos.length; i++) {
-                let hosPhotoFilename = hospital.hosphotos[i].hosPhotoFilename;
-                const filenameElement = document.createElement("span");
-                if (hosPhotoFilename.length > 12) {
-                  hosPhotoFilename =
-                    hosPhotoFilename.substring(0, 15) + ". . . ";
-                }
-                filenameElement.textContent = hosPhotoFilename;
-
-                //이미지
-                const image = document.createElement("img");
-                image.src = hospital.hosphotos[i].hosPhotoUrl;
-                image.width = "20";
-                image.height = "20";
-
-                let imageContainer = document.createElement("div");
-                imageContainer.classList.add("filename-checkbox-container");
-                imageContainer.setAttribute(
-                  "id",
-                  `hos-imageContainer-${hospital.hosphotos[i].photoNo}`
-                );
-                imageContainer.style.marginBottom = "2px";
-                imageContainer.appendChild(filenameElement);
-                imageContainer.appendChild(image);
-                hosPhotoNoDiv.appendChild(imageContainer);
-                //체크박스
-                const checkbox = document.createElement("input");
-                checkbox.type = "checkbox";
-                checkbox.setAttribute(
-                  "id",
-                  `hos-PhotoCheck-${hospital.hosphotos[i].photoNo}`
-                );
-                checkbox.addEventListener("click", function (event) {
-                  const container = this.parentElement;
-                  //체크박스와 이미지 위치가 같으면 삭제인데 컨테이너 안에 체크박스와 span테그가 있음.
-                  console.log(container);
-                  console.log(event.target.id);
-                  console.log(imageContainer);
-
-                  container.remove();
-                  imageContainer.remove();
-                  const phoNoElements = phoNoDiv.getElementsByTagName("span");
-                  if (phoNoElements.length > 0) {
-                    phoNoElements[phoNoElements.length - 1].remove();
-                  }
-                });
-                const checkboxlist = document.getElementById("hos-listCheck");
-                const container = document.createElement("div");
-                container.classList.add("filename-checkbox-container");
-                container.appendChild(filenameElement);
-                container.appendChild(checkbox);
-                container.style.marginLeft = "30px";
-                // container.style.marginBottom = "px";
-                photoFilenameDiv.appendChild(container);
-              }
-              //체크박스로 사진삭제
-              const checkboxes = document.querySelectorAll(
-                'input[type="checkbox"]'
-              );
-              checkboxes.forEach((checkbox) => {
-                checkbox.addEventListener("click", function (event) {
-                  const container = this.parentElement;
-                  hosListPhotoNo = event.target.id.split("-")[2];
-                  container.remove();
-
-                  fetch(`http://localhost:8080/hospitalImg/${hosListPhotoNo}`, {
-                    method: "DELETE",
-                  })
-                    .then((response) => response.json())
-                    .then((data) => {
-                      console.log("성공하였음");
-                      // document.querySelector('#btn-img-delete').style.display = 'none';
-                      // location.href = "";
-                      if (data.status == "failure") {
-                        console.log("이미지 삭제 실패!\n" + data.data);
-                        return;
-                      }
-                    })
-                    .catch((error) => {
-                      console.log("실패:", error);
-                    });
-                });
-              });
-            } else {
-              alert("입력실패");
-            }
+      setTimeout(() => {
+        if (uform.checkValidity()) {
+          let json = JSON.stringify(Object.fromEntries(uformData));
+          fetch(`http://localhost:8080/hospital/list/${uno}`, {
+            method: "GET",
           })
-          .catch((exception) => {
-            alert("입력 중 오류 발생");
-            console.log(exception);
-          });
-      } else {
-        uform.reportValidity();
-      }
+            .then((response) => response.json())
+            .then((result) => {
+              if (result.status == "success") {
+                const hospital = result.data;
+                document.getElementById("hospitalNo").value =
+                  hospital.hospitalNo;
+                document.getElementById("update-hosName").value =
+                  hospital.hosName;
+                document.getElementById("update-hosAddr").value =
+                  hospital.hosAddr;
+                document.getElementById("update-hosTel").value =
+                  hospital.hosTel;
+                document.getElementById("update-hosTime").value =
+                  hospital.hosTime;
+                document.getElementById("update-hosSub").value =
+                  hospital.hosSub;
+                // document.getElementById("update-hosPwd").value = hospital.hosPwd;
+
+                //리스트숫자증가
+                const hosPhotoNoDiv = document.getElementById("hos-phoNo");
+                const hosPhotoFilenameDivs =
+                  document.querySelectorAll("#hos-PhotoFilename");
+                const phoNoDiv = document.getElementById("hos-listNo");
+
+                //포토넘버
+                hospital.hosphotos.forEach((photo, index) => {
+                  const hosPhotoNo = photo.photoNo;
+                  const phoNoElement = document.createElement("input");
+                  phoNoElement.type = "number"; // type 속성 변경
+                  phoNoElement.value = hosPhotoNo;
+                  phoNoElement.style.width = "100px";
+                  phoNoElement.style.margin = "0px auto";
+                  phoNoElement.classList.add("photoNo");
+                  phoNoDiv.appendChild(phoNoElement);
+                });
+                const photoFilenameDiv =
+                  document.getElementById("hos-PhotoFilename");
+                for (let i = 0; i < hospital.hosphotos.length; i++) {
+                  let hosPhotoFilename = hospital.hosphotos[i].hosPhotoFilename;
+                  const filenameElement = document.createElement("span");
+                  if (hosPhotoFilename.length > 12) {
+                    hosPhotoFilename =
+                      hosPhotoFilename.substring(0, 15) + ". . . ";
+                  }
+                  filenameElement.textContent = hosPhotoFilename;
+
+                  //이미지
+                  const image = document.createElement("img");
+                  image.src = hospital.hosphotos[i].hosPhotoUrl;
+                  image.width = "20";
+                  image.height = "20";
+
+                  let imageContainer = document.createElement("div");
+                  imageContainer.classList.add("filename-checkbox-container");
+                  imageContainer.setAttribute(
+                    "id",
+                    `hos-imageContainer-${hospital.hosphotos[i].photoNo}`
+                  );
+                  imageContainer.style.marginBottom = "2px";
+                  imageContainer.appendChild(filenameElement);
+                  imageContainer.appendChild(image);
+                  hosPhotoNoDiv.appendChild(imageContainer);
+                  //체크박스
+                  const checkbox = document.createElement("input");
+                  checkbox.type = "checkbox";
+                  checkbox.setAttribute(
+                    "id",
+                    `hos-PhotoCheck-${hospital.hosphotos[i].photoNo}`
+                  );
+                  checkbox.addEventListener("click", function (event) {
+                    const container = this.parentElement;
+                    //체크박스와 이미지 위치가 같으면 삭제인데 컨테이너 안에 체크박스와 span테그가 있음.
+                    console.log(container);
+                    console.log(event.target.id);
+                    console.log(imageContainer);
+
+                    container.remove();
+                    imageContainer.remove();
+                    const phoNoElements = phoNoDiv.getElementsByTagName("span");
+                    if (phoNoElements.length > 0) {
+                      phoNoElements[phoNoElements.length - 1].remove();
+                    }
+                  });
+                  const checkboxlist = document.getElementById("hos-listCheck");
+                  const container = document.createElement("div");
+                  container.classList.add("filename-checkbox-container");
+                  container.appendChild(filenameElement);
+                  container.appendChild(checkbox);
+                  container.style.marginLeft = "30px";
+                  // container.style.marginBottom = "px";
+                  photoFilenameDiv.appendChild(container);
+                }
+                //체크박스로 사진삭제
+                const checkboxes = document.querySelectorAll(
+                  'input[type="checkbox"]'
+                );
+                checkboxes.forEach((checkbox) => {
+                  checkbox.addEventListener("click", function (event) {
+                    const container = this.parentElement;
+                    hosListPhotoNo = event.target.id.split("-")[2];
+                    container.remove();
+
+                    fetch(
+                      `http://localhost:8080/hospitalImg/${hosListPhotoNo}`,
+                      {
+                        method: "DELETE",
+                      }
+                    )
+                      .then((response) => response.json())
+                      .then((data) => {
+                        console.log("성공하였음");
+                        // document.querySelector('#btn-img-delete').style.display = 'none';
+                        // location.href = "";
+                        if (data.status == "failure") {
+                          console.log("이미지 삭제 실패!\n" + data.data);
+                          return;
+                        }
+                      })
+                      .catch((error) => {
+                        console.log("실패:", error);
+                      });
+                  });
+                });
+              } else {
+                alert("입력실패");
+              }
+            })
+            .catch((exception) => {
+              alert("입력 중 오류 발생");
+              console.log(exception);
+            });
+        } else {
+          uform.reportValidity();
+        }
+      }, 200);
       //파일첨부 3개 제한.
       let fileInput = document.querySelector("#hosPhoto");
       fileInput.addEventListener("change", function (e) {
@@ -1250,6 +1272,7 @@
             const formData = new FormData(form);
 
             // FormData 객체에 hosName, password 값을 추가
+            formData.append("delete-hosNo", passwordInput.value);
             formData.append("delete-hosName", hosNameInput.textContent);
             formData.append("hosPwd", passwordInput.value);
 
@@ -1269,6 +1292,10 @@
                 if (result.status == "success") {
                   console.log(result);
                   console.log(result.data);
+                  $("#staticBackdrop").modal("hide");
+                  scrollingModal.classList.add("show");
+                  scrollingModal.style.display = "block";
+                  document.body.classList.add("modal-open");
                 } else {
                   alert("병원 비밀번호가 틀렸습니다.");
                   passwordValidationMsg.textContent = "비밀번호가 틀립니다.";
@@ -1276,9 +1303,6 @@
                   passwordInput.classList.add("is-invalid");
                   passwordValidationMsg.style.color = "#dc3545";
                 }
-              })
-              .then((result) => {
-                $("#modalID").modal("hide");
               })
               .catch((exception) => {
                 console.error("오류 발생:", exception);
