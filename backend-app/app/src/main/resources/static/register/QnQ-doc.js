@@ -1,6 +1,7 @@
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
+
 // fetch(`http://localhost:8080/qna/${1}`)
 //   .then(response => response.json())
 //   .then(data => {
@@ -19,23 +20,45 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 //     ReactDOM.createRoot(document.querySelector(".chat-list")).render(list)
 // })
 
-let no = new URLSearchParams(location.search).get("no");
+let myno = 0;
 
-reflash()
+
+fetch(`http://localhost:8080/auth/user`, {
+  method: 'GET'
+})
+  .then(response => response.json())
+  .then(data => {
+    if (data.status == "success") {
+      return data.data;
+    } else {
+      location.href = "doctors-profile.html"
+    }
+    return data.data
+  })
+  .then((user) => {
+    if (!user.admin) {
+      myno = user.no
+      reflash()
+    } else {
+      location.href = "doctors-profile.html"
+    }
+
+  })
+
 $(".chat-btn").click(() => {
-  fetch("http://localhost:8080/qna/admin", {
+  fetch("http://localhost:8080/qna", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ // 스프링에 전달할 값
       content: $(".chat-text").val(),
-      mno: Number(no)
+      mno: myno
     })
   })
     .then(response => response.json())
     .then(data => {
-      if(data.status == "success") {
+      if (data.status == "success") {
         reflash();
       }
     })
@@ -82,12 +105,16 @@ function Rli(params) {
 
 */
 
+
 function reflash() {
-  fetch(`http://localhost:8080/qna/admin/${no}`)
+  fetch(`http://localhost:8080/qna/${myno}`)
     .then(response => response.json())
     .then(data => {
       console.log(data)
       let lilist = [];
+      if(data.data == null){
+        return;
+      }
       data.data.content.split(",").forEach(text => {
         let content = text.split(":")[0];
         let user = text.split(":")[1];
@@ -107,7 +134,7 @@ function reflash() {
       console.log(document.querySelector(".chats").scrollHeight)
       setTimeout(() => {
         // document.querySelector(".chats").scrollTop = document.querySelector(".chats").scrollHeight;
-        $(".chats").animate({scrollTop : document.querySelector(".chats").scrollHeight}, 500);
+        $(".chats").animate({ scrollTop: document.querySelector(".chats").scrollHeight }, 500);
       }, 100);
     })
 }
