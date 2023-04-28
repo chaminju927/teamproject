@@ -57,7 +57,7 @@ fetch(`http://localhost:8080/auth/user`, {
       preImageContainer.appendChild(newImg);
       return data.data;
     } else {
-      location.href = "patients-profile.html";
+      location.href = "doctors-profile.html";
     }
     return data.data;
   })
@@ -66,7 +66,7 @@ fetch(`http://localhost:8080/auth/user`, {
       myno = user.no;
       reflash();
     } else {
-      location.href = "patients-profile.html";
+      location.href = "doctors-profile.html";
     }
   });
 

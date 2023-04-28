@@ -3,19 +3,19 @@ package bitcamp.backend.register.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import bitcamp.backend.register.dao.MemberDao;
 import bitcamp.backend.register.dao.NaverMemberDao;
 import bitcamp.backend.register.service.NaverMemberService;
-import bitcamp.backend.register.vo.Member;
 import bitcamp.backend.register.vo.NaverMember;
 
 @Service
 public class DefaultNaverMemberService implements NaverMemberService {
 
-  @Autowired private NaverMemberDao naverMemberDao;
+  @Autowired
+  private NaverMemberDao naverMemberDao;
 
-  @Autowired private MemberDao memberDao;
+  @Autowired
+  private MemberDao memberDao;
 
   @Transactional
   @Override
@@ -25,12 +25,6 @@ public class DefaultNaverMemberService implements NaverMemberService {
 
   @Override
   public NaverMember get(String token) {
-    return naverMemberDao.findByPassword(token);
-  }
-  
-  @Override
-  public NaverMember getT(String token) {
-	Member member = memberDao.findByToken(token);
     return naverMemberDao.findByPassword(token);
   }
 }

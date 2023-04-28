@@ -1,5 +1,7 @@
 package bitcamp.backend.qna.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,12 +32,14 @@ public class QnAController {
     try {
       if (qnAService.getM((int) param.get("mno")) != null) {
         QnA a = qnAService.getM((int) param.get("mno"));
-        a.setContent(a.getContent() + "," + param.get("content") + ":질문자");
+        a.setContent(a.getContent() + "," + param.get("content") + ":질문자:"
+            + new SimpleDateFormat("MM월dd일 HH시mm분").format(new Date()));
         qnAService.updateM(a);
       } else {
         QnA qnA = new QnA();
         qnA.setTitle((String) param.get("content"));
-        qnA.setContent((String) param.get("content") + ":질문자");
+        qnA.setContent((String) param.get("content") + ":질문자:"
+            + new SimpleDateFormat("MM월dd일 HH시mm분").format(new Date()));
         qnA.setMno((int) param.get("mno"));
         qnAService.add(qnA);
       }
@@ -44,25 +48,27 @@ public class QnAController {
       return new RestResult().setStatus(RestStatus.FAILURE);
     }
   }
-  
+
   @PostMapping("admin")
   public Object qnaAdminInsert(@RequestBody HashMap<String, Object> param) {
     System.out.println(param);
     try {
       if (qnAService.get((int) param.get("mno")) != null) {
         QnA a = qnAService.get((int) param.get("mno"));
-        a.setContent(a.getContent() + "," + param.get("content") + ":관리자");
+        a.setContent(a.getContent() + "," + param.get("content") + ":관리자:"
+            + new SimpleDateFormat("MM월dd일 HH시mm분").format(new Date()));
         qnAService.updateM(a);
       } else {
         QnA qnA = new QnA();
         qnA.setTitle((String) param.get("content"));
-        qnA.setContent((String) param.get("content") + ":관리자");
+        qnA.setContent((String) param.get("content") + ":관리자:"
+            + new SimpleDateFormat("MM월dd일 HH시mm분").format(new Date()));
         qnA.setMno((int) param.get("mno"));
         qnAService.add(qnA);
       }
       return new RestResult().setStatus(RestStatus.SUCCESS);
     } catch (Exception e) {
-    	e.printStackTrace();
+      e.printStackTrace();
       return new RestResult().setStatus(RestStatus.FAILURE);
     }
   }
