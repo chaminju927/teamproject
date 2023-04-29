@@ -8,11 +8,11 @@
 * ### 23.04.01 - 23.05.04
 
 ## 🧑‍🤝‍🧑 멤버구성
- - ### 팀원1 : 조승현([@whtmdgus](http://github.com/whtmdgus)) - 비대면 진료 board(CRUD), 발표
- - ### 팀원2 : 차민주([@chaminju927](http://github.com/chaminju927)) - 의사 커뮤니티 게시판(CRUD), 프론트엔드 UI작업
- - ### 팀원3 : 이예찬([@omelase](http://github.com/omelase)) - 의사/환자 회원가입(CRUD)
- - ### 팀원4 : 이준영([@molang2](http://github.com/molang2)) - 로그인
- - ### 팀원5 : 김현우([@hyunwookimkim](http://github.com/hyunwookimkim)) - 병원 정보 관리(CRUD)
+ - ### 팀원1 : 조승현([@whtmdgus](http://github.com/whtmdgus))
+ - ### 팀원2 : 차민주([@chaminju927](http://github.com/chaminju927))
+ - ### 팀원3 : 이예찬([@omelase](http://github.com/omelase))
+ - ### 팀원4 : 이준영([@molang2](http://github.com/molang2))
+ - ### 팀원5 : 김현우([@hyunwookimkim](http://github.com/hyunwookimkim))
 
 ### ⚙️ 개발 환경과 기술 스택
 - `Java 17`, `JDK 1.8.0`
@@ -72,11 +72,9 @@
 - #### 진행 상황 및 발표 내용 : 
   #### 1. 젠킨스 배포 : 배포 후 리파지토리는 whtndgus 계정 > project-repo 참고
   #### 2. 관리자 페이지 계정과 페이지 생성 : 네이버 클라우드 서비스의 그린아이 기능 적용 후, 게시글이나 증상글의 재검열(공개여부/삭제) 권한 부여, 회원(의사/환자) 회원 관리, 의사 자격증 심사 권한 부여
-  #### 3. 비회원 증상글 작성 시 인증 번호 부여, 조회 가능하게 함
+  #### 3. 비회원 증상글 작성 시 인증 번호 부여, 본인 글 조회 가능하게 함
   #### 4. 회원 가입시 네이버 로그인 연동 기능 구현
   #### 5. 회원 로그인 후 개인정보 접근시 비밀번호 확인
-  #### 6. 
-
 
 
 - #### 강사님 수정사항 조언 : 
